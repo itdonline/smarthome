@@ -1168,3 +1168,33 @@ media_player.snapcast_client_b827ebaa08f7:
   name:
   platform: snapcast
   unique_id: snapcast_client_192.168.1.125:1705_b8:27:eb:aa:08:f7
+media_player.snapcast_group_33dd3a6bc1d0464b252afe594befcb6f:
+  config_entry_id:
+  name:
+  platform: snapcast
+  unique_id: snapcast_group_192.168.1.125:1705_33dd3a6b-c1d0-464b-252a-fe594befcb6f
+media_player.snapcast_group_c44f0a9d307df8dfefc7aac009ab3309:
+  config_entry_id:
+  name:
+  platform: snapcast
+  unique_id: snapcast_group_192.168.1.125:1705_c44f0a9d-307d-f8df-efc7-aac009ab3309
+media_player.snapcast_group_1ad505bdef343cbf7e00727d642526d9:
+  config_entry_id:
+  name:
+  platform: snapcast
+  unique_id: snapcast_group_192.168.1.125:1705_1ad505bd-ef34-3cbf-7e00-727d642526d9
+media_player.snapcast_group_2cbf172d4ee485e6b64e61a60e74ce4f:
+  config_entry_id:
+  name:
+  platform: snapcast
+  unique_id: snapcast_group_192.168.1.125:1705_2cbf172d-4ee4-85e6-b64e-61a60e74ce4f
+media_player.snapcast_group_6526cce3732f337edaaf7cfb90fb6172:
+  config_entry_id:
+  name:
+  platform: snapcast
+  unique_id: snapcast_group_192.168.1.125:1705_6526cce3-732f-337e-daaf-7cfb90fb6172
+media_player.snapcast_group_2c3af693a3e44ac842b7697908f8fc6b:
+  config_entry_id:
+  name:
+  platform: snapcast
+  unique_id: snapcast_group_192.168.1.125:1705_2c3af693-a3e4-4ac8-42b7-697908f8fc6b
