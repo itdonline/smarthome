@@ -17,6 +17,18 @@
 #
 #    Update: I added mqtt code to refresh the sensor values dynamically.
 #    The sensor values update on hourly basis.
+#
+#    PLEASE NOTE THAT THIS PACKAGE USES "DATE" SENSOR. IF YOU SEE THE BIRTHDAY 
+#    VALUES AS "NOT SET", YOU NEED TO ADD THE FOLLOWING TO YOUR CONFIGURATION FILE
+#
+# sensor:
+#   - platform: time_date
+#     display_options:
+#       - 'time'
+#       - 'date'
+#       - 'date_time'
+#       - 'time_date'      
+#
 ###############################################################################
 homeassistant:
   customize:
