@@ -576,3 +576,25 @@ The following is an example on how to use the nines macro:
 
 {{ nines(nines(873)|int + 218)|int }}
 ```
+
+## 17. List devices that are home, list lights that are ON, list anything in a group with a specific state
+The following code lists all the entity friendly names in a group that has a specific state. Just change the group, and the desired state.
+
+```
+{{ dict((states|selectattr('entity_id', 'in', state_attr('group.all_devices', 'entity_id'))|list)|groupby('state'))['home']|map(attribute='name')|list|join(', ') }}
+```
+
+```
+{{ dict((states|selectattr('entity_id', 'in', state_attr('group.all_lights', 'entity_id'))|list)|groupby('state'))['on']|map(attribute='name')|list|join(', ') }}
+```
+
+The same code can also be written in different ways:
+
+```
+{% set desired_group = 'group.all_lights' %}
+{% set desired_state = 'on' %}
+
+{%- for e in state_attr(desired_group, 'entity_id') if states[e.split('.')[0]][e.split('.')[1]].state == desired_state -%}
+  {{ states[e.split('.')[0]][e.split('.')[1]].name }}
+{% endfor -%}
+```
