@@ -35,49 +35,58 @@ homeassistant:
 # Front Door Camera
     binary_sensor.frontdoor_camera_motion:
       friendly_name: Frontdoor Camera Motion
+      hidden: false
     binary_sensor.frontdoor_camera_field_detection:
       friendly_name: Frontdoor Field Detection
+      hidden: false
     binary_sensor.frontdoor_camera_line_crossing:
       friendly_name: Frontdoor Line Crossing
+      hidden: false
     binary_sensor.frontdoor_camera_tamper_detection:
       friendly_name: Frontdoor Camera Tamper Detection
+      hidden: false
 
 # Driveway Camera
     binary_sensor.driveway_camera_motion:
       friendly_name: Driveway Camera Motion
+      hidden: false
     binary_sensor.driveway_camera_field_detection:
       friendly_name: Driveway Field Detection
+      hidden: false
     binary_sensor.driveway_camera_line_crossing:
       friendly_name: Driveway Line Crossing
+      hidden: false
     binary_sensor.driveway_camera_tamper_detection:
       friendly_name: Driveway Camera Tamper Detection
+      hidden: false
 
 # Patio Camera
     binary_sensor.patio_camera_motion:
       friendly_name: Patio Camera Motion
+      hidden: false
     binary_sensor.patio_camera_field_detection:
       friendly_name: Patio Field Detection
+      hidden: false
     binary_sensor.patio_camera_line_crossing:
       friendly_name: Patio Line Crossing
+      hidden: false
     binary_sensor.patio_camera_tamper_detection:
       friendly_name: Patio Camera Tamper Detection
+      hidden: false
 
 # Playarea Camera
     binary_sensor.playarea_camera_motion:
       friendly_name: Playarea Camera Motion
+      hidden: false
     binary_sensor.playarea_camera_field_detection:
       friendly_name: Playarea Field Detection
+      hidden: false
     binary_sensor.playarea_camera_line_crossing:
       friendly_name: Playarea Line Crossing
+      hidden: false
     binary_sensor.playarea_camera_tamper_detection:
       friendly_name: Playarea Camera Tamper Detection
-
-    group.camera_field_detection:
-      <<: *hidden
-    group.camera_line_crossing:
-      <<: *hidden
-    group.camera_tamper_detection:
-      <<: *hidden
+      hidden: false
 
 group:
   Frontyard Cameras:
@@ -111,13 +120,20 @@ group:
       - binary_sensor.driveway_camera_line_crossing
       - binary_sensor.patio_camera_line_crossing
       - binary_sensor.playarea_camera_line_crossing
-      
+
   Camera Tamper Detection:
     entities:
       - binary_sensor.frontdoor_camera_tamper_detection
       - binary_sensor.driveway_camera_tamper_detection
       - binary_sensor.patio_camera_tamper_detection
       - binary_sensor.playarea_camera_tamper_detection
+
+  People That Cameras See:
+    entities:
+      - image_processing.facebox_frontdoor_camera
+      - image_processing.facebox_driveway_camera
+      - image_processing.facebox_patio_camera
+      - image_processing.facebox_playarea_camera
 
 #
 # The camera url format in secrets.yaml would look like this: 
@@ -143,6 +159,17 @@ camera:
   - platform: mjpeg
     mjpeg_url: http://192.168.1.189:8081
     name: Garage Camera
+
+image_processing:
+  - platform: facebox
+    ip_address: 192.168.1.125
+    scan_interval: 360
+    port: 8080
+    source:
+      - entity_id: camera.frontdoor_camera
+      - entity_id: camera.driveway_camera
+      - entity_id: camera.patio_camera
+      - entity_id: camera.playarea_camera
 
 binary_sensor:
 
@@ -222,3 +249,61 @@ automation:
             attachment:
               url: "{{ states.camera[trigger.entity_id.split('.')[1].split('_')[0] ~ '' ~ '_camera'].attributes.entity_picture }}"
               content-type: jpg
+
+#
+# This automation basically scans image and keeps a count of people from each camera view
+# There is another automation that alerts based on the data
+#
+  - alias: Recognize People on Camera Motion
+    initial_state: true
+    hide_entity: true
+    trigger:
+     - platform: state
+       entity_id:
+         - binary_sensor.frontdoor_camera_field_detection
+         - binary_sensor.driveway_camera_field_detection
+         - binary_sensor.patio_camera_field_detection
+         - binary_sensor.playarea_camera_field_detection
+         - binary_sensor.frontdoor_camera_line_crossing
+         - binary_sensor.driveway_camera_line_crossing
+         - binary_sensor.patio_camera_line_crossing
+         - binary_sensor.playarea_camera_line_crossing
+       to: 'on'
+    condition:
+      - condition: template
+        value_template: >
+          {% macro last_triggered(entity) %}
+            {% set time_in_seconds = 30 %}
+            {{ ( (as_timestamp(now()) - as_timestamp(states["binary_sensor"][entity].attributes.last_tripped_time)))|round|abs < time_in_seconds }}
+          {% endmacro %}
+          {% set e = trigger.entity_id %}
+          {{ last_triggered(e.split('.')[1].split('_')[0] ~ '_camera_motion')}}
+    action:
+      - service: image_processing.scan
+        data_template:
+          entity_id: "image_processing.facebox_{{- trigger.entity_id.split('.')[1].split('_')[0] -}}_camera"
+
+#
+# This automation alerts when the cameras detect people around the house.
+# There is a setting/input_boolean to control that
+#
+  - alias: Alert People Activity
+    trigger:
+      - platform: state
+        entity_id:
+          - image_processing.facebox_frontdoor_camera
+          - image_processing.facebox_driveway_camera
+          - image_processing.facebox_patio_camera
+          - image_processing.facebox_playarea_camera
+    condition:
+      - condition: template
+        value_template: '{{ states.input_boolean.notify_motion_pictures.state == "on" }}'
+      - condition: template
+        value_template: '{{ trigger.to_state.state | int > 0 }}'
+    action:
+      - service: script.notify_me
+        data_template:
+          message: "{{ trigger.to_state.state }} People detected on {{ states['camera'][trigger.entity_id.split('.')[1].split('_')[1] ~ '_camera'].attributes.friendly_name }}!"
+      - service: script.voice_notify
+        data_template:
+          message: "{{ trigger.to_state.state }} People detected on {{ states['camera'][trigger.entity_id.split('.')[1].split('_')[1] ~ '_camera'].attributes.friendly_name }}!"
