@@ -299,11 +299,11 @@ automation:
       - condition: template
         value_template: '{{ states.input_boolean.notify_motion_pictures.state == "on" }}'
       - condition: template
-        value_template: '{{ trigger.to_state.state | int > 0 }}'
+        value_template: '{{ trigger.to_state.state | default(0) | int > 0 }}'
     action:
       - service: script.notify_me
         data_template:
-          message: "{{ trigger.to_state.state }} People detected on {{ states['camera'][trigger.entity_id.split('.')[1].split('_')[1] ~ '_camera'].attributes.friendly_name }}!"
+          message: "{{ trigger.to_state.state }} {{ 'people' if trigger.to_state.state | int > 0 else 'person' }} detected on {{ states['camera'][trigger.entity_id.split('.')[1].split('_')[1] ~ '_camera'].attributes.friendly_name }}!"
       - service: script.voice_notify
         data_template:
-          message: "{{ trigger.to_state.state }} People detected on {{ states['camera'][trigger.entity_id.split('.')[1].split('_')[1] ~ '_camera'].attributes.friendly_name }}!"
+          message: "{{ trigger.to_state.state }} {{ 'people' if trigger.to_state.state | int > 0 else 'person' }} detected on {{ states['camera'][trigger.entity_id.split('.')[1].split('_')[1] ~ '_camera'].attributes.friendly_name }}!"
