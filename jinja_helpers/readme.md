@@ -598,3 +598,11 @@ The same code can also be written in different ways:
   {{ states[e.split('.')[0]][e.split('.')[1]].name }}
 {% endfor -%}
 ```
+
+Or
+
+```
+{{ states | selectattr('entity_id', 'in', state_attr('group.all_doors','entity_id')) | selectattr('state','in',['on','open']) | list | length >= 1 }}
+{% set open_doors = {{ states | selectattr('entity_id', 'in', state_attr('group.all_doors','entity_id')) | selectattr('state','in',['on','open']) | list | map(attribute='name') |join(', ') }}
+The following doors are open: {{ open_doors }}
+```
