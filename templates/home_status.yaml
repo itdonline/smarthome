@@ -12,7 +12,7 @@
     {%- elif days2go == 1 -%}
       Tomorrow is {{name}}'s Birthday! HURRAY!!!
     {%- elif days2go > 1 and days2go <= 10 -%}
-      {{name}}s Birthday is in {{days2go}} days! HURRAY!!!
+      {{name}}'s Birthday is in {{days2go}} days! HURRAY!!!
     {%- endif -%}
   {%- endmacro -%}
 

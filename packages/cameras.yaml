@@ -88,6 +88,15 @@ homeassistant:
       friendly_name: Playarea Camera Tamper Detection
       hidden: false
 
+    image_processing.facebox_frontdoor_camera:
+      friendly_name: People @ Front Door
+    image_processing.facebox_driveway_camera:
+      friendly_name: People @ Driveway
+    image_processing.facebox_patio_camera:
+      friendly_name: People @ Patio
+    image_processing.facebox_playarea_camera:
+      friendly_name: People @ Playarea
+
 group:
   Frontyard Cameras:
     entities:
@@ -162,7 +171,7 @@ camera:
 
 image_processing:
   - platform: facebox
-    ip_address: 192.168.1.125
+    ip_address: !secret ha_ip_address
     scan_interval: 360
     port: 8080
     source:
@@ -203,7 +212,7 @@ automation:
 # This automation basically scans image and keeps a count of people from each camera view and notifies using iOS notification
 # There is another automation that alerts in the house (using TTS) based on the data
 #
-  - alias: Notify camera pictures
+  - alias: Scan People and Notify
     initial_state: true
     hide_entity: true
     trigger:
@@ -269,7 +278,7 @@ automation:
     action:
       - service: script.notify_me
         data_template:
-          message: "{{ trigger.to_state.state }} {{ 'people' if trigger.to_state.state | int > 0 else 'person' }} detected on {{ states['camera'][trigger.entity_id.split('.')[1].split('_')[1] ~ '_camera'].attributes.friendly_name }}!"
+          message: "{{ trigger.to_state.state }} {{ 'person' if trigger.to_state.state | int == 1 else 'people' }} detected on {{ states['camera'][trigger.entity_id.split('.')[1].split('_')[1] ~ '_camera'].attributes.friendly_name }}!"
       - service: script.voice_notify
         data_template:
-          message: "{{ trigger.to_state.state }} {{ 'people' if trigger.to_state.state | int > 0 else 'person' }} detected on {{ states['camera'][trigger.entity_id.split('.')[1].split('_')[1] ~ '_camera'].attributes.friendly_name }}!"
+          message: "{{ trigger.to_state.state }} {{ 'person' if trigger.to_state.state | int == 1 else 'people' }} detected on {{ states['camera'][trigger.entity_id.split('.')[1].split('_')[1] ~ '_camera'].attributes.friendly_name }}!"
