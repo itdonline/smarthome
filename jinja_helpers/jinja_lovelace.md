@@ -1,4 +1,4 @@
-Lovelace Cards Using Jinja2 Scripting
+# Lovelace Cards Using Jinja2 Scripting
 
 ## This script auto generates Lovelace Entity Cards
 
