@@ -51,7 +51,7 @@ The output of the above script would look like the following:
 ## 2. This script auto generates Lovelace Entity-Filter Card for your Device Trackers
 
 ```
-{% for item in ['device_tracker'] -%}
+{% for item in states['device_tracker'] -%}
 - type: entity-filter
   state_filter:
     - 'home'
