@@ -1,6 +1,6 @@
 # Lovelace Cards Using Jinja2 Scripting
 
-## This script auto generates Lovelace Entity Cards
+## 1. This script auto generates Lovelace Entity Cards
 
 ```
 {% set domains = states | map(attribute='domain') |list | unique | list %}
@@ -46,7 +46,38 @@ The output of the above script would look like the following:
       name: work
 
 ...
-...
-...
 ```
 
+## 2. This script auto generates Lovelace Entity-Filter Card for your Device Trackers
+
+```
+{% for item in ['device_tracker'] -%}
+- type: entity-filter
+  state_filter:
+    - 'home'
+  card:
+    type: glance
+    title: My Device Trackers
+  entities:
+{%- for e in states[item] %}
+    - {{ e.entity_id }}
+{%- endfor %}
+{% endfor %}
+```
+The output of above would look something like:
+
+```
+- type: entity-filter
+  state_filter:
+    - 'home'
+  card:
+    type: glance
+    title: My Device Trackers
+  entities:
+    - device_tracker.hasika_hasika
+    - device_tracker.ipad
+    - device_tracker.mallika_mallika
+    - device_tracker.srinika_srinika
+    - device_tracker.suresh_suresh
+    - device_tracker.tesla_model_3_5yj3e1ea8jf010610_location_tracker
+```
