@@ -16,6 +16,9 @@ homeassistant:
     device_tracker.hasika_hasika:
       friendly_name: Hasika
       entity_picture: /local/hasika.jpg
+    device_tracker.tesla_model_3_5yj3e1ea8jf010610_location_tracker:
+      friendly_name: Tesla
+      entity_picture: /local/tesla.jpg
     device_tracker.ipad_ipad:
       hidden: true
 
@@ -32,6 +35,7 @@ group:
       - device_tracker.mallika_mallika
       - device_tracker.srinika_srinika
       - device_tracker.hasika_hasika
+      - device_tracker.tesla_model_3_5yj3e1ea8jf010610_location_tracker
       - alarm_control_panel.simplisafe
       - input_boolean.emergency_mode
       - input_boolean.home_mode_away

@@ -1,22 +1,12 @@
 
-# This code is auto-generated using my Jinja lovelace migration script 
+# This code is auto-generated using my Jinja lovelace migration script
 # visit: https://github.com/skalavala/smarthome/blob/master/jinja_helpers/jinja_lovelace.md
-
+# Or visit https://sharethelove.io/tools/jinja-magic-scripts
+#
 title: Kalavala's Home Automation
 views:
   - title: Home
     cards:
-      - type: entity-filter
-        entities:
-          - device_tracker.suresh_suresh
-          - device_tracker.mallika_mallika
-          - device_tracker.srinika_srinika
-          - device_tracker.hasika_hasika
-        state_filter:
-          - 'home'
-        card:
-          type: glance
-          title: My Family
       - type: entities
         title: Home Security
         show_header_toggle: false
@@ -24,45 +14,12 @@ views:
           - alarm_control_panel.simplisafe
           - input_boolean.emergency_mode
           - input_boolean.home_mode_away
-      - type: entities
-        title: Batteries
-        show_header_toggle: false
-        entities:
-          - sensor.srinika_iphone_battery_ot
-          - sensor.hasika_iphone_battery_ot
-          - sensor.mallika_iphone_battery_ot
-          - sensor.suresh_iphone_battery_ot          
       - type: picture-entity
-        title: Frontdoor Camera
-        entity: camera.frontdoor_camera
-        camera_image: camera.frontdoor_camera
+        title: Ohio Doppler Weather
+        entity: camera.ohio_doppler_weather
+        camera_image: camera.ohio_doppler_weather
         show_info: true
         tap_action: dialog
-      - type: picture-entity
-        title: Driveway Camera
-        entity: camera.driveway_camera
-        camera_image: camera.driveway_camera
-        show_info: true
-        tap_action: dialog
-      - type: picture-entity
-        title: Patio Camera
-        entity: camera.patio_camera
-        camera_image: camera.patio_camera
-        show_info: true
-        tap_action: dialog
-      - type: picture-entity
-        title: Playarea Camera
-        entity: camera.playarea_camera
-        camera_image: camera.playarea_camera
-        show_info: true
-        tap_action: dialog
-      - type: picture-entity
-        title: Garage Camera
-        entity: camera.garage_camera
-        camera_image: camera.garage_camera
-        show_info: true
-        tap_action: dialog
-
       - type: entities
         title: ZWave Devices
         show_header_toggle: true
@@ -89,61 +46,6 @@ views:
           - zwave.audio_detector
           - zwave.front_room_window_sensor
       - type: entities
-        title: Front Room Multi Sensor
-        show_header_toggle: true
-        entities:
-          - sensor.front_room_multi_sensor_burglar
-          - sensor.front_room_multi_sensor_sourcenodeid
-          - sensor.front_room_multi_sensor_alarm_level
-          - sensor.front_room_multi_sensor_ultraviolet
-          - sensor.front_room_multi_sensor_temperature
-          - sensor.front_room_multi_sensor_relative_humidity
-          - sensor.front_room_multi_sensor_luminance
-          - sensor.front_room_multi_sensor_alarm_type
-      - type: entities
-        title: Media Players
-        show_header_toggle: true
-        entities:
-          - input_select.snapcast_server
-      - type: media-control
-        entity: media_player.mpd
-      - type: entities
-        title: 1-Car Garage Door Sensor
-        show_header_toggle: true
-        entities:
-          - sensor.single_car_garage_door_tilt_sensor_power_management
-          - sensor.single_car_garage_door_tilt_sensor_burglar
-          - sensor.single_car_garage_door_tilt_sensor_access_control
-          - sensor.single_car_garage_door_tilt_sensor_alarm_type
-          - sensor.single_car_garage_door_tilt_sensor_alarm_level
-          - sensor.single_car_garage_door_tilt_sensor_sourcenodeid
-      - type: entities
-        title: TV Multi Sensor
-        show_header_toggle: true
-        entities:
-          - sensor.tv_multi_sensor_ultraviolet
-          - sensor.tv_multi_sensor_luminance
-          - sensor.tv_multi_sensor_sourcenodeid
-          - sensor.tv_multi_sensor_temperature
-          - sensor.tv_multi_sensor_relative_humidity
-          - sensor.tv_multi_sensor_alarm_type
-          - sensor.tv_multi_sensor_alarm_level
-          - sensor.tv_multi_sensor_burglar
-      - type: entities
-        title: Camera Line Crossing
-        show_header_toggle: true
-        entities:
-          - binary_sensor.frontdoor_camera_line_crossing
-          - binary_sensor.driveway_camera_line_crossing
-          - binary_sensor.playarea_camera_line_crossing
-          - binary_sensor.patio_camera_line_crossing
-      - type: entities
-        title: Always On
-        show_header_toggle: true
-        entities:
-          - light.gateway_light_34ce008ad65d
-          - switch.wemoswitch1
-      - type: entities
         title: Emergency Scripts
         show_header_toggle: false
         entities:
@@ -151,52 +53,6 @@ views:
           - script.emergency_all_lights_switches_on
           - script.emergency_script
           - script.emergency_script_loop
-      - type: entities
-        title: Raspberry Pi Commands
-        show_header_toggle: true
-        entities:
-          - input_select.raspberry_pis
-          - input_select.rpi_commands
-      - type: entities
-        title: People That Cameras See
-        show_header_toggle: true
-        entities:
-          - image_processing.facebox_patio_camera
-          - image_processing.facebox_playarea_camera
-          - image_processing.facebox_frontdoor_camera
-          - image_processing.facebox_driveway_camera
-      - type: entities
-        title: Front Door Sensor
-        show_header_toggle: true
-        entities:
-          - sensor.front_door_sensor_power_management
-          - sensor.front_door_sensor_access_control
-          - sensor.front_door_sensor_burglar
-          - sensor.front_door_sensor_sourcenodeid
-          - sensor.front_door_sensor_alarm_level
-          - sensor.front_door_sensor_alarm_type
-      - type: entities
-        title: switches
-        show_header_toggle: true
-        entities:
-          - switch.wemobackyardlightswitch
-          - switch.zwave_smart_switch_switch
-          - switch.guest_bedroom_1
-          - switch.wallmote_switch
-          - switch.guest_bedroom_2
-          - switch.frontyard_light
-          - switch.kids_bedroom
-          - switch.wemoswitch1
-          - switch.garage_lights
-      - type: entities
-        title: Phone Batteries
-        show_header_toggle: true
-        entities:
-          - input_label.hasika_battery
-          - input_label.suresh_battery
-          - input_label.mallika_battery
-          - input_label.srinika_battery
-
       - type: entities
         title: Motion Sensors
         show_header_toggle: true
@@ -238,10 +94,6 @@ views:
           - binary_sensor.frontdoor_camera_line_crossing
           - binary_sensor.aeotec_water_sensor_sensor
           - binary_sensor.front_room_multi_sensor_sensor
-      - type: media-control
-        entity: media_player.denon_avrx2400h
-      - type: weather-forecast
-        entity: weather.xxx
       - type: entities
         title: Weather
         show_header_toggle: true
@@ -262,18 +114,6 @@ views:
           - sensor.pws_alerts
           - sensor.pws_feelslike_f
           - sensor.cold_flu_risk
-      - type: entities
-        title: Guest Bedroom Multi Sensor
-        show_header_toggle: true
-        entities:
-          - sensor.guest_bedroom_multi_sensor_alarm_level
-          - sensor.guest_bedroom_multi_sensor_temperature
-          - sensor.guest_bedroom_multi_sensor_ultraviolet
-          - sensor.guest_bedroom_multi_sensor_burglar
-          - sensor.guest_bedroom_multi_sensor_luminance
-          - sensor.guest_bedroom_multi_sensor_sourcenodeid
-          - sensor.guest_bedroom_multi_sensor_relative_humidity
-          - sensor.guest_bedroom_multi_sensor_alarm_type
       - type: entities
         title: Bed & Wakeup Times
         show_header_toggle: true
@@ -298,21 +138,6 @@ views:
           - light.hue_color_lamp_3
           - light.master_bedroom_2
           - light.hue_color_lamp_2
-      - type: entities
-        title: Phone WiFi
-        show_header_toggle: true
-        entities:
-          - input_label.mallika_wifi
-          - input_label.srinika_wifi
-          - input_label.suresh_wifi
-          - input_label.hasika_wifi
-      - type: entities
-        title: Birthday Countdown
-        show_header_toggle: true
-        entities:
-          - input_label.srinika_birthday_days2go
-          - input_label.hasika_birthday_days2go
-          - input_label.mallika_birthday_days2go
       - type: entities
         title: Upstairs Lights
         show_header_toggle: true
@@ -439,27 +264,6 @@ views:
         entities:
           - input_text.tts
           - input_boolean.greeting
-      - type: entities
-        title: Humidity Levels
-        show_header_toggle: true
-        entities:
-          - sensor.tv_multi_sensor_relative_humidity
-          - sensor.downstairs_multi_sensor_relative_humidity
-          - sensor.pws_relative_humidity
-          - sensor.upstairs_multi_sensor_relative_humidity
-          - sensor.front_room_multi_sensor_relative_humidity
-          - sensor.guest_bedroom_multi_sensor_relative_humidity
-      - type: entities
-        title: Temperature Levels
-        show_header_toggle: true
-        entities:
-          - sensor.aeotec_water_sensor_temperature
-          - sensor.audio_detector_temperature
-          - sensor.tv_multi_sensor_temperature
-          - sensor.guest_bedroom_multi_sensor_temperature
-          - sensor.downstairs_multi_sensor_temperature
-          - sensor.front_room_multi_sensor_temperature
-          - sensor.upstairs_multi_sensor_temperature
       - type: entities
         title: QNAP Automations
         show_header_toggle: true
@@ -1025,6 +829,55 @@ views:
   - title: Family
     icon: mdi:account-multiple
     cards:
+      - type: entity-filter
+        entities:
+          - device_tracker.suresh_suresh
+          - device_tracker.mallika_mallika
+          - device_tracker.srinika_srinika
+          - device_tracker.hasika_hasika
+          - entity: device_tracker.tesla_model_3_5yj3e1ea8jf010610_location_tracker
+            name: Tesla
+        state_filter:
+          - 'home'
+        card:
+          type: glance
+          title: My Family
+      - type: glance
+        title: Phone Batteries
+        entities:
+          - entity: input_label.suresh_battery
+            name: Suresh
+          - entity: input_label.mallika_battery
+            name: Mallika
+          - entity: input_label.srinika_battery
+            name: Srinika
+          - entity: input_label.hasika_battery
+            name: Hasika
+      - type: entity-filter
+        entities:
+          - entity: input_label.suresh_wifi
+            name: Suresh
+          - entity: input_label.mallika_wifi
+            name: Mallika
+          - entity: input_label.srinika_wifi
+            name: Srinika
+          - entity: input_label.hasika_wifi
+            name: Hasika
+        state_filter:
+          - 'Yes'
+        card:
+          type: glance
+          title: Connected to Wi-Fi
+      - type: glance
+        title: Birthdays
+        entities:
+          - entity: input_label.srinika_birthday_days2go
+            name: Srinika
+          - entity: input_label.hasika_birthday_days2go
+            name: Hasika
+          - entity: input_label.mallika_birthday_days2go
+            name: Mallika
+
       - type: entities
         title: Date Time
         show_header_toggle: true
@@ -1084,14 +937,6 @@ views:
           - sensor.pws_feelslike_f
           - sensor.cold_flu_risk
       - type: entities
-        title: WiFi
-        show_header_toggle: true
-        entities:
-          - sensor.sureshs_iphone_wifi_state
-          - sensor.srinikas_iphone_wifi_state
-          - sensor.mallikas_iphone_wifi_state
-          - sensor.hasikas_iphone_wifi_state
-      - type: entities
         title: Motion Sensors
         show_header_toggle: true
         entities:
@@ -1133,26 +978,6 @@ views:
           - binary_sensor.aeotec_water_sensor_sensor
           - binary_sensor.front_room_multi_sensor_sensor
       - type: entities
-        title: Light Levels
-        show_header_toggle: true
-        entities:
-          - sensor.tv_multi_sensor_luminance
-          - sensor.downstairs_multi_sensor_luminance
-          - sensor.front_room_multi_sensor_luminance
-          - sensor.guest_bedroom_multi_sensor_luminance
-          - sensor.upstairs_multi_sensor_luminance
-      - type: entities
-        title: Home & Family
-        show_header_toggle: false
-        entities:
-          - device_tracker.hasika_hasika
-          - device_tracker.mallika_mallika
-          - alarm_control_panel.simplisafe
-          - device_tracker.suresh_suresh
-          - device_tracker.srinika_srinika
-          - input_boolean.emergency_mode
-          - input_boolean.home_mode_away
-      - type: entities
         title: Where is everyone
         show_header_toggle: true
         entities:
@@ -1160,20 +985,6 @@ views:
           - sensor.mallika_location
           - sensor.hasika_location
           - sensor.suresh_location
-      - type: entities
-        title: Batteries
-        show_header_toggle: false
-        entities:
-          - sensor.srinika_iphone_battery_ot
-          - sensor.hasika_iphone_battery_ot
-          - sensor.mallika_iphone_battery_ot
-          - sensor.suresh_iphone_battery_ot
-      - type: picture-entity
-        title: Ohio Doppler Weather
-        entity: camera.ohio_doppler_weather
-        camera_image: camera.ohio_doppler_weather
-        show_info: true
-        tap_action: dialog
       - type: entities
         title: calendar
         show_header_toggle: true
@@ -1206,58 +1017,86 @@ views:
   - title: Lights and Swithches
     icon: mdi:lightbulb-on
     cards:
-      - type: entities
-        title: Outdoor Lights
-        show_header_toggle: true
-        entities:
-          - switch.frontyard_light
-          - switch.wemobackyardlightswitch
-      - type: entities
+      - type: glance
         title: Downstairs Lights
-        show_header_toggle: true
         entities:
-          - light.hue_color_lamp_1
-          - light.family_room
-          - switch.zwave_smart_switch_switch
-          - switch.basement_right_lights
-          - light.hue_color_lamp_3
-          - switch.office_room_lights
-          - switch.smart_outlet_1
-          - switch.kitchen_light
-          - light.hue_color_lamp_2
-          - switch.basement_left_lights
-          - switch.garage_lights
-      - type: entities
-        title: Upstairs Lights
-        show_header_toggle: true
+          - entity: light.family_room
+            name: Family Room
+          - entity: switch.frontyard_light
+            name: Frontyard
+          - entity: switch.wemobackyardlightswitch
+            name: Backyard
+          - entity: switch.kitchen_light
+            name: Kitchen
+          - entity: switch.garage_lights
+            name: Garage
+          - entity: switch.office_room_lights
+            name: Office Room
+          - entity: switch.zwave_smart_switch_switch
+            name: Office Room Accent Lights
+          - entity: switch.basement_left_lights
+            name: Theater
+          - entity: switch.basement_right_lights
+            name: Studio
+      - type: glance
+        title: Outdoor Lights
         entities:
-          - light.master_bedroom_2
-          - light.master_bedroom_1
-          - switch.guest_bedroom_1
-          - switch.guest_bedroom_2
-          - switch.kids_bedroom
-          - switch.kids_bed_accent_light
-          - light.master_bedroom
-      - type: entities
-        title: Always On
-        show_header_toggle: true
+          - entity: switch.frontyard_light
+            name: Frontyard
+          - entity: switch.wemobackyardlightswitch
+            name: Backyard
+      - type: glance
+        title: Bedrooms
         entities:
-          - light.gateway_light_34ce008ad65d
-          - switch.wemoswitch1
-      - type: entities
+          - entity: light.master_bedroom
+            name: Master
+          - entity: switch.kids_bedroom
+            name: Kids
+          - entity: switch.kids_bed_accent_light
+            name: Kids Accent
+          - entity: switch.guest_bedroom_1
+            name: Guest1
+          - entity: switch.guest_bedroom_2
+            name: Guest2
+      - type: glance
+        title: Miscellaneous
+        entities:
+          - entity: light.gateway_light_34ce008ad65d
+            name: Xiaomi
+          - entity: switch.wemoswitch1
+            name: TV Reset
+      - type: glance
         title: RF Switches
-        show_header_toggle: true
         entities:
-          - switch.rf_switch_three
-          - switch.rf_switch_one
-          - switch.rf_switch_five
-          - switch.rf_switch_two
-          - switch.rf_switch_four
+          - entity: switch.rf_switch_four
+            name: Front Room
+          - entity: switch.rf_switch_one
+            name: Grow Lights
+          - entity: switch.rf_switch_five
+            name: Christmas
+          - entity: switch.rf_switch_two
+            name: Unused
+          - entity: switch.rf_switch_three
+            name: Unused
   - title: Trash & Recycle
     icon: mdi:recycle
     cards:
+      - type: glance
+        title: Trash & Recycle
+        entities:
+          - entity: sensor.trash_day
+            name: Trash Today?
+          - entity: sensor.recycle_day
+            name: Recycle Today?
       - type: entities
-        title: Recycle Schedule
+        title: Set Trash Schedule
+        show_header_toggle: true
+        entities:
+          - input_select.trash_pickup_day
+          - sensor.trash_pickup_day
+          - sensor.trash_day
+      - type: entities
+        title: Set Recycle Schedule
         show_header_toggle: true
         entities:
           - sensor.recycle_pickup_week
@@ -1266,13 +1105,6 @@ views:
           - sensor.current_week
           - sensor.recycle_day
           - input_select.recycle_pickup_day
-      - type: entities
-        title: Trash Schedule
-        show_header_toggle: true
-        entities:
-          - input_select.trash_pickup_day
-          - sensor.trash_pickup_day
-          - sensor.trash_day
   - title: NAS
     icon: mdi:harddisk
     cards:
@@ -1397,85 +1229,109 @@ views:
           - switch.tesla_model_3_5yj3e1ea8jf010610_maxrange_switch
           - sensor.tesla_model_3_5yj3e1ea8jf010610_temperature_sensor_outside
           - sensor.tesla_model_3_5yj3e1ea8jf010610_temperature_sensor_inside
-  - title: CCTV
+  - title: Cameras & Stuff
     icon: mdi:cctv
     cards:
-      - type: picture-entity
+      - type: picture-glance
         title: Patio Camera
         entity: camera.patio_camera
         camera_image: camera.patio_camera
-        show_info: true
         tap_action: dialog
-      - type: picture-entity
+        entities:
+          - switch.wemobackyardlightswitch
+          - binary_sensor.patio_camera_motion
+      - type: picture-glance
         title: Playarea Camera
         entity: camera.playarea_camera
         camera_image: camera.playarea_camera
         show_info: true
         tap_action: dialog
-      - type: entities
-        title: Camera Tamper Detection
-        show_header_toggle: true
         entities:
-          - binary_sensor.frontdoor_camera_tamper_detection
-          - binary_sensor.patio_camera_tamper_detection
-          - binary_sensor.driveway_camera_tamper_detection
-          - binary_sensor.playarea_camera_tamper_detection
-      - type: picture-entity
+          - switch.wemobackyardlightswitch
+          - binary_sensor.playarea_camera_motion
+      - type: picture-glance
         title: Frontdoor Camera
         entity: camera.frontdoor_camera
         camera_image: camera.frontdoor_camera
         show_info: true
         tap_action: dialog
-      - type: picture-entity
-        title: Garage Camera
-        entity: camera.garage_camera
-        camera_image: camera.garage_camera
-        show_info: true
-        tap_action: dialog
-      - type: picture-entity
+        entities:
+          - switch.frontyard_light
+          - binary_sensor.frontdoor_camera_motion
+      - type: picture-glance
         title: Driveway Camera
         entity: camera.driveway_camera
         camera_image: camera.driveway_camera
         show_info: true
         tap_action: dialog
-      - type: entities
-        title: People That Cameras See
-        show_header_toggle: true
         entities:
-          - image_processing.facebox_patio_camera
-          - image_processing.facebox_playarea_camera
-          - image_processing.facebox_frontdoor_camera
-          - image_processing.facebox_driveway_camera
-      - type: entities
-        title: Camera Line Crossing
-        show_header_toggle: true
-        entities:
-          - binary_sensor.frontdoor_camera_line_crossing
-          - binary_sensor.driveway_camera_line_crossing
-          - binary_sensor.playarea_camera_line_crossing
-          - binary_sensor.patio_camera_line_crossing
-      - type: picture-entity
-        title: Ohio Doppler Weather
-        entity: camera.ohio_doppler_weather
-        camera_image: camera.ohio_doppler_weather
-        show_info: true
-        tap_action: dialog
-      - type: entities
-        title: Camera Field Detection
-        show_header_toggle: true
-        entities:
-          - binary_sensor.frontdoor_camera_field_detection
-          - binary_sensor.playarea_camera_field_detection
-          - binary_sensor.patio_camera_field_detection
-          - binary_sensor.driveway_camera_field_detection
-      - type: entities
-        title: Camera Motion
-        show_header_toggle: true
-        entities:
+          - switch.frontyard_light
           - binary_sensor.driveway_camera_motion
-          - binary_sensor.playarea_camera_motion
-          - binary_sensor.patio_camera_motion
-          - binary_sensor.frontdoor_camera_motion
+      - type: picture-glance
+        title: Garage Camera
+        entity: camera.garage_camera
+        camera_image: camera.garage_camera
+        entities:
+          - switch.garage_lights
+          - binary_sensor.single_car_garage_door_tilt_sensor_sensor
+          - binary_sensor.two_car_garage_door_tilt_sensor_sensor
+      - type: glance
+        title: People Detected
+        entities:
+          - entity: image_processing.facebox_patio_camera
+            name: Patio
+          - entity: image_processing.facebox_playarea_camera
+            name: Playarea
+          - entity: image_processing.facebox_frontdoor_camera
+            name: Front Door
+          - entity: image_processing.facebox_driveway_camera
+            name: Driveway
+      - type: entity-filter
+        entities:
+          - entity: binary_sensor.driveway_camera_motion
+            name: Driveway
+          - entity: binary_sensor.playarea_camera_motion
+            name: Playarea
+          - entity: binary_sensor.patio_camera_motion
+            name: Patio
+          - entity: binary_sensor.frontdoor_camera_motion
+            name: Frontdoor
+        state_filter:
+          - 'on'
+        card:
+          type: glance
+          title: Camera Motion
+      - type: entity-filter
+        entities:
+          - entity: binary_sensor.frontdoor_camera_tamper_detection
+            name: Temper Front
+          - entity: binary_sensor.patio_camera_tamper_detection
+            name: Tamper Patio
+          - entity: binary_sensor.driveway_camera_tamper_detection
+            name: Temper Driveway
+          - entity: binary_sensor.playarea_camera_tamper_detection
+            name: Tamper Playarea
+          - entity: binary_sensor.frontdoor_camera_field_detection
+            name: Field Front Door
+          - entity: binary_sensor.playarea_camera_field_detection
+            name: Field Playarea
+          - entity: binary_sensor.patio_camera_field_detection
+            name: Field Patio
+          - entity: binary_sensor.driveway_camera_field_detection
+            name: Field Driveway
+          - entity: binary_sensor.frontdoor_camera_line_crossing
+            name: Line Front
+          - entity: binary_sensor.driveway_camera_line_crossing
+            name: Line Driveway
+          - entity: binary_sensor.playarea_camera_line_crossing
+            name: Line Playarea
+          - entity: binary_sensor.patio_camera_line_crossing
+            name: Line Patio
+        state_filter:
+          - 'on'
+        card:
+          type: glance
+          title: Camera
   - title: Scripts
     icon: mdi:script
     cards:
@@ -1716,21 +1572,71 @@ views:
   - title: All Rooms
     icon: mdi:home
     cards:
-      - type: entities
-        title: Garage
+      - type: glance
+        title: Light Levels
+        entities:
+          - entity: sensor.tv_multi_sensor_luminance
+            name: TV Room
+          - entity: sensor.downstairs_multi_sensor_luminance
+            name: Downstairs
+          - entity: sensor.front_room_multi_sensor_luminance
+            name: Front Room
+          - entity: sensor.guest_bedroom_multi_sensor_luminance
+            name: Bedroom
+          - entity: sensor.upstairs_multi_sensor_luminance
+            name: Upstairs
+      - type: glance
+        title: Humidity Levels
         show_header_toggle: true
         entities:
-          - sensor.single_car_garage_door_sensor_status
-          - binary_sensor.single_car_garage_door_tilt_sensor_sensor
-          - sensor.two_car_garage_door_sensor_status
-          - binary_sensor.two_car_garage_door_tilt_sensor_sensor
-      - type: entities
-        title: Master Bedroom
-        show_header_toggle: false
+          - entity: sensor.tv_multi_sensor_relative_humidity
+            name: TV Room
+          - entity: sensor.downstairs_multi_sensor_relative_humidity
+            name: Downstairs
+          - entity: sensor.pws_relative_humidity
+            name: Outdoors
+          - entity: sensor.upstairs_multi_sensor_relative_humidity
+            name:  Upstairs
+          - entity: sensor.front_room_multi_sensor_relative_humidity
+            name:  Front Room
+          - entity: sensor.guest_bedroom_multi_sensor_relative_humidity
+            name: Guest Bedroom
+      - type: glance
+        title: Temperature Levels
+        show_header_toggle: true
         entities:
-          - light.master_bedroom
-          - light.master_bedroom_1
-          - light.master_bedroom_2
+          - entity: sensor.aeotec_water_sensor_temperature
+            name: Basement
+          - entity: sensor.audio_detector_temperature
+            name:  Foyer
+          - entity: sensor.tv_multi_sensor_temperature
+            name: TV Room
+          - entity: sensor.guest_bedroom_multi_sensor_temperature
+            name: Guest Bedroom
+          - entity: sensor.downstairs_multi_sensor_temperature
+            name:  Downstairs
+          - entity: sensor.front_room_multi_sensor_temperature
+            name: Front Room
+          - entity: sensor.upstairs_multi_sensor_temperature
+            name: Upstairs
+      - type: glance
+        title: Doors
+        entities:
+          - entity: binary_sensor.back_door_sensor_sensor
+            name: Back Door
+          - entity: binary_sensor.basement_door_sensor_sensor
+            name: Basement Door
+          - entity: binary_sensor.front_door_sensor_sensor
+            name: Front Door
+          - entity: binary_sensor.garage_door_sensor_sensor
+            name: Garage Door
+      - type: glance
+        title: Garage Doors
+        entities:
+          - entity: binary_sensor.single_car_garage_door_tilt_sensor_sensor
+            name: 1Car Garage
+          - entity: binary_sensor.two_car_garage_door_tilt_sensor_sensor
+            name: 2Car Garage
   - title: Nest Thermostat View
     icon: mdi:thermostat
     cards:
@@ -1739,7 +1645,22 @@ views:
         show_header_toggle: true
         entities:
           - binary_sensor.home_away
-          - sensor.home_eta
+          - binary_sensor.dining_room_thermostat_fan
+          - binary_sensor.dining_room_thermostat_has_leaf
+          - binary_sensor.dining_room_thermostat_is_locked
+          - binary_sensor.dining_room_thermostat_is_using_emergency_heat
+          - binary_sensor.dining_room_thermostat_online
+          - sensor.dining_room_thermostat_humidity
+          - sensor.dining_room_thermostat_hvac_state
+          - sensor.dining_room_thermostat_operation_mode
+          - sensor.dining_room_thermostat_target
+          - sensor.dining_room_thermostat_temperature
+          - climate.dining_room
+      - type: entities
+        title: Climate Set
+        show_header_toggle: true
+        entities:
+          - climate.dining_room
   - title: Media Center
     icon: mdi:television
     cards:
