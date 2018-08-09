@@ -606,8 +606,9 @@ Or
 {% set open_doors = {{ states | selectattr('entity_id', 'in', state_attr('group.all_doors','entity_id')) | selectattr('state','in',['on','open']) | list | map(attribute='name') |join(', ') }}
 The following doors are open: {{ open_doors }}
 ```
-## 18. Check Battery Levels of ALL sensors
+## 18. Check Battery Levels of ALL devices using one script:
 
+You can also use this in your automations to alert you when a specific device's battery level goes below certain threshold.
 ```
 {%- for item in states -%}
 {%- for attrib in item.attributes|sort() if 'battery' in attrib %}
