@@ -218,6 +218,10 @@ automation:
     trigger:
      - platform: state
        entity_id:
+         - binary_sensor.frontdoor_camera_motion
+         - binary_sensor.driveway_camera_motion
+         - binary_sensor.patio_camera_motion
+         - binary_sensor.playarea_camera_motion
          - binary_sensor.frontdoor_camera_field_detection
          - binary_sensor.driveway_camera_field_detection
          - binary_sensor.patio_camera_field_detection
@@ -229,9 +233,7 @@ automation:
        to: 'on'
     condition:
       - condition: template
-        value_template: '{{ states.input_boolean.notify_motion_pictures.state == "on" }}'
-      - condition: template
-        value_template: '{{ states.input_boolean.home_mode_away.state == "on" }}'
+        value_template: '{{ states.input_boolean.notify_camera_motion.state == "on" }}'
       - condition: template
         value_template: >
           {% macro last_triggered(entity) %}
@@ -243,16 +245,6 @@ automation:
       - service: image_processing.scan
         data_template:
           entity_id: "image_processing.facebox_{{- trigger.entity_id.split('.')[1].split('_')[0] -}}_camera"
-      - service: notify.ios_devices
-        data_template:
-          message: "Check {{ trigger.entity_id.split('.')[1].split('_')[0] | title }} camera."
-          data:
-            push:
-              category: camera
-            entity_id: "camera.{{ trigger.entity_id.split('.')[1].split('_')[0] ~ '' ~ '_camera' }}"
-            attachment:
-              url: "{{ states.camera[trigger.entity_id.split('.')[1].split('_')[0] ~ '' ~ '_camera'].attributes.entity_picture }}"
-              content-type: jpg
 
 #
 # This automation alerts (when someone is at home) and the cameras detect people around the house.
@@ -270,9 +262,7 @@ automation:
           - image_processing.facebox_playarea_camera
     condition:
       - condition: template
-        value_template: '{{ states.input_boolean.notify_motion_pictures.state == "on" }}'
-      - condition: template
-        value_template: '{{ states.input_boolean.home_mode_away.state == "off" }}'
+        value_template: '{{ states.input_boolean.notify_camera_motion.state == "on" }}'
       - condition: template
         value_template: '{{ trigger.to_state.state | default(0) | int > 0 }}'
     action:
@@ -282,3 +272,13 @@ automation:
       - service: script.voice_notify
         data_template:
           message: "{{ trigger.to_state.state }} {{ 'person' if trigger.to_state.state | int == 1 else 'people' }} detected on {{ states['camera'][trigger.entity_id.split('.')[1].split('_')[1] ~ '_camera'].attributes.friendly_name }}!"
+      - service: notify.ios_devices
+        data_template:
+          message: "Check {{ trigger.entity_id.split('.')[1].split('_')[0] | title }} camera."
+          data:
+            push:
+              category: camera
+            entity_id: "camera.{{ trigger.entity_id.split('.')[1].split('_')[0] ~ '' ~ '_camera' }}"
+            attachment:
+              url: "{{ states.camera[trigger.entity_id.split('.')[1].split('_')[0] ~ '' ~ '_camera'].attributes.entity_picture }}"
+              content-type: jpg

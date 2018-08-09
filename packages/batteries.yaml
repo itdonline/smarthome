@@ -392,59 +392,41 @@ automation:
     trigger:
       platform: numeric_state
       entity_id:
-      - sensor.upstairs_multisensor_battery
-      - sensor.downstairs_multisensor_battery
-      - sensor.single_car_garage_door_sensor_battery
-      - sensor.two_car_garage_door_sensor_battery
-      - sensor.frontroom_multisensor_battery
+        - binary_sensor.motion_sensor_158d00016c2d0e
+        - binary_sensor.motion_sensor_158d00016db6d2
+        - binary_sensor.motion_sensor_158d0001a25041
+        - binary_sensor.motion_sensor_158d0001a662fe
+        - sensor.illumination_158d00016c2d0e
+        - sensor.illumination_158d00016db6d2
+        - sensor.illumination_158d0001a25041
+        - sensor.illumination_158d0001a662fe
+        - zwave.aeotec_water_sensor
+        - zwave.audio_detector
+        - zwave.back_door_sensor
+        - zwave.basement_door_sensor
+        - zwave.downstairs_multi_sensor
+        - zwave.front_door_sensor
+        - zwave.front_room_multi_sensor
+        - zwave.front_room_window_sensor
+        - zwave.garage_door_sensor
+        - zwave.guest_bedroom_multi_sensor
+        - zwave.kitchen_motion_sensor
+        - zwave.single_car_garage_door_tilt_sensor
+        - zwave.stairs_motion_sensor
+        - zwave.tv_multi_sensor
+        - zwave.two_car_garage_door_tilt_sensor
+        - zwave.upstairs_multi_sensor
+        - zwave.wallmote
       below: 10
-    condition:
-      - condition: template
-        value_template: >-
-          {%- if states.sensor.upstairs_multisensor_battery -%}
-            true
-          {%- else -%}
-            true
-          {%- endif -%}
-      - condition: template
-        value_template: >-
-          {%- if states.sensor.downstairs_multisensor_battery -%}
-            true
-          {%- else -%}
-            true
-          {%- endif -%}
-      - condition: template
-        value_template: >-
-          {%- if states.sensor.single_car_garage_door_sensor_battery -%}
-            true
-          {%- else -%}
-            true
-          {%- endif -%}
-      - condition: template
-        value_template: >-
-          {%- if states.sensor.two_car_garage_door_sensor_battery -%}
-            true
-          {%- else -%}
-            true
-          {%- endif -%}
-      - condition: template
-        value_template: >-
-          {%- if states.sensor.frontroom_multisensor_battery -%}
-            true
-          {%- else -%}
-            true
-          {%- endif -%}
-      - condition: template
-        value_template: "{{ trigger.to_state.state != 'unknown' and trigger.from_state.state != 'unknown'}}"
-      - condition: template
-        value_template: "{{ trigger.to_state.state > 0 and trigger.to_state.state < 10 }}"
     action:
-      - service: script.notify_me
-        data_template:
-          message: "Attention! {{ trigger.to_state.attributes.friendly_name }} level is: {{ trigger.to_state.state }}%."
       - service: script.voice_notify
         data_template:
-          message: "Attention! {{ trigger.to_state.attributes.friendly_name }} level is: {{ trigger.to_state.state }}%."
+          message: >-
+            {%- for item in states if item.entity_id.split('.')[0] != "device_tracker"  -%}
+            {%- for attrib in item.attributes|sort() if 'battery' in attrib and item.attributes[attrib] | int < 10 %}
+            {{ item.name }} Battery is at {{ item.attributes[attrib] }} percent
+            {%- endfor -%}
+            {%- endfor -%}
           
   - alias: Check Wi-Fi Status of iPhones At Home
     initial_state: true

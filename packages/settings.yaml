@@ -101,6 +101,7 @@ group:
       - input_boolean.home_assistant_update
       - input_boolean.home_assistant_status
       - input_boolean.notify_motion_pictures
+      - input_boolean.notify_camera_motion
       - input_boolean.working_in_garage
       - input_boolean.working_in_office_room
       - input_boolean.hourly_reports
@@ -300,6 +301,11 @@ input_boolean:
   notify_motion_pictures:
     name: Notify With Pictures (Motion)
     initial: off
+    icon: mdi:camera
+
+  notify_camera_motion:
+    name: Notify Camera Motion
+    initial: on
     icon: mdi:camera
 
   welcome_family_announcement:
