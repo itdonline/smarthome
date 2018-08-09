@@ -606,3 +606,38 @@ Or
 {% set open_doors = {{ states | selectattr('entity_id', 'in', state_attr('group.all_doors','entity_id')) | selectattr('state','in',['on','open']) | list | map(attribute='name') |join(', ') }}
 The following doors are open: {{ open_doors }}
 ```
+## 18. Check Battery Levels of ALL devices using one script:
+
+You can also use this in your automations to alert you when a specific device's battery level goes below certain threshold.
+```
+{%- for item in states -%}
+{%- for attrib in item.attributes|sort() if 'battery' in attrib %}
+{{ item.name }} Battery: {{ item.attributes[attrib] }}
+{%- endfor -%}
+{%- endfor -%}
+```
+
+The output should be something like:
+```
+Dining Room Motion Sensor Battery: 45.0
+Front Room Motion Sensor Battery: 51.0
+Family Room Motion Sensor (xiaomi) Battery: 47.0
+Kitchen Motion Sensor Battery: 45.0
+Aeotec Water Sensor Battery: 100
+Audio Detector Battery: 100
+Back Door Sensor Battery: 100
+Basement Door Sensor Battery: 100
+Downstairs Multi Sensor Battery: 100
+Front Door Sensor Battery: 100
+Front Room Multi Sensor Battery: 100
+Front Room Window Sensor Battery: 89
+Garage Door Sensor Battery: 100
+Guest Bedroom Multi Sensor Battery: 0
+Kitchen Motion Sensor Battery: 99
+1-Car Garage Door Sensor Battery: 100
+Stairs Motion Sensor Battery: 100
+TV Multi Sensor Battery: 100
+2-Car Garage Door Sensor Battery: 100
+Upstairs Multi Sensor Battery: 49
+Wallmote Battery: 100
+```
