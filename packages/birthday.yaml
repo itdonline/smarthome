@@ -158,6 +158,12 @@ automation:
       - service: script.voice_notify
         data_template:
           message: !include ../templates/birthday_wishes.yaml
+      - delay:
+          minutes: 1
+      - service: script.voice_notify
+        data_template:
+          message: "Alexa, Sing Happy Birthday Song."
+          greeting: 'no'
 
   - alias: Update Birthdays
     initial_state: true

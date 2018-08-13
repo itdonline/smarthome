@@ -1198,3 +1198,53 @@ media_player.snapcast_group_2c3af693a3e44ac842b7697908f8fc6b:
   name:
   platform: snapcast
   unique_id: snapcast_group_192.168.1.125:1705_2c3af693-a3e4-4ac8-42b7-697908f8fc6b
+sensor.aeotec_zw100_multisensor_6_temperature:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 40-72057594714013714
+sensor.aeotec_zw100_multisensor_6_luminance:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 40-72057594714013746
+sensor.aeotec_zw100_multisensor_6_relative_humidity:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 40-72057594714013778
+sensor.aeotec_zw100_multisensor_6_ultraviolet:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 40-72057594714014130
+sensor.aeotec_zw100_multisensor_6_sourcenodeid:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 40-72057594715062305
+sensor.aeotec_zw100_multisensor_6_burglar:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 40-72057594715062433
+zwave.aeotec_zw100_multisensor_6:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-40
+binary_sensor.aeotec_zw100_multisensor_6_sensor:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 40-72057594713997312
+sensor.aeotec_zw100_multisensor_6_alarm_type:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 40-72057594715062273
+sensor.aeotec_zw100_multisensor_6_alarm_level:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 40-72057594715062289
