@@ -641,3 +641,52 @@ TV Multi Sensor Battery: 100
 Upstairs Multi Sensor Battery: 49
 Wallmote Battery: 100
 ```
+
+## 19. Difference between Two Lists:
+
+Assume you have two lists (before and after), and if you want to find out the difference between the lists, follow the code below:
+In this case, the list one (before_list) has `Whiskey`, and in the list two (after_list), the `Whiskey` is removed and `Beer` is added. 
+
+```
+{% set before_list = ['Cup', 'Drink', 'Coffee cup', 'Coffee', 'Espresso', 'Caffeine', 'Latte', 'Whiskey'] %}
+{% set after_list =  ['Cup', 'Drink', 'Coffee cup', 'Coffee', 'Espresso', 'Caffeine', 'Latte', 'Beer'] %}
+
+{% macro ItemdAdded(beforeList, afterList) %}
+  {%- for item in afterList if item != 'None' and item not in beforeList%}
+	{%- if loop.first %}{% elif loop.last %} and{% else %},{% endif -%}
+	  {{ item }}
+  {%- endfor -%}
+{%- endmacro -%}
+
+{% macro ItemsRemoved(beforeList, afterList) %}
+  {%- for item in beforeList if item != 'None' and item not in afterList %}
+	{%- if loop.first %}{% elif loop.last %} and{% else %},{% endif -%}
+	  {{ item }}
+  {%- endfor -%}
+{%- endmacro -%}
+
+{%- macro list_diff(beforeList, afterList) -%}
+  {%- set added = ItemdAdded(beforeList, afterList) -%}
+  {%- set removed = ItemsRemoved(beforeList, afterList) -%}
+  {% if added | trim != "" %}
+Added: {{ added }}
+  {%- endif -%}
+  {% if removed | trim != "" %}
+Removed: {{ removed |title }}
+  {% endif %}
+  {%- if removed == "" and added == "" -%}
+    None.
+  {%- endif -%}
+{%- endmacro -%}
+
+{{ list_diff(before_list, after_list) }}
+
+```
+The output should be something like:
+
+```
+Added: Beer
+Removed: Whiskey
+```
+It will show `None.` when there are no changes between the lists. If you are wondering where you would need this script, imagine a scenario where you are feeding your camera image to a machine learning program (like machinebox/tagbox), and you get a list of tags in return. You can then use this script to check the differences between images by comparing tags. Item #14 is a sample output of tagbox for given image. You can use that code to generate list from a given JSON.
+
