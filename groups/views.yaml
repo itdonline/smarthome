@@ -123,7 +123,7 @@ CCTV:
     - group.doppler_weather
     - group.people_that_cameras_see
     - group.tags_that_cameras_identified
-    - group.all_tags
+    - group.camera_activity
 
 raspberry_pis:
   view: yes

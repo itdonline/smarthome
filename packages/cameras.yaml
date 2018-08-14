@@ -107,13 +107,13 @@ homeassistant:
       friendly_name: Patio Tag
 
     sensor.frontdoor_camera_tags:
-      friendly_name: Front Door Tags
+      friendly_name: At Front Door
     sensor.driveway_camera_tags:
-      friendly_name: Driveway Tags
+      friendly_name: At Driveway
     sensor.playarea_camera_tags:
-      friendly_name: Playarea Tags
+      friendly_name: At Playarea
     sensor.patio_camera_tags:
-      friendly_name: Patio Tags
+      friendly_name: At Patio
 
 group:
   Frontyard Cameras:
@@ -169,7 +169,7 @@ group:
       - image_processing.tagbox_playarea_camera
       - image_processing.tagbox_patio_camera
 
-  All Tags:
+  Camera Activity:
     entities:
       - sensor.frontdoor_camera_tags
       - sensor.driveway_camera_tags
@@ -252,18 +252,23 @@ sensor:
 
 #
 # The following sensors eliminates all the common, "unwanted" objects/tags that are found by the tagbox, and only shows that are interesting.
-# The cameras always sees certain things (common_tags). I'm interested in anything other than these common items. I don't want to be alerted because camera found "Asphalt"! 
+# The cameras always sees certain things (common_tags). I'm interested in anything other than these common items. I don't want to be alerted because camera found "Asphalt" ;)
 # This sensor is then used to alert me of a significant change.
 #
   - platform: template
     sensors:
       frontdoor_camera_tags:
         value_template: >-
-          {% set common_tags = ['Lawn', 'Road surface', 'Asphalt', 'Yard', 'Walkway', 'Lane', 'Sidewalk', 'Road', 'Residential area', 'Grass', 'City', 'Public space', 'Neighbourhood'] %}
+          {% set common_tags = ['Asphalt', 'Automotive exterior', 'Backyard', 
+                                'City', 'Driving', 'Estate', 'Flower', 'Garden', 'Grass', 
+                                'Highway', 'Infrastructure', 'Land vehicle', 'Lane', 'Lawn', 
+                                'Neighbourhood', 'Public space', 'Race track', 
+                                'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 
+                                'Transport', 'Walkway', 'Yard'] %}
           {% set new_tags = states.image_processing.tagbox_frontdoor_camera.attributes['tags']|map(attribute='name')|list %}
           {% macro tags_added(before_list, after_list) %}
             {%- for tag in after_list if tag != 'None' and tag not in before_list %}
-              {%- if loop.first %}{% elif loop.last %} and{% else %},{% endif -%}
+              {%- if loop.first %}{% elif loop.last %} and {% else %}, {% endif -%}
               {{ tag }}
             {%- endfor -%}
           {%- endmacro -%}
@@ -278,11 +283,16 @@ sensor:
     sensors:
       driveway_camera_tags:
         value_template: >-
-          {% set common_tags = ['Lane', 'Road', 'Vehicle', 'Car', 'Asphalt', 'Infrastructure', 'Road surface', 'Residential area', 'Transport', 'Driving'] %}
+          {% set common_tags = ['Asphalt', 'Automotive exterior', 'Backyard', 
+                                'City', 'Driving', 'Estate', 'Flower', 'Garden', 'Grass', 
+                                'Highway', 'Infrastructure', 'Land vehicle', 'Lane', 'Lawn', 
+                                'Neighbourhood', 'Public space', 'Race track', 
+                                'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 
+                                'Transport', 'Walkway', 'Yard'] %}
           {% set new_tags = states.image_processing.tagbox_driveway_camera.attributes['tags']|map(attribute='name')|list %}
           {% macro tags_added(before_list, after_list) %}
             {%- for tag in after_list if tag != 'None' and tag not in before_list %}
-              {%- if loop.first %}{% elif loop.last %} and{% else %},{% endif -%}
+              {%- if loop.first %}{% elif loop.last %} and {% else %}, {% endif -%}
               {{ tag }}
             {%- endfor -%}
           {%- endmacro -%}
@@ -297,11 +307,16 @@ sensor:
     sensors:
       patio_camera_tags:
         value_template: >-
-          {% set common_tags = ['Garden', 'Lawn', 'Yard', 'Grass', 'Backyard', 'Flower'] %}
+          {% set common_tags = ['Asphalt', 'Automotive exterior', 'Backyard', 'Car', 
+                                'City', 'Driving', 'Estate', 'Flower', 'Garden', 'Grass', 
+                                'Highway', 'Infrastructure', 'Land vehicle', 'Lane', 'Lawn', 
+                                'Luxury vehicle', 'Neighbourhood', 'Public space', 'Race track', 
+                                'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 
+                                'Transport', 'Vehicle', 'Walkway', 'Yard'] %}
           {% set new_tags = states.image_processing.tagbox_patio_camera.attributes['tags']|map(attribute='name')|list %}
           {% macro tags_added(before_list, after_list) %}
             {%- for tag in after_list if tag != 'None' and tag not in before_list %}
-              {%- if loop.first %}{% elif loop.last %} and{% else %},{% endif -%}
+              {%- if loop.first %}{% elif loop.last %} and {% else %}, {% endif -%}
               {{ tag }}
             {%- endfor -%}
           {%- endmacro -%}
@@ -316,11 +331,16 @@ sensor:
     sensors:
       playarea_camera_tags:
         value_template: >-
-          {% set common_tags = ['Garden', 'Lawn', 'Yard', 'Flower', 'Backyard', 'Grass'] %}
+          {% set common_tags = ['Asphalt', 'Automotive exterior', 'Backyard', 'Car', 
+                                'City', 'Driving', 'Estate', 'Flower', 'Garden', 'Grass', 
+                                'Highway', 'Infrastructure', 'Land vehicle', 'Lane', 'Lawn', 
+                                'Luxury vehicle', 'Neighbourhood', 'Public space', 'Race track', 
+                                'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 
+                                'Transport', 'Vehicle', 'Walkway', 'Yard'] %}
           {% set new_tags = states.image_processing.tagbox_playarea_camera.attributes['tags']|map(attribute='name')|list %}
           {% macro tags_added(before_list, after_list) %}
             {%- for tag in after_list if tag != 'None' and tag not in before_list %}
-              {%- if loop.first %}{% elif loop.last %} and{% else %},{% endif -%}
+              {%- if loop.first %}{% elif loop.last %} and {% else %}, {% endif -%}
               {{ tag }}
             {%- endfor -%}
           {%- endmacro -%}
