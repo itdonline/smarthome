@@ -122,6 +122,8 @@ CCTV:
     - group.location_maps
     - group.doppler_weather
     - group.people_that_cameras_see
+    - group.tags_that_cameras_identified
+    - group.all_tags
 
 raspberry_pis:
   view: yes

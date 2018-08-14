@@ -97,6 +97,24 @@ homeassistant:
     image_processing.facebox_playarea_camera:
       friendly_name: People @ Playarea
 
+    image_processing.tagbox_frontdoor_camera:
+      friendly_name: Frontdoor Tag
+    image_processing.tagbox_driveway_camera:
+      friendly_name: Driveway Tag
+    image_processing.tagbox_playarea_camera:
+      friendly_name: Playarea Tag
+    image_processing.tagbox_patio_camera:
+      friendly_name: Patio Tag
+
+    sensor.frontdoor_camera_tags:
+      friendly_name: Front Door Tags
+    sensor.driveway_camera_tags:
+      friendly_name: Driveway Tags
+    sensor.playarea_camera_tags:
+      friendly_name: Playarea Tags
+    sensor.patio_camera_tags:
+      friendly_name: Patio Tags
+
 group:
   Frontyard Cameras:
     entities:
@@ -143,6 +161,20 @@ group:
       - image_processing.facebox_driveway_camera
       - image_processing.facebox_patio_camera
       - image_processing.facebox_playarea_camera
+
+  Tags That Cameras Identified:
+    entities:
+      - image_processing.tagbox_frontdoor_camera
+      - image_processing.tagbox_driveway_camera
+      - image_processing.tagbox_playarea_camera
+      - image_processing.tagbox_patio_camera
+
+  All Tags:
+    entities:
+      - sensor.frontdoor_camera_tags
+      - sensor.driveway_camera_tags
+      - sensor.playarea_camera_tags
+      - sensor.patio_camera_tags
 
 #
 # The camera url format in secrets.yaml would look like this: 
@@ -215,6 +247,28 @@ binary_sensor:
     host: !secret playarea_camera_ip
     username: !secret camera_username
     password: !secret camera_password
+
+sensor:
+  - platform: template
+    sensors:
+      frontdoor_camera_tags:
+        value_template: "{{ states.image_processing.tagbox_frontdoor_camera.attributes['tags']|map(attribute='name')|join(', ') }}"
+        icon_template: mdi:cctv
+  - platform: template
+    sensors:
+      driveway_camera_tags:
+        value_template: "{{ states.image_processing.tagbox_driveway_camera.attributes['tags']|map(attribute='name')|join(', ') }}"
+        icon_template: mdi:cctv
+  - platform: template
+    sensors:
+      patio_camera_tags:
+        value_template: "{{ states.image_processing.tagbox_patio_camera.attributes['tags']|map(attribute='name')|join(', ') }}"
+        icon_template: mdi:cctv
+  - platform: template
+    sensors:
+      playarea_camera_tags:
+        value_template: "{{ states.image_processing.tagbox_playarea_camera.attributes['tags']|map(attribute='name')|join(', ') }}"
+        icon_template: mdi:cctv
 
 automation:
 
