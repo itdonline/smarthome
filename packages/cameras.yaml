@@ -180,6 +180,16 @@ image_processing:
       - entity_id: camera.patio_camera
       - entity_id: camera.playarea_camera
 
+  - platform: tagbox
+    scan_interval: 10000 # Default 10
+    ip_address: !secret ha_ip_address
+    port: 8081
+    source:
+      - entity_id: camera.frontdoor_camera
+      - entity_id: camera.driveway_camera
+      - entity_id: camera.patio_camera
+      - entity_id: camera.playarea_camera
+
 binary_sensor:
 
   - platform: hikvision
@@ -245,6 +255,9 @@ automation:
       - service: image_processing.scan
         data_template:
           entity_id: "image_processing.facebox_{{- trigger.entity_id.split('.')[1].split('_')[0] -}}_camera"
+      - service: image_processing.scan
+        data_template:
+          entity_id: "image_processing.tagbox_{{- trigger.entity_id.split('.')[1].split('_')[0] -}}_camera"
 
 #
 # This automation alerts (when someone is at home) and the cameras detect people around the house.
