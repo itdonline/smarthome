@@ -264,7 +264,9 @@ sensor:
                                 'Highway', 'Infrastructure', 'Land vehicle', 'Lane', 'Lawn', 
                                 'Neighbourhood', 'Public space', 'Race track', 
                                 'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 
-                                'Transport', 'Walkway', 'Yard'] %}
+                                'Transport', 'Walkway', 'Yard',
+                                'Screenshot', 'Night', 'Lighting and Light', 'Black-and-white', 'Monochrome', 
+                                'Monochrome photography', 'Black and White'] %}
           {% set new_tags = states.image_processing.tagbox_frontdoor_camera.attributes['tags']|map(attribute='name')|list %}
           {% macro tags_added(before_list, after_list) %}
             {%- for tag in after_list if tag != 'None' and tag not in before_list %}
@@ -288,7 +290,9 @@ sensor:
                                 'Highway', 'Infrastructure', 'Land vehicle', 'Lane', 'Lawn', 
                                 'Neighbourhood', 'Public space', 'Race track', 
                                 'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 
-                                'Transport', 'Walkway', 'Yard'] %}
+                                'Transport', 'Walkway', 'Yard',
+                                'Screenshot', 'Night', 'Lighting and Light', 'Black-and-white', 
+                                'Monochrome', 'Monochrome photography', 'Black and White'] %}
           {% set new_tags = states.image_processing.tagbox_driveway_camera.attributes['tags']|map(attribute='name')|list %}
           {% macro tags_added(before_list, after_list) %}
             {%- for tag in after_list if tag != 'None' and tag not in before_list %}
@@ -312,7 +316,9 @@ sensor:
                                 'Highway', 'Infrastructure', 'Land vehicle', 'Lane', 'Lawn', 
                                 'Luxury vehicle', 'Neighbourhood', 'Public space', 'Race track', 
                                 'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 
-                                'Transport', 'Vehicle', 'Walkway', 'Yard'] %}
+                                'Transport', 'Vehicle', 'Walkway', 'Yard', 
+                                'Screenshot', 'Night', 'Lighting and Light', 'Black-and-white', 
+                                'Monochrome', 'Monochrome photography', 'Black and White'] %}
           {% set new_tags = states.image_processing.tagbox_patio_camera.attributes['tags']|map(attribute='name')|list %}
           {% macro tags_added(before_list, after_list) %}
             {%- for tag in after_list if tag != 'None' and tag not in before_list %}
@@ -336,7 +342,9 @@ sensor:
                                 'Highway', 'Infrastructure', 'Land vehicle', 'Lane', 'Lawn', 
                                 'Luxury vehicle', 'Neighbourhood', 'Public space', 'Race track', 
                                 'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 
-                                'Transport', 'Vehicle', 'Walkway', 'Yard'] %}
+                                'Transport', 'Vehicle', 'Walkway', 'Yard',
+                                'Screenshot', 'Night', 'Lighting and Light', 'Black-and-white', 
+                                'Monochrome', 'Monochrome photography', 'Black and White'] %}
           {% set new_tags = states.image_processing.tagbox_playarea_camera.attributes['tags']|map(attribute='name')|list %}
           {% macro tags_added(before_list, after_list) %}
             {%- for tag in after_list if tag != 'None' and tag not in before_list %}
@@ -366,6 +374,8 @@ automation:
     condition:
       - condition: template
         value_template: '{{ trigger.to_state.state |trim != "" }}'
+      - condition: template
+        value_template: '{{states.sun.sun.state == "above_horizon"}}'
     action:
       - service: script.notify_me
         data_template:
