@@ -690,5 +690,22 @@ Removed: Whiskey
 ```
 It will show `None.` when there are no changes between the lists. If you are wondering where you would need this script, imagine a scenario where you are feeding your camera image to a machine learning program (like machinebox/tagbox), and you get a list of tags in return. You can then use this script to check the differences between images by comparing tags. Item #14 is a sample output of tagbox for given image. You can use that code to generate list from a given JSON.
 
-[Here is an example](https://github.com/skalavala/smarthome/blob/master/packages/cameras.yaml#L300)
+## 20 Concatenating Two Lists
 
+```
+{% set list1= [1, 2, 3] %}
+{% set list2 = [4, 5, 6] %}
+{%- for item in list1|list + list2|list %}
+{{ item }}
+{%- endfor -%}
+```
+
+The output would be 
+```
+1
+2
+3
+4
+5
+6
+```
