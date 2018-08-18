@@ -106,14 +106,22 @@ homeassistant:
     image_processing.tagbox_patio_camera:
       friendly_name: Patio Tag
 
-    sensor.frontdoor_camera_tags:
-      friendly_name: At Front Door
-    sensor.driveway_camera_tags:
-      friendly_name: At Driveway
-    sensor.playarea_camera_tags:
-      friendly_name: At Playarea
-    sensor.patio_camera_tags:
-      friendly_name: At Patio
+    sensor.frontdoor_camera_objects:
+      friendly_name: Things At Front Door
+    sensor.driveway_camera_objects:
+      friendly_name: Things Driveway
+    sensor.playarea_camera_objects:
+      friendly_name: Things Playarea
+    sensor.patio_camera_objects:
+      friendly_name: Things Patio
+    sensor.frontdoor_camera_people:
+      friendly_name: People At Front Door
+    sensor.driveway_camera_people:
+      friendly_name: People Driveway
+    sensor.playarea_camera_people:
+      friendly_name: People Playarea
+    sensor.patio_camera_people:
+      friendly_name: People Patio
 
 group:
   Frontyard Cameras:
@@ -162,7 +170,7 @@ group:
       - image_processing.facebox_patio_camera
       - image_processing.facebox_playarea_camera
 
-  Tags That Cameras Identified:
+  Tags That Cameras See:
     entities:
       - image_processing.tagbox_frontdoor_camera
       - image_processing.tagbox_driveway_camera
@@ -171,10 +179,14 @@ group:
 
   Camera Activity:
     entities:
-      - sensor.frontdoor_camera_tags
-      - sensor.driveway_camera_tags
-      - sensor.playarea_camera_tags
-      - sensor.patio_camera_tags
+      - sensor.frontdoor_camera_objects
+      - sensor.driveway_camera_objects
+      - sensor.playarea_camera_objects
+      - sensor.patio_camera_objects
+      - sensor.frontdoor_camera_people
+      - sensor.driveway_camera_people
+      - sensor.playarea_camera_people
+      - sensor.patio_camera_people
 
 #
 # The camera url format in secrets.yaml would look like this: 
@@ -258,10 +270,9 @@ sensor:
     sensors:
       frontdoor_camera_people:
         value_template: >-
-          {% set attribs = state_attr('image_processing.facebox_frontdoor_camera', 'matched_faces') %}
-          {% if None != attribs %}
-            {% set new_tags = states.image_processing.facebox_frontdoor_camera.attributes['matched_faces']|map(attribute='name')|list %}
-            {%- for person in attribs | list %}{%- if loop.first %}{% elif loop.last %} and {% else %}, {% endif -%}{{ person }}{%- endfor %}
+          {% set faces = state_attr('image_processing.facebox_frontdoor_camera', 'matched_faces') %}
+          {% if None != faces %}
+            {%- for face in faces | list %}{%- if loop.first %}{% elif loop.last %} and {% else %}, {% endif -%}{{ face }}{%- endfor %}
           {% endif %}
         icon_template: mdi:cctv
 
@@ -269,10 +280,9 @@ sensor:
     sensors:
       driveway_camera_people:
         value_template: >-
-          {% set attribs = state_attr('image_processing.facebox_driveway_camera', 'matched_faces') %}
-          {% if None != attribs %}
-            {% set new_tags = states.image_processing.facebox_driveway_camera.attributes['matched_faces']|map(attribute='name')|list %}
-            {%- for person in attribs | list %}{%- if loop.first %}{% elif loop.last %} and {% else %}, {% endif -%}{{ person }}{%- endfor %}
+          {% set faces = state_attr('image_processing.facebox_driveway_camera', 'matched_faces') %}
+          {% if None != faces %}
+            {%- for face in faces | list %}{%- if loop.first %}{% elif loop.last %} and {% else %}, {% endif -%}{{ face }}{%- endfor %}
           {% endif %}
         icon_template: mdi:cctv
 
@@ -280,10 +290,9 @@ sensor:
     sensors:
       patio_camera_people:
         value_template: >-
-          {% set attribs = state_attr('image_processing.facebox_patio_camera', 'matched_faces') %}
-          {% if None != attribs %}
-            {% set new_tags = states.image_processing.facebox_patio_camera.attributes['matched_faces']|map(attribute='name')|list %}
-            {%- for person in attribs | list %}{%- if loop.first %}{% elif loop.last %} and {% else %}, {% endif -%}{{ person }}{%- endfor %}
+          {% set faces = state_attr('image_processing.facebox_patio_camera', 'matched_faces') %}
+          {% if None != faces %}
+            {%- for face in faces | list %}{%- if loop.first %}{% elif loop.last %} and {% else %}, {% endif -%}{{ face }}{%- endfor %}
           {% endif %}
         icon_template: mdi:cctv
 
@@ -291,10 +300,9 @@ sensor:
     sensors:
       playarea_camera_people:
         value_template: >-
-          {% set attribs = state_attr('image_processing.facebox_playarea_camera', 'matched_faces') %}
-          {% if None != attribs %}
-            {% set new_tags = states.image_processing.facebox_playarea_camera.attributes['matched_faces']|map(attribute='name')|list %}
-            {%- for person in attribs | list %}{%- if loop.first %}{% elif loop.last %} and {% else %}, {% endif -%}{{ person }}{%- endfor %}
+          {% set faces = state_attr('image_processing.facebox_playarea_camera', 'matched_faces') %}
+          {% if None != faces %}
+            {%- for face in faces | list %}{%- if loop.first %}{% elif loop.last %} and {% else %}, {% endif -%}{{ face }}{%- endfor %}
           {% endif %}
         icon_template: mdi:cctv
 
