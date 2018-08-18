@@ -1248,3 +1248,53 @@ sensor.aeotec_zw100_multisensor_6_alarm_level:
   name:
   platform: zwave
   unique_id: 40-72057594715062289
+media_player.snapcast_group_3c4384491e172c1d55bc9a524e19814d:
+  config_entry_id:
+  name:
+  platform: snapcast
+  unique_id: snapcast_group_192.168.1.125:1705_3c438449-1e17-2c1d-55bc-9a524e19814d
+media_player.snapcast_group_653065b4dd5df0e0a04534ece72d21c2:
+  config_entry_id:
+  name:
+  platform: snapcast
+  unique_id: snapcast_group_192.168.1.125:1705_653065b4-dd5d-f0e0-a045-34ece72d21c2
+media_player.snapcast_group_e5d636849296f6236a1d5c533ee91025:
+  config_entry_id:
+  name:
+  platform: snapcast
+  unique_id: snapcast_group_192.168.1.125:1705_e5d63684-9296-f623-6a1d-5c533ee91025
+media_player.snapcast_group_ae8c83c45e04d46eb521e86423ef744f:
+  config_entry_id:
+  name:
+  platform: snapcast
+  unique_id: snapcast_group_192.168.1.125:1705_ae8c83c4-5e04-d46e-b521-e86423ef744f
+media_player.snapcast_group_510e73edd9cf94faf6fb94a9a4f7a948:
+  config_entry_id:
+  name:
+  platform: snapcast
+  unique_id: snapcast_group_192.168.1.125:1705_510e73ed-d9cf-94fa-f6fb-94a9a4f7a948
+media_player.snapcast_group_1b1dac3274aac702dc2691949cad9c17:
+  config_entry_id:
+  name:
+  platform: snapcast
+  unique_id: snapcast_group_192.168.1.125:1705_1b1dac32-74aa-c702-dc26-91949cad9c17
+media_player.snapcast_group_ac88cbb995ac5fbec38fcd041ff0541a:
+  config_entry_id:
+  name:
+  platform: snapcast
+  unique_id: snapcast_group_192.168.1.125:1705_ac88cbb9-95ac-5fbe-c38f-cd041ff0541a
+media_player.snapcast_group_733381501039521c6b1e74f52f296896:
+  config_entry_id:
+  name:
+  platform: snapcast
+  unique_id: snapcast_group_192.168.1.125:1705_73338150-1039-521c-6b1e-74f52f296896
+media_player.snapcast_group_81a3229512637eeffbd50bdad8faa0f4:
+  config_entry_id:
+  name:
+  platform: snapcast
+  unique_id: snapcast_group_192.168.1.125:1705_81a32295-1263-7eef-fbd5-0bdad8faa0f4
+media_player.snapcast_group_777a20e2aa678ee47458deadf936149a:
+  config_entry_id:
+  name:
+  platform: snapcast
+  unique_id: snapcast_group_192.168.1.125:1705_777a20e2-aa67-8ee4-7458-deadf936149a
