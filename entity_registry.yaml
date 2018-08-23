@@ -19,7 +19,7 @@ binary_sensor.driveway_camera_motion:
   platform: hikvision
   unique_id: 0002fecc-68a5-11b3-81a5-1868cb4515bc.Motion.1
 climate.dining_room:
-  config_entry_id:
+  config_entry_id: 0214b213053e429aabcae334c8f87098
   name:
   platform: nest
   unique_id: 0jkgej6mtxLHeZkVm12KUmlw7ySeksYp
@@ -84,27 +84,27 @@ binary_sensor.playarea_camera_tamper_detection:
   platform: hikvision
   unique_id: 0002fe3d-68a5-11b3-81a5-1868cb45152d.Tamper Detection.1
 light.hue_color_lamp_2:
-  config_entry_id:
+  config_entry_id: 546f3f25c8924a6babc31beee734429d
   name:
   platform: hue
   unique_id: 00:17:88:01:02:72:70:e6-0b
 light.master_bedroom_2:
-  config_entry_id:
+  config_entry_id: 546f3f25c8924a6babc31beee734429d
   name:
   platform: hue
   unique_id: 00:17:88:01:02:35:64:3c-0b
 light.hue_color_lamp_1:
-  config_entry_id:
+  config_entry_id: 546f3f25c8924a6babc31beee734429d
   name:
   platform: hue
   unique_id: 00:17:88:01:02:70:75:08-0b
 light.master_bedroom_1:
-  config_entry_id:
+  config_entry_id: 546f3f25c8924a6babc31beee734429d
   name:
   platform: hue
   unique_id: 00:17:88:01:02:35:64:32-0b
 light.hue_color_lamp_3:
-  config_entry_id:
+  config_entry_id: 546f3f25c8924a6babc31beee734429d
   name:
   platform: hue
   unique_id: 00:17:88:01:02:72:70:ea-0b
@@ -1298,3 +1298,33 @@ media_player.snapcast_group_777a20e2aa678ee47458deadf936149a:
   name:
   platform: snapcast
   unique_id: snapcast_group_192.168.1.125:1705_777a20e2-aa67-8ee4-7458-deadf936149a
+media_player.snapcast_group_c7da46dae7620706e79ae9cfe36c49bc:
+  config_entry_id:
+  name:
+  platform: snapcast
+  unique_id: snapcast_group_192.168.1.125:1705_c7da46da-e762-0706-e79a-e9cfe36c49bc
+media_player.snapcast_group_cae4f3d8e1577f58b2028e5b2dedbc2d:
+  config_entry_id:
+  name:
+  platform: snapcast
+  unique_id: snapcast_group_192.168.1.125:1705_cae4f3d8-e157-7f58-b202-8e5b2dedbc2d
+media_player.snapcast_group_54ec4b3c126281d4ca41d4fe25d1cb8b:
+  config_entry_id:
+  name:
+  platform: snapcast
+  unique_id: snapcast_group_192.168.1.125:1705_54ec4b3c-1262-81d4-ca41-d4fe25d1cb8b
+media_player.snapcast_group_a4f6dde960635b3908fe152648d78729:
+  config_entry_id:
+  name:
+  platform: snapcast
+  unique_id: snapcast_group_192.168.1.125:1705_a4f6dde9-6063-5b39-08fe-152648d78729
+media_player.snapcast_group_a784f08c523d714dac4330f012b83296:
+  config_entry_id:
+  name:
+  platform: snapcast
+  unique_id: snapcast_group_192.168.1.125:1705_a784f08c-523d-714d-ac43-30f012b83296
+alarm_control_panel.simplisafe:
+  config_entry_id:
+  name:
+  platform: simplisafe
+  unique_id: 521915

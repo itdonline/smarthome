@@ -877,7 +877,6 @@ views:
             name: Hasika
           - entity: input_label.mallika_birthday_days2go
             name: Mallika
-
       - type: entities
         title: Date Time
         show_header_toggle: true
@@ -1017,77 +1016,59 @@ views:
   - title: Lights and Swithches
     icon: mdi:lightbulb-on
     cards:
-      - type: glance
+      - type: entities
         title: Downstairs Lights
+        show_header_toggle: true
         entities:
-          - entity: light.family_room
-            name: Family Room
-          - entity: switch.frontyard_light
-            name: Frontyard
-          - entity: switch.wemobackyardlightswitch
-            name: Backyard
-          - entity: switch.kitchen_light
-            name: Kitchen
-          - entity: switch.garage_lights
-            name: Garage
-          - entity: switch.office_room_lights
-            name: Office Room
-          - entity: switch.zwave_smart_switch_switch
-            name: Office Room Accent Lights
-          - entity: switch.basement_left_lights
-            name: Theater
-          - entity: switch.basement_right_lights
-            name: Studio
-      - type: glance
+          - light.family_room
+          - switch.frontyard_light
+          - switch.wemobackyardlightswitch
+          - switch.kitchen_light
+          - switch.garage_lights
+          - switch.office_room_lights
+          - switch.zwave_smart_switch_switch
+          - switch.basement_left_lights
+          - switch.basement_right_lights
+      - type: entities
         title: Outdoor Lights
+        show_header_toggle: true
         entities:
-          - entity: switch.frontyard_light
-            name: Frontyard
-          - entity: switch.wemobackyardlightswitch
-            name: Backyard
-      - type: glance
+          - switch.frontyard_light
+          - switch.wemobackyardlightswitch
+      - type: entities
         title: Bedrooms
+        show_header_toggle: true
         entities:
-          - entity: light.master_bedroom
-            name: Master
-          - entity: switch.kids_bedroom
-            name: Kids
-          - entity: switch.kids_bed_accent_light
-            name: Kids Accent
-          - entity: switch.guest_bedroom_1
-            name: Guest1
-          - entity: switch.guest_bedroom_2
-            name: Guest2
-      - type: glance
+          - light.master_bedroom
+          - switch.kids_bedroom
+          - switch.kids_bed_accent_light
+          - switch.guest_bedroom_1
+          - switch.guest_bedroom_2
+      - type: entities
         title: Miscellaneous
+        show_header_toggle: true
         entities:
-          - entity: light.gateway_light_34ce008ad65d
-            name: Xiaomi
-          - entity: switch.wemoswitch1
-            name: TV Reset
-      - type: glance
+          - light.gateway_light_34ce008ad65d
+          - switch.wemoswitch1
+      - type: entities
         title: RF Switches
+        show_header_toggle: true
         entities:
-          - entity: switch.rf_switch_four
-            name: Front Room
-          - entity: switch.rf_switch_one
-            name: Grow Lights
-          - entity: switch.rf_switch_five
-            name: Christmas
-          - entity: switch.rf_switch_two
-            name: Unused
-          - entity: switch.rf_switch_three
-            name: Unused
+          - switch.rf_switch_four
+          - switch.rf_switch_one
+          - switch.rf_switch_five
+          - switch.rf_switch_two
+          - switch.rf_switch_three
   - title: Trash & Recycle
     icon: mdi:recycle
     cards:
       - type: glance
-        title: Trash & Recycle
+        title: Trash & Recycle Pickup Today?
         entities:
           - entity: sensor.trash_day
-            name: Trash Today?
+            name: Trash
           - entity: sensor.recycle_day
-            name: Recycle Today?
+            name: Recycle
       - type: entities
         title: Set Trash Schedule
         show_header_toggle: true
@@ -1215,20 +1196,41 @@ views:
     cards:
       - type: entities
         title: Tesla
-        show_header_toggle: true
+        show_header_toggle: false
         entities:
-          - lock.tesla_model_3_5yj3e1ea8jf010610_door_lock
-          - sensor.tesla_model_3_5yj3e1ea8jf010610_range_sensor
           - device_tracker.tesla_model_3_5yj3e1ea8jf010610_location_tracker
-          - binary_sensor.tesla_model_3_5yj3e1ea8jf010610_charger_sensor
-          - sensor.tesla_model_3_5yj3e1ea8jf010610_mileage_sensor
-          - sensor.tesla_model_3_5yj3e1ea8jf010610_battery_sensor
           - binary_sensor.tesla_model_3_5yj3e1ea8jf010610_parking_brake_sensor
-          - switch.tesla_model_3_5yj3e1ea8jf010610_charger_switch
+          - lock.tesla_model_3_5yj3e1ea8jf010610_door_lock
+          - sensor.tesla_model_3_5yj3e1ea8jf010610_battery_sensor
+          - sensor.tesla_model_3_5yj3e1ea8jf010610_range_sensor
+          - sensor.tesla_model_3_5yj3e1ea8jf010610_mileage_sensor
+          - type: divider
+            style:
+              height: 3px
+              width: 100%
+              margin-left: auto
+              margin-right: auto
+              background: "var(--dark-primary-color)"
           - climate.tesla_model_3_5yj3e1ea8jf010610_hvac_climate_system
-          - switch.tesla_model_3_5yj3e1ea8jf010610_maxrange_switch
           - sensor.tesla_model_3_5yj3e1ea8jf010610_temperature_sensor_outside
           - sensor.tesla_model_3_5yj3e1ea8jf010610_temperature_sensor_inside
+          - type: divider
+            style:
+              height: 3px
+              width: 100%
+              margin-left: auto
+              margin-right: auto
+              background: "var(--dark-primary-color)"
+          - binary_sensor.tesla_model_3_5yj3e1ea8jf010610_charger_sensor
+          - switch.tesla_model_3_5yj3e1ea8jf010610_charger_switch
+          - switch.tesla_model_3_5yj3e1ea8jf010610_maxrange_switch
+      - type: entities
+        title: Automations
+        show_header_toggle: true
+        entities:
+          - automation.notify_charging_status
+          - automation.notify_door_status
+          - automation.notify_charger_switch_state
   - title: Cameras & Stuff
     icon: mdi:cctv
     cards:

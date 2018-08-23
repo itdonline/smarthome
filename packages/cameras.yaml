@@ -109,11 +109,11 @@ homeassistant:
     sensor.frontdoor_camera_objects:
       friendly_name: Things At Front Door
     sensor.driveway_camera_objects:
-      friendly_name: Things Driveway
+      friendly_name: Things At Driveway
     sensor.playarea_camera_objects:
-      friendly_name: Things Playarea
+      friendly_name: Things At Playarea
     sensor.patio_camera_objects:
-      friendly_name: Things Patio
+      friendly_name: Things At Patio
     sensor.frontdoor_camera_people:
       friendly_name: People At Front Door
     sensor.driveway_camera_people:
@@ -337,12 +337,12 @@ sensor:
           {%- if None != attribs -%}
             {%- set tag_map = {'Vehicle':'Car', 'Sedan':'Car', 'Luxury vehicle':'Car', 'Driving':'Car',
                                'Wheel':'Car', 'Automotive design':'Car', 'Automotive exterior':'Car', 
-                               'Transport':'Car', 'Sports car':'Car', 'Land vehicle':'Car',
+                               'Transport':'Car', 'Sports car':'Car', 'Land vehicle':'Car', 'Super car':'Car',
                                'Waterway':'Rain'
                              } -%}
-            {%- set unwanted_tags = ['Asphalt', 'Backyard', 'City', 'Estate', 'Flower', 'Garden', 'Grass', 'Tree', 
-                                     'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 
-                                     'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track',
+            {%- set unwanted_tags = ['Asphalt', 'Backyard', 'City', 'Estate', 'Flower', 'Garden', 'Grass', 'Tree', 'Car', 'Vehicle', 'Suburb', 'Street',
+                                     'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 'Super car', 'Snow', 'Winter',
+                                     'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Sport venue',
                                      'Transport', 'Walkway', 'Yard', 'Screenshot', 'Night', 'Lighting and Light', 
                                      'Black-and-white', 'Monochrome', 'Monochrome photography', 'Black and White',
                                      'Black', 'White', 'Darkness', 'Light'] -%}
@@ -374,12 +374,12 @@ sensor:
           {%- if None != attribs -%}
             {%- set tag_map = {'Vehicle':'Car', 'Sedan':'Car', 'Luxury vehicle':'Car', 'Driving':'Car',
                                'Wheel':'Car', 'Automotive design':'Car', 'Automotive exterior':'Car', 
-                               'Transport':'Car', 'Sports car':'Car', 'Land vehicle':'Car',
+                               'Transport':'Car', 'Sports car':'Car', 'Land vehicle':'Car','Super car':'Car',
                                'Waterway':'Rain'
                              } -%}
-            {%- set unwanted_tags = ['Asphalt', 'Backyard', 'City', 'Estate', 'Flower', 'Garden', 'Grass', 'Tree', 
-                                     'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 
-                                     'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track',
+            {%- set unwanted_tags = ['Asphalt', 'Backyard', 'City', 'Estate', 'Flower', 'Garden', 'Grass', 'Tree', 'Car', 'Vehicle', 'Suburb', 'Street',
+                                     'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 'Super car', 'Sport venue',
+                                     'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Snow', 'Winter',
                                      'Transport', 'Walkway', 'Yard', 'Screenshot', 'Night', 'Lighting and Light', 
                                      'Black-and-white', 'Monochrome', 'Monochrome photography', 'Black and White',
                                      'Black', 'White', 'Darkness', 'Light'] -%}
@@ -410,9 +410,9 @@ sensor:
           {% set attribs = state_attr('image_processing.tagbox_patio_camera', 'tags') %}
           {%- if None != attribs -%}
             {%- set tag_map = {'Waterway':'Rain'} -%}
-            {%- set unwanted_tags = ['Asphalt', 'Backyard', 'City', 'Estate', 'Flower', 'Garden', 'Grass', 'Tree', 'Vehicle','Driving', 'Transport',
-                                     'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 'Car', 'Wheel', 'Sports car',
-                                     'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Sedan', 'Automotive design',
+            {%- set unwanted_tags = ['Asphalt', 'Backyard', 'City', 'Estate', 'Flower', 'Garden', 'Grass', 'Tree', 'Vehicle','Driving', 'Transport', 'Car', 'Vehicle', 'Suburb', 'Street',
+                                     'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 'Car', 'Wheel', 'Sports car','Super car', 'Sport venue',
+                                     'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Sedan', 'Automotive design', 'Snow', 'Winter',
                                      'Transport', 'Walkway', 'Yard', 'Screenshot', 'Night', 'Lighting and Light', 'Luxury vehicle', 'Automotive exterior',
                                      'Black-and-white', 'Monochrome', 'Monochrome photography', 'Black and White', 'Black', 'White', 'Light'] -%}
             {%- macro filter_unwanted(tags) -%}
@@ -442,9 +442,9 @@ sensor:
           {% set attribs = state_attr('image_processing.tagbox_playarea_camera', 'tags') %}
           {%- if None != attribs -%}
             {%- set tag_map = {'Waterway':'Rain'} -%}
-            {%- set unwanted_tags = ['Asphalt', 'Backyard', 'City', 'Estate', 'Flower', 'Garden', 'Grass', 'Tree', 'Vehicle','Driving', 'Transport',
-                                     'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 'Car', 'Wheel', 'Sports car',
-                                     'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Sedan', 'Automotive design',
+            {%- set unwanted_tags = ['Asphalt', 'Backyard', 'City', 'Estate', 'Flower', 'Garden', 'Grass', 'Tree', 'Vehicle','Driving', 'Transport', 'Car', 'Vehicle', 'Suburb', 'Street',
+                                     'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 'Car', 'Wheel', 'Sports car', 'Super car', 'Winter',
+                                     'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Sedan', 'Automotive design', 'Snow', 'Sport venue',
                                      'Transport', 'Walkway', 'Yard', 'Screenshot', 'Night', 'Lighting and Light', 'Luxury vehicle', 'Automotive exterior',
                                      'Black-and-white', 'Monochrome', 'Monochrome photography', 'Black and White', 'Black', 'White', 'Light'] -%}
             {%- macro filter_unwanted(tags) -%}
@@ -470,6 +470,7 @@ sensor:
 # Basic Automations that alert me when things change from the camera point of view.
 ############################################################################################################################
 automation:
+
   - alias: Alert Family Member Activity
     trigger:
       - platform: state
