@@ -342,8 +342,8 @@ sensor:
                              } -%}
             {%- set unwanted_tags = ['Asphalt', 'Backyard', 'City', 'Estate', 'Flower', 'Garden', 'Grass', 'Tree', 'Car', 'Vehicle', 'Suburb', 'Street',
                                      'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 'Super car', 'Snow', 'Winter',
-                                     'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Sport venue',
-                                     'Transport', 'Walkway', 'Yard', 'Screenshot', 'Night', 'Lighting and Light', 
+                                     'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Sport venue', 'Soil', 
+                                     'Transport', 'Walkway', 'Yard', 'Screenshot', 'Night', 'Lighting and Light', 'Drawing', 'Sketch',
                                      'Black-and-white', 'Monochrome', 'Monochrome photography', 'Black and White',
                                      'Black', 'White', 'Darkness', 'Light'] -%}
             {%- macro filter_unwanted(tags) -%}
@@ -379,8 +379,8 @@ sensor:
                              } -%}
             {%- set unwanted_tags = ['Asphalt', 'Backyard', 'City', 'Estate', 'Flower', 'Garden', 'Grass', 'Tree', 'Car', 'Vehicle', 'Suburb', 'Street',
                                      'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 'Super car', 'Sport venue',
-                                     'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Snow', 'Winter',
-                                     'Transport', 'Walkway', 'Yard', 'Screenshot', 'Night', 'Lighting and Light', 
+                                     'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Snow', 'Winter', 'Soil', 
+                                     'Transport', 'Walkway', 'Yard', 'Screenshot', 'Night', 'Lighting and Light', 'Drawing', 'Sketch',
                                      'Black-and-white', 'Monochrome', 'Monochrome photography', 'Black and White',
                                      'Black', 'White', 'Darkness', 'Light'] -%}
             {%- macro filter_unwanted(tags) -%}
@@ -412,8 +412,8 @@ sensor:
             {%- set tag_map = {'Waterway':'Rain'} -%}
             {%- set unwanted_tags = ['Asphalt', 'Backyard', 'City', 'Estate', 'Flower', 'Garden', 'Grass', 'Tree', 'Vehicle','Driving', 'Transport', 'Car', 'Vehicle', 'Suburb', 'Street',
                                      'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 'Car', 'Wheel', 'Sports car','Super car', 'Sport venue',
-                                     'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Sedan', 'Automotive design', 'Snow', 'Winter',
-                                     'Transport', 'Walkway', 'Yard', 'Screenshot', 'Night', 'Lighting and Light', 'Luxury vehicle', 'Automotive exterior',
+                                     'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Sedan', 'Automotive design', 'Snow', 'Winter', 'Soil', 
+                                     'Transport', 'Walkway', 'Yard', 'Screenshot', 'Night', 'Lighting and Light', 'Luxury vehicle', 'Automotive exterior', 'Drawing', 'Sketch',
                                      'Black-and-white', 'Monochrome', 'Monochrome photography', 'Black and White', 'Black', 'White', 'Light'] -%}
             {%- macro filter_unwanted(tags) -%}
              {%- set comma = joiner(',') -%}
@@ -443,9 +443,9 @@ sensor:
           {%- if None != attribs -%}
             {%- set tag_map = {'Waterway':'Rain'} -%}
             {%- set unwanted_tags = ['Asphalt', 'Backyard', 'City', 'Estate', 'Flower', 'Garden', 'Grass', 'Tree', 'Vehicle','Driving', 'Transport', 'Car', 'Vehicle', 'Suburb', 'Street',
-                                     'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 'Car', 'Wheel', 'Sports car', 'Super car', 'Winter',
+                                     'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 'Car', 'Wheel', 'Sports car', 'Super car', 'Winter', 'Soil', 
                                      'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Sedan', 'Automotive design', 'Snow', 'Sport venue',
-                                     'Transport', 'Walkway', 'Yard', 'Screenshot', 'Night', 'Lighting and Light', 'Luxury vehicle', 'Automotive exterior',
+                                     'Transport', 'Walkway', 'Yard', 'Screenshot', 'Night', 'Lighting and Light', 'Luxury vehicle', 'Automotive exterior', 'Drawing', 'Sketch',
                                      'Black-and-white', 'Monochrome', 'Monochrome photography', 'Black and White', 'Black', 'White', 'Light'] -%}
             {%- macro filter_unwanted(tags) -%}
              {%- set comma = joiner(',') -%}

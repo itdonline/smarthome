@@ -7,7 +7,6 @@
 #                       http://192.168.x.xx/admin/api.php
 ###############################################################################
 homeassistant:
-  customize:
 
 sensor:
   - platform: pi_hole
@@ -38,6 +37,7 @@ group:
       - sensor.pihole_domains_blocked
       - sensor.pihole_seen_clients
 
+  # customize:
     ################################################
     ## Node Anchors
     ################################################

@@ -11,10 +11,11 @@ logs:
   aiohttp.server: critical
   homeassistant.core: critical
   homeassistant.setup: critical
-  homeassistant.loader: critical # hide custom component warnings
+  homeassistant.loader: critical # hide custom_component warnings
   homeassistant.exceptions: critical
   homeassistant.helpers.script: critical  
   homeassistant.helpers.entity: critical
+  homeassistant.components.cloud.iot: critical
   homeassistant.components.http: critical
   homeassistant.components.zwave: critical
   homeassistant.components.sensor: critical

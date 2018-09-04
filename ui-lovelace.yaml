@@ -5,6 +5,35 @@
 #
 title: Kalavala's Home Automation
 views:
+  - title: Alert
+    icon: mdi:alert
+    cards:
+      - type: entity-filter
+        title: RPi Disk
+        state_filter:
+          - "unknown"
+        card:
+          type: entities
+          title: RPi Disks
+        entities:
+          - sensor.guest_2_pi_available_disk
+          - sensor.guest_1_pi_available_disk
+          - sensor.garage_pi_available_disk
+          - sensor.theater_pi_available_disk
+          - sensor.master_bedroom_pi_available_disk
+          - sensor.family_room_pi_available_disk
+          - sensor.kitchen_pi_available_disk
+          - sensor.front_room_pi_available_disk
+          - sensor.basement_pi_available_disk
+          - sensor.basement_pi_disk_used
+          - sensor.garage_pi_disk_used
+          - sensor.guest_1_pi_disk_used
+          - sensor.family_room_pi_disk_used
+          - sensor.guest_2_pi_disk_used
+          - sensor.theater_pi_disk_used
+          - sensor.front_room_pi_disk_used
+          - sensor.master_bedroom_pi_disk_used
+          - sensor.kitchen_pi_disk_used          
   - title: Home
     cards:
       - type: entities
@@ -53,47 +82,58 @@ views:
           - script.emergency_all_lights_switches_on
           - script.emergency_script
           - script.emergency_script_loop
-      - type: entities
-        title: Motion Sensors
-        show_header_toggle: true
+      - type: entity-filter
+        title: Motion Activity
+        state_filter:
+          - "on"
+          - "detected"
+          - "open"
+        card:
+          type: entities
+          title: Motion Activity
         entities:
-          - binary_sensor.garage_door_sensor_sensor
-          - binary_sensor.frontdoor_camera_field_detection
           - binary_sensor.stairs_motion_sensor_sensor
+          - binary_sensor.garage_door_sensor_sensor
           - binary_sensor.audio_detector_sensor
-          - binary_sensor.frontdoor_camera_motion
-          - binary_sensor.patio_camera_tamper_detection
-          - binary_sensor.single_car_garage_door_tilt_sensor_sensor
-          - binary_sensor.two_car_garage_door_tilt_sensor_sensor
-          - binary_sensor.driveway_camera_line_crossing
-          - binary_sensor.patio_camera_field_detection
-          - binary_sensor.front_room_window_sensor_sensor
           - binary_sensor.back_door_sensor_sensor
-          - binary_sensor.playarea_camera_tamper_detection
-          - binary_sensor.playarea_camera_motion
           - binary_sensor.kitchen_motion_sensor_sensor
           - binary_sensor.front_door_sensor_sensor
+
+          - binary_sensor.tv_multi_sensor_sensor
           - binary_sensor.upstairs_multi_sensor_sensor
+          - binary_sensor.downstairs_multi_sensor_sensor
+          - binary_sensor.front_room_multi_sensor_sensor
           - binary_sensor.basement_door_sensor_sensor
           - binary_sensor.garage_motion
-          - binary_sensor.frontdoor_camera_tamper_detection
-          - binary_sensor.driveway_camera_field_detection
-          - binary_sensor.driveway_camera_motion
+          
           - binary_sensor.motion_sensor_158d00016db6d2
           - binary_sensor.motion_sensor_158d00016c2d0e
-          - binary_sensor.guest_bedroom_multi_sensor_sensor
-          - binary_sensor.playarea_camera_line_crossing
           - binary_sensor.motion_sensor_158d0001a25041
           - binary_sensor.motion_sensor_158d0001a662fe
-          - binary_sensor.playarea_camera_field_detection
-          - binary_sensor.tv_multi_sensor_sensor
-          - binary_sensor.patio_camera_motion
-          - binary_sensor.patio_camera_line_crossing
-          - binary_sensor.downstairs_multi_sensor_sensor
-          - binary_sensor.driveway_camera_tamper_detection
-          - binary_sensor.frontdoor_camera_line_crossing
+
           - binary_sensor.aeotec_water_sensor_sensor
-          - binary_sensor.front_room_multi_sensor_sensor
+          - binary_sensor.single_car_garage_door_tilt_sensor_sensor
+          - binary_sensor.two_car_garage_door_tilt_sensor_sensor
+
+          - binary_sensor.patio_camera_motion
+          - binary_sensor.driveway_camera_motion
+          - binary_sensor.frontdoor_camera_motion
+          - binary_sensor.playarea_camera_motion
+
+          - binary_sensor.playarea_camera_field_detection
+          - binary_sensor.frontdoor_camera_field_detection
+          - binary_sensor.driveway_camera_field_detection
+          - binary_sensor.patio_camera_field_detection
+
+          - binary_sensor.driveway_camera_tamper_detection
+          - binary_sensor.playarea_camera_tamper_detection
+          - binary_sensor.frontdoor_camera_tamper_detection
+          - binary_sensor.patio_camera_tamper_detection
+
+          - binary_sensor.patio_camera_line_crossing
+          - binary_sensor.driveway_camera_line_crossing
+          - binary_sensor.playarea_camera_line_crossing
+          - binary_sensor.frontdoor_camera_line_crossing
       - type: entities
         title: Weather
         show_header_toggle: true
@@ -149,35 +189,6 @@ views:
           - switch.kids_bedroom
           - switch.kids_bed_accent_light
           - light.master_bedroom
-      - type: entities
-        title: Camera Motion
-        show_header_toggle: true
-        entities:
-          - binary_sensor.driveway_camera_motion
-          - binary_sensor.playarea_camera_motion
-          - binary_sensor.patio_camera_motion
-          - binary_sensor.frontdoor_camera_motion
-      - type: entities
-        title: Downstairs Multi Sensor
-        show_header_toggle: true
-        entities:
-          - sensor.downstairs_multi_sensor_temperature
-          - sensor.downstairs_multi_sensor_power
-          - sensor.downstairs_multi_sensor_burglar
-          - sensor.downstairs_multi_sensor_luminance
-          - sensor.downstairs_multi_sensor_sourcenodeid
-          - sensor.downstairs_multi_sensor_relative_humidity
-          - sensor.downstairs_multi_sensor_alarm_level
-          - sensor.downstairs_multi_sensor_alarm_type
-      - type: entities
-        title: Stairs Motion Sensor
-        show_header_toggle: true
-        entities:
-          - sensor.stairs_motion_sensor_burglar
-          - sensor.stairs_motion_sensor_alarm_level
-          - sensor.stairs_motion_sensor_power_management
-          - sensor.stairs_motion_sensor_sourcenodeid
-          - sensor.stairs_motion_sensor_alarm_type
       - type: entities
         title: Light Levels
         show_header_toggle: true
@@ -236,18 +247,6 @@ views:
           - script.restart_snapcast_server
           - script.stop_snapcast_server
           - script.start_snapcast_server
-      - type: entities
-        title: Upstairs Multi Sensor
-        show_header_toggle: true
-        entities:
-          - sensor.upstairs_multi_sensor_temperature
-          - sensor.upstairs_multi_sensor_sourcenodeid
-          - sensor.upstairs_multi_sensor_alarm_level
-          - sensor.upstairs_multi_sensor_burglar
-          - sensor.upstairs_multi_sensor_luminance
-          - sensor.upstairs_multi_sensor_relative_humidity
-          - sensor.upstairs_multi_sensor_ultraviolet
-          - sensor.upstairs_multi_sensor_alarm_type
       - type: entities
         title: Energy Meter
         show_header_toggle: true
@@ -366,16 +365,6 @@ views:
           - sensor.front_room_pi_disk_used
           - sensor.master_bedroom_pi_disk_used
           - sensor.kitchen_pi_disk_used
-      - type: entities
-        title: 2-Car Garage Door Sensor
-        show_header_toggle: true
-        entities:
-          - sensor.two_car_garage_door_tilt_sensor_power_management
-          - sensor.two_car_garage_door_tilt_sensor_alarm_level
-          - sensor.two_car_garage_door_tilt_sensor_alarm_type
-          - sensor.two_car_garage_door_tilt_sensor_sourcenodeid
-          - sensor.two_car_garage_door_tilt_sensor_burglar
-          - sensor.two_car_garage_door_tilt_sensor_access_control
       - type: entities
         title: Outdoor Lights
         show_header_toggle: true
@@ -830,6 +819,7 @@ views:
     icon: mdi:account-multiple
     cards:
       - type: entity-filter
+        show_empty: false
         entities:
           - device_tracker.suresh_suresh
           - device_tracker.mallika_mallika
@@ -935,47 +925,59 @@ views:
           - sensor.pws_alerts
           - sensor.pws_feelslike_f
           - sensor.cold_flu_risk
-      - type: entities
-        title: Motion Sensors
-        show_header_toggle: true
+      - type: entity-filter
+        title: Motion Activity
+        show_empty: false
+        state_filter:
+          - "on"
+          - "detected"
+          - "open"
+        card:
+          type: entities
+          title: Motion Activity
         entities:
-          - binary_sensor.garage_door_sensor_sensor
-          - binary_sensor.frontdoor_camera_field_detection
           - binary_sensor.stairs_motion_sensor_sensor
+          - binary_sensor.garage_door_sensor_sensor
           - binary_sensor.audio_detector_sensor
-          - binary_sensor.frontdoor_camera_motion
-          - binary_sensor.patio_camera_tamper_detection
-          - binary_sensor.single_car_garage_door_tilt_sensor_sensor
-          - binary_sensor.two_car_garage_door_tilt_sensor_sensor
-          - binary_sensor.driveway_camera_line_crossing
-          - binary_sensor.patio_camera_field_detection
-          - binary_sensor.front_room_window_sensor_sensor
           - binary_sensor.back_door_sensor_sensor
-          - binary_sensor.playarea_camera_tamper_detection
-          - binary_sensor.playarea_camera_motion
           - binary_sensor.kitchen_motion_sensor_sensor
           - binary_sensor.front_door_sensor_sensor
+
+          - binary_sensor.tv_multi_sensor_sensor
           - binary_sensor.upstairs_multi_sensor_sensor
+          - binary_sensor.downstairs_multi_sensor_sensor
+          - binary_sensor.front_room_multi_sensor_sensor
           - binary_sensor.basement_door_sensor_sensor
           - binary_sensor.garage_motion
-          - binary_sensor.frontdoor_camera_tamper_detection
-          - binary_sensor.driveway_camera_field_detection
-          - binary_sensor.driveway_camera_motion
+          
           - binary_sensor.motion_sensor_158d00016db6d2
           - binary_sensor.motion_sensor_158d00016c2d0e
-          - binary_sensor.guest_bedroom_multi_sensor_sensor
-          - binary_sensor.playarea_camera_line_crossing
           - binary_sensor.motion_sensor_158d0001a25041
           - binary_sensor.motion_sensor_158d0001a662fe
-          - binary_sensor.playarea_camera_field_detection
-          - binary_sensor.tv_multi_sensor_sensor
-          - binary_sensor.patio_camera_motion
-          - binary_sensor.patio_camera_line_crossing
-          - binary_sensor.downstairs_multi_sensor_sensor
-          - binary_sensor.driveway_camera_tamper_detection
-          - binary_sensor.frontdoor_camera_line_crossing
+
           - binary_sensor.aeotec_water_sensor_sensor
-          - binary_sensor.front_room_multi_sensor_sensor
+          - binary_sensor.single_car_garage_door_tilt_sensor_sensor
+          - binary_sensor.two_car_garage_door_tilt_sensor_sensor
+
+          - binary_sensor.patio_camera_motion
+          - binary_sensor.driveway_camera_motion
+          - binary_sensor.frontdoor_camera_motion
+          - binary_sensor.playarea_camera_motion
+
+          - binary_sensor.playarea_camera_field_detection
+          - binary_sensor.frontdoor_camera_field_detection
+          - binary_sensor.driveway_camera_field_detection
+          - binary_sensor.patio_camera_field_detection
+
+          - binary_sensor.driveway_camera_tamper_detection
+          - binary_sensor.playarea_camera_tamper_detection
+          - binary_sensor.frontdoor_camera_tamper_detection
+          - binary_sensor.patio_camera_tamper_detection
+
+          - binary_sensor.patio_camera_line_crossing
+          - binary_sensor.driveway_camera_line_crossing
+          - binary_sensor.playarea_camera_line_crossing
+          - binary_sensor.frontdoor_camera_line_crossing
       - type: entities
         title: Where is everyone
         show_header_toggle: true
