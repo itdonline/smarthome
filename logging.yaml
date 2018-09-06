@@ -7,6 +7,7 @@ logs:
   py.warnings: critical
   pywemo.ssdp: critical
   libopenzwave: critical
+  simplipy.api: critical
   netdisco.ssdp: critical
   aiohttp.server: critical
   homeassistant.core: critical

@@ -326,7 +326,8 @@ sensor:
 # Tagbox related Sensors; Please don't go crazy looking at the code. Here is the simple explanation.
 # The tagbox gives a bunch of tags for each picture, and I eliminate a bunch of unwanted tags by filtering them out
 # The unwanted tags are something that I really don't care - like a Tree in the front yard.
-# Then I do custom mapping of the tags that fits my needs. That way I can display what I want rather than what I was given. 
+# Then I do custom mapping of the tags that fits my needs. That way I can display what I want rather than what I was given.
+# I have no control over what tagbox gives, I want to pick and choose tags irrespective of confidence level. 
 ############################################################################################################################
 
   - platform: template
@@ -337,14 +338,14 @@ sensor:
           {%- if None != attribs -%}
             {%- set tag_map = {'Vehicle':'Car', 'Sedan':'Car', 'Luxury vehicle':'Car', 'Driving':'Car',
                                'Wheel':'Car', 'Automotive design':'Car', 'Automotive exterior':'Car', 
-                               'Transport':'Car', 'Sports car':'Car', 'Land vehicle':'Car', 'Super car':'Car',
-                               'Waterway':'Rain'
+                               'Transport':'Car', 'Sports car':'Car', 'Land vehicle':'Car', 'Supercar':'Car',
+                               'Waterway':'Rain', 'Super car': 'Car'
                              } -%}
             {%- set unwanted_tags = ['Asphalt', 'Backyard', 'City', 'Estate', 'Flower', 'Garden', 'Grass', 'Tree', 'Car', 'Vehicle', 'Suburb', 'Street',
-                                     'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 'Super car', 'Snow', 'Winter',
+                                     'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 'Super car', 'Snow', 'Winter', 'Supercar',
                                      'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Sport venue', 'Soil', 
                                      'Transport', 'Walkway', 'Yard', 'Screenshot', 'Night', 'Lighting and Light', 'Drawing', 'Sketch',
-                                     'Black-and-white', 'Monochrome', 'Monochrome photography', 'Black and White',
+                                     'Black-and-white', 'Monochrome', 'Monochrome photography', 'Black and White', 'Parking lot', 'Parking',
                                      'Black', 'White', 'Darkness', 'Light'] -%}
             {%- macro filter_unwanted(tags) -%}
              {%- set comma = joiner(',') -%}
@@ -374,11 +375,11 @@ sensor:
           {%- if None != attribs -%}
             {%- set tag_map = {'Vehicle':'Car', 'Sedan':'Car', 'Luxury vehicle':'Car', 'Driving':'Car',
                                'Wheel':'Car', 'Automotive design':'Car', 'Automotive exterior':'Car', 
-                               'Transport':'Car', 'Sports car':'Car', 'Land vehicle':'Car','Super car':'Car',
-                               'Waterway':'Rain'
+                               'Transport':'Car', 'Sports car':'Car', 'Land vehicle':'Car','Supercar':'Car',
+                               'Waterway':'Rain', 'Super car': 'Car'
                              } -%}
             {%- set unwanted_tags = ['Asphalt', 'Backyard', 'City', 'Estate', 'Flower', 'Garden', 'Grass', 'Tree', 'Car', 'Vehicle', 'Suburb', 'Street',
-                                     'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 'Super car', 'Sport venue',
+                                     'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 'Super car', 'Sport venue', 'Supercar',
                                      'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Snow', 'Winter', 'Soil', 
                                      'Transport', 'Walkway', 'Yard', 'Screenshot', 'Night', 'Lighting and Light', 'Drawing', 'Sketch',
                                      'Black-and-white', 'Monochrome', 'Monochrome photography', 'Black and White',

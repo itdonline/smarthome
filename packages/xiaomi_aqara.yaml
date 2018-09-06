@@ -52,6 +52,15 @@ homeassistant:
     light.gateway_light_34ce008ad65d:
       friendly_name: Xiaomi Aqara Gateway Light
 
+    binary_sensor.cube_158d0002794cd6:
+      friendly_name: Living Room Cube
+    
+    binary_sensor.cube_158d000278eb6a:
+      friendly_name: Master Bedroom Cube
+
+    binary_sensor.cube_158d000276e3e8:
+      friendly_name: Basement Cube
+
 group:
   Xiaomi Aqara:
     entities:
@@ -64,8 +73,192 @@ group:
       - sensor.Illumination_158d00016db6d2
       - sensor.Illumination_158d00016c2d0e
       - sensor.Illumination_34ce008ad65d
+      - binary_sensor.cube_158d0002794cd6
+      - binary_sensor.cube_158d000276e3e8
+      - binary_sensor.cube_158d000278eb6a
 
 xiaomi_aqara:
   discovery_retry: 5
   gateways:
     - key: !secret xiaomi_key
+
+automation:
+
+# Living Room Magic Cube
+#   - Flip 90     : Toggle Family Room Lights
+#   - Flip 180    : Lights ON Family Room Lights FULL brightness
+#   - Move        : Toggle Kitchen Light
+#   - Double Tap  : Turn OFF Downstairs Lights
+#   - Shake       : Toggle Do Not Disturb Mode
+  - alias: Cube event flip90
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.cube_158d0002794cd6
+        action_type: flip90
+    action:
+      - service: light.toggle
+        entity_id: light.family_room
+  - alias: Cube event flip180
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.cube_158d0002794cd6
+        action_type: flip180
+    action:
+      - service: light.turn_on
+        entity_id: light.family_room
+        data:
+          brightness: 254
+  - alias: Cube event move
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.cube_158d0002794cd6
+        action_type: move
+    action:
+      - service: switch.toggle
+        entity_id: switch.kitchen_light
+  - alias: Cube event tap_twice
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.cube_158d0002794cd6
+        action_type: tap_twice
+    action:
+      - service: homeassistant.turn_off
+        entity_id: group.downstairs_lights
+  - alias: Cube event shake_air
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.cube_158d0002794cd6
+        action_type: shake_air
+    action:
+      - service: input_boolean.toggle
+        entity_id: input_boolean.do_not_disturb
+
+# Front Room Magic Cube
+#   - Flip 90     : Toggle Front Room Lights
+#   - Flip 180    : Turn ON Downstairs Lights
+#   - Move        : Toggle Office Room Lights
+#   - Double Tap  : Turn OFF Downstairs Lights
+#   - Shake       : Toggle Do Not Disturb Mode
+  - alias: Cube event flip90
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.cube_158d000276e3e8
+        action_type: flip90
+    action:
+      - service: switch.toggle
+        entity_id: switch.rf_switch_four
+  - alias: Cube event move
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.cube_158d000276e3e8
+        action_type: move
+    action:
+      - service: switch.toggle
+        entity_id: switch.office_room_lights
+  - alias: Cube event tap_twice
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.cube_158d000276e3e8
+        action_type: tap_twice
+    action:
+      - service: homeassistant.turn_off
+        entity_id: group.downstairs_lights
+  - alias: Cube event flip180
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.cube_158d000276e3e8
+        action_type: flip180
+    action:
+      - service: homeassistant.turn_on
+        entity_id: group.downstairs_lights  
+  - alias: Cube event shake_air
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.cube_158d000276e3e8
+        action_type: shake_air
+    action:
+      - service: input_boolean.toggle
+        entity_id: input_boolean.do_not_disturb
+
+# Master Bedroom Magic Cube Actions
+  #   - Flip 90     : Toggle Master Bedroom Lights
+  #   - Flip 180    : Lights ON FULL brightness
+  #   - Move        : Turn OFF All upstairs Lights
+  #   - Double Tap  : Turn On ALL upstairs Lights
+  #   - Shake       : Toggle Do Not Disturb Mode
+  - alias: Master Bedroom Cube event flip90
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.cube_158d000278eb6a
+        action_type: flip90
+    action:
+      - service: light.toggle
+        entity_id: light.master_bedroom
+
+  - alias: Master Bedroom Cube event flip180
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.cube_158d000278eb6a
+        action_type: flip180
+    action:
+      - service: light.turn_on
+        entity_id: light.master_bedroom
+        data:
+          brightness: 254
+
+  - alias: Master Bedroom Cube event move
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.cube_158d000278eb6a
+        action_type: move
+    action:
+      - service: homeassistant.turn_off
+        entity_id: group.upstairs_lights
+
+  - alias: Master Bedroom Cube event tap_twice
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.cube_158d000278eb6a
+        action_type: tap_twice
+    action:
+      - service: homeassistant.turn_on
+        entity_id: group.upstairs_lights
+
+  - alias: Master Bedroom Cube event shake_air
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.cube_158d000278eb6a
+        action_type: shake_air
+    action:
+      - service: input_boolean.toggle
+        entity_id: input_boolean.do_not_disturb

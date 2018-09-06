@@ -18,11 +18,9 @@ homeassistant:
   # whitelist_external_dirs:
   #   - '/home/homeassistant/.homeassistant/www'
 
-  auth_providers:
-    - type: homeassistant
-    - type: legacy_api_password
-
-auth:
+  # auth_providers:
+  #   - type: homeassistant
+  #   - type: legacy_api_password
 
 sun:
 alexa:
