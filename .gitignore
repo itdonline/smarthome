@@ -1,7 +1,6 @@
 # General File Extensions
 
 *.pid
-*.xml
 *.csr
 *.crt
 *.key
