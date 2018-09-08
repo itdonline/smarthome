@@ -815,3 +815,53 @@ group:
       - zwave.zwave_smart_switch
       - zwave.zwave_stick
       - zwave.front_room_window_sensor
+
+automation:
+
+  - alias: WallMote Button 1 Pressed
+    trigger:
+      - platform: event
+        event_type: zwave.scene_activated
+        event_data:
+          entity_id: zwave.wallmote
+          scene_id: 1
+    action:
+      - service: script.notify_me
+        data_template:
+          message: '{{ trigger.event.data.scene_id }}: {{ trigger.event.data.entity_id }}'
+
+  - alias: WallMote Button 2 Pressed
+    trigger:
+      - platform: event
+        event_type: zwave.scene_activated
+        event_data:
+          entity_id: zwave.wallmote
+          scene_id: 2
+    action:
+      - service: script.notify_me
+        data_template:
+          message: '{{ trigger.event.data.scene_id }}: {{ trigger.event.data.entity_id }}'
+
+  - alias: WallMote Button 3 Pressed
+    trigger:
+      - platform: event
+        event_type: zwave.scene_activated
+        event_data:
+          entity_id: zwave.wallmote
+          scene_id: 3
+    action:
+      - service: script.notify_me
+        data_template:
+          message: '{{ trigger.event.data.scene_id }}: {{ trigger.event.data.entity_id }}'
+
+  - alias: WallMote Button 4 Pressed
+    trigger:
+      - platform: event
+        event_type: zwave.scene_activated
+        event_data:
+          entity_id: zwave.wallmote
+          scene_id: 4
+    action:
+      - service: script.notify_me
+        data_template:
+          message: '{{ trigger.event.data.scene_id }}: {{ trigger.event.data.entity_id }}'

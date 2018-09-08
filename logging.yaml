@@ -10,7 +10,7 @@ logs:
   simplipy.api: critical
   netdisco.ssdp: critical
   aiohttp.server: critical
-  homeassistant.core: critical
+  homeassistant.core: info
   homeassistant.setup: critical
   homeassistant.loader: critical # hide custom_component warnings
   homeassistant.exceptions: critical
@@ -18,7 +18,7 @@ logs:
   homeassistant.helpers.entity: critical
   homeassistant.components.cloud.iot: critical
   homeassistant.components.http: critical
-  homeassistant.components.zwave: critical
+  homeassistant.components.zwave: debug
   homeassistant.components.sensor: critical
   homeassistant.components.homekit: critical
   custom_components.sensor.life360: critical

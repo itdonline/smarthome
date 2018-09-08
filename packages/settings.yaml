@@ -398,7 +398,7 @@ automation:
     action:
       - service: script.notify_me
         data_template:
-          message: "The Do Not Disturb Mode is '{{ trigger.to_state.state }}''"
+          message: "The Do Not Disturb Mode is {{ trigger.to_state.state |upper }}."
 
 # Turn ON Home Security System - only if it is not ON
 ######################################################
