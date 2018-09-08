@@ -387,6 +387,19 @@ automation:
       - service: input_boolean.turn_off
         entity_id: input_boolean.do_not_disturb
 
+# Notify me when DO NOT DISTURB mode is changed
+######################################################
+  - alias: Do Not Disturb State Change
+    initial_state: true
+    hide_entity: true
+    trigger:
+      - platform: state
+        entity_id: input_boolean.do_not_disturb
+    action:
+      - service: script.notify_me
+        data_template:
+          message: "The Do Not Disturb Mode is '{{ trigger.to_state.state }}''"
+
 # Turn ON Home Security System - only if it is not ON
 ######################################################
   - alias: Home Security ON

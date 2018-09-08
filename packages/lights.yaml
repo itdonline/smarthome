@@ -228,6 +228,7 @@ group:
       - switch.kitchen_light
       - switch.office_room_lights
       - switch.smart_outlet_1
+      - switch.rf_switch_four
 
   Light Automations:
     control: hidden
