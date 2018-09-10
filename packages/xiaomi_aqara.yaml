@@ -27,9 +27,9 @@ homeassistant:
         critical: false
 
     binary_sensor.motion_sensor_158d0001a662fe:
-      friendly_name: Kitchen Motion Sensor
+      friendly_name: Kitchen Motion Sensor (Xiaomi)
     sensor.Illumination_158d0001a662fe:
-      friendly_name: Kitchen Luminance
+      friendly_name: Kitchen Luminance (Xiaomi)
      
     binary_sensor.motion_sensor_158d0001a25041:
       friendly_name: Family Room Motion Sensor (xiaomi)
@@ -37,29 +37,49 @@ homeassistant:
       friendly_name: Family Room Luminance (xiaomi)
  
     binary_sensor.motion_sensor_158d00016db6d2:
-      friendly_name: Front Room Motion Sensor
+      friendly_name: Front Room Motion Sensor (Xiaomi)
     sensor.Illumination_158d00016db6d2:
-      friendly_name: Front Room Luminance
+      friendly_name: Front Room Luminance (Xiaomi)
     
     binary_sensor.motion_sensor_158d00016c2d0e:
-      friendly_name: Dining Room Motion Sensor
+      friendly_name: Dining Room Motion Sensor (Xiaomi)
     sensor.Illumination_158d00016c2d0e:
-      friendly_name: Dining Room Luminance
+      friendly_name: Dining Room Luminance (Xiaomi)
+
+    binary_sensor.motion_sensor_158d00024e57d3:
+      friendly_name: Master Bedroom Motion Sensor (Xiaomi)
+    sensor.illumination_158d00024e57d3:
+      friendly_name: Master Bedroom Luminance (Xiaomi)
+
+    binary_sensor.motion_sensor_158d00024ee084:
+      friendly_name: Front Door Motion Sensor (Xiaomi)
+    sensor.illumination_158d00024ee084:
+      friendly_name: Front Door Luminance (Xiaomi)
+
+    binary_sensor.motion_sensor_158d00024e842c:
+      friendly_name: Srinikas Bedroom Motion Sensor (Xiaomi)
+    sensor.illumination_158d00024e842c:
+      friendly_name: Srinika's Bedroom Luminance (Xiaomi)
+
+    binary_sensor.motion_sensor_158d00024e57fb:
+      friendly_name: Hasikas Bedroom Motion Sensor (Xiaomi)
+    sensor.illumination_158d00024e57fb:
+      friendly_name: Hasika's Bedroom Luminance (Xiaomi)
 
     sensor.Illumination_34ce008ad65d:
-      friendly_name: Hallway Luminance
+      friendly_name: Hallway Luminance (Xiaomi Aqara)
 
     light.gateway_light_34ce008ad65d:
-      friendly_name: Xiaomi Aqara Gateway Light
+      friendly_name: Hallway Light (Xiaomi Aqara Gateway)
 
     binary_sensor.cube_158d0002794cd6:
-      friendly_name: Living Room Cube
+      friendly_name: Living Room Cube (Xiaomi)
     
     binary_sensor.cube_158d000278eb6a:
-      friendly_name: Master Bedroom Cube
+      friendly_name: Master Bedroom Cube (Xiaomi)
 
     binary_sensor.cube_158d000276e3e8:
-      friendly_name: Basement Cube
+      friendly_name: Basement Cube (Xiaomi)
 
 group:
   Xiaomi Aqara:
@@ -68,11 +88,21 @@ group:
       - binary_sensor.motion_sensor_158d0001a25041
       - binary_sensor.motion_sensor_158d00016db6d2
       - binary_sensor.motion_sensor_158d00016c2d0e
-      - sensor.Illumination_158d0001a662fe
-      - sensor.Illumination_158d0001a25041
-      - sensor.Illumination_158d00016db6d2
-      - sensor.Illumination_158d00016c2d0e
-      - sensor.Illumination_34ce008ad65d
+      - binary_sensor.motion_sensor_158d00024e57d3
+      - binary_sensor.motion_sensor_158d00024ee084
+      - binary_sensor.motion_sensor_158d00024e842c
+      - binary_sensor.motion_sensor_158d00024e57fb
+
+      - sensor.illumination_158d00024e57d3
+      - sensor.illumination_158d00024ee084
+      - sensor.illumination_158d0001a662fe
+      - sensor.illumination_158d0001a25041
+      - sensor.illumination_158d00016db6d2
+      - sensor.illumination_158d00016c2d0e
+      - sensor.illumination_158d00024e842c
+      - sensor.illumination_158d00024e57fb
+      - sensor.illumination_34ce008ad65d
+      
       - binary_sensor.cube_158d0002794cd6
       - binary_sensor.cube_158d000276e3e8
       - binary_sensor.cube_158d000278eb6a
@@ -91,6 +121,8 @@ automation:
 #   - Double Tap  : Turn OFF Downstairs Lights
 #   - Shake       : Toggle Do Not Disturb Mode
   - alias: Cube event flip90
+    initial_state: true
+    hide_entity: true
     trigger:
       platform: event
       event_type: cube_action
@@ -101,6 +133,8 @@ automation:
       - service: light.toggle
         entity_id: light.family_room
   - alias: Cube event flip180
+    initial_state: true
+    hide_entity: true
     trigger:
       platform: event
       event_type: cube_action
@@ -113,6 +147,8 @@ automation:
         data:
           brightness: 254
   - alias: Cube event move
+    initial_state: true
+    hide_entity: true
     trigger:
       platform: event
       event_type: cube_action
@@ -123,6 +159,8 @@ automation:
       - service: switch.toggle
         entity_id: switch.kitchen_light
   - alias: Cube event tap_twice
+    initial_state: true
+    hide_entity: true
     trigger:
       platform: event
       event_type: cube_action
@@ -133,6 +171,8 @@ automation:
       - service: homeassistant.turn_off
         entity_id: group.downstairs_lights
   - alias: Cube event shake_air
+    initial_state: true
+    hide_entity: true
     trigger:
       platform: event
       event_type: cube_action
@@ -150,6 +190,8 @@ automation:
 #   - Double Tap  : Turn OFF Downstairs Lights
 #   - Shake       : Toggle Do Not Disturb Mode
   - alias: Cube event flip90
+    initial_state: true
+    hide_entity: true
     trigger:
       platform: event
       event_type: cube_action
@@ -160,6 +202,8 @@ automation:
       - service: switch.toggle
         entity_id: switch.rf_switch_four
   - alias: Cube event move
+    initial_state: true
+    hide_entity: true
     trigger:
       platform: event
       event_type: cube_action
@@ -170,6 +214,8 @@ automation:
       - service: switch.toggle
         entity_id: switch.office_room_lights
   - alias: Cube event tap_twice
+    initial_state: true
+    hide_entity: true
     trigger:
       platform: event
       event_type: cube_action
@@ -180,6 +226,8 @@ automation:
       - service: homeassistant.turn_off
         entity_id: group.downstairs_lights
   - alias: Cube event flip180
+    initial_state: true
+    hide_entity: true
     trigger:
       platform: event
       event_type: cube_action
@@ -190,6 +238,8 @@ automation:
       - service: homeassistant.turn_on
         entity_id: group.downstairs_lights  
   - alias: Cube event shake_air
+    initial_state: true
+    hide_entity: true
     trigger:
       platform: event
       event_type: cube_action
@@ -201,12 +251,14 @@ automation:
         entity_id: input_boolean.do_not_disturb
 
 # Master Bedroom Magic Cube Actions
-  #   - Flip 90     : Toggle Master Bedroom Lights
-  #   - Flip 180    : Lights ON FULL brightness
-  #   - Move        : Turn OFF All upstairs Lights
-  #   - Double Tap  : Turn On ALL upstairs Lights
+  #   - Flip 90     : All Lights OFF (upstairs and downstairs)
+  #   - Flip 180    : Toggle Lights
+  #   - Move        : Turn ON Master Bedroom Lights
+  #   - Double Tap  : Toggle On ALL upstairs Lights
   #   - Shake       : Toggle Do Not Disturb Mode
   - alias: Master Bedroom Cube event flip90
+    initial_state: true
+    hide_entity: true
     trigger:
       platform: event
       event_type: cube_action
@@ -214,10 +266,14 @@ automation:
         entity_id: binary_sensor.cube_158d000278eb6a
         action_type: flip90
     action:
-      - service: light.toggle
-        entity_id: light.master_bedroom
+      - service: homeassistant.turn_off
+        entity_id: group.downstairs_lights
+      - service: homeassistant.turn_off
+        entity_id: group.upstairs_lights
 
   - alias: Master Bedroom Cube event flip180
+    initial_state: true
+    hide_entity: true
     trigger:
       platform: event
       event_type: cube_action
@@ -225,12 +281,12 @@ automation:
         entity_id: binary_sensor.cube_158d000278eb6a
         action_type: flip180
     action:
-      - service: light.turn_on
+      - service: light.toggle
         entity_id: light.master_bedroom
-        data:
-          brightness: 254
 
   - alias: Master Bedroom Cube event move
+    initial_state: true
+    hide_entity: true
     trigger:
       platform: event
       event_type: cube_action
@@ -238,10 +294,12 @@ automation:
         entity_id: binary_sensor.cube_158d000278eb6a
         action_type: move
     action:
-      - service: homeassistant.turn_off
-        entity_id: group.upstairs_lights
+      - service: light.turn_on
+        entity_id: light.master_bedroom
 
   - alias: Master Bedroom Cube event tap_twice
+    initial_state: true
+    hide_entity: true
     trigger:
       platform: event
       event_type: cube_action
@@ -249,10 +307,12 @@ automation:
         entity_id: binary_sensor.cube_158d000278eb6a
         action_type: tap_twice
     action:
-      - service: homeassistant.turn_on
+      - service: homeassistant.toggle
         entity_id: group.upstairs_lights
 
   - alias: Master Bedroom Cube event shake_air
+    initial_state: true
+    hide_entity: true
     trigger:
       platform: event
       event_type: cube_action
@@ -262,3 +322,27 @@ automation:
     action:
       - service: input_boolean.toggle
         entity_id: input_boolean.do_not_disturb
+
+# Motion Counters and Automations
+  - alias: Motion Detected at Front Door
+    initial_state: true
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d00024ee084
+      to: 'on'
+    action:
+      - service: script.voice_notify
+        data:
+          message: 'Someone is at the front door'
+          greeting: 'no'
+      - service: notify.ios_devices
+        data_template:
+          message: "Check Front Door camera!"
+          data:
+            push:
+              category: camera
+            entity_id: "camera.frontdoor_camera"
+            attachment:
+              url: "{{ states.camera.frontdoor_camera.attributes.entity_picture }}"
+              content-type: jpg

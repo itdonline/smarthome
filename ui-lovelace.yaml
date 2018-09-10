@@ -97,7 +97,7 @@ views:
           - binary_sensor.audio_detector_sensor
           - binary_sensor.back_door_sensor_sensor
           - binary_sensor.kitchen_motion_sensor_sensor
-          - binary_sensor.front_door_sensor_sensor
+          - binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor
 
           - binary_sensor.tv_multi_sensor_sensor
           - binary_sensor.upstairs_multi_sensor_sensor
@@ -941,7 +941,7 @@ views:
           - binary_sensor.audio_detector_sensor
           - binary_sensor.back_door_sensor_sensor
           - binary_sensor.kitchen_motion_sensor_sensor
-          - binary_sensor.front_door_sensor_sensor
+          - binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor
 
           - binary_sensor.tv_multi_sensor_sensor
           - binary_sensor.upstairs_multi_sensor_sensor
@@ -1630,7 +1630,7 @@ views:
             name: Back Door
           - entity: binary_sensor.basement_door_sensor_sensor
             name: Basement Door
-          - entity: binary_sensor.front_door_sensor_sensor
+          - entity: binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor
             name: Front Door
           - entity: binary_sensor.garage_door_sensor_sensor
             name: Garage Door

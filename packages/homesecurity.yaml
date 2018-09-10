@@ -209,7 +209,7 @@ automation:
   #   action:
   #     - service_template: >-
   #         {% if states.binary_sensor.back_door_sensor_sensor.state == "off" and 
-  #               states.binary_sensor.front_door_sensor_sensor.state  == "off" and 
+  #               states.binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor.state  == "off" and 
   #               states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.state == "off" and
   #               states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == "off" %}
   #           alarm_control_panel.alarm_arm_home
@@ -222,7 +222,7 @@ automation:
   #       data_template:
   #         message: >
   #           {% if states.binary_sensor.back_door_sensor_sensor.state == "off" and
-  #                 states.binary_sensor.front_door_sensor_sensor.state  == "off" and
+  #                 states.binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor.state  == "off" and
   #                 states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.state == "off" and
   #                 states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == "off" %}
   #             It's getting dark outside, and your home security system is now set to HOME mode.
@@ -231,7 +231,7 @@ automation:
   #              {%- if states.binary_sensor.back_door_sensor_sensor.state == "on" -%}
   #                {%- set doors = doors ~ " Back Door" -%}
   #              {%- endif -%}
-  #              {%- if states.binary_sensor.front_door_sensor_sensor.state  == "on" -%}
+  #              {%- if states.binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor.state  == "on" -%}
   #                {% if doors | trim != "" %}
   #                  {%- set doors = doors ~ " and Front Door" -%}
   #                {% else %}
@@ -258,7 +258,7 @@ automation:
   #       data_template:
   #         message: >
   #           {% if states.binary_sensor.back_door_sensor_sensor.state == "off" and
-  #                 states.binary_sensor.front_door_sensor_sensor.state  == "off" and
+  #                 states.binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor.state  == "off" and
   #                 states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.state == "off" and
   #                 states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == "off" %}
   #             It's getting dark outside, and your home security system is now set to HOME mode.
@@ -267,7 +267,7 @@ automation:
   #              {%- if states.binary_sensor.back_door_sensor_sensor.state == "on" -%}
   #                {%- set doors = doors ~ " Back Door" -%}
   #              {%- endif -%}
-  #              {%- if states.binary_sensor.front_door_sensor_sensor.state  == "on" -%}
+  #              {%- if states.binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor.state  == "on" -%}
   #                {% if doors | trim != "" %}
   #                  {%- set doors = doors ~ " and Front Door" -%}
   #                {% else %}

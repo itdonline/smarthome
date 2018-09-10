@@ -544,7 +544,7 @@ group:
       - binary_sensor.driveway_camera_line_crossing
       - binary_sensor.driveway_camera_tamper_detection
       - binary_sensor.front_room_multi_sensor_sensor
-      - binary_sensor.front_door_sensor_sensor
+      - binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor
       - binary_sensor.frontdoor_camera_field_detection
       - binary_sensor.frontdoor_camera_line_crossing
       - binary_sensor.frontdoor_camera_tamper_detection

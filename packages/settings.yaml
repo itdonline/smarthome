@@ -305,7 +305,7 @@ input_boolean:
 
   notify_camera_motion:
     name: Notify Camera Motion
-    initial: on
+    initial: off
     icon: mdi:camera
 
   welcome_family_announcement:
