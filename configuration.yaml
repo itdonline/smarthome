@@ -15,8 +15,8 @@ homeassistant:
   customize_domain: !include customize_domain.yaml
   packages: !include_dir_named packages
   
-  # whitelist_external_dirs:
-  #   - '/home/homeassistant/.homeassistant/www'
+  whitelist_external_dirs:
+    - '/home/homeassistant/.homeassistant/www/downloads/camera/frontdoor/'
 
   # auth_providers:
   #   - type: homeassistant

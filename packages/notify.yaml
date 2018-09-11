@@ -49,6 +49,17 @@ notify:
       - service: ios_mallika
       - service: ios_srinika
       - service: ios_hasika
+  
+  # make sure you generate app password for your email if you have 2FA enabled!
+  - name: notify_smtp
+    platform: smtp
+    server: smtp.gmail.com
+    port: 587
+    timeout: 15
+    username: !secret smtp_username
+    password: !secret smtp_password
+    sender: !secret smtp_sender 
+    recipient: !secret smtp_recipient
 
 tts:
   - platform: amazon_polly

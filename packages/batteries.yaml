@@ -92,6 +92,13 @@ group:
       - sensor.srinikas_iphone_wifi_state
       - sensor.sureshs_iphone_wifi_state
 
+  Driving Speed:
+    entities:
+      - sensor.sureshs_driving_speed
+      - sensor.mallikas_driving_speed
+      - sensor.srinikas_driving_speed
+      - sensor.hasikas_driving_speed
+
 sensor:
 
   - platform: mqtt
@@ -197,6 +204,30 @@ sensor:
       {% else %}
         Not Connected
       {% endif %}
+
+  - platform: mqtt
+    state_topic: "owntracks/mallika/mallika"
+    name: "Mallika's Driving Speed"
+    value_template: '{{ value_json.vel |int|round}}'
+    unit_of_measurement: miles
+
+  - platform: mqtt
+    state_topic: "owntracks/suresh/suresh"
+    name: "Suresh's Driving Speed"
+    value_template: '{{ value_json.vel |int|round}}'
+    unit_of_measurement: miles
+
+  - platform: mqtt
+    state_topic: "owntracks/srinika/srinika"
+    name: "Srinika's Driving Speed"
+    value_template: '{{ value_json.vel |int|round}}'
+    unit_of_measurement: miles
+
+  - platform: mqtt
+    state_topic: "owntracks/hasika/hasika"
+    name: "Hasika's Driving Speed"
+    value_template: '{{ value_json.vel |int|round}}'
+    unit_of_measurement: miles
 
   - platform: template
     sensors:
@@ -356,6 +387,44 @@ sensor:
           {% endif %}
 
 automation:
+
+#
+# This automation alerts family members when they are "moving" - meaning either in driving from work,
+# kids got on the school bus, and bus is moving...etc
+# This will only announces/ alert when someone is at home.
+#
+  - alias: Alert When Moving
+    trigger: 
+      platform: numeric_state
+      entity_id:
+      - sensor.sureshs_driving_speed
+      - sensor.mallikas_driving_speed
+      - sensor.srinikas_driving_speed
+      - sensor.hasikas_driving_speed
+      above: 8
+    condition:
+      - condition: template
+        value_template: >
+          {%- if states.automation.alert_when_moving.attributes.last_triggered -%}
+            {{ (as_timestamp(now()) - as_timestamp(states.automation.alert_when_moving.attributes.last_triggered)) > 90 }}
+          {%- else -%}
+            true
+          {%- endif -%}
+      - condition: template
+        value_template: "{{ states.input_boolean.home_mode_away.state == 'off' }}"
+      - condition: template
+        value_template: "{{ states.alarm_control_panel.simplisafe.state | lower != 'armed_away' }}"
+    action:
+      - service: script.voice_notify
+        data_template:
+          message: >-
+            {% set apostrophe = "\''" %}
+            {{ trigger.entity_id.split('.')[1].split('_')[0][:-1] |title ~ apostrophe ~ 's' }} vehicle is moving at {{ trigger.to_state.state |round }} miles per hour.
+      - service: script.notify_me
+        data_template:
+          message: >-
+            {% set apostrophe = "\''" %}
+            {{ trigger.entity_id.split('.')[1].split('_')[0][:-1] |title ~ apostrophe ~ 's' }} vehicle is moving at {{ trigger.to_state.state |round }} miles per hour.
 
 ###############################################################################
 # Automation: Notify of iPhone Low Battery
