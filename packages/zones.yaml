@@ -70,6 +70,7 @@ automation:
         data_template:
           message: >
             {{ trigger.entity_id.split('.')[1].split('_')[0] | title}} just entered {{ trigger.zone.attributes.friendly_name }}!
+          greeting: 'no'
 
   - alias: Alert When Someone Leaves a Zone
     initial_state: true
@@ -101,6 +102,7 @@ automation:
             {% if trigger.entity_id.split('.')[1].split('_')[0] == "suresh" and trigger.zone.attributes.friendly_name | lower == "office" %}
               and will be home in {{ (states.sensor.suresh2home.state | int) + 5 }} minutes.
             {% endif %}
+          greeting: 'no'
 
 ###############################################################################
 # Welcome family members when they come home
@@ -130,6 +132,7 @@ automation:
         data_template:
           message: >
             "Welcome home, {{ trigger.entity_id.split('.')[1].split('_')[0] | lower }}!"
+          greeting: 'no'
       - service: input_boolean.turn_off
         entity_id: input_boolean.home_mode_away
 

@@ -418,12 +418,12 @@ automation:
       - service: script.voice_notify
         data_template:
           message: >-
-            {% set apostrophe = "\''" %}
+            {% set apostrophe = "\'" %}
             {{ trigger.entity_id.split('.')[1].split('_')[0][:-1] |title ~ apostrophe ~ 's' }} vehicle is moving at {{ trigger.to_state.state |round }} miles per hour.
       - service: script.notify_me
         data_template:
           message: >-
-            {% set apostrophe = "\''" %}
+            {% set apostrophe = "\'" %}
             {{ trigger.entity_id.split('.')[1].split('_')[0][:-1] |title ~ apostrophe ~ 's' }} vehicle is moving at {{ trigger.to_state.state |round }} miles per hour.
 
 ###############################################################################

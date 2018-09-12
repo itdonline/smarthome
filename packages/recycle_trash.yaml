@@ -23,7 +23,7 @@ homeassistant:
       friendly_name: Is it Recycle Day today?
       icon: mdi:recycle
     sensor.trash_pickup_day:
-      friendly_name: Trach Pickup Day
+      friendly_name: Trash Pickup Day
       icon: mdi:calendar-today
       hidden: true
     sensor.recycle_pickup_day:
@@ -110,12 +110,12 @@ input_select:
 sensor:
   - platform: time_date
     display_options:
-      - 'time'
-      - 'date'
-      - 'date_time'
-      - 'time_date'
-      - 'time_utc'
-      - 'beat'
+      - time
+      - date
+      - date_time
+      - time_date
+      - time_utc
+      - beat
   - platform: mqtt
     state_topic: "/home/trashpickupday"
     name: "Trash Pickup Day"

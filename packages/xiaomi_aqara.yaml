@@ -200,7 +200,7 @@ automation:
         action_type: flip90
     action:
       - service: switch.toggle
-        entity_id: switch.rf_switch_four
+        entity_id: switch.guest_bedroom_2
   - alias: Cube event move
     initial_state: true
     hide_entity: true
@@ -212,7 +212,7 @@ automation:
         action_type: move
     action:
       - service: switch.toggle
-        entity_id: switch.office_room_lights
+        entity_id: switch.guest_bedroom_1
   - alias: Cube event tap_twice
     initial_state: true
     hide_entity: true
@@ -223,8 +223,8 @@ automation:
         entity_id: binary_sensor.cube_158d000276e3e8
         action_type: tap_twice
     action:
-      - service: homeassistant.turn_off
-        entity_id: group.downstairs_lights
+      - service: homeassistant.toggle
+        entity_id: group.guest_bedroom_2
   - alias: Cube event flip180
     initial_state: true
     hide_entity: true
@@ -236,7 +236,7 @@ automation:
         action_type: flip180
     action:
       - service: homeassistant.turn_on
-        entity_id: group.downstairs_lights  
+        entity_id: group.upstairs_lights
   - alias: Cube event shake_air
     initial_state: true
     hide_entity: true
@@ -247,8 +247,12 @@ automation:
         entity_id: binary_sensor.cube_158d000276e3e8
         action_type: shake_air
     action:
-      - service: input_boolean.toggle
-        entity_id: input_boolean.do_not_disturb
+      - service: homeassistant.toggle
+        entity_id: switch.kids_bedroom
+      - service: homeassistant.toggle
+        entity_id: switch.guest_bedroom_1
+      - service: homeassistant.toggle
+        entity_id: switch.guest_bedroom_2
 
 # Master Bedroom Magic Cube Actions
   #   - Flip 90     : All Lights OFF (upstairs and downstairs)
@@ -340,7 +344,8 @@ automation:
 #
 # Make sure you add the path to the white_list in the configuration.yaml file.
 #
-
+# If the front door is open, wait for a couple of seconds, and take picture!
+#
   - alias: Motion Detected at Front Door
     initial_state: true
     hide_entity: true
@@ -353,17 +358,23 @@ automation:
         data:
           message: 'Someone is at the front door'
           greeting: 'no'
+      - delay: "{{ '0:0:2' if states.binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor.state == 'on' else '0:0:0' }}"
       - service: camera.snapshot
         data_template:
           entity_id: "camera.frontdoor_camera"
           filename: "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/frontdoor/frontdoor_' ~  (states.automation.motion_detected_at_front_door.attributes.last_triggered ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
+      - service: camera.snapshot
+        data_template:
+          entity_id: "camera.driveway_camera"
+          filename: "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/driveway/driveway_' ~  (states.automation.motion_detected_at_front_door.attributes.last_triggered ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
       - service: notify.notify_smtp
         data_template:
           title: 'Front door motion {{ now().strftime("%d %h %Y, %H %M:%S %p") }}'
-          message: 'Motion detected at the front door!'
+          message: 'Motion detected at the front door on {{ now().strftime("%d %h %Y, at %H %M:%S %p") }}. Please see the images below.'
           data:
             images:
               - "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/frontdoor/frontdoor_' ~  (states.automation.motion_detected_at_front_door.attributes.last_triggered ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
+              - "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/driveway/driveway_' ~  (states.automation.motion_detected_at_front_door.attributes.last_triggered ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
       - condition: template
         value_template: "{{ states.device_tracker.suresh_suresh.state == 'home' }}"
       - service: notify.ios_devices
