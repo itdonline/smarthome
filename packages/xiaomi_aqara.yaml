@@ -369,8 +369,8 @@ automation:
           filename: "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/driveway/driveway_' ~  (states.automation.motion_detected_at_front_door.attributes.last_triggered ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
       - service: notify.notify_smtp
         data_template:
-          title: 'Front door motion {{ now().strftime("%d %h %Y, %H %M:%S %p") }}'
-          message: 'Motion detected at the front door on {{ now().strftime("%d %h %Y, at %H %M:%S %p") }}. Please see the images below.'
+          title: 'Front door motion {{ now().strftime("%d %h %Y, %I:%M:%S %p") }}'
+          message: 'Motion detected at the front door on {{ now().strftime("%d %h %Y, at %I:%M:%S %p") }}. Please see the images below.'
           data:
             images:
               - "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/frontdoor/frontdoor_' ~  (states.automation.motion_detected_at_front_door.attributes.last_triggered ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
