@@ -406,7 +406,7 @@ automation:
       - condition: template
         value_template: >
           {%- if states.automation.alert_when_moving.attributes.last_triggered -%}
-            {{ (as_timestamp(now()) - as_timestamp(states.automation.alert_when_moving.attributes.last_triggered)) > 90 }}
+            {{ (as_timestamp(now()) - as_timestamp(states.automation.alert_when_moving.attributes.last_triggered)) > 300 }}
           {%- else -%}
             true
           {%- endif -%}
@@ -419,12 +419,12 @@ automation:
         data_template:
           message: >-
             {% set apostrophe = "\'" %}
-            {{ trigger.entity_id.split('.')[1].split('_')[0][:-1] |title ~ apostrophe ~ 's' }} vehicle is moving at {{ trigger.to_state.state |round }} miles per hour.
+            {{ trigger.entity_id.split('.')[1].split('_')[0][:-1] |title ~ apostrophe ~ 's' }} vehicle is in motion.
       - service: script.notify_me
         data_template:
           message: >-
             {% set apostrophe = "\'" %}
-            {{ trigger.entity_id.split('.')[1].split('_')[0][:-1] |title ~ apostrophe ~ 's' }} vehicle is moving at {{ trigger.to_state.state |round }} miles per hour.
+            {{ trigger.entity_id.split('.')[1].split('_')[0][:-1] |title ~ apostrophe ~ 's' }} vehicle is in motion.
 
 ###############################################################################
 # Automation: Notify of iPhone Low Battery

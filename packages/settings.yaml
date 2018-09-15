@@ -298,14 +298,9 @@ input_boolean:
     initial: on
     icon: mdi:file-chart
 
-  notify_motion_pictures:
-    name: Notify With Pictures (Motion)
-    initial: off
-    icon: mdi:camera
-
   notify_camera_motion:
     name: Notify Camera Motion
-    initial: off
+    initial: on
     icon: mdi:camera
 
   welcome_family_announcement:

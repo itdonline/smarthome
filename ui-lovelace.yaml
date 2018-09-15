@@ -650,7 +650,7 @@ views:
           - input_boolean.enjoyable_weather_reminders
           - input_boolean.wfh_notifications
           - input_boolean.working_in_office_room
-          - input_boolean.notify_motion_pictures
+          - input_boolean.notify_camera_motion
           - input_boolean.voice_notifications
       - type: entities
         title: Recycle Schedule
@@ -1552,7 +1552,7 @@ views:
           - input_boolean.enjoyable_weather_reminders
           - input_boolean.wfh_notifications
           - input_boolean.working_in_office_room
-          - input_boolean.notify_motion_pictures
+          - input_boolean.notify_camera_motion
           - input_boolean.voice_notifications
       - type: entities
         title: Ads Blocked
