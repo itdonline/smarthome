@@ -690,7 +690,7 @@ Removed: Whiskey
 ```
 It will show `None.` when there are no changes between the lists. If you are wondering where you would need this script, imagine a scenario where you are feeding your camera image to a machine learning program (like machinebox/tagbox), and you get a list of tags in return. You can then use this script to check the differences between images by comparing tags. Item #14 is a sample output of tagbox for given image. You can use that code to generate list from a given JSON.
 
-## 20 Concatenating Two Lists
+## 20. Concatenating Two Lists
 
 ```
 {% set list1= [1, 2, 3] %}
@@ -710,7 +710,7 @@ The output would be
 6
 ```
 
-## 21 Date Format - using "st", "nd", "rd", "th"
+## 21. Date Format - using "st", "nd", "rd", "th"
 
 If you want the date to be more readable for display, you can use the script below. It formats the date in the format of `1st October 2018` or `2nd September 2018` or `3rd September 2018` or `16th September 2018`.
 
