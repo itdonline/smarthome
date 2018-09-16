@@ -57,14 +57,14 @@ homeassistant:
       friendly_name: Front Door Luminance (Xiaomi)
 
     binary_sensor.motion_sensor_158d00024e842c:
-      friendly_name: Srinikas Bedroom Motion Sensor (Xiaomi)
+      friendly_name: Backyard Motion Sensor (Xiaomi)
     sensor.illumination_158d00024e842c:
-      friendly_name: Srinika's Bedroom Luminance (Xiaomi)
+      friendly_name: Backyard's Luminance (Xiaomi)
 
     binary_sensor.motion_sensor_158d00024e57fb:
-      friendly_name: Hasikas Bedroom Motion Sensor (Xiaomi)
+      friendly_name: Driveway Motion Sensor (Xiaomi)
     sensor.illumination_158d00024e57fb:
-      friendly_name: Hasika's Bedroom Luminance (Xiaomi)
+      friendly_name: Driveway's Luminance (Xiaomi)
 
     sensor.Illumination_34ce008ad65d:
       friendly_name: Hallway Luminance (Xiaomi Aqara)

@@ -571,6 +571,9 @@ automation:
 #
 # If the front door is open, wait for a couple of seconds, and take picture!
 #
+
+# I could have combined all the 3 automations into one, but if all the motion sensors are triggered at the same time,
+# the automation would only fire once, and the code gets ugly big and unmanageable. 3 simple automations is better!
   - alias: Motion Detected at Front Door
     initial_state: true
     hide_entity: true
@@ -614,4 +617,98 @@ automation:
             entity_id: "camera.frontdoor_camera"
             attachment:
               url: "{{ states.camera.frontdoor_camera.attributes.entity_picture }}"
+              content-type: jpg
+
+#
+# motion detected at the driveway
+#
+  - alias: Motion Detected at Driveway
+    initial_state: true
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d00024e57fb
+      to: 'on'
+    condition:
+      - condition: template
+        value_template: "{{ states.input_boolean.notify_camera_motion.state == 'on' }}"
+    action:
+      - service: script.voice_notify
+        data:
+          message: 'Someone is at the driveway'
+          greeting: 'no'
+      - service: camera.snapshot
+        data_template:
+          entity_id: "camera.frontdoor_camera"
+          filename: "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/frontdoor/frontdoor_' ~  (states.automation.motion_detected_at_driveway.attributes.last_triggered ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
+      - service: camera.snapshot
+        data_template:
+          entity_id: "camera.driveway_camera"
+          filename: "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/driveway/driveway_' ~  (states.automation.motion_detected_at_driveway.attributes.last_triggered ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
+      - service: notify.notify_smtp
+        data_template:
+          title: 'Driveway motion {{ now().strftime("%d %h %Y, %I:%M:%S %p") }}'
+          message: 'Motion detected at the Driveway on {{ now().strftime("%d %h %Y, at %I:%M:%S %p") }}. Please see the images below.'
+          data:
+            images:
+              - "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/driveway/driveway_' ~  (states.automation.motion_detected_at_driveway.attributes.last_triggered ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
+              - "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/frontdoor/frontdoor_' ~  (states.automation.motion_detected_at_driveway.attributes.last_triggered ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
+      - condition: template
+        value_template: "{{ states.device_tracker.suresh_suresh.state == 'home' }}"
+      - service: notify.ios_devices
+        data_template:
+          message: "Check Driveway camera!"
+          data:
+            push:
+              category: camera
+            entity_id: "camera.driveway_camera"
+            attachment:
+              url: "{{ states.camera.driveway_camera.attributes.entity_picture }}"
+              content-type: jpg
+
+#
+#   motion detected in the backyard
+#
+  - alias: Motion Detected in backyard
+    initial_state: true
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d00024e842c
+      to: 'on'
+    condition:
+      - condition: template
+        value_template: "{{ states.input_boolean.notify_camera_motion.state == 'on' }}"
+    action:
+      - service: script.voice_notify
+        data:
+          message: 'Someone is at the driveway'
+          greeting: 'no'
+      - service: camera.snapshot
+        data_template:
+          entity_id: "camera.patio_camera"
+          filename: "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/patio/patio_' ~  (states.automation.motion_detected_in_backyard.attributes.last_triggered ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
+      - service: camera.snapshot
+        data_template:
+          entity_id: "camera.playarea_camera"
+          filename: "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/playarea/playarea_' ~  (states.automation.motion_detected_in_backyard.attributes.last_triggered ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
+      - service: notify.notify_smtp
+        data_template:
+          title: 'Backyard motion {{ now().strftime("%d %h %Y, %I:%M:%S %p") }}'
+          message: 'Motion detected in the Backyard on {{ now().strftime("%d %h %Y, at %I:%M:%S %p") }}. Please see the images below.'
+          data:
+            images:
+              - "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/patio/patio_' ~  (states.automation.motion_detected_in_backyard.attributes.last_triggered ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
+              - "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/playarea/playarea_' ~  (states.automation.motion_detected_in_backyard.attributes.last_triggered ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
+      - condition: template
+        value_template: "{{ states.device_tracker.suresh_suresh.state == 'home' }}"
+      - service: notify.ios_devices
+        data_template:
+          message: "Check Patio camera!"
+          data:
+            push:
+              category: camera
+            entity_id: "camera.patio_camera"
+            attachment:
+              url: "{{ states.camera.patio_camera.attributes.entity_picture }}"
               content-type: jpg

@@ -227,8 +227,12 @@ group:
       - switch.basement_right_lights
       - switch.kitchen_light
       - switch.office_room_lights
-      - switch.smart_outlet_1
       - switch.rf_switch_four
+
+  Room Fragrance:
+    entities:
+      - switch.smart_outlet_1
+      - switch.smart_outlet_2
 
   Light Automations:
     control: hidden
@@ -289,10 +293,13 @@ switch:
     host: !secret tplink_smart_outlet1
     name: Smart Outlet 1
   - platform: tplink
+    host: !secret tplink_smart_outlet2
+    name: Smart Outlet 2
+  - platform: tplink
     host: !secret tplink_kids_bed_accent_light
     name: Kids Bed Accent Light
 
-# RF Switches    
+# RF Switches
   - platform: mqtt
     name: RF Switch One
     command_topic: '/home/rfswitches/switch_one'
