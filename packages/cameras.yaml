@@ -343,10 +343,10 @@ sensor:
                              } -%}
             {%- set unwanted_tags = ['Asphalt', 'Backyard', 'City', 'Estate', 'Flower', 'Garden', 'Grass', 'Tree', 'Car', 'Vehicle', 'Suburb', 'Street',
                                      'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 'Super car', 'Snow', 'Winter', 'Supercar',
-                                     'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Sport venue', 'Soil', 
+                                     'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Sport venue', 'Soil', 'Outdoor structure', 'Cartoon', 'Poster', 'Illustration',
                                      'Transport', 'Walkway', 'Yard', 'Screenshot', 'Night', 'Lighting and Light', 'Drawing', 'Sketch',
                                      'Black-and-white', 'Monochrome', 'Monochrome photography', 'Black and White', 'Parking lot', 'Parking',
-                                     'Black', 'White', 'Darkness', 'Light'] -%}
+                                     'Black', 'White', 'Darkness', 'Light', 'Text'] -%}
             {%- macro filter_unwanted(tags) -%}
              {%- set comma = joiner(',') -%}
               {%- for item in tags if item not in unwanted_tags -%}{{- comma() -}}{{- item -}}{% endfor %}{%- endmacro -%}
@@ -380,10 +380,10 @@ sensor:
                              } -%}
             {%- set unwanted_tags = ['Asphalt', 'Backyard', 'City', 'Estate', 'Flower', 'Garden', 'Grass', 'Tree', 'Car', 'Vehicle', 'Suburb', 'Street',
                                      'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 'Super car', 'Sport venue', 'Supercar',
-                                     'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Snow', 'Winter', 'Soil', 
+                                     'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Snow', 'Winter', 'Soil', 'Outdoor structure', 'Cartoon', 'Poster', 'Illustration',
                                      'Transport', 'Walkway', 'Yard', 'Screenshot', 'Night', 'Lighting and Light', 'Drawing', 'Sketch',
                                      'Black-and-white', 'Monochrome', 'Monochrome photography', 'Black and White',
-                                     'Black', 'White', 'Darkness', 'Light'] -%}
+                                     'Black', 'White', 'Darkness', 'Light', 'Text'] -%}
             {%- macro filter_unwanted(tags) -%}
              {%- set comma = joiner(',') -%}
               {%- for item in tags if item not in unwanted_tags -%}{{- comma() -}}{{- item -}}{% endfor %}{%- endmacro -%}
@@ -412,10 +412,10 @@ sensor:
           {%- if None != attribs -%}
             {%- set tag_map = {'Waterway':'Rain'} -%}
             {%- set unwanted_tags = ['Asphalt', 'Backyard', 'City', 'Estate', 'Flower', 'Garden', 'Grass', 'Tree', 'Vehicle','Driving', 'Transport', 'Car', 'Vehicle', 'Suburb', 'Street',
-                                     'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 'Car', 'Wheel', 'Sports car','Super car', 'Sport venue',
+                                     'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 'Car', 'Wheel', 'Sports car','Super car', 'Sport venue', 'Outdoor structure', 'Cartoon', 'Poster', 'Illustration',
                                      'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Sedan', 'Automotive design', 'Snow', 'Winter', 'Soil', 
                                      'Transport', 'Walkway', 'Yard', 'Screenshot', 'Night', 'Lighting and Light', 'Luxury vehicle', 'Automotive exterior', 'Drawing', 'Sketch',
-                                     'Black-and-white', 'Monochrome', 'Monochrome photography', 'Black and White', 'Black', 'White', 'Light'] -%}
+                                     'Black-and-white', 'Monochrome', 'Monochrome photography', 'Black and White', 'Black', 'White', 'Light', 'Text'] -%}
             {%- macro filter_unwanted(tags) -%}
              {%- set comma = joiner(',') -%}
               {%- for item in tags if item not in unwanted_tags -%}{{- comma() -}}{{- item -}}{% endfor %}{%- endmacro -%}
@@ -445,9 +445,9 @@ sensor:
             {%- set tag_map = {'Waterway':'Rain'} -%}
             {%- set unwanted_tags = ['Asphalt', 'Backyard', 'City', 'Estate', 'Flower', 'Garden', 'Grass', 'Tree', 'Vehicle','Driving', 'Transport', 'Car', 'Vehicle', 'Suburb', 'Street',
                                      'Highway', 'Infrastructure', 'Lane', 'Lawn', 'Neighbourhood', 'Public space', 'Car', 'Wheel', 'Sports car', 'Super car', 'Winter', 'Soil', 
-                                     'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Sedan', 'Automotive design', 'Snow', 'Sport venue',
+                                     'Residential area', 'Road', 'Road surface', 'Sidewalk', 'Tarmac', 'Race track', 'Sedan', 'Automotive design', 'Snow', 'Sport venue', 'Outdoor structure', 'Cartoon', 'Poster', 'Illustration',
                                      'Transport', 'Walkway', 'Yard', 'Screenshot', 'Night', 'Lighting and Light', 'Luxury vehicle', 'Automotive exterior', 'Drawing', 'Sketch',
-                                     'Black-and-white', 'Monochrome', 'Monochrome photography', 'Black and White', 'Black', 'White', 'Light'] -%}
+                                     'Black-and-white', 'Monochrome', 'Monochrome photography', 'Black and White', 'Black', 'White', 'Light', 'Text'] -%}
             {%- macro filter_unwanted(tags) -%}
              {%- set comma = joiner(',') -%}
               {%- for item in tags if item not in unwanted_tags -%}{{- comma() -}}{{- item -}}{% endfor %}{%- endmacro -%}
@@ -491,11 +491,6 @@ automation:
           message: >-
             {% set camera_name = states['camera'][trigger.entity_id.split('.')[1].split('_')[0] ~ '_camera'].attributes.friendly_name %}
             {{ trigger.to_state.state }} is at the {{ camera_name }}.
-      - service: script.voice_notify
-        data_template:
-          message: >-
-            {% set camera_name = states['camera'][trigger.entity_id.split('.')[1].split('_')[0] ~ '_camera'].attributes.friendly_name %}
-            {{ trigger.to_state.state }} is at the {{ camera_name }}.
 
   - alias: Alert Object Activity
     trigger:
@@ -516,12 +511,6 @@ automation:
           message: >-
             {% set camera_name = states['camera'][trigger.entity_id.split('.')[1].split('_')[0] ~ '_camera'].attributes.friendly_name %}
             {{ trigger.to_state.state }} detected at the {{ camera_name }}.
-      - service: script.voice_notify
-        data_template:
-          message: >-
-            {% set camera_name = states['camera'][trigger.entity_id.split('.')[1].split('_')[0] ~ '_camera'].attributes.friendly_name %}
-            {{ trigger.to_state.state }} detected at the {{ camera_name }}.
-
 #
 # This automation basically scans image and keeps a count of people from each camera view and notifies using iOS notification
 # There is another automation that alerts in the house (using TTS) based on the data

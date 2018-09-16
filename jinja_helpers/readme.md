@@ -709,3 +709,23 @@ The output would be
 5
 6
 ```
+
+## 21 Date Format - using "st", "nd", "rd", "th"
+
+If you want the date to be more readable for display, you can use the script below. It formats the date in the format of `1st October 2018` or `2nd September 2018` or `3rd September 2018` or `16th September 2018`.
+
+```
+{%- macro get_date(dt) %}
+  {%- set date_suffix = ["th", "st", "nd", "rd"] -%}
+  {{ dt.day }}
+  {%- if dt.day % 10 in [1, 2, 3] and dt.day not in [11, 12, 13] -%}
+    {{ date_suffix[dt.day%10] }}
+  {%- else -%}
+    {{ date_suffix[0] }}
+  {%- endif %} {{ dt.strftime("%B %Y")}}
+{%- endmacro -%}
+
+{{ get_date(now()) }}
+```
+
+Feel free to modify the `strftime` format that fits your need. You can also pass your sensor value - ex: `{{ get_date(states.sensor.mysensor.last_updated) }}`.
