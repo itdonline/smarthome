@@ -580,6 +580,7 @@
     "62": "sensor.aeotec_water_sensor_alarm_type_2",
     "620": "switch.unknown_node_15_switch",
     "621": "switch.unknown_node_23_switch",
+    "622": "switch.smart_outlet_2",
     "63": "sensor.front_door_sensor_access_control",
     "64": "sensor.guest_bedroom_multi_sensor_alarm_level",
     "65": "sensor.front_room_multi_sensor_alarm_type",
