@@ -53,6 +53,7 @@ lights_switches:
     - group.rf_switches
     - group.always_on
     - group.outdoor_lights
+    - group.room_fragrance
 
 mediacenter_view:
   view: yes

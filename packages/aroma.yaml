@@ -1,0 +1,96 @@
+homeassistant:
+  customize:
+    timer.timer_bathroom_aroma:
+      hidden: true
+    timer.timer_downstairs_aroma:
+      hidden: true
+    timer.timer_upstairs_aroma:
+      hidden: true
+
+timer:
+  timer_bathroom_aroma:
+    duration: '00:10:00'
+  timer_downstairs_aroma:
+    duration: '01:00:00'
+  timer_upstairs_aroma:
+    duration: '01:00:00'
+
+automation:
+
+#
+# Automations to start timer when they are switched ON
+#
+  - alias: Bathroom Aroma Timer Start
+    initial_state: true
+    hide_entity: true  
+    trigger:
+      - platform: state
+        entity_id: switch.downstairs_bathroom_fragrance_outlet
+        from: 'off'
+        to: 'on'
+    action:
+      - service: timer.start
+        entity_id: timer.timer_bathroom_aroma
+
+  - alias: Downstairs Aroma Timer Start
+    initial_state: true
+    hide_entity: true  
+    trigger:
+      - platform: state
+        entity_id: switch.downstairs_fragrance_outlet
+        from: 'off'
+        to: 'on'
+    action:
+      - service: timer.start
+        entity_id: timer.timer_downstairs_aroma
+
+  - alias: Upstairs Aroma Timer Start
+    initial_state: true
+    hide_entity: true  
+    trigger:
+      - platform: state
+        entity_id: switch.upstairs_fragrance_outlet
+        from: 'off'
+        to: 'on'
+    action:
+      - service: timer.start
+        entity_id: timer.timer_upstairs_aroma
+
+#
+# Timer Elapsed Events
+#
+  - alias: Bathroom Aroma Timer Elapsed
+    initial_state: true
+    hide_entity: true  
+    trigger:
+      - platform: event
+        event_type: timer.finished
+        event_data: 
+          entity_id: timer.timer_bathroom_aroma    
+    action:
+      - service: switch.turn_off
+        entity_id: switch.downstairs_bathroom_fragrance_outlet
+
+  - alias: Downstairs Aroma Timer Elapsed
+    initial_state: true
+    hide_entity: true  
+    trigger:
+      - platform: event
+        event_type: timer.finished
+        event_data: 
+          entity_id: timer.timer_downstairs_aroma    
+    action:
+      - service: switch.turn_off
+        entity_id: switch.downstairs_fragrance_outlet
+
+  - alias: Upstairs Aroma Timer Elapsed
+    initial_state: true
+    hide_entity: true  
+    trigger:
+      - platform: event
+        event_type: timer.finished
+        event_data: 
+          entity_id: timer.timer_upstairs_aroma    
+    action:
+      - service: switch.turn_off
+        entity_id: switch.downstairs_fragrance_outlet

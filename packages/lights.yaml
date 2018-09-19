@@ -231,8 +231,9 @@ group:
 
   Room Fragrance:
     entities:
-      - switch.smart_outlet_1
-      - switch.smart_outlet_2
+      - switch.downstairs_bathroom_fragrance_outlet
+      - switch.downstairs_fragrance_outlet
+      - switch.upstairs_fragrance_outlet
 
   Light Automations:
     control: hidden
@@ -265,6 +266,8 @@ hue:
     - host: !secret philips_hue_ipaddress
 
 switch:
+
+# In-wall switches
   - platform: tplink
     host: !secret tplink_kids_bedroom
     name: Kids Bedroom
@@ -289,12 +292,17 @@ switch:
   - platform: tplink
     host: !secret tplink_office_room
     name: Office Room Lights
+
+# Smart Outlets
   - platform: tplink
     host: !secret tplink_smart_outlet1
-    name: Smart Outlet 1
+    name: Downstairs Fragrance Outlet
   - platform: tplink
     host: !secret tplink_smart_outlet2
-    name: Smart Outlet 2
+    name: Downstairs Bathroom Fragrance Outlet
+  - platform: tplink
+    host: !secret tplink_smart_outlet3
+    name: Upstairs Fragrance Outlet
   - platform: tplink
     host: !secret tplink_kids_bed_accent_light
     name: Kids Bed Accent Light
