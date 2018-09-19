@@ -2,13 +2,13 @@
 @ Author      : Suresh Kalavala
 @ Date        : 05/24/2017
 @ Description : Life360 Sensor - It queries Life360 API and retrieves 
-                data at a specified interval and dumpt into MQTT
+                data at a specified interval and dumps into MQTT
 
 @ Notes:        Copy this file and place it in your 
                 "Home Assistant Config folder\custom_components\sensor\" folder
                 Copy corresponding Life360 Package frommy repo, 
                 and make sure you have MQTT installed and Configured
-                Make sure the life360 password don't contain '#' or '$' symbols
+                Make sure the life360 password doesn't contain '#' or '$' symbols
 """
 
 from datetime import timedelta
