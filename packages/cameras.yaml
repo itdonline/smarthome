@@ -681,8 +681,9 @@ automation:
         value_template: "{{ states.input_boolean.notify_camera_motion.state == 'on' }}"
     action:
       - service: script.voice_notify
-        data:
-          message: 'Someone is at the driveway'
+        data_template:
+          message: >
+            {{ ['I see someone is on the patio', 'Some one is on the patio!', 'Check the patio, I see somebody there!', 'Oh my God, there is someone on the patio!'] | random }}
           greeting: 'no'
       - service: camera.snapshot
         data_template:

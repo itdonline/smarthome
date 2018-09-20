@@ -1,3 +1,10 @@
+###############################################################################
+#   @author         :   Mahasri Kalavala
+#   @date           :   04/20/2018
+#   @package        :   zwave batteries
+#   @description    :   Zwave batteries using input_label & MQTT
+###############################################################################
+
 input_label:
   aeotec_water_sensor:
   audio_detector:

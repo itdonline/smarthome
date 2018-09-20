@@ -169,7 +169,7 @@ homeassistant:
       friendly_name: Front Room Light
       assumed_state: false
     switch.rf_switch_five:
-      friendly_name: Christmas Lights
+      friendly_name: TV Switch
       assumed_state: false
 
     script.start_colorloop:
@@ -191,8 +191,6 @@ group:
       - switch.rf_switch_one
       - switch.rf_switch_two
       - switch.rf_switch_three
-      - switch.rf_switch_four
-      - switch.rf_switch_five
 
   Upstairs Lights:
     entities:
@@ -207,7 +205,7 @@ group:
   Always On:
     entities:
       - light.gateway_light_34ce008ad65d
-      - switch.wemoswitch1
+      - switch.rf_switch_five
 
   Outdoor Lights:
     entities:
