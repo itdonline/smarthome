@@ -22,11 +22,6 @@ homeassistant:
     sensor.dining_room_thermostat_temperature:
       friendly_name: Thermostat Temperature
 
-    script.set_nest_away:
-      friendly_name: Set Nest Thermostat Away
-    script.set_nest_home:
-      friendly_name: Set Nest Thermostat Home
-
 group:
   Nest Thermostat:
     entities:
@@ -42,23 +37,11 @@ group:
       - sensor.dining_room_thermostat_temperature
       - sensor.home_eta
       - binary_sensor.home_away
+      - climate.dining_room
 
 nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
-
-script:
-  set_nest_away:
-    sequence:
-      - service: nest.set_mode
-        data:
-          home_mode: away
-
-  set_nest_home:
-    sequence:
-      - service: nest.set_mode
-        data:
-          home_mode: home
 
 automation:
 ###############################################################################
@@ -73,10 +56,10 @@ automation:
         to: 'cool'
         for: '03:00:00'
     action:
-      - service: climate.set_operation_mode
+      - service: climate.set_away_mode
         data:
           entity_id: climate.dining_room
-          operation_mode: 'off'
+          away_mode: 'true' 
       - service: script.notify_me
         data_template:
           message: "Air Condition has been ON for 3 hours. 

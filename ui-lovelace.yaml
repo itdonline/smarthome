@@ -513,7 +513,6 @@ views:
           - script.restart_snapcast_server
           - script.voice_greeting
           - script.voice_notify
-          - script.set_nest_home
           - script.xiaomi_red
           - script.query_disk_info
           - script.xiaomi_blue
@@ -522,7 +521,6 @@ views:
           - script.home_status
           - script.emergency_script
           - script.ifttt_leeo_color_change
-          - script.set_nest_away
           - script.restart_hass
           - script.emergency_script_loop
           - script.xiaomi_green
