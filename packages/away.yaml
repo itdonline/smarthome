@@ -13,14 +13,17 @@ script:
       - service: script.all_indoor_lights_off
       - service: input_boolean.turn_on
         entity_id: input_boolean.notify_camera_motion
-      - service: script.set_nest_away
+      - service: climate.set_away_mode
+        data:
+          entity_id: climate.dining_room
+          away_mode: 'true'
       - service: alarm_control_panel.alarm_arm_away
         data:
           entity_id: alarm_control_panel.simplisafe
       - service: script.notify_me
         data:
           message: >
-            No one is at home. Turned indoor lights OFF, and set Thermostat to away mode and your home is secured.
+            No one is at home. Cameras rolling, Indoor lights OFF, Thermostat is set to 'away' and your home is secured!
 
   all_indoor_lights_off:
     sequence:

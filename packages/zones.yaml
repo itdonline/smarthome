@@ -205,7 +205,10 @@ automation:
           {% else %}
             False
           {% endif %}
-      - service: script.set_nest_home
+      - service: climate.set_away_mode
+        data:
+          entity_id: climate.dining_room
+          away_mode: 'false'
       - service: script.notify_me
         data_template:
           message: "Your Nest thermostat is set to HOME mode. Thank you!"
