@@ -826,9 +826,8 @@ automation:
           entity_id: zwave.wallmote
           scene_id: 1
     action:
-      - service: script.notify_me
-        data_template:
-          message: '{{ trigger.event.data.scene_id }}: {{ trigger.event.data.entity_id }}'
+      - service: light.toggle
+        entity_id: light.master_bedroom
 
   - alias: WallMote Button 2 Pressed
     trigger:
@@ -838,9 +837,8 @@ automation:
           entity_id: zwave.wallmote
           scene_id: 2
     action:
-      - service: script.notify_me
-        data_template:
-          message: '{{ trigger.event.data.scene_id }}: {{ trigger.event.data.entity_id }}'
+      - service: homeassistant.turn_off
+        entity_id: group.upstairs_lights
 
   - alias: WallMote Button 3 Pressed
     trigger:
@@ -850,9 +848,10 @@ automation:
           entity_id: zwave.wallmote
           scene_id: 3
     action:
-      - service: script.notify_me
+      - service: climate.set_away_mode
         data_template:
-          message: '{{ trigger.event.data.scene_id }}: {{ trigger.event.data.entity_id }}'
+          entity_id: climate.dining_room
+          away_mode: 'false'
 
   - alias: WallMote Button 4 Pressed
     trigger:
@@ -862,6 +861,7 @@ automation:
           entity_id: zwave.wallmote
           scene_id: 4
     action:
-      - service: script.notify_me
+      - service: climate.set_away_mode
         data_template:
-          message: '{{ trigger.event.data.scene_id }}: {{ trigger.event.data.entity_id }}'
+          entity_id: climate.dining_room
+          away_mode: 'true'
