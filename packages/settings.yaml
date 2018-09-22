@@ -119,6 +119,8 @@ group:
       - input_number.calendar_remind_before_days
       - input_boolean.wfh_notifications
       - input_boolean.sharp_tv
+      - input_boolean.alert_faces_in_cameras
+      - input_boolean.alert_objects_in_cameras
 
   Bed & Wakeup Times:
     entities:
@@ -325,6 +327,16 @@ input_boolean:
 
   alert_no_one_home:
     name: Alert When No One Home
+    initial: on
+    icon: mdi:alert
+
+  alert_objects_in_cameras:
+    name: Alert When Camera Identifies Something
+    initial: off
+    icon: mdi:alert
+
+  alert_faces_in_cameras:
+    name: Alert When Camera Identifies Someone
     initial: on
     icon: mdi:alert
 

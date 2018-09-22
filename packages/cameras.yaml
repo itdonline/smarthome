@@ -477,9 +477,9 @@ sensor:
 #                                                                              
 ###############################################################################
 
-############################################################################################################################
-# Basic Automations that alert me when things change from the camera point of view.
-############################################################################################################################
+###############################################################################
+# Basic Automations that alert me when camera sees something
+###############################################################################
 automation:
 
   - alias: Alert Family Member Activity
@@ -492,7 +492,7 @@ automation:
           - sensor.playarea_camera_people
     condition:
       - condition: template
-        value_template: '{{ states.input_boolean.notify_camera_motion.state == "on" }}'
+        value_template: '{{ states.input_boolean.alert_faces_in_cameras.state == "on" }}'
       - condition: template
         value_template: '{{ trigger.to_state.state | trim != "" and trigger.to_state.state | trim != "unknown" and trigger.to_state.state | trim != "Clear" }}'
     action:
@@ -512,7 +512,7 @@ automation:
           - sensor.playarea_camera_objects
     condition:
       - condition: template
-        value_template: '{{ states.input_boolean.notify_camera_motion.state == "on" }}'
+        value_template: '{{ states.input_boolean.alert_objects_in_cameras.state == "on" }}'
       - condition: template
         value_template: '{{ trigger.to_state.state | trim != "" and trigger.to_state.state | trim != "unknown" and trigger.to_state.state | trim != "Clear" }}'
     action:
@@ -525,7 +525,7 @@ automation:
 # This automation basically scans image and keeps a count of people from each camera view and notifies using iOS notification
 # There is another automation that alerts in the house (using TTS) based on the data
 #
-  - alias: Scan People and Notify
+  - alias: Scan People and Objects
     initial_state: true
     hide_entity: true
     trigger:
@@ -546,7 +546,7 @@ automation:
        to: 'on'
     condition:
       - condition: template
-        value_template: '{{ states.input_boolean.notify_camera_motion.state == "on" }}'
+        value_template: '{{ states.input_boolean.alert_faces_in_cameras.state == "on" }}'
       - condition: template
         value_template: >
           {% macro last_triggered(entity) %}
@@ -584,6 +584,15 @@ automation:
 
 # I could have combined all the 3 automations into one, but if all the motion sensors are triggered at the same time,
 # the automation would only fire once, and the code gets ugly big and unmanageable. 3 simple automations is better!
+
+###############################################################################
+#  ______               _      _                  
+# |  ____|             | |    | |                 
+# | |__ _ __ ___  _ __ | |_ __| | ___   ___  _ __ 
+# |  __| '__/ _ \| '_ \| __/ _` |/ _ \ / _ \| '__|
+# | |  | | | (_) | | | | || (_| | (_) | (_) | |   
+# |_|  |_|  \___/|_| |_|\__\__,_|\___/ \___/|_|                                
+                                                 
   - alias: Motion Detected at Front Door
     initial_state: true
     hide_entity: true
@@ -629,9 +638,15 @@ automation:
               url: "{{ states.camera.frontdoor_camera.attributes.entity_picture }}"
               content-type: jpg
 
-#
-# motion detected at the driveway
-#
+###############################################################################
+#  _____       _                               
+# |  __ \     (_)                              
+# | |  | |_ __ ___   _______      ____ _ _   _ 
+# | |  | | '__| \ \ / / _ \ \ /\ / / _` | | | |
+# | |__| | |  | |\ V /  __/\ V  V / (_| | |_| |
+# |_____/|_|  |_| \_/ \___| \_/\_/ \__,_|\__, |
+#                                         __/ |
+#                                        |___/                                 
   - alias: Motion Detected at Driveway
     initial_state: true
     hide_entity: true
@@ -676,9 +691,15 @@ automation:
               url: "{{ states.camera.driveway_camera.attributes.entity_picture }}"
               content-type: jpg
 
-#
-#   motion detected in the backyard
-#
+###############################################################################
+#  ____             _                        _ 
+# |  _ \           | |                      | |
+# | |_) | __ _  ___| | ___   _  __ _ _ __ __| |
+# |  _ < / _` |/ __| |/ / | | |/ _` | '__/ _` |
+# | |_) | (_| | (__|   <| |_| | (_| | | | (_| |
+# |____/ \__,_|\___|_|\_\\__, |\__,_|_|  \__,_|
+#                         __/ |                
+#                        |___/                                                 
   - alias: Motion Detected in backyard
     initial_state: true
     hide_entity: true
