@@ -1,7 +1,7 @@
 >
   {#- returns "true" if the name ends with 's' -#}
   {%- macro plural(name) -%}
-    {{- true if name.endswith("s") else false -}}
+    {{- "true" if name.endswith("s") else "false" -}}
   {%- endmacro -%}
 
   {#- Alerts low battery (below 30%), ONLY when the phone is not already pluggedin -#}
@@ -97,11 +97,7 @@
     {% if ' and ' in value or ',' in value %}
       {{ value }}'s phones are not plugged in.
     {% else %}
-      {{ value }}'s phones is not plugged in.
-    {% endif %}
-
-    {%- if states("binary_sensor.tesla_model_3_5yj3e1ea8jf010610_charger_sensor") != "unknown" -%}
-      Your Tesla Car is {{ 'not' if states.binary_sensor.tesla_model_3_5yj3e1ea8jf010610_charger_sensor.state == "off" }} plugged in.
+      {{ value }}'s phone is not plugged in.
     {% endif %}
   {%- endmacro -%}
 
@@ -119,8 +115,12 @@
   {%- endmacro -%}
 
   {%- macro tesla_status() %}
+    {%- if states("binary_sensor.tesla_model_3_5yj3e1ea8jf010610_charger_sensor") != "unknown" -%}
+      Your Tesla Car is {{ 'not' if states.binary_sensor.tesla_model_3_5yj3e1ea8jf010610_charger_sensor.state == "off" }} plugged in.
+    {% endif %}
+
     {%- if states("sensor.tesla_model_3_5yj3e1ea8jf010610_battery_sensor") != "unknown" and states("sensor.tesla_model_3_5yj3e1ea8jf010610_range_sensor") != "unknown" -%}
-    Your Tesla car battery is at {{ states.sensor.tesla_model_3_5yj3e1ea8jf010610_battery_sensor.state }} percent, and you can drive about {{ (states.sensor.tesla_model_3_5yj3e1ea8jf010610_range_sensor.state | int) | round(0) }} miles.
+    Tesla Car battery is at {{ states.sensor.tesla_model_3_5yj3e1ea8jf010610_battery_sensor.state }}%, and you can drive about {{ (states.sensor.tesla_model_3_5yj3e1ea8jf010610_range_sensor.state | int) | round(0) }} miles.
     {% endif %}
   {%- endmacro %}
 

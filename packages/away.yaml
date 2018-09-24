@@ -45,6 +45,7 @@ script:
                                 state.entity_id != 'switch.grafana' and
                                 state.entity_id != 'switch.influxdb' and
                                 state.entity_id != 'switch.home_bridge' and
+                                state.entity_id != 'switch.rf_switch_five' and
                                 not '_siren_' in state.entity_id -%}
             {{- "," if not loop.first-}}{{ state.entity_id }}{{-endif-}}
             {%- endfor -%}
