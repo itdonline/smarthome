@@ -296,7 +296,7 @@ Hope you find it useful!
             {%- endif -%}
 ```
 
-### 6a. THE Guru of templates [@dale3h](https://github.com/dale3h) has simplified the above and it is now just a few lines of code - see below.
+### 6a. Here is another version of the same from [@dale3h](https://github.com/dale3h)
 
 ```
 {%- for prop in trigger|sort if prop not in ['to_state', 'from_state'] -%}
@@ -439,6 +439,26 @@ Fun stuff...
 ```
 
 The way the above script works is it iterates through all the entities, and retrieves the `domain` attribute of each of the entity, and makes it a list by removing duplicate items - by doing so, you will get unique list of domains that your Home Assistant uses :smile:
+
+## 11a. To get the current list of domains and the number of entities in each domain:
+
+
+```
+{%- set unique_domains = states | map(attribute='domain') |list | unique | list -%}
+[{%- for domain in unique_domains -%}
+{%- if loop.first %}{% elif loop.last %}, and {% else %}, {% endif -%}
+{%- for item in states[domain] -%}
+{%- if loop.last %}{{domain}} ({{ loop.index}})
+{%- endif -%}
+{%- endfor -%}
+{%- endfor -%}]
+```
+
+### Here is the output of the above script... you may see a different output based on the components that are being used
+```
+[alarm_control_panel (1), automation (176), binary_sensor (59), calendar (4), camera (7), climate (2), device_tracker (10), group (106), image_processing (8), input_boolean (42), input_datetime (8), input_label (32), input_number (3), input_select (6), input_text (1), light (8), lock (1), media_player (13), proximity (2), script (26), sensor (330), sun (1), switch (28), timer (9), zone (24), and zwave (24)]
+```
+
 
 ## 12. Automatic `Group` creator
 
