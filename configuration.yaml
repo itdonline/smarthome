@@ -16,14 +16,11 @@ homeassistant:
   packages: !include_dir_named packages
   
   whitelist_external_dirs:
-    - '/home/homeassistant/.homeassistant/www/downloads/camera/frontdoor/'
-    - '/home/homeassistant/.homeassistant/www/downloads/camera/driveway/'
     - '/home/homeassistant/.homeassistant/www/downloads/camera/patio/'
+    - '/home/homeassistant/.homeassistant/www/downloads/camera/garage/'
     - '/home/homeassistant/.homeassistant/www/downloads/camera/playarea/'
-
-  # auth_providers:
-  #   - type: homeassistant
-  #   - type: legacy_api_password
+    - '/home/homeassistant/.homeassistant/www/downloads/camera/driveway/'
+    - '/home/homeassistant/.homeassistant/www/downloads/camera/frontdoor/'
 
 sun:
 alexa:
