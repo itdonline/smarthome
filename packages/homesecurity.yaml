@@ -186,6 +186,8 @@ automation:
           - condition: template
             value_template: '{{ states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == "on" }}'
     action:
+      - service: switch.turn_on
+        entity_id: switch.garage_lights
       - service: script.notify_me
         data_template:
           message: >
@@ -221,10 +223,10 @@ automation:
               {% set doors = "Both garage doors" %}
               {% elif states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == "on"%}
                 {% set doors = states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.name %}
-              {% elif states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == "on" %}
+              {% elif states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.state == "on" %}
                 {% set doors = states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.name %}
               {% endif %}
-            Your {{ doors }} seem to be open while your home security system is set to "{{ states.alarm_control_panel.simplisafe.state.split('_')[1]| title }}" mode. Today is {{ get_date(now()) }}, and time is {{ now().strftime("%I:%M:%S %p") }}. Please see the images below and make sure everything is okay.
+            Your {{ doors }} seem to be open while your home security system is set to "{{ states.alarm_control_panel.simplisafe.state.split('_')[1]| title }}" mode. Today is {{ get_date(now()) }}, and time is {{ now().strftime("%I:%M:%S %p") }}. Please see the attached pictures and make sure everything is okay.
           data:
             images:
               - "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/garage/garage_' ~  (states.automation.home_security_system_and_garage_door_check.last_updated ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
