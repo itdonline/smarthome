@@ -562,7 +562,6 @@ automation:
         data_template:
           entity_id: "image_processing.tagbox_{{- trigger.entity_id.split('.')[1].split('_')[0] -}}_camera"
 
-
 # Before you think this code is crazy, here is an explanation.
 #
 # I have a xiaomi aqara PIR motion sensor near the front door, and when it triggers, I capture photo
@@ -617,6 +616,10 @@ automation:
         data_template:
           entity_id: "camera.driveway_camera"
           filename: "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/driveway/driveway_' ~  (states.binary_sensor.motion_sensor_158d00024ee084.last_updated ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
+      - service: camera.snapshot
+        data_template:
+          entity_id: "camera.garage_camera"
+          filename: "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/garage/garage_' ~  (states.binary_sensor.motion_sensor_158d00024ee084.last_updated ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
       - service: notify.notify_smtp
         data_template:
           title: 'Front door motion {{ now().strftime("%d %h %Y, %I:%M:%S %p") }}'
@@ -625,6 +628,7 @@ automation:
             images:
               - "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/frontdoor/frontdoor_' ~  (states.binary_sensor.motion_sensor_158d00024ee084.last_updated ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
               - "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/driveway/driveway_' ~  (states.binary_sensor.motion_sensor_158d00024ee084.last_updated ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
+              - "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/garage/garage_' ~  (states.binary_sensor.motion_sensor_158d00024ee084.last_updated ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
       - condition: template
         value_template: "{{ states.device_tracker.suresh_suresh.state == 'home' }}"
       - service: notify.ios_devices
@@ -670,6 +674,10 @@ automation:
         data_template:
           entity_id: "camera.driveway_camera"
           filename: "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/driveway/driveway_' ~  (states.binary_sensor.motion_sensor_158d00024e57fb.last_updated ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
+      - service: camera.snapshot
+        data_template:
+          entity_id: "camera.garage_camera"
+          filename: "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/garage/garage_' ~  (states.binary_sensor.motion_sensor_158d00024e57fb.last_updated ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
       - service: notify.notify_smtp
         data_template:
           title: 'Driveway motion {{ now().strftime("%d %h %Y, %I:%M:%S %p") }}'
@@ -678,6 +686,7 @@ automation:
             images:
               - "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/driveway/driveway_' ~  (states.binary_sensor.motion_sensor_158d00024e57fb.last_updated ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
               - "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/frontdoor/frontdoor_' ~  (states.binary_sensor.motion_sensor_158d00024e57fb.last_updated ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
+              - "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/garage/garage_' ~  (states.binary_sensor.motion_sensor_158d00024e57fb.last_updated ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
       - condition: template
         value_template: "{{ states.device_tracker.suresh_suresh.state == 'home' }}"
       - service: notify.ios_devices
