@@ -153,6 +153,8 @@ automation:
     condition:
       - condition: template
         value_template: "{% if trigger.from_state %} True {% else %} False {% endif %}"
+      - condition: template
+        value_template: "{{ trigger.to_state.state != 'unknown' }}"
     action:
       - service: script.notify_me
         data_template:
@@ -175,13 +177,13 @@ automation:
           message: >
             {% set doors = "" %}
               {% if states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.state == "on"  and states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == "on" %}
-              {% set doors = "Atention! Both Garage Doors are OPEN" %}
+                {% set doors = "Atention! Both Garage Doors are OPEN" %}
               {% elif states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.state == "off"  and states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == "off" %}
-              {% set doors = "Both Garage Doors are now CLOSED" %}
+                {% set doors = "Both Garage Doors are now CLOSED" %}
               {% else %}
                 {% if trigger.to_state.state | lower == "on" %}
                   Attention! Your {{ trigger.to_state.attributes.friendly_name }} is now OPENED!
-                {% else trigger.to_state.state | lower == "off" %}
+                {% elif trigger.to_state.state | lower == "off" %}
                   Your {{ trigger.to_state.attributes.friendly_name }} is now CLOSED!
                 {% endif %}
               {% endif %}
