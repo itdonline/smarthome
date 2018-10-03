@@ -176,9 +176,11 @@ automation:
         data_template:
           message: >
             {% set doors = "" %}
-              {% if states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.state == "on"  and states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == "on" %}
+              {% if states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.state == "on"  and 
+                    states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == "on" %}
                 {% set doors = "Atention! Both Garage Doors are OPEN" %}
-              {% elif states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.state == "off"  and states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == "off" %}
+              {% elif states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.state == "off"  and 
+                      states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == "off" %}
                 {% set doors = "Both Garage Doors are now CLOSED" %}
               {% else %}
                 {% if trigger.to_state.state | lower == "on" %}
@@ -192,24 +194,32 @@ automation:
       - service: camera.snapshot
         data_template:
           entity_id: "camera.garage_camera"
-          filename: "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/garage/garage_' ~  (states.automation.notify_garage_door_status.last_triggered ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
+          filename: "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/garage/garage_' ~  
+                     (states.automation.notify_garage_door_status.last_triggered ~ '').replace('-','_')
+                     .replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
       - service: notify.notify_smtp
         data_template:
           title: 'Garage Door Status {{ now().strftime("%d %h %Y, %I:%M:%S %p") }}'
           message: >-
             {% set doors = "" %}
-              {% if states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.state == "on"  and states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == "on" %}
+            {% if states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.state == "on"  and 
+                  states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == "on" %}
               {% set doors = "Both Garage Doors are OPEN" %}
-              {% elif states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.state == "off"  and states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == "off" %}
+            {% elif states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.state == "off"  and 
+                    states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == "off" %}
               {% set doors = "Both Garage Doors are CLOSED" %}
-              {% else %}
-                {set doors = states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.name ~ " is " ~ states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state ~ " and " states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.name ~ " is " ~ states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.state %}
-              {% endif %}
-            {{ doors }}
-            Your {{doors}}  on {{ now().strftime("%d %h %Y, at %I:%M:%S %p") }}. Please check the garage snapshot below.
+            {% else %}
+              {% set doors = states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.name ~ " is " ~ 
+                            ('Closed' if states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == 'off' else 'OPEN')
+                             ~ " and " ~ states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.name ~ " is " ~ 
+                            ('Closed' if states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.state == 'off' else 'OPEN') %}
+            {% endif %}
+            Your {{doors}} on {{ now().strftime("%d %h %Y, at %I:%M:%S %p") }}. Please check the garage snapshot below.
           data:
             images:
-              - "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/garage/garage_' ~  (states.automation.notify_garage_door_status.last_triggered ~ '').replace('-','_').replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
+              - "{{ '/home/homeassistant/.homeassistant/www/downloads/camera/garage/garage_' ~  
+                   (states.automation.notify_garage_door_status.last_triggered ~ '').replace('-','_')
+                   .replace(' ', '_').replace(':','_').replace('.','_').replace('+','_') ~ '.jpg' }}"
 
 ################################################################################
 #  When I open the garage door
@@ -260,7 +270,8 @@ automation:
           message: >
             {% if trigger.to_state.state | lower == "on" %}
               Your {{ trigger.to_state.attributes.friendly_name.replace('Sensor', '') }} is OPEN,
-              {% if states.alarm_control_panel.simplisafe.state == 'armed_home' or states.alarm_control_panel.simplisafe.state == 'armed_away' %}
+              {% if states.alarm_control_panel.simplisafe.state == 'armed_home' or 
+                    states.alarm_control_panel.simplisafe.state == 'armed_away' %}
               But your home security system is ON.
               {% endif %}
             {% elif trigger.to_state.state | lower == "off" %}
