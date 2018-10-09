@@ -786,13 +786,13 @@ Ever wondered how you can create ASCII Text using Jinja? I wrote this code while
 The above code outputs:
 
 ```
-#     # ####### #       #       ####### 
-#     # #       #       #       #     # 
-#     # #       #       #       #     # 
-####### #####   #       #       #     # 
-#     # #       #       #       #     # 
-#     # #       #       #       #     # 
-#     # ####### ####### ####### ####### 
+ #####  #    #     #    #          #    #     #    #    #          #    
+#     # #   #     # #   #         # #   #     #   # #   #         # #   
+#       #  #     #   #  #        #   #  #     #  #   #  #        #   #  
+ #####  ###     #     # #       #     # #     # #     # #       #     # 
+      # #  #    ####### #       #######  #   #  ####### #       ####### 
+#     # #   #   #     # #       #     #   # #   #     # #       #     # 
+ #####  #    #  #     # ####### #     #    #    #     # ####### #     #
 ```
 
 You can also print vertical text by calling `{{ print_vertical() }}`
