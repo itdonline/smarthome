@@ -119,6 +119,10 @@ automation:
             {% elif states.alarm_control_panel.simplisafe.state == "disarmed" %}
               Attention!: Your Home Security System is turned OFF. 
             {% endif %}
+      - condition: template
+        value_template: '{{ states.alarm_control_panel.simplisafe.state != "disarmed" }}'
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.notify_camera_motion
 
 ###############################################################################
 # A gentle 10 minute reminder that the Home Security system is OFF

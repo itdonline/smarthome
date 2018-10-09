@@ -179,14 +179,14 @@ script:
         data_template:
           volume_level: >
             {% if states.input_boolean.emergency_mode.state == "on" %}
-              0.9
+              {{ states.input_number.tts_volume_level_alert.state }}
             {% else %}
               {% if now().hour | int < 12 and now().hour | int > 6 %}
-              0.5
+                {{ states.input_number.tts_volume_level_morning.state }}
               {% elif now().hour|int > 12 and now().hour|int < 20 %}
-              0.9
+                {{ states.input_number.tts_volume_level_afternoon.state }}
               {% else %}
-              0.3
+                {{ states.input_number.tts_volume_level_evening.state }}
               {% endif %}
             {% endif %}
       # - service: mqtt.publish

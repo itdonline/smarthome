@@ -66,6 +66,11 @@ homeassistant:
     sensor.illumination_158d00024e57fb:
       friendly_name: Driveway's Luminance (Xiaomi)
 
+    binary_sensor.motion_sensor_158d000272bf48:
+      friendly_name: Garage Motion Sensor (Xiaomi)
+    sensor.illumination_158d000272bf48:
+      friendly_name: Garage's Luminance (Xiaomi)
+
     sensor.Illumination_34ce008ad65d:
       friendly_name: Hallway Luminance (Xiaomi Aqara)
 
@@ -96,6 +101,7 @@ group:
       - binary_sensor.motion_sensor_158d00024ee084
       - binary_sensor.motion_sensor_158d00024e842c
       - binary_sensor.motion_sensor_158d00024e57fb
+      - binary_sensor.motion_sensor_158d000272bf48
 
       - sensor.illumination_158d00024e57d3
       - sensor.illumination_158d00024ee084
@@ -105,6 +111,7 @@ group:
       - sensor.illumination_158d00016c2d0e
       - sensor.illumination_158d00024e842c
       - sensor.illumination_158d00024e57fb
+      - sensor.illumination_158d000272bf48
 
       - sensor.illumination_34ce008ad65d
       

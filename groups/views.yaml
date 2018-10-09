@@ -65,6 +65,7 @@ mediacenter_view:
      - group.group_mpd
      - group.media_players
      - group.snapcast_server_commands
+     - group.text_to_speech
 
 trash_recycle_view:
   view: yes

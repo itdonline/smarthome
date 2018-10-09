@@ -749,3 +749,68 @@ If you want the date to be more readable for display, you can use the script bel
 ```
 
 Feel free to modify the `strftime` format that fits your need. You can also pass your sensor value - ex: `{{ get_date(states.sensor.mysensor.last_updated) }}`.
+
+
+## 22. BANNER/ASCII Text Command in Jinja
+
+Ever wondered how you can create ASCII Text using Jinja? I wrote this code while teaching programming to my kids, and I thought I'd add it to my jinja collection. If you are familiar with the `banner` command in unix/linux, this is very similar!
+
+```
+{{- '{author: skalavala}' -}}
+{%- set alphabets = "   #     # #   #   # #     #########     ##     ####### #     ##     ####### #     ##     #######  ##### #     ##      #      #      #     # ##### ###### #     ##     ##     ##     ##     ####### ########      #      #####  #      #      ###############      #      #####  #      #      #       ##### #     ##      #  #####     ##     # ##### #     ##     ##     #########     ##     ##     #  ###     #      #      #      #      #     ###        #      #      #      ##     ##     # ##### #    # #   #  #  #   ###    #  #   #   #  #    # #      #      #      #      #      #      ########     ###   ### # # ##  #  ##     ##     ##     ##     ###    ## #   ##  #  ##   # ##    ###     #########     ##     ##     ##     ##     ############## #     ##     ####### #      #      #       ##### #     ##     ##     ##   # ##    #  #### ####### #     ##     ####### #   #  #    # #     # ##### #     ##       #####       ##     # ##### #######   #      #      #      #      #      #   #     ##     ##     ##     ##     ##     # ##### #     ##     ##     ##     # #   #   # #     #   #     ##  #  ##  #  ##  #  ##  #  ##  #  # ## ## #     # #   #   # #     #     # #   #   # #     ##     # #   #   # #     #      #      #      #   #######     #     #     #     #     #     #######" -%}
+
+{% macro print_horizontal(name) -%}
+{% for row in range(7) %}
+{%- set outer_loop = loop %}
+{%- for alphabet in name |list -%}
+{%- set startIndex = "abcdefghijklmnopqrstuvwxyz".find(alphabet|lower) * 49 %}
+{%- set begin = startIndex + outer_loop.index0*7 -%}{%- set end = begin+7 -%}
+{{ alphabets[begin:end]|replace('#', '#')|replace(' ',' ') }} {% endfor %}
+{% endfor %}
+{% endmacro %}
+
+{% macro print_vertical(name) -%}
+{%- for alphabet in name |list -%}
+{% set startIndex = "abcdefghijklmnopqrstuvwxyz".find(alphabet|lower) * 49 %}
+{%- for row in range(7) %}
+{%- set begin = startIndex +loop.index0*7 -%}{%- set end = begin+7 %}
+{{ alphabets[begin:end]|replace('#', '#')|replace(' ',' ') -}}
+{%- endfor %}
+{% endfor %}
+{%- endmacro %}
+
+{%- set banner = "skalavala" -%}
+{{ print_horizontal(banner) }}
+```
+
+The above code outputs:
+
+```
+#     # ####### #       #       ####### 
+#     # #       #       #       #     # 
+#     # #       #       #       #     # 
+####### #####   #       #       #     # 
+#     # #       #       #       #     # 
+#     # #       #       #       #     # 
+#     # ####### ####### ####### ####### 
+```
+
+You can also print vertical text by calling `{{ print_vertical() }}`
+
+### This code looks crazy. How does it work?
+
+The `alphabets` variable holds a long string of characters that represent all alphabets (a to z). Each alphabet is a 7x7 size fixed text, straightned. That means each letter is about 49 characters in length, which renders to 7x7 glyph. For each letter within the banner string, it gets the index within the alphabet string, and prints that 7x7 in either horizontal or vertical fashion.
+
+### How do I add more characters?
+
+You can add other characters or numbers by simply appending to the existing `alphabets` string. For ex: If you want to add an empty space, just append 49 empty spaces and add a space to the `alphabets` variable.
+
+```
+####### #     #       # ####### #     # 
+#       ##    #       # #     #  #   #  
+#       # #   #       # #     #   # #   
+#####   #  #  #       # #     #    #    
+#       #   # # #     # #     #    #    
+#       #    ## #     # #     #    #    
+####### #     #  #####  #######    #
+```
