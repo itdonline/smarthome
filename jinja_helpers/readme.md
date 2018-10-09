@@ -801,6 +801,12 @@ You can also print vertical text by calling `{{ print_vertical() }}`
 
 The `alphabets` variable holds a long string of characters that represent all alphabets (a to z). Each alphabet is a 7x7 size fixed text, straightned. That means each letter is about 49 characters in length, which renders to 7x7 glyph. For each letter within the banner string, it gets the index within the alphabet string, and prints that 7x7 in either horizontal or vertical fashion.
 
+### How can I change from `#` with other characters like `*`?
+
+Very simple, just replace the command in the code:  
+from `{{ alphabets[begin:end]|replace('#', '#')|replace(' ',' ') -}}` 
+to   `{{ alphabets[begin:end]|replace('#', '*')|replace(' ',' ') -}}`
+
 ### How do I add more characters?
 
 You can add other characters or numbers by simply appending to the existing `alphabets` string. For ex: If you want to add an empty space, just append 49 empty spaces and add a space to the `alphabets` variable.
