@@ -16,6 +16,7 @@ homeassistant:
       customize: &customize
         package: 'alarmclock'
 
+
       exposed: &exposed
         <<: *customize
         emulated_hue_hidden: true
