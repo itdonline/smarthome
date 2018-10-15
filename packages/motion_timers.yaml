@@ -20,6 +20,8 @@ homeassistant:
       hidden: true
     timer.timer_masterbedroom:
       hidden: true
+    timer.timer_officeroom:
+      hidden: true
 
 timer:
   timer_kitchen:
@@ -31,6 +33,8 @@ timer:
   timer_garage:
     duration: '00:05:00'
   timer_masterbedroom:
+    duration: '00:05:00'
+  timer_officeroom:
     duration: '00:05:00'
 
 ###############################################################################
@@ -44,6 +48,72 @@ timer:
 ###############################################################################
 
 automation:
+
+# Office Room:
+# Motion Detected - Turn ON the light and extend timer
+###############################################################################
+  - alias: Officeroom Motion & Timer
+    initial_state: true
+    hide_entity: true  
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_158d000272bfd7
+        from: 'off'
+        to: 'on'
+    action:
+      - service: timer.start
+        entity_id: timer.timer_officeroom
+      - service: switch.turn_on
+        entity_id: switch.office_room_lights
+      - condition: template
+        value_template: '{{ states.sun.sun.state == "below_horizon" }}'
+      - service: homeassistant.turn_on
+        entity_id: switch.zwave_smart_switch_switch
+
+  - alias: Officeroom Timer Elapsed
+    initial_state: true
+    hide_entity: true  
+    trigger:
+      - platform: state
+        entity_id: timer.timer_officeroom
+        from: 'active'
+        to: 'idle'
+    action:
+      - service: switch.turn_off
+        entity_id: switch.office_room_lights
+      - service: homeassistant.turn_off
+        entity_id: switch.zwave_smart_switch_switch
+
+# Srinika's Bedroom:
+# Motion Detected - Turn ON the bedroom light and extend timer
+###############################################################################
+  # - alias: Srinika Bedroom Motion & Timer
+  #   initial_state: true
+  #   hide_entity: true  
+  #   trigger:
+  #     - platform: state
+  #       entity_id: binary_sensor.motion_sensor_158d000272bed1
+  #       from: 'off'
+  #       to: 'on'
+  #   action:
+  #     - service: timer.start
+  #       entity_id: timer.timer_srinika_bedroom
+  #     - service: switch.turn_on
+  #       entity_id: switch.switch.guest_bedroom_1
+  #     - condition: template
+  #       value_template: '{{ states.sun.sun.state == "below_horizon" }}'
+
+  # - alias: Srinika Bedroom Timer Elapsed
+  #   initial_state: true
+  #   hide_entity: true  
+  #   trigger:
+  #     - platform: state
+  #       entity_id: timer.timer_srinika_bedroom
+  #       from: 'active'
+  #       to: 'idle'
+  #   action:
+  #     - service: switch.turn_off
+  #       entity_id: switch.guest_bedroom_1
 
 # Front Room:
 # Motion Detected - Turn ON the light and extend timer
@@ -59,24 +129,10 @@ automation:
     action:
       - service: timer.start
         entity_id: timer.timer_frontroom
-      - service: switch.turn_on
-        entity_id: switch.office_room_lights
+      - condition: template
+        value_template: '{{ states.sun.sun.state == "below_horizon" }}'
       - service: homeassistant.turn_on
-        data_template:
-          entity_id: >-
-            {% if states.sun.sun.state == "below_horizon" %}
-              switch.zwave_smart_switch_switch
-            {% else %}
-              switch.office_room_lights
-            {% endif %}
-      - service: homeassistant.turn_on
-        data_template:
-          entity_id: >-
-            {% if states.sun.sun.state == "below_horizon" %}
-              switch.rf_switch_four
-            {% else %}
-              switch.office_room_lights
-            {% endif %}
+        entity_id: switch.zwave_smart_switch_switch
 
 # Front Room:
 # Timer Elapsed - Turn OFF lights
@@ -94,33 +150,7 @@ automation:
         value_template: '{{ states.input_boolean.working_in_office_room.state == "off" }}'
     action:
       - service: homeassistant.turn_off
-        data_template:
-          entity_id: >-
-            {% if states.sun.sun.state == "below_horizon" %}
-              - switch.zwave_smart_switch_switch
-              - switch.rf_switch_four
-            {% else %}
-              switch.office_room_lights
-            {% endif %}
-
-  - alias: Office Room Lights OFF
-    initial_state: true
-    hide_entity: true
-    trigger:
-      - platform: state
-        entity_id:
-          - switch.office_room_lights
-        to: 'on'
-        for: 
-          minutes: 5
-    condition:
-      - condition: template
-        value_template: '{{ states.sun.sun.state == "below_horizon" }}'
-      - condition: template
-        value_template: '{{ states.input_boolean.working_in_office_room.state == "off" }}'
-    action:
-      - service: switch.turn_off
-        entity_id: switch.office_room_lights
+        entity_id: switch.rf_switch_four
 
 # Kitchen:
 # Motion Detected - Turn ON the light and extend timer
@@ -268,7 +298,6 @@ automation:
       - delay: '00:00:05'
       - service: light.turn_off
         entity_id: light.master_bedroom
-
 
 # Garage:
 # Motion Detected - Turn ON the light and extend timer

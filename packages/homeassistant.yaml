@@ -10,21 +10,8 @@ homeassistant:
       customize: &customize
         package: 'homeassistant'
 
-      exposed: &exposed
-        <<: *customize
-        emulated_hue_hidden: true
-        homebridge_hidden: false
-        critical: true
-
-      not_exposed: &not_exposed
-        <<: *customize
-        emulated_hue_hidden: false
-        homebridge_hidden: true
-        critical: false
-
       hidden: &hidden
         hidden: true
-        critical: false
 
     group.system_monitor:
       order: 3

@@ -20,18 +20,15 @@ homeassistant:
         <<: *customize
         emulated_hue_hidden: true
         homebridge_hidden: false
-        critical: true
 
       not_exposed: &not_exposed
         <<: *customize
         emulated_hue_hidden: false
         homebridge_hidden: true
-        critical: false
 
       hidden: &hidden
         <<: *customize
         hidden: true
-        critical: false
 
 # friendly names
 {% for item in states.binary_sensor if 'camera' in item.entity_id %}

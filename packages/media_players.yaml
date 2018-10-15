@@ -16,18 +16,15 @@ homeassistant:
         <<: *customize
         emulated_hue_hidden: true
         homebridge_hidden: false
-        critical: true
 
       not_exposed: &not_exposed
         <<: *customize
         emulated_hue_hidden: false
         homebridge_hidden: true
-        critical: false
 
       hidden: &hidden
         <<: *customize
         hidden: true
-        critical: false
 
 # Media Players
     media_player.snapcast_client_b827eb8604f5:

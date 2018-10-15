@@ -15,22 +15,9 @@ homeassistant:
       customize: &customize
         package: 'cameras'
 
-      exposed: &exposed
-        <<: *customize
-        emulated_hue_hidden: true
-        homebridge_hidden: false
-        critical: true
-
-      not_exposed: &not_exposed
-        <<: *customize
-        emulated_hue_hidden: false
-        homebridge_hidden: true
-        critical: false
-
       hidden: &hidden
         <<: *customize
         hidden: true
-        critical: false
 
 # Front Door Camera
     binary_sensor.frontdoor_camera_motion:

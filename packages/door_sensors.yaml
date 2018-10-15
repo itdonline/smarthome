@@ -7,24 +7,11 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'garegedoors'
-
-      exposed: &exposed
-        <<: *customize
-        emulated_hue_hidden: true
-        homebridge_hidden: false
-        critical: true
-
-      not_exposed: &not_exposed
-        <<: *customize
-        emulated_hue_hidden: false
-        homebridge_hidden: true
-        critical: false
+        package: 'door_sensors'
 
       hidden: &hidden
         <<: *customize
         hidden: true
-        critical: false
   
     zwave.two_car_garage_door_tilt_sensor:
       friendly_name: 2-Car Garage Door Sensor

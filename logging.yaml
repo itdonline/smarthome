@@ -16,6 +16,7 @@ logs:
   homeassistant.exceptions: critical
   homeassistant.helpers.script: critical  
   homeassistant.helpers.entity: critical
+  homeassistant.components.wemo: critical
   homeassistant.components.cloud.iot: critical
   homeassistant.components.http: critical
   homeassistant.components.zwave: critical
@@ -30,6 +31,7 @@ logs:
   homeassistant.components.climate.nest: critical
   homeassistant.components.media_player: critical
   custom_components.media_player.sharptv: critical
+  homeassistant.components.switch.tplink: critical
   homeassistant.components.emulated_hue: critical
   homeassistant.components.device_tracker: critical
   homeassistant.components.camera.generic: critical

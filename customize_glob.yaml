@@ -65,3 +65,8 @@
 # Hide WiFi Stuff
 'sensor.*_iphone_wifi_state':
   hidden: true
+
+zwave.unknown_*:
+  hidden: true
+sensor.unknown_*:
+  hidden: true

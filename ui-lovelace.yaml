@@ -1363,152 +1363,186 @@ views:
         title: Automations
         show_header_toggle: true
         entities:
-          - automation.tv_restore_family_room_lights_to_tv_mode
-          - automation.ups_offline
-          - automation.am_change_on
-          - automation.pm_change_on
-          - automation.kitchen_motion__timer
-          - automation.remind_later
-          - automation.alert_low_battery_level_of_sensors
-          - automation.morning_indoor_lights_on
-          - automation.disable_home_security_ios_action
-          - automation.basement_accent_lights_off_after_5_minutes
-          - automation.tv_backlight_off_when_tv_is_off
-          - automation.turn_off_ac_after_3_hours_of_cooling
-          - automation.notify_entry_door_status
-          - automation.scan_people_and_notify
-          - automation.working_in_garage_watchdog
-          - automation.am_change_off
-          - automation.text_changed_event
-          - automation.animate_familyroom_lights
-          - automation.remind_me_to_enjoy_warm_and_windy_weather
-          - automation.alert_when_someone_leaves_a_zone
-          - automation.tv_turn_lights_on_when_tv_is_turned_off
-          - automation.long_flash_all_lights
-          - automation.animate_master_bedroom_lights
-          - automation.start_homekit
-          - automation.random_birthday_wishes
-          - automation.short_flash_all_lights
-          - automation.family_room_motion__timer
-          - automation.today_is_the_birthday
-          - automation.notify_garage_door_status
-          - automation.restart_home_assistant
-          - automation.disable_emergency_mode_upon_disabling_home_security
-          - automation.tv_state
-          - automation.evening_indoor_lights_on_before_sunset
-          - automation.update_current_alarm_time
-          - automation.tv_dim_indoor_lights_when_tv_is_on
-          - automation.home_mode_away_on
-          - automation.query_rpi_disk_data
-          - automation.evening_outdoor_lights_on_at_sunset
-          - automation.power_failure
-          - automation.do_not_disturb_for_2_hours
-          - automation.notify_home_security_status_change
-          - automation.notify_nas_cpu_temperature
-          - automation.night_dim_tv_lights
-          - automation.notify_of_charge_status
-          - automation.random_darker_theme_at_sunset
-          - automation.morning_master_bedroom_lights_on_mallika
-          - automation.notify_nas_drive_status_change
-          - automation.home_security_away_motion_deteted_inside
-          - automation.alert_private_zone_enter
-          - automation.alert_people_activity
-          - automation.ups_state_change
-          - automation.start_homekit_on_ha_restart
-          - automation.timer_elapsed__take_a_walk
-          - automation.welcome_family
-          - automation.morning_outdoor_lights_off
-          - automation.notify_low_battery
-          - automation.notify_holiday_state_change
-          - automation.notify_nas_disk_usage
-          - automation.notify_garage_status_and_home_security_system
-          - automation.wfh_timer_start
-          - automation.family_room_timer_elapsed
-          - automation.random_theme_at_startup
-          - automation.birthday_countdown_30_days
-          - automation.stream_url_text_changed_event
-          - automation.garage_motion_reset
-          - automation.frontroom_timer_elapsed
-          - automation.update_home_assistant
-          - automation.rain_alerts
-          - automation.backyard_light_watchdog
-          - automation.update_available_notification
-          - automation.home_status_on
-          - automation.raspberry_pi_command
-          - automation.emergency_mode_disabled
-          - automation.basement_accent_lights_on_when_basement_door_opened
-          - automation.night_homesecurity_on
-          - automation.turn_on_home_security_system_at_sunset
-          - automation.trash_and_recycle_pickup_reminder
-          - automation.snapcast_action
-          - automation.garage_lights_on_when_door_is_opened
-          - automation.restore_trash_recycle_settings_on_startup
-          - automation.garage_motion__timer
-          - automation.trash_and_recycle_bin_left_outside_already
-          - automation.tv_backlight_is_on_when_tv_is_on
-          - automation.frontroom_motion__timer
-          - automation.garage_timer_start_when_garage_lights_on
-          - automation.query_rpi_wifi_data
-          - automation.notify_nas_status_change
-          - automation.turn_off_security_upon_reaching_home
-          - automation.ups_online
-          - automation.frontyard_light_watchdog
-          - automation.notify_usps_packages
-          - automation.two_car_garage_door_watchdog
-          - automation.notify_of_new_external_ip
-          - automation.guest_bedroom_2_light_watchdog
-          - automation.reset_trash_reminders
-          - automation.hourly_report_during_day_time
-          - automation.recycle_pickup_week_changed
-          - automation.home_security_on
-          - automation.alert_private_zone_leaves
-          - automation.weather_alert
-          - automation.single_car_garage_door_watchdog
-          - automation.trash_pickup_day_changed
-          - automation.power_restored
-          - automation.night_turn_lights_off
-          - automation.send_a_message_as_i_get_closer_to_home
-          - automation.notify_of_charger_switch
-          - automation.notify_indian_holidays
-          - automation.notify_nas_cpu_usage
-          - automation.cancel_wfh_timer_when_suresh_leaves_home
-          - automation.weather_input_boolean_updates
-          - automation.notify_of_door_status
-          - automation.update_phone_battery_levels
-          - automation.home_security_status_leeo_color
-          - automation.garage_timer_elapsed
-          - automation.notify_nas_memory_usage
-          - automation.water_leak_detected
-          - automation.restore_familyroom_lights
-          - automation.home_security_system_watchdog_30_minutes
-          - automation.master_bedroom_timer_elapsed
-          - automation.alert_when_everyone_is_away
-          - automation.recycle_pickup_day_changed
-          - automation.alert_super_heavy_winds
-          - automation.alert_when_someone_enters_a_zone
-          - automation.morning_kitchen_light_off
-          - automation.night_bedtime_report
-          - automation.guest_bedroom_1_light_watchdog
-          - automation.office_room_lights_off
-          - automation.notify_life360_sensor_state_change
-          - automation.update_zwave_battery_levels
-          - automation.season_change_notification
-          - automation.remind_domain_renewal
-          - automation.restore_tv_state
-          - automation.pm_change_off
-          - automation.notify_usps_mail
-          - automation.morning_master_bedroom_lights_off_mallika
-          - automation.snow_and_sleet_alerts
-          - automation.home_security_system_watchdog_10_minutes
           - automation.alarm_clock
+          - automation.alert_family_member_activity
+          - automation.alert_life360_error
+          - automation.alert_object_activity
+          - automation.alert_private_zone_enter
+          - automation.alert_private_zone_leaves
+          - automation.alert_super_heavy_winds
+          - automation.alert_when_everyone_is_away
+          - automation.alert_when_moving
+          - automation.alert_when_someone_enters_a_zone
+          - automation.alert_when_someone_leaves_a_zone
+          - automation.am_change_off
+          - automation.am_change_on
+          - automation.animate_familyroom_lights
+          - automation.animate_master_bedroom_lights
+          - automation.backyard_light_watchdog
+          - automation.basement_accent_lights_off_after_5_minutes
+          - automation.basement_accent_lights_on_when_basement_door_opened
+          - automation.bathroom_aroma_timer_elapsed
+          - automation.bathroom_aroma_timer_finish
+          - automation.bathroom_aroma_timer_start
+          - automation.birthday_countdown_30_days
+          - automation.cancel_wfh_timer_when_suresh_leaves_home
           - automation.check_wifi_status_of_iphones_at_home
+          - automation.disable_emergency_mode_upon_disabling_home_security
+          - automation.do_not_disturb_for_2_hours
+          - automation.do_not_disturb_state_change
+          - automation.downstairs_aroma_timer_elapsed
+          - automation.downstairs_aroma_timer_finish
+          - automation.downstairs_aroma_timer_start
+          - automation.emergency_mode_disabled
+          - automation.evening_indoor_lights_on_before_sunset
+          - automation.evening_outdoor_lights_on_at_sunset
+          - automation.family_room_cube_event_flip180
+          - automation.family_room_cube_event_flip180_2
+          - automation.family_room_cube_event_flip90
+          - automation.family_room_cube_event_move
+          - automation.family_room_cube_event_move_2
+          - automation.family_room_cube_event_shake
+          - automation.family_room_cube_event_shake_2
+          - automation.family_room_cube_event_tap_twice
+          - automation.family_room_motion__timer
+          - automation.family_room_timer_elapsed
+          - automation.front_room_cube_event_flip90
+          - automation.frontroom_motion__timer
+          - automation.frontroom_timer_elapsed
+          - automation.frontyard_light_watchdog
+          - automation.garage_lights_on_when_door_is_opened
+          - automation.garage_motion__timer
+          - automation.garage_motion_reset
+          - automation.garage_timer_elapsed
+          - automation.garage_timer_start_when_garage_lights_on
+          - automation.guest_bedroom_1_light_watchdog
+          - automation.guest_bedroom_2_light_watchdog
+          - automation.hasikas_room_cube_event_flip90
+          - automation.hasikas_room_cube_event_shake
+          - automation.home_mode_away_on
+          - automation.home_security_away_motion_deteted_inside
+          - automation.home_security_on
+          - automation.home_security_status_leeo_color
           - automation.home_security_system_and_garage_door_check
+          - automation.home_security_system_watchdog_10_minutes
+          - automation.home_security_system_watchdog_30_minutes
+          - automation.home_status_on
+          - automation.hourly_report_during_day_time
           - automation.kids_bedroom_light_watchdog
-          - automation.restore_masterbedroom_lights
-          - automation.random_lighter_theme_at_sunrise
-          - automation.update_birthdays
+          - automation.kitchen_motion__timer
           - automation.kitchen_timer_elapsed
-          - automation.master_bedroom_motion__timer          
+          - automation.long_flash_all_lights
+          - automation.master_bedroom_cube_event_flip180
+          - automation.master_bedroom_cube_event_flip90
+          - automation.master_bedroom_cube_event_move
+          - automation.master_bedroom_cube_event_shake
+          - automation.master_bedroom_cube_event_tap_twice
+          - automation.master_bedroom_motion__timer
+          - automation.master_bedroom_timer_elapsed
+          - automation.morning_indoor_lights_on
+          - automation.morning_kitchen_light_off
+          - automation.morning_master_bedroom_lights_off_mallika
+          - automation.morning_master_bedroom_lights_on_mallika
+          - automation.morning_outdoor_lights_off
+          - automation.motion_detected_at_driveway
+          - automation.motion_detected_at_front_door
+          - automation.motion_detected_in_backyard
+          - automation.night_bedtime_report
+          - automation.night_dim_tv_lights
+          - automation.night_homesecurity_on
+          - automation.night_turn_lights_off
+          - automation.notify_charger_switch_state
+          - automation.notify_charging_status
+          - automation.notify_door_status
+          - automation.notify_entry_door_status
+          - automation.notify_garage_door_status
+          - automation.notify_holiday_state_change
+          - automation.notify_home_security_status_change
+          - automation.notify_indian_holidays
+          - automation.notify_low_battery
+          - automation.notify_nas_cpu_temperature
+          - automation.notify_nas_cpu_usage
+          - automation.notify_nas_disk_usage
+          - automation.notify_nas_drive_status_change
+          - automation.notify_nas_memory_usage
+          - automation.notify_nas_status_change
+          - automation.notify_of_new_external_ip
+          - automation.notify_usps_mail
+          - automation.notify_usps_packages
+          - automation.officeroom_motion__timer
+          - automation.officeroom_timer_elapsed
+          - automation.pm_change_off
+          - automation.pm_change_on
+          - automation.power_failure
+          - automation.power_restored
+          - automation.query_rpi_disk_data
+          - automation.query_rpi_wifi_data
+          - automation.rain_alerts
+          - automation.random_birthday_wishes
+          - automation.random_darker_theme_at_sunset
+          - automation.random_lighter_theme_at_sunrise
+          - automation.random_theme_at_startup
+          - automation.raspberry_pi_command
+          - automation.recycle_pickup_day_changed
+          - automation.recycle_pickup_week_changed
+          - automation.remind_domain_renewal
+          - automation.remind_later
+          - automation.remind_me_to_enjoy_warm_and_windy_weather
+          - automation.reset_trash_reminders
+          - automation.restart_home_assistant
+          - automation.restore_familyroom_lights
+          - automation.restore_masterbedroom_lights
+          - automation.restore_trash_recycle_settings_on_startup
+          - automation.restore_tv_state
+          - automation.scan_people_and_objects
+          - automation.season_change_notification
+          - automation.send_a_message_as_i_get_closer_to_home
+          - automation.short_flash_all_lights
+          - automation.single_car_garage_door_watchdog
+          - automation.snapcast_action
+          - automation.snow_and_sleet_alerts
+          - automation.srinikas_room_cube_event_flip90
+          - automation.srinikas_room_cube_event_shake
+          - automation.start_homekit
+          - automation.start_homekit_on_ha_restart
+          - automation.study_room_cube_event_flip90
+          - automation.study_room_cube_event_shake
+          - automation.text_changed_event
+          - automation.timer_elapsed__take_a_walk
+          - automation.today_is_the_birthday
+          - automation.trash_and_recycle_bin_left_outside_already
+          - automation.trash_and_recycle_pickup_reminder
+          - automation.trash_pickup_day_changed
+          - automation.turn_off_ac_after_3_hours_of_cooling
+          - automation.tv_backlight_is_on_when_tv_is_on
+          - automation.tv_backlight_off_when_tv_is_off
+          - automation.tv_dim_indoor_lights_when_tv_is_on
+          - automation.tv_restore_family_room_lights_to_tv_mode
+          - automation.tv_state
+          - automation.tv_turn_lights_on_when_tv_is_turned_off
+          - automation.two_car_garage_door_watchdog
+          - automation.update_available_notification
+          - automation.update_birthdays
+          - automation.update_current_alarm_time
+          - automation.update_home_assistant
+          - automation.update_phone_battery_levels
+          - automation.update_zwave_battery_levels
+          - automation.ups_offline
+          - automation.ups_online
+          - automation.ups_state_change
+          - automation.upstairs_aroma_timer_elapsed
+          - automation.upstairs_aroma_timer_finish
+          - automation.upstairs_aroma_timer_start
+          - automation.wallmote_button_1_pressed
+          - automation.wallmote_button_2_pressed
+          - automation.wallmote_button_3_pressed
+          - automation.wallmote_button_4_pressed
+          - automation.water_leak_detected
+          - automation.weather_alert
+          - automation.weather_input_boolean_updates
+          - automation.welcome_family
+          - automation.wfh_timer_start
+          - automation.working_in_garage_watchdog
   - title: System Info
     icon: mdi:settings
     cards:
@@ -1708,3 +1742,1148 @@ views:
         entity: media_player.snapcast_client_b827eb4445b1
       - type: media-control
         entity: media_player.snapcast_client_b827eb011e00
+  - title: EVERYTHING!
+    cards:
+      - type: picture-entity
+        title: Driveway Camera
+        entity: camera.driveway_camera
+        camera_image: camera.driveway_camera
+        show_info: true
+        tap_action: dialog
+
+      - type: picture-entity
+        title: Frontdoor Camera
+        entity: camera.frontdoor_camera
+        camera_image: camera.frontdoor_camera
+        show_info: true
+        tap_action: dialog
+
+      - type: picture-entity
+        title: Garage Camera
+        entity: camera.garage_camera
+        camera_image: camera.garage_camera
+        show_info: true
+        tap_action: dialog
+
+      - type: picture-entity
+        title: Ohio Doppler Weather
+        entity: camera.ohio_doppler_weather
+        camera_image: camera.ohio_doppler_weather
+        show_info: true
+        tap_action: dialog
+
+      - type: picture-entity
+        title: Patio Camera
+        entity: camera.patio_camera
+        camera_image: camera.patio_camera
+        show_info: true
+        tap_action: dialog
+
+      - type: picture-entity
+        title: Playarea Camera
+        entity: camera.playarea_camera
+        camera_image: camera.playarea_camera
+        show_info: true
+        tap_action: dialog
+
+      - type: picture-entity
+        title: USPS Mail Pictures
+        entity: camera.usps_mail_pictures
+        camera_image: camera.usps_mail_pictures
+        show_info: true
+        tap_action: dialog
+
+      - type: media-control
+        entity: media_player.denon_avrx2400h
+
+      - type: media-control
+        entity: media_player.gstreamer
+
+      - type: media-control
+        entity: media_player.mpd
+
+      - type: media-control
+        entity: media_player.snapcast_client_b827eb011e00
+
+      - type: media-control
+        entity: media_player.snapcast_client_b827eb4445b1
+
+      - type: media-control
+        entity: media_player.snapcast_client_b827eb505e2d
+
+      - type: media-control
+        entity: media_player.snapcast_client_b827eb8604f5
+
+      - type: media-control
+        entity: media_player.snapcast_client_b827eba8e7ef
+
+      - type: media-control
+        entity: media_player.snapcast_group_2a0f602f30d586840a294f06bf1250c4
+
+      - type: media-control
+        entity: media_player.snapcast_group_4ae22c7e8a85b8c0acc85cce5217f52e
+
+      - type: media-control
+        entity: media_player.snapcast_group_560661cf4772396404241294463f1222
+
+      - type: media-control
+        entity: media_player.snapcast_group_81138f93de34404fc0f5b3d1741a81ee
+
+      - type: media-control
+        entity: media_player.snapcast_group_a0dd81f3e6e90e70ce51b8c965a2a389
+
+      - type: entities
+        title: Alarm Control Panel
+        show_header_toggle: true
+        entities:
+          - alarm_control_panel.simplisafe
+
+      - type: entities
+        title: Automations
+        show_header_toggle: true
+        entities:
+          - automation.alarm_clock
+          - automation.alert_family_member_activity
+          - automation.alert_life360_error
+          - automation.alert_object_activity
+          - automation.alert_private_zone_enter
+          - automation.alert_private_zone_leaves
+          - automation.alert_super_heavy_winds
+          - automation.alert_when_everyone_is_away
+          - automation.alert_when_moving
+          - automation.alert_when_someone_enters_a_zone
+          - automation.alert_when_someone_leaves_a_zone
+          - automation.am_change_off
+          - automation.am_change_on
+          - automation.animate_familyroom_lights
+          - automation.animate_master_bedroom_lights
+          - automation.backyard_light_watchdog
+          - automation.basement_accent_lights_off_after_5_minutes
+          - automation.basement_accent_lights_on_when_basement_door_opened
+          - automation.bathroom_aroma_timer_elapsed
+          - automation.bathroom_aroma_timer_finish
+          - automation.bathroom_aroma_timer_start
+          - automation.birthday_countdown_30_days
+          - automation.cancel_wfh_timer_when_suresh_leaves_home
+          - automation.check_wifi_status_of_iphones_at_home
+          - automation.disable_emergency_mode_upon_disabling_home_security
+          - automation.do_not_disturb_for_2_hours
+          - automation.do_not_disturb_state_change
+          - automation.downstairs_aroma_timer_elapsed
+          - automation.downstairs_aroma_timer_finish
+          - automation.downstairs_aroma_timer_start
+          - automation.emergency_mode_disabled
+          - automation.evening_indoor_lights_on_before_sunset
+          - automation.evening_outdoor_lights_on_at_sunset
+          - automation.family_room_cube_event_flip180
+          - automation.family_room_cube_event_flip180_2
+          - automation.family_room_cube_event_flip90
+          - automation.family_room_cube_event_move
+          - automation.family_room_cube_event_move_2
+          - automation.family_room_cube_event_shake
+          - automation.family_room_cube_event_shake_2
+          - automation.family_room_cube_event_tap_twice
+          - automation.family_room_motion__timer
+          - automation.family_room_timer_elapsed
+          - automation.front_room_cube_event_flip90
+          - automation.frontroom_motion__timer
+          - automation.frontroom_timer_elapsed
+          - automation.frontyard_light_watchdog
+          - automation.garage_lights_on_when_door_is_opened
+          - automation.garage_motion__timer
+          - automation.garage_motion_reset
+          - automation.garage_timer_elapsed
+          - automation.garage_timer_start_when_garage_lights_on
+          - automation.guest_bedroom_1_light_watchdog
+          - automation.guest_bedroom_2_light_watchdog
+          - automation.hasikas_room_cube_event_flip90
+          - automation.hasikas_room_cube_event_shake
+          - automation.home_mode_away_on
+          - automation.home_security_away_motion_deteted_inside
+          - automation.home_security_on
+          - automation.home_security_status_leeo_color
+          - automation.home_security_system_and_garage_door_check
+          - automation.home_security_system_watchdog_10_minutes
+          - automation.home_security_system_watchdog_30_minutes
+          - automation.home_status_on
+          - automation.hourly_report_during_day_time
+          - automation.kids_bedroom_light_watchdog
+          - automation.kitchen_motion__timer
+          - automation.kitchen_timer_elapsed
+          - automation.long_flash_all_lights
+          - automation.master_bedroom_cube_event_flip180
+          - automation.master_bedroom_cube_event_flip90
+          - automation.master_bedroom_cube_event_move
+          - automation.master_bedroom_cube_event_shake
+          - automation.master_bedroom_cube_event_tap_twice
+          - automation.master_bedroom_motion__timer
+          - automation.master_bedroom_timer_elapsed
+          - automation.morning_indoor_lights_on
+          - automation.morning_kitchen_light_off
+          - automation.morning_master_bedroom_lights_off_mallika
+          - automation.morning_master_bedroom_lights_on_mallika
+          - automation.morning_outdoor_lights_off
+          - automation.motion_detected_at_driveway
+          - automation.motion_detected_at_front_door
+          - automation.motion_detected_in_backyard
+          - automation.night_bedtime_report
+          - automation.night_dim_tv_lights
+          - automation.night_homesecurity_on
+          - automation.night_turn_lights_off
+          - automation.notify_charger_switch_state
+          - automation.notify_charging_status
+          - automation.notify_door_status
+          - automation.notify_entry_door_status
+          - automation.notify_garage_door_status
+          - automation.notify_holiday_state_change
+          - automation.notify_home_security_status_change
+          - automation.notify_indian_holidays
+          - automation.notify_low_battery
+          - automation.notify_nas_cpu_temperature
+          - automation.notify_nas_cpu_usage
+          - automation.notify_nas_disk_usage
+          - automation.notify_nas_drive_status_change
+          - automation.notify_nas_memory_usage
+          - automation.notify_nas_status_change
+          - automation.notify_of_new_external_ip
+          - automation.notify_usps_mail
+          - automation.notify_usps_packages
+          - automation.officeroom_motion__timer
+          - automation.officeroom_timer_elapsed
+          - automation.pm_change_off
+          - automation.pm_change_on
+          - automation.power_failure
+          - automation.power_restored
+          - automation.query_rpi_disk_data
+          - automation.query_rpi_wifi_data
+          - automation.rain_alerts
+          - automation.random_birthday_wishes
+          - automation.random_darker_theme_at_sunset
+          - automation.random_lighter_theme_at_sunrise
+          - automation.random_theme_at_startup
+          - automation.raspberry_pi_command
+          - automation.recycle_pickup_day_changed
+          - automation.recycle_pickup_week_changed
+          - automation.remind_domain_renewal
+          - automation.remind_later
+          - automation.remind_me_to_enjoy_warm_and_windy_weather
+          - automation.reset_trash_reminders
+          - automation.restart_home_assistant
+          - automation.restore_familyroom_lights
+          - automation.restore_masterbedroom_lights
+          - automation.restore_trash_recycle_settings_on_startup
+          - automation.restore_tv_state
+          - automation.scan_people_and_objects
+          - automation.season_change_notification
+          - automation.send_a_message_as_i_get_closer_to_home
+          - automation.short_flash_all_lights
+          - automation.single_car_garage_door_watchdog
+          - automation.snapcast_action
+          - automation.snow_and_sleet_alerts
+          - automation.srinikas_room_cube_event_flip90
+          - automation.srinikas_room_cube_event_shake
+          - automation.start_homekit
+          - automation.start_homekit_on_ha_restart
+          - automation.study_room_cube_event_flip90
+          - automation.study_room_cube_event_shake
+          - automation.text_changed_event
+          - automation.timer_elapsed__take_a_walk
+          - automation.today_is_the_birthday
+          - automation.trash_and_recycle_bin_left_outside_already
+          - automation.trash_and_recycle_pickup_reminder
+          - automation.trash_pickup_day_changed
+          - automation.turn_off_ac_after_3_hours_of_cooling
+          - automation.tv_backlight_is_on_when_tv_is_on
+          - automation.tv_backlight_off_when_tv_is_off
+          - automation.tv_dim_indoor_lights_when_tv_is_on
+          - automation.tv_restore_family_room_lights_to_tv_mode
+          - automation.tv_state
+          - automation.tv_turn_lights_on_when_tv_is_turned_off
+          - automation.two_car_garage_door_watchdog
+          - automation.update_available_notification
+          - automation.update_birthdays
+          - automation.update_current_alarm_time
+          - automation.update_home_assistant
+          - automation.update_phone_battery_levels
+          - automation.update_zwave_battery_levels
+          - automation.ups_offline
+          - automation.ups_online
+          - automation.ups_state_change
+          - automation.upstairs_aroma_timer_elapsed
+          - automation.upstairs_aroma_timer_finish
+          - automation.upstairs_aroma_timer_start
+          - automation.wallmote_button_1_pressed
+          - automation.wallmote_button_2_pressed
+          - automation.wallmote_button_3_pressed
+          - automation.wallmote_button_4_pressed
+          - automation.water_leak_detected
+          - automation.weather_alert
+          - automation.weather_input_boolean_updates
+          - automation.welcome_family
+          - automation.wfh_timer_start
+          - automation.working_in_garage_watchdog
+
+      - type: entities
+        title: Binary Sensors
+        show_header_toggle: true
+        entities:
+          - binary_sensor.aeotec_water_sensor_sensor
+          - binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor
+          - binary_sensor.audio_detector_sensor
+          - binary_sensor.back_door_sensor_sensor
+          - binary_sensor.basement_door_sensor_sensor
+          - binary_sensor.cube_158d000276e3e8
+          - binary_sensor.cube_158d000278eb6a
+          - binary_sensor.cube_158d0002794cd6
+          - binary_sensor.cube_158d00027c0276
+          - binary_sensor.cube_158d00027ce15c
+          - binary_sensor.cube_158d00027cf60d
+          - binary_sensor.dining_room_thermostat_fan
+          - binary_sensor.dining_room_thermostat_has_leaf
+          - binary_sensor.dining_room_thermostat_is_locked
+          - binary_sensor.dining_room_thermostat_is_using_emergency_heat
+          - binary_sensor.dining_room_thermostat_online
+          - binary_sensor.downstairs_multi_sensor_sensor
+          - binary_sensor.driveway_camera_field_detection
+          - binary_sensor.driveway_camera_line_crossing
+          - binary_sensor.driveway_camera_motion
+          - binary_sensor.driveway_camera_tamper_detection
+          - binary_sensor.front_room_multi_sensor_sensor
+          - binary_sensor.front_room_window_sensor_sensor
+          - binary_sensor.frontdoor_camera_field_detection
+          - binary_sensor.frontdoor_camera_line_crossing
+          - binary_sensor.frontdoor_camera_motion
+          - binary_sensor.frontdoor_camera_tamper_detection
+          - binary_sensor.garage_door_sensor_sensor
+          - binary_sensor.garage_motion
+          - binary_sensor.good_weather_to_fly_drones
+          - binary_sensor.guest_bedroom_multi_sensor_sensor
+          - binary_sensor.home_away
+          - binary_sensor.kitchen_motion_sensor_sensor
+          - binary_sensor.motion_sensor_158d00016c2d0e
+          - binary_sensor.motion_sensor_158d00016db6d2
+          - binary_sensor.motion_sensor_158d0001a25041
+          - binary_sensor.motion_sensor_158d0001a662fe
+          - binary_sensor.motion_sensor_158d00024e57d3
+          - binary_sensor.motion_sensor_158d00024e57fb
+          - binary_sensor.motion_sensor_158d00024e842c
+          - binary_sensor.motion_sensor_158d00024ee084
+          - binary_sensor.motion_sensor_158d000272bf48
+          - binary_sensor.motion_sensor_158d000272bfd7
+          - binary_sensor.patio_camera_field_detection
+          - binary_sensor.patio_camera_line_crossing
+          - binary_sensor.patio_camera_motion
+          - binary_sensor.patio_camera_tamper_detection
+          - binary_sensor.playarea_camera_field_detection
+          - binary_sensor.playarea_camera_line_crossing
+          - binary_sensor.playarea_camera_motion
+          - binary_sensor.playarea_camera_tamper_detection
+          - binary_sensor.sharp_tv
+          - binary_sensor.sharp_tv_command_state
+          - binary_sensor.single_car_garage_door_tilt_sensor_sensor
+          - binary_sensor.stairs_motion_sensor_sensor
+          - binary_sensor.tesla_model_3_5yj3e1ea8jf010610_charger_sensor
+          - binary_sensor.tesla_model_3_5yj3e1ea8jf010610_parking_brake_sensor
+          - binary_sensor.tv_multi_sensor_sensor
+          - binary_sensor.two_car_garage_door_tilt_sensor_sensor
+          - binary_sensor.upstairs_multi_sensor_sensor
+          - binary_sensor.workday_sensor
+
+      - type: entities
+        title: Calendars
+        show_header_toggle: true
+        entities:
+          - calendar.contacts
+          - calendar.holidays_in_india
+          - calendar.holidays_in_united_states
+          - calendar.suresh_kalavala
+
+      - type: entities
+        title: Climates
+        show_header_toggle: true
+        entities:
+          - climate.dining_room
+          - climate.tesla_model_3_5yj3e1ea8jf010610_hvac_climate_system
+
+      - type: entity-filter
+        title: Device Trackers
+        show_header_toggle: true
+        entities:
+          - device_tracker.hasika
+          - device_tracker.hasika_hasika
+          - device_tracker.ipad
+          - device_tracker.mallika
+          - device_tracker.mallika_mallika
+          - device_tracker.srinika
+          - device_tracker.srinika_srinika
+          - device_tracker.suresh
+          - device_tracker.suresh_suresh
+          - device_tracker.tesla_model_3_5yj3e1ea8jf010610_location_tracker
+        state_filter:
+          - 'home'
+        card:
+          type: glance
+          title: My Device Trackers
+
+
+      - type: entities
+        title: Groups
+        show_header_toggle: true
+        entities:
+          - group.1car_garage_door_sensor
+          - group.2car_garage_door_sensor
+          - group.ads_blocked
+          - group.aeotec_water_sensor
+          - group.alarm_clock
+          - group.all_automations
+          - group.all_devices
+          - group.all_lights
+          - group.all_locks
+          - group.all_scripts
+          - group.all_switches
+          - group.always_on
+          - group.audio_detector
+          - group.back_door_sensor
+          - group.backyard_cameras
+          - group.basement_door_sensor
+          - group.basement_ups
+          - group.batteries
+          - group.bed__wakeup_times
+          - group.birthday_countdown
+          - group.calendar
+          - group.camera_activity
+          - group.camera_field_detection
+          - group.camera_line_crossing
+          - group.camera_motion
+          - group.camera_tamper_detection
+          - group.cctv
+          - group.control_panel
+          - group.dark_sky
+          - group.date_time
+          - group.disk_available
+          - group.disk_percent_used
+          - group.doppler_weather
+          - group.downstairs_lights
+          - group.downstairs_multi_sensor
+          - group.driving_speed
+          - group.emergency_scripts
+          - group.energy_meter
+          - group.family_view
+          - group.front_door_sensor
+          - group.front_room_multi_sensor
+          - group.frontyard_cameras
+          - group.garage_door_sensor
+          - group.garage_doors
+          - group.group_denon_avrx2400h
+          - group.group_gstreamer
+          - group.group_mpd
+          - group.guest_bedroom_multi_sensor
+          - group.home__family
+          - group.humidity_levels
+          - group.internet_speed
+          - group.kitchen_motion_sensor
+          - group.kitchen_siren
+          - group.light_automations
+          - group.light_levels
+          - group.lights_switches
+          - group.media_players
+          - group.mediacenter_view
+          - group.motion_sensors
+          - group.nas
+          - group.nest_thermostat
+          - group.nest_thermostat_view
+          - group.outdoor_lights
+          - group.people_that_cameras_see
+          - group.phone_batteries
+          - group.phone_wifi
+          - group.qnap_automations
+          - group.qnap_drives
+          - group.qnap_server
+          - group.raspberry_pi_commands
+          - group.raspberry_pi_scripts
+          - group.raspberry_pis
+          - group.recycle_schedule
+          - group.rf_switches
+          - group.room_fragrance
+          - group.rooms
+          - group.scripts
+          - group.scripts_view
+          - group.snapcast_server_commands
+          - group.stairs_motion_sensor
+          - group.switches
+          - group.system_monitor
+          - group.system_view
+          - group.tags_that_cameras_see
+          - group.temperature_levels
+          - group.tesla
+          - group.tesla_view
+          - group.text_to_speech
+          - group.trash_recycle_view
+          - group.trash_schedule
+          - group.travel_time
+          - group.tv_multi_sensor
+          - group.upstairs_lights
+          - group.upstairs_multi_sensor
+          - group.usps
+          - group.wallmote
+          - group.weather
+          - group.weather_automations
+          - group.where_is_everyone
+          - group.wifi
+          - group.wifi_link_quality
+          - group.wifi_signal_strength
+          - group.xiaomi_aqara
+          - group.zwave_batteries
+          - group.zwave_devices
+          - group.zwave_smart_switch
+
+      - type: entities
+        title: Image Processings
+        show_header_toggle: true
+        entities:
+          - image_processing.facebox_driveway_camera
+          - image_processing.facebox_frontdoor_camera
+          - image_processing.facebox_garage_camera
+          - image_processing.facebox_patio_camera
+          - image_processing.facebox_playarea_camera
+          - image_processing.tagbox_driveway_camera
+          - image_processing.tagbox_frontdoor_camera
+          - image_processing.tagbox_garage_camera
+          - image_processing.tagbox_patio_camera
+          - image_processing.tagbox_playarea_camera
+
+      - type: entities
+        title: Input Booleans
+        show_header_toggle: true
+        entities:
+          - input_boolean.alarm_clock
+          - input_boolean.alert_faces_in_cameras
+          - input_boolean.alert_no_one_home
+          - input_boolean.alert_objects_in_cameras
+          - input_boolean.alert_when_someone_enters_zone
+          - input_boolean.alert_when_someone_leaves_zone
+          - input_boolean.am
+          - input_boolean.animate_downstairs_lights
+          - input_boolean.animate_kitchen_lights
+          - input_boolean.animate_upstairs_lights
+          - input_boolean.battery_notifications
+          - input_boolean.do_not_disturb
+          - input_boolean.emergency_mode
+          - input_boolean.enjoyable_weather_reminders
+          - input_boolean.greeting
+          - input_boolean.heavy_wind_alert
+          - input_boolean.home_assistant_restart
+          - input_boolean.home_assistant_status
+          - input_boolean.home_assistant_update
+          - input_boolean.home_mode_away
+          - input_boolean.home_security
+          - input_boolean.hourly_reports
+          - input_boolean.hurricane_wind_alert
+          - input_boolean.long_flash
+          - input_boolean.moderate_wind_alert
+          - input_boolean.nice_breeze_alert
+          - input_boolean.notify_camera_motion
+          - input_boolean.notify_security_system_changes
+          - input_boolean.pm
+          - input_boolean.rain_alert
+          - input_boolean.sharp_tv
+          - input_boolean.short_flash
+          - input_boolean.sleet_alert
+          - input_boolean.snow_alert
+          - input_boolean.super_heavy_wind_alert
+          - input_boolean.trash_reminders
+          - input_boolean.voice_notifications
+          - input_boolean.week_day_only
+          - input_boolean.welcome_family_announcement
+          - input_boolean.wfh_notifications
+          - input_boolean.working_in_garage
+          - input_boolean.working_in_office_room
+
+      - type: entities
+        title: Input Datetimes
+        show_header_toggle: true
+        entities:
+          - input_datetime.autumn_bed_time
+          - input_datetime.autumn_wakeup_time
+          - input_datetime.spring_bed_time
+          - input_datetime.spring_wakeup_time
+          - input_datetime.summer_bed_time
+          - input_datetime.summer_wakeup_time
+          - input_datetime.winter_bed_time
+          - input_datetime.winter_wakeup_time
+
+      - type: entities
+        title: Input Labels
+        show_header_toggle: true
+        entities:
+          - input_label.aeotec_water_sensor
+          - input_label.alarm_current_time
+          - input_label.audio_detector
+          - input_label.back_door_sensor
+          - input_label.basement_door_sensor
+          - input_label.downstairs_multi_sensor
+          - input_label.front_door_sensor
+          - input_label.front_room_multi_sensor
+          - input_label.front_room_window_sensor
+          - input_label.garage_door_sensor
+          - input_label.guest_bedroom_multi_sensor
+          - input_label.hasika_battery
+          - input_label.hasika_birthday
+          - input_label.hasika_birthday_days2go
+          - input_label.hasika_wifi
+          - input_label.kitchen_motion_sensor
+          - input_label.mallika_battery
+          - input_label.mallika_birthday
+          - input_label.mallika_birthday_days2go
+          - input_label.mallika_wifi
+          - input_label.single_car_garage_door_tilt_sensor
+          - input_label.srinika_battery
+          - input_label.srinika_birthday
+          - input_label.srinika_birthday_days2go
+          - input_label.srinika_wifi
+          - input_label.stairs_motion_sensor
+          - input_label.suresh_battery
+          - input_label.suresh_wifi
+          - input_label.tv_multi_sensor
+          - input_label.two_car_garage_door_tilt_sensor
+          - input_label.upstairs_multi_sensor
+          - input_label.wallmote
+
+      - type: entities
+        title: Input Numbers
+        show_header_toggle: true
+        entities:
+          - input_number.calendar_remind_before_days
+          - input_number.low_battery_alert_threshold
+          - input_number.slider_hours
+          - input_number.slider_minutes
+          - input_number.tts_volume_level_afternoon
+          - input_number.tts_volume_level_alert
+          - input_number.tts_volume_level_evening
+          - input_number.tts_volume_level_morning
+
+      - type: entities
+        title: Input Selects
+        show_header_toggle: true
+        entities:
+          - input_select.raspberry_pis
+          - input_select.recycle_pickup_day
+          - input_select.recycle_pickup_week
+          - input_select.rpi_commands
+          - input_select.snapcast_server
+          - input_select.trash_pickup_day
+
+      - type: entities
+        title: Input Text
+        show_header_toggle: true
+        entities:
+          - input_text.tts
+
+      - type: entities
+        title: Lights
+        show_header_toggle: true
+        entities:
+          - light.family_room
+          - light.gateway_light_34ce008ad65d
+          - light.hue_color_lamp_1
+          - light.hue_color_lamp_2
+          - light.hue_color_lamp_3
+          - light.master_bedroom
+          - light.master_bedroom_1
+          - light.master_bedroom_2
+
+      - type: entities
+        title: Lock
+        show_header_toggle: true
+        entities:
+          - lock.tesla_model_3_5yj3e1ea8jf010610_door_lock
+
+      - type: entities
+        title: Proximities
+        show_header_toggle: true
+        entities:
+          - proximity.home
+          - proximity.work
+
+      - type: entities
+        title: Scripts
+        show_header_toggle: true
+        entities:
+          - script.all_indoor_lights_off
+          - script.emergency_all_lights_switches_on
+          - script.emergency_script
+          - script.emergency_script_loop
+          - script.good_night_tts
+          - script.home_mode_away
+          - script.home_status
+          - script.ifttt_leeo_color_change
+          - script.ifttt_notify
+          - script.notify_me
+          - script.query_disk_info
+          - script.query_wifi_info
+          - script.restart_all_raspberrypis
+          - script.restart_all_snapclients
+          - script.restart_hass
+          - script.restart_snapcast_server
+          - script.shutdown_all_raspberrypis
+          - script.start_snapcast_server
+          - script.stop_snapcast_server
+          - script.toggle_do_not_disturb
+          - script.update_hass
+          - script.voice_greeting
+          - script.voice_notify
+          - script.xiaomi_blue
+          - script.xiaomi_green
+          - script.xiaomi_red
+
+      - type: entities
+        title: Sensors
+        show_header_toggle: true
+        entities:
+          - sensor.aeotec_water_sensor_alarm_level
+          - sensor.aeotec_water_sensor_alarm_level_2
+          - sensor.aeotec_water_sensor_alarm_level_3
+          - sensor.aeotec_water_sensor_alarm_type
+          - sensor.aeotec_water_sensor_alarm_type_2
+          - sensor.aeotec_water_sensor_alarm_type_3
+          - sensor.aeotec_water_sensor_burglar
+          - sensor.aeotec_water_sensor_flood
+          - sensor.aeotec_water_sensor_flood_2
+          - sensor.aeotec_water_sensor_flood_3
+          - sensor.aeotec_water_sensor_heat
+          - sensor.aeotec_water_sensor_sourcenodeid
+          - sensor.aeotec_water_sensor_sourcenodeid_2
+          - sensor.aeotec_water_sensor_sourcenodeid_3
+          - sensor.aeotec_water_sensor_temperature
+          - sensor.aeotec_zw120_door_window_sensor_gen5_access_control
+          - sensor.aeotec_zw120_door_window_sensor_gen5_alarm_level
+          - sensor.aeotec_zw120_door_window_sensor_gen5_alarm_type
+          - sensor.aeotec_zw120_door_window_sensor_gen5_burglar
+          - sensor.aeotec_zw120_door_window_sensor_gen5_sourcenodeid
+          - sensor.air_quality
+          - sensor.audio_detector_alarm_level
+          - sensor.audio_detector_alarm_type
+          - sensor.audio_detector_burglar
+          - sensor.audio_detector_carbon_monoxide
+          - sensor.audio_detector_power_management
+          - sensor.audio_detector_smoke
+          - sensor.audio_detector_sourcenodeid
+          - sensor.audio_detector_temperature
+          - sensor.back_door_sensor_access_control
+          - sensor.back_door_sensor_alarm_level
+          - sensor.back_door_sensor_alarm_type
+          - sensor.back_door_sensor_burglar
+          - sensor.back_door_sensor_power_management
+          - sensor.back_door_sensor_sourcenodeid
+          - sensor.basement_door_sensor_access_control
+          - sensor.basement_door_sensor_alarm_level
+          - sensor.basement_door_sensor_alarm_type
+          - sensor.basement_door_sensor_burglar
+          - sensor.basement_door_sensor_power_management
+          - sensor.basement_door_sensor_sourcenodeid
+          - sensor.basement_pi_available_disk
+          - sensor.basement_pi_disk_used
+          - sensor.basement_pi_link_quality
+          - sensor.basement_pi_signal_level
+          - sensor.bedtime_hour
+          - sensor.bedtime_minute
+          - sensor.cold_flu
+          - sensor.cold_flu_risk
+          - sensor.current_week
+          - sensor.dark_sky_apparent_temperature
+          - sensor.dark_sky_cloud_coverage
+          - sensor.dark_sky_daily_max_precip_intensity
+          - sensor.dark_sky_daily_summary
+          - sensor.dark_sky_dew_point
+          - sensor.dark_sky_hourly_summary
+          - sensor.dark_sky_humidity
+          - sensor.dark_sky_icon
+          - sensor.dark_sky_minutely_summary
+          - sensor.dark_sky_nearest_storm_bearing
+          - sensor.dark_sky_nearest_storm_distance
+          - sensor.dark_sky_ozone
+          - sensor.dark_sky_precip
+          - sensor.dark_sky_precip_intensity
+          - sensor.dark_sky_precip_probability
+          - sensor.dark_sky_pressure
+          - sensor.dark_sky_summary
+          - sensor.dark_sky_temperature
+          - sensor.dark_sky_visibility
+          - sensor.dark_sky_wind_bearing
+          - sensor.dark_sky_wind_speed
+          - sensor.date
+          - sensor.date__time
+          - sensor.dining_room_thermostat_humidity
+          - sensor.dining_room_thermostat_hvac_state
+          - sensor.dining_room_thermostat_operation_mode
+          - sensor.dining_room_thermostat_target
+          - sensor.dining_room_thermostat_temperature
+          - sensor.disk_free_
+          - sensor.downstairs_multi_sensor_alarm_level
+          - sensor.downstairs_multi_sensor_alarm_type
+          - sensor.downstairs_multi_sensor_burglar
+          - sensor.downstairs_multi_sensor_luminance
+          - sensor.downstairs_multi_sensor_power
+          - sensor.downstairs_multi_sensor_relative_humidity
+          - sensor.downstairs_multi_sensor_sourcenodeid
+          - sensor.downstairs_multi_sensor_temperature
+          - sensor.driveway_camera_objects
+          - sensor.driveway_camera_people
+          - sensor.external_ip
+          - sensor.family_room_pi_available_disk
+          - sensor.family_room_pi_disk_used
+          - sensor.family_room_pi_link_quality
+          - sensor.family_room_pi_signal_level
+          - sensor.front_room_multi_sensor_alarm_level
+          - sensor.front_room_multi_sensor_alarm_type
+          - sensor.front_room_multi_sensor_burglar
+          - sensor.front_room_multi_sensor_luminance
+          - sensor.front_room_multi_sensor_relative_humidity
+          - sensor.front_room_multi_sensor_sourcenodeid
+          - sensor.front_room_multi_sensor_temperature
+          - sensor.front_room_multi_sensor_ultraviolet
+          - sensor.front_room_pi_available_disk
+          - sensor.front_room_pi_disk_used
+          - sensor.front_room_pi_link_quality
+          - sensor.front_room_pi_signal_level
+          - sensor.frontdoor_camera_objects
+          - sensor.frontdoor_camera_people
+          - sensor.garage_camera_objects
+          - sensor.garage_camera_people
+          - sensor.garage_door_sensor_access_control
+          - sensor.garage_door_sensor_alarm_level
+          - sensor.garage_door_sensor_alarm_type
+          - sensor.garage_door_sensor_burglar
+          - sensor.garage_door_sensor_power_management
+          - sensor.garage_door_sensor_sourcenodeid
+          - sensor.garage_pi_available_disk
+          - sensor.garage_pi_disk_used
+          - sensor.garage_pi_link_quality
+          - sensor.garage_pi_signal_level
+          - sensor.guest_1_pi_available_disk
+          - sensor.guest_1_pi_disk_used
+          - sensor.guest_1_pi_link_quality
+          - sensor.guest_1_pi_signal_level
+          - sensor.guest_2_pi_available_disk
+          - sensor.guest_2_pi_disk_used
+          - sensor.guest_2_pi_link_quality
+          - sensor.guest_2_pi_signal_level
+          - sensor.guest_bedroom_multi_sensor_alarm_level
+          - sensor.guest_bedroom_multi_sensor_alarm_type
+          - sensor.guest_bedroom_multi_sensor_burglar
+          - sensor.guest_bedroom_multi_sensor_luminance
+          - sensor.guest_bedroom_multi_sensor_relative_humidity
+          - sensor.guest_bedroom_multi_sensor_sourcenodeid
+          - sensor.guest_bedroom_multi_sensor_temperature
+          - sensor.guest_bedroom_multi_sensor_ultraviolet
+          - sensor.ha_current_version
+          - sensor.ha_installed_version
+          - sensor.hasika_battery_level
+          - sensor.hasika_battery_state
+          - sensor.hasika_iphone_battery_ot
+          - sensor.hasika_location
+          - sensor.hasikas_driving_speed
+          - sensor.hasikas_iphone_battery_ot
+          - sensor.hasikas_iphone_battery_state
+          - sensor.hasikas_iphone_wifi_state
+          - sensor.holiday
+          - sensor.home_assistant_up_time
+          - sensor.home_eta
+          - sensor.illumination_158d00016c2d0e
+          - sensor.illumination_158d00016db6d2
+          - sensor.illumination_158d0001a25041
+          - sensor.illumination_158d0001a662fe
+          - sensor.illumination_158d00024e57d3
+          - sensor.illumination_158d00024e57fb
+          - sensor.illumination_158d00024e842c
+          - sensor.illumination_158d00024ee084
+          - sensor.illumination_158d000272bf48
+          - sensor.illumination_158d000272bfd7
+          - sensor.illumination_34ce008ad65d
+          - sensor.internet_time
+          - sensor.ipad_battery_level
+          - sensor.ipad_battery_state
+          - sensor.iphone__battery_level
+          - sensor.iphone__battery_state
+          - sensor.ipv4_address_wlp1s10
+          - sensor.kalavalanas_cpu_temperature
+          - sensor.kalavalanas_cpu_usage
+          - sensor.kalavalanas_memory_usage
+          - sensor.kalavalanas_network_up_eth0
+          - sensor.kalavalanas_network_up_eth1
+          - sensor.kalavalanas_smart_status_drive_01
+          - sensor.kalavalanas_smart_status_drive_02
+          - sensor.kalavalanas_smart_status_drive_03
+          - sensor.kalavalanas_smart_status_drive_04
+          - sensor.kalavalanas_status
+          - sensor.kalavalanas_system_temperature
+          - sensor.kalavalanas_temperature_drive_01
+          - sensor.kalavalanas_temperature_drive_02
+          - sensor.kalavalanas_temperature_drive_03
+          - sensor.kalavalanas_temperature_drive_04
+          - sensor.kalavalanas_volume_used_datavol1
+          - sensor.kitchen_motion_sensor_alarm_level
+          - sensor.kitchen_motion_sensor_alarm_type
+          - sensor.kitchen_motion_sensor_burglar
+          - sensor.kitchen_motion_sensor_power_management
+          - sensor.kitchen_motion_sensor_sourcenodeid
+          - sensor.kitchen_pi_available_disk
+          - sensor.kitchen_pi_disk_used
+          - sensor.kitchen_pi_link_quality
+          - sensor.kitchen_pi_signal_level
+          - sensor.last_boot
+          - sensor.life360_sensor
+          - sensor.mallika_iphone_battery_ot
+          - sensor.mallika_location
+          - sensor.mallikas_driving_speed
+          - sensor.mallikas_iphone_battery_ot
+          - sensor.mallikas_iphone_battery_state
+          - sensor.mallikas_iphone_wifi_state
+          - sensor.master_bedroom_pi_available_disk
+          - sensor.master_bedroom_pi_disk_used
+          - sensor.master_bedroom_pi_link_quality
+          - sensor.master_bedroom_pi_signal_level
+          - sensor.memory_free
+          - sensor.my_domain
+          - sensor.nas_cpu_usage_above_80
+          - sensor.nas_memory_usage_above_80
+          - sensor.patio_camera_objects
+          - sensor.patio_camera_people
+          - sensor.pihole_ads_blocked_today
+          - sensor.pihole_ads_percentage_blocked_today
+          - sensor.pihole_dns_queries_cached
+          - sensor.pihole_dns_queries_forwarded
+          - sensor.pihole_dns_queries_today
+          - sensor.pihole_dns_unique_clients
+          - sensor.pihole_dns_unique_domains
+          - sensor.pihole_domains_blocked
+          - sensor.pihole_seen_clients
+          - sensor.playarea_camera_objects
+          - sensor.playarea_camera_people
+          - sensor.pollen
+          - sensor.pollen_level
+          - sensor.processor_use
+          - sensor.pws_alerts
+          - sensor.pws_feelslike_f
+          - sensor.pws_heat_index_f
+          - sensor.pws_relative_humidity
+          - sensor.pws_temp_f
+          - sensor.pws_uv
+          - sensor.pws_visibility_mi
+          - sensor.pws_weather
+          - sensor.pws_wind_mph
+          - sensor.recycle_day
+          - sensor.recycle_pickup_day
+          - sensor.recycle_pickup_week
+          - sensor.season
+          - sensor.since_last_boot
+          - sensor.single_car_garage_door_sensor_status
+          - sensor.single_car_garage_door_tilt_sensor_access_control
+          - sensor.single_car_garage_door_tilt_sensor_alarm_level
+          - sensor.single_car_garage_door_tilt_sensor_alarm_type
+          - sensor.single_car_garage_door_tilt_sensor_burglar
+          - sensor.single_car_garage_door_tilt_sensor_power_management
+          - sensor.single_car_garage_door_tilt_sensor_sourcenodeid
+          - sensor.speedtest_download
+          - sensor.speedtest_ping
+          - sensor.speedtest_upload
+          - sensor.srinika_battery_level
+          - sensor.srinika_battery_state
+          - sensor.srinika_iphone_battery_ot
+          - sensor.srinika_location
+          - sensor.srinikas_driving_speed
+          - sensor.srinikas_iphone_battery_ot
+          - sensor.srinikas_iphone_battery_state
+          - sensor.srinikas_iphone_wifi_state
+          - sensor.stairs_motion_sensor_alarm_level
+          - sensor.stairs_motion_sensor_alarm_type
+          - sensor.stairs_motion_sensor_burglar
+          - sensor.stairs_motion_sensor_power_management
+          - sensor.stairs_motion_sensor_sourcenodeid
+          - sensor.suresh_battery_level
+          - sensor.suresh_battery_state
+          - sensor.suresh_iphone_battery_ot
+          - sensor.suresh_location
+          - sensor.sureshs_driving_speed
+          - sensor.sureshs_iphone_battery_ot
+          - sensor.sureshs_iphone_battery_state
+          - sensor.sureshs_iphone_wifi_state
+          - sensor.tesla_model_3_5yj3e1ea8jf010610_battery_sensor
+          - sensor.tesla_model_3_5yj3e1ea8jf010610_mileage_sensor
+          - sensor.tesla_model_3_5yj3e1ea8jf010610_range_sensor
+          - sensor.tesla_model_3_5yj3e1ea8jf010610_temperature_sensor_inside
+          - sensor.tesla_model_3_5yj3e1ea8jf010610_temperature_sensor_outside
+          - sensor.theater_pi_available_disk
+          - sensor.theater_pi_disk_used
+          - sensor.theater_pi_link_quality
+          - sensor.theater_pi_signal_level
+          - sensor.time
+          - sensor.time__date
+          - sensor.time_utc
+          - sensor.trash_day
+          - sensor.trash_pickup_day
+          - sensor.tv_multi_sensor_alarm_level
+          - sensor.tv_multi_sensor_alarm_type
+          - sensor.tv_multi_sensor_burglar
+          - sensor.tv_multi_sensor_luminance
+          - sensor.tv_multi_sensor_relative_humidity
+          - sensor.tv_multi_sensor_sourcenodeid
+          - sensor.tv_multi_sensor_temperature
+          - sensor.tv_multi_sensor_ultraviolet
+          - sensor.two_car_garage_door_sensor_status
+          - sensor.two_car_garage_door_tilt_sensor_access_control
+          - sensor.two_car_garage_door_tilt_sensor_alarm_level
+          - sensor.two_car_garage_door_tilt_sensor_alarm_type
+          - sensor.two_car_garage_door_tilt_sensor_burglar
+          - sensor.two_car_garage_door_tilt_sensor_power_management
+          - sensor.two_car_garage_door_tilt_sensor_sourcenodeid
+          - sensor.unknown_node_39_unknown
+          - sensor.ups_battery
+          - sensor.ups_input_voltage
+          - sensor.ups_load
+          - sensor.ups_nominal_input_voltage
+          - sensor.ups_status
+          - sensor.ups_time_left
+          - sensor.ups_time_on_battery
+          - sensor.ups_transfer_count
+          - sensor.upstairs_multi_sensor_alarm_level
+          - sensor.upstairs_multi_sensor_alarm_type
+          - sensor.upstairs_multi_sensor_burglar
+          - sensor.upstairs_multi_sensor_luminance
+          - sensor.upstairs_multi_sensor_relative_humidity
+          - sensor.upstairs_multi_sensor_sourcenodeid
+          - sensor.upstairs_multi_sensor_temperature
+          - sensor.upstairs_multi_sensor_ultraviolet
+          - sensor.usps_mail
+          - sensor.usps_packages
+          - sensor.uv_burn_time
+          - sensor.wakeup_hour
+          - sensor.wakeup_minute
+          - sensor.wallmote_alarm_level
+          - sensor.wallmote_alarm_type
+          - sensor.wallmote_power_management
+          - sensor.wallmote_sourcenodeid
+          - sensor.wind_direction
+          - sensor.wind_direction_tts
+          - sensor.zwave_smart_switch_current
+          - sensor.zwave_smart_switch_energy
+          - sensor.zwave_smart_switch_power
+          - sensor.zwave_smart_switch_previous_reading
+          - sensor.zwave_smart_switch_voltage
+
+      - type: entities
+        title: Sun
+        show_header_toggle: true
+        entities:
+          - sun.sun
+
+      - type: entities
+        title: Switchs
+        show_header_toggle: true
+        entities:
+          - switch.basement_left_lights
+          - switch.basement_right_lights
+          - switch.downstairs_bathroom_fragrance_outlet
+          - switch.downstairs_fragrance_outlet
+          - switch.frontyard_light
+          - switch.garage_lights
+          - switch.guest_bedroom_1
+          - switch.guest_bedroom_2
+          - switch.kids_bed_accent_light
+          - switch.kids_bedroom
+          - switch.kitchen_light
+          - switch.kitchen_siren_switch
+          - switch.kitchen_siren_switch_2
+          - switch.kitchen_siren_switch_3
+          - switch.kitchen_siren_switch_4
+          - switch.kitchen_siren_switch_5
+          - switch.office_room_lights
+          - switch.rf_switch_five
+          - switch.rf_switch_four
+          - switch.rf_switch_one
+          - switch.rf_switch_three
+          - switch.rf_switch_two
+          - switch.tesla_model_3_5yj3e1ea8jf010610_charger_switch
+          - switch.tesla_model_3_5yj3e1ea8jf010610_maxrange_switch
+          - switch.upstairs_fragrance_outlet
+          - switch.wallmote_switch
+          - switch.wemobackyardlightswitch
+          - switch.zwave_smart_switch_switch
+
+      - type: entities
+        title: Timers
+        show_header_toggle: true
+        entities:
+          - timer.timer_bathroom_aroma
+          - timer.timer_downstairs_aroma
+          - timer.timer_familyroom
+          - timer.timer_frontroom
+          - timer.timer_garage
+          - timer.timer_kitchen
+          - timer.timer_masterbedroom
+          - timer.timer_officeroom
+          - timer.timer_upstairs_aroma
+          - timer.wfh_timer
+
+      - type: entities
+        title: Updater
+        show_header_toggle: true
+        entities:
+          - updater.updater
+
+      - type: entities
+        title: Zones
+        show_header_toggle: true
+        entities:
+          - zone.bestbuy
+          - zone.bhavani_cash_carry
+          - zone.bradley_high_school
+          - zone.bradley_tennis_court
+          - zone.chinese_store
+          - zone.convention_center
+          - zone.costco
+          - zone.costcopolaris
+          - zone.home
+          - zone.homedepot
+          - zone.india_groceries
+          - zone.kroger
+          - zone.lowes
+          - zone.meijers
+          - zone.memorial_middle_school
+          - zone.north_market
+          - zone.patel_bros
+          - zone.polaris_mall
+          - zone.samsclub
+          - zone.station
+          - zone.tuttlemall
+          - zone.walgreens
+          - zone.walmart
+          - zone.work
+
+      - type: entities
+        title: Zwaves
+        show_header_toggle: true
+        entities:
+          - zwave.aeotec_water_sensor
+          - zwave.audio_detector
+          - zwave.back_door_sensor
+          - zwave.basement_door_sensor
+          - zwave.downstairs_multi_sensor
+          - zwave.front_room_multi_sensor
+          - zwave.front_room_window_sensor
+          - zwave.garage_door_sensor
+          - zwave.guest_bedroom_multi_sensor
+          - zwave.kitchen_motion_sensor
+          - zwave.kitchen_siren
+          - zwave.single_car_garage_door_tilt_sensor
+          - zwave.stairs_motion_sensor
+          - zwave.tv_multi_sensor
+          - zwave.two_car_garage_door_tilt_sensor
+          - zwave.unknown_node_39
+          - zwave.unknown_node_41
+          - zwave.upstairs_multi_sensor
+          - zwave.wallmote
+          - zwave.zwave_front_door_sensor
+          - zwave.zwave_repeater
+          - zwave.zwave_smart_switch
+          - zwave.zwave_stick

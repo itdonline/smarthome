@@ -13,18 +13,15 @@ homeassistant:
         <<: *customize
         emulated_hue_hidden: true
         homebridge_hidden: false
-        critical: true
 
       not_exposed: &not_exposed
         <<: *customize
         emulated_hue_hidden: false
         homebridge_hidden: true
-        critical: false
 
       hidden: &hidden
         <<: *customize
         hidden: true
-        critical: false
 
     binary_sensor.motion_sensor_158d0001a662fe:
       friendly_name: Kitchen Motion Sensor (Xiaomi)
@@ -71,6 +68,16 @@ homeassistant:
     sensor.illumination_158d000272bf48:
       friendly_name: Garage's Luminance (Xiaomi)
 
+    binary_sensor.motion_sensor_158d000272bfd7:
+      friendly_name: Office Room Motion Sensor (Xiaomi)
+    sensor.illumination_158d000272bfd7:
+      friendly_name: Office Room Liminance (Xiaomi)
+
+    binary_sensor.motion_sensor_158d000272bed1:
+      friendly_name: Srinika's Bedroom Motion Sensor (Xiaomi)
+    sensor.illumination_158d000272bed1:
+      friendly_name: Srinika's Bedroom Liminance (Xiaomi)
+
     sensor.Illumination_34ce008ad65d:
       friendly_name: Hallway Luminance (Xiaomi Aqara)
 
@@ -102,6 +109,8 @@ group:
       - binary_sensor.motion_sensor_158d00024e842c
       - binary_sensor.motion_sensor_158d00024e57fb
       - binary_sensor.motion_sensor_158d000272bf48
+      - binary_sensor.motion_sensor_158d000272bfd7
+      - binary_sensor.motion_sensor_158d000272bed1
 
       - sensor.illumination_158d00024e57d3
       - sensor.illumination_158d00024ee084
@@ -112,6 +121,8 @@ group:
       - sensor.illumination_158d00024e842c
       - sensor.illumination_158d00024e57fb
       - sensor.illumination_158d000272bf48
+      - sensor.illumination_158d000272bfd7
+      - sensor.illumination_158d000272bed1
 
       - sensor.illumination_34ce008ad65d
       

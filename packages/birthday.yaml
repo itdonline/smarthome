@@ -44,7 +44,6 @@ homeassistant:
       hidden: &hidden
         <<: *customize
         hidden: true
-        critical: false
   
     input_label.srinika_birthday:
       <<: *hidden
