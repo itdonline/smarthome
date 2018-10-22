@@ -209,7 +209,7 @@ camera:
     still_image_url: !secret playarea_camera_url
 
   - platform: mjpeg
-    mjpeg_url: http://192.168.1.189:8081
+    mjpeg_url: !secret garage_camera_url
     name: Garage Camera
 
 image_processing:
