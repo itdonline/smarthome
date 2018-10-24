@@ -820,3 +820,65 @@ You can add other characters or numbers by simply appending to the existing `alp
 #       #    ## #     # #     #    #    
 ####### #     #  #####  #######    #
 ```
+
+## 23. Parsing ImageProcessing JSON data and making sense for your automations
+
+When you have an image_processing component in your setup, chances are it gives you the following JSON based on the camera feed. Often times people wonder how they can retrive relevant information from the JSON into a variable or a sensor to use in automations. The following JSON is a sample from image_processing component.
+
+```
+{% set my_json = { "matches": {
+  "car": [
+    {
+      "score": 97.38396406173706,
+      "box": [
+        0.12360583990812302,
+        0.5516648292541504
+      ]
+    },
+    {
+      "score": 84.57555770874023,
+      "box": [
+        0.1225057914853096,
+        0.4232105016708374
+      ]
+    }
+  ],
+  "bus": [
+    {
+      "score": 97.38396406173706,
+      "box": [
+        0.12360583990812302,
+        0.5216648292541504
+      ]
+    },
+    {
+      "score": 84.57555770874023,
+      "box": [
+        0.1225057914853096,
+        0.4232105016708374
+      ]
+    }
+  ]
+}}
+%}
+```
+
+The following code shows all the tags that are found in the JSON that have the box size more than 0.5 in a much more readable fashion. This is a sample code I wrote for [@arsaboo](https://github.com/arsaboo)
+
+```
+{% set camera = "backyard" |title %}
+{%- set tags = my_json.matches.keys()|list -%}
+{%- for object in tags -%}
+{%- set outer_loop = loop %}
+{%- for x in my_json.matches[object]|list if x.box | max > 0.5 -%}
+{%- if outer_loop.first %}{% elif outer_loop.last %}, {% else %},{% endif -%}{{ object }} 
+{%- endfor -%}
+{% endfor -%}
+{{- ' detected in ' ~ camera if tags|count |int > 0 }}
+```
+
+The output is something like the folowing, that can used to announce using TTS or even send a text message to your cell phone. 
+
+```
+car, bus detected in Backyard
+```

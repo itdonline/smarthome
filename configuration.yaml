@@ -86,10 +86,10 @@ recorder:
 #      - sensor.tv_multi_sensor_temperature
 
 mqtt:
-  broker: !secret pi_hole_mqtt_server
-  port: !secret pi_hole_mqtt_port
-  username: !secret pi_hole_mqtt_username
-  password: !secret pi_hole_mqtt_password
+  broker: !secret mqtt_server
+  port: !secret mqtt_port
+  username: !secret mqtt_username
+  password: !secret mqtt_password
   keepalive: 60
   client_id: pi_ha
 
