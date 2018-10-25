@@ -842,23 +842,23 @@ When you have an image_processing component in your setup, chances are it gives 
 The following code shows all the tags that are found in the JSON that have the box size more than 0.5 in a much more readable fashion. This is a sample code I wrote for [@arsaboo](https://github.com/arsaboo)
 
 ```
-{% set camera = 'driveway' %}
+{%- set camera = 'driveway' -%}
 {%- set tags = value_json.keys()|list -%}
 
-{% macro get_list(obj) %}
-{%- for x in value_json[obj]|list if x.box[0]  > 0.25 -%}
+{%- macro get_list(obj) -%}
+{%- for x in value_json[obj]|list if x.box[0]  > 0.05 -%}
 {%- if loop.first %}{% elif loop.last %},{% else %},{% endif -%}{{ obj }} 
-{%- endfor -%}{% endmacro %}
+{%- endfor -%}{%- endmacro -%}
 
-{% macro run() %}
+{%- macro run() -%}
 {%- for object in tags -%}
 {%- if loop.first %}{% elif loop.last %}, {% else %}, {% endif -%}{{ obj }} 
 {{- get_list(object).split(',')|list|unique|list|join|title }}
 {%- endfor -%}
-{% endmacro %}
+{% endmacro -%}
 
-{% set output = run() %}
-{{- output ~ ' detected in ' ~ camera if output != '' }}
+{%- set output = run() -%}
+{{- output ~ ' detected in ' ~ camera if output != '' -}}
 ```
 
 The output is something like the folowing, that can used to announce using TTS or even send a text message to your cell phone. 
