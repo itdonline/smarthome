@@ -1,0 +1,24 @@
+group:
+  linksys:
+    entities:
+      - sensor.linksys10345_bytes_received
+      - sensor.linksys10345_bytes_sent
+      - sensor.linksys10345_kbytesec_received
+      - sensor.linksys10345_kbytesec_sent
+      - sensor.linksys10345_packets_received
+      - sensor.linksys10345_packets_sent
+      - sensor.linksys10345_packetssec_received
+      - sensor.linksys10345_packetssec_sent
+  openuv:
+    entities:
+      - sensor.current_ozone_level
+      - sensor.current_uv_index
+      - sensor.current_uv_level
+      - sensor.max_uv_index
+      - sensor.skin_type_1_safe_exposure_time
+      - sensor.skin_type_2_safe_exposure_time
+      - sensor.skin_type_3_safe_exposure_time
+      - sensor.skin_type_4_safe_exposure_time
+      - sensor.skin_type_5_safe_exposure_time
+      - sensor.skin_type_6_safe_exposure_time
+      - binary_sensor.protection_window
