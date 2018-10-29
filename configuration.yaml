@@ -183,6 +183,6 @@ ios:
 
 telegram_bot:
   - platform: broadcast
-    api_key: '511177711:AAGHaIM3-HetwNQhTUuFYvJhkXadCwBXC-k'
+    api_key: !secret telegram_apikey
     allowed_chat_ids:
-      - 791004882
+      - !secret telegram_chatid
