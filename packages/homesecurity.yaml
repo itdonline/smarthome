@@ -17,11 +17,10 @@ homeassistant:
       friendly_name: Home Security System
       icon: mdi:security
 
-alarm_control_panel:
-  platform: simplisafe
-  name: Simplisafe
-  username: !secret simplisafe_username
-  password: !secret simplisafe_password
+simplisafe:
+  accounts:
+    - username: !secret simplisafe_username
+      password: !secret simplisafe_password
 
 ###############################################################################
 #                _                        _   _                 

@@ -252,9 +252,9 @@ group:
       - switch.wemoswitch1
       - switch.zwave_smart_switch_switch
 
-light:
-  - platform: lifx
-    broadcast: !secret lifx_broadcast_ip
+# light:
+#   - platform: lifx
+#     broadcast: !secret lifx_broadcast_ip
 
 hue:
   bridges:

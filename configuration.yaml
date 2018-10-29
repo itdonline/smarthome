@@ -180,3 +180,9 @@ ios:
             authenticationRequired: yes
             destructive: yes
             behavior: 'default'
+
+telegram_bot:
+  - platform: broadcast
+    api_key: '511177711:AAGHaIM3-HetwNQhTUuFYvJhkXadCwBXC-k'
+    allowed_chat_ids:
+      - 791004882
