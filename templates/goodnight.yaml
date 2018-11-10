@@ -96,7 +96,7 @@
     {% set value = charging_status() %}
     {% if ' and ' in value or ',' in value %}
       {{ value }}'s phones are not plugged in.
-    {% else %}
+    {% elif value != '' %}
       {{ value }}'s phone is not plugged in.
     {% endif %}
   {%- endmacro -%}
