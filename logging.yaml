@@ -21,6 +21,7 @@ logs:
   homeassistant.components.http: critical
   homeassistant.components.zwave: critical
   homeassistant.components.sensor: critical
+  homeassistant.components.image_processing: critical
   homeassistant.components.homekit: critical
   custom_components.sensor.life360: critical
   custom_components.sensor.paloalto: critical

@@ -150,7 +150,7 @@ image_processing:
       - entity_id: camera.patio_camera
       - entity_id: camera.playarea_camera
       - entity_id: camera.garage_camera
-    file_out: >
+    file_out:
       {% set camera = camera_entity.split('.')[1].split('_')[0] %}
       {% set base_folder = "/home/homeassistant/.homeassistant/www/downloads/camera/" %}
       - "{{- base_folder -}}{{- camera -}}/{{ camera }}_latest.jpg"
@@ -197,23 +197,116 @@ binary_sensor:
 automation:
 
 #
-# This automation scans camera image depending upon where the motion is
+# Scan front door and driveway cameras when motion detected
+# if the garage doors are open, scan garage cameras as well
 #
-  - alias: Scan People and Objects
+  - alias: Scan Front Door Camera When Motion
+    initial_state: true
+    hide_entity: true
+    trigger:
+     - platform: state
+       entity_id:
+         - binary_sensor.motion_sensor_158d00024ee084
+       to: 'on'
+    action:
+      - service: image_processing.scan
+        data_template:
+          entity_id: image_processing.tensorflow_frontdoor_camera
+      - service: image_processing.scan
+        data_template:
+          entity_id: image_processing.tensorflow_driveway_camera
+      - condition: template
+        value_template: >
+          {% if states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == "on" or 
+                states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.state == "on" %}
+            True
+          {% else %}
+            False
+          {% endif %}
+      - service: image_processing.scan
+        data_template:
+          entity_id: image_processing.tensorflow_garage_camera
+
+#
+# Scan driveway and frontdoor cameras when motion detected
+# if the garage doors are open, scan garage cameras as well
+#
+  - alias: Scan Driveway Camera When Motion
     initial_state: true
     hide_entity: true
     trigger:
      - platform: state
        entity_id:
          - binary_sensor.motion_sensor_158d00024e57fb
-         - binary_sensor.motion_sensor_158d00024e842c
-         - binary_sensor.motion_sensor_158d00024ee084
+       to: 'on'
+    action:
+      - service: image_processing.scan
+        data_template:
+          entity_id: image_processing.tensorflow_driveway_camera
+      - service: image_processing.scan
+        data_template:
+          entity_id: image_processing.tensorflow_frontdoor_camera
+      - condition: template
+        value_template: >
+          {% if states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == "on" or 
+                states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.state == "on" %}
+            True
+          {% else %}
+            False
+          {% endif %}
+      - service: image_processing.scan
+        data_template:
+          entity_id: image_processing.tensorflow_garage_camera
+
+#
+# When motion detected in garage, scan garage camera
+# If any of the garage doors are open, scan front door, driveway as well!
+#
+  - alias: Scan Garage Camera When Motion
+    initial_state: true
+    hide_entity: true
+    trigger:
+     - platform: state
+       entity_id:
          - binary_sensor.motion_sensor_158d000272bf48
        to: 'on'
     action:
       - service: image_processing.scan
         data_template:
-          entity_id: "image_processing.tensorflow_{{- trigger.entity_id.split('.')[1].split('_')[0] -}}_camera"
+          entity_id: image_processing.tensorflow_garage_camera
+      - condition: template
+        value_template: >
+          {% if states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == "on" or 
+                states.binary_sensor.two_car_garage_door_tilt_sensor_sensor.state == "on" %}
+            True
+          {% else %}
+            False
+          {% endif %}
+      - service: image_processing.scan
+        data_template:
+          entity_id: image_processing.tensorflow_driveway_camera
+      - service: image_processing.scan
+        data_template:
+          entity_id: image_processing.tensorflow_frontdoor_camera
+
+#
+# When motion detected in the backyard, scan both cameras
+#
+  - alias: Scan Backyard Camera When Motion
+    initial_state: true
+    hide_entity: true
+    trigger:
+     - platform: state
+       entity_id:
+         - binary_sensor.motion_sensor_158d00024e842c
+       to: 'on'
+    action:
+      - service: image_processing.scan
+        data_template:
+          entity_id: image_processing.tensorflow_patio_camera
+      - service: image_processing.scan
+        data_template:
+          entity_id: image_processing.tensorflow_playarea_camera
 
 # Before you think this code is crazy, here is an explanation.
 #
