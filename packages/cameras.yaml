@@ -141,6 +141,22 @@ camera:
     mjpeg_url: !secret garage_camera_url
     name: Garage Camera
 
+  - platform: local_file
+    name: Frontdoor Latest Scan
+    file_path: "/home/homeassistant/.homeassistant/www/downloads/camera/frontdoor/frontdoor_latest.jpg"
+  - platform: local_file
+    name: Driveway Latest Scan
+    file_path: "/home/homeassistant/.homeassistant/www/downloads/camera/driveway/driveway_latest.jpg"
+  - platform: local_file
+    name: Patio Latest Scan
+    file_path: "/home/homeassistant/.homeassistant/www/downloads/camera/patio/patio_latest.jpg"
+  - platform: local_file
+    name: Playarea Latest Scan
+    file_path: "/home/homeassistant/.homeassistant/www/downloads/camera/playarea/playarea_latest.jpg"
+  - platform: local_file
+    name: Garage Latest Scan
+    file_path: "/home/homeassistant/.homeassistant/www/downloads/camera/garage/garage_latest.jpg"
+
 image_processing:
   - platform: tensorflow
     scan_interval: 10000
@@ -151,10 +167,8 @@ image_processing:
       - entity_id: camera.playarea_camera
       - entity_id: camera.garage_camera
     file_out:
-      {% set camera = camera_entity.split('.')[1].split('_')[0] %}
-      {% set base_folder = "/home/homeassistant/.homeassistant/www/downloads/camera/" %}
-      - "{{- base_folder -}}{{- camera -}}/{{ camera }}_latest.jpg"
-      - "{{- base_folder -}}{{- camera -}}/{{ camera }}_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
+      - "/home/homeassistant/.homeassistant/www/downloads/camera/{{- camera_entity.split('.')[1].split('_')[0] -}}/{{ camera_entity.split('.')[1].split('_')[0] }}_latest.jpg"
+      - "/home/homeassistant/.homeassistant/www/downloads/camera/{{- camera_entity.split('.')[1].split('_')[0] -}}/{{ camera_entity.split('.')[1].split('_')[0] }}_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
     model:
       graph: /home/homeassistant/.homeassistant/tensorflow/frozen_inference_graph.pb
 
