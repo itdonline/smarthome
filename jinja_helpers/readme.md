@@ -873,9 +873,8 @@ For those ham radio buffs out there, here is a way you can convert english to mo
 
 ```
 {% set input = "hello morse" %}
-{% set input = input.replace(' ', '/') %}
 {% set morsealphabets = ".-   -... -.-. -..  .    ..-. --.  .... ..   .--- -.-  .-.. --   -.   ---  .--. --.- .-.  ...  -    ..-  ...- .--  -..- -.-- --.. -----.----..---...--....-.....-....--...---..----." %}
-{%- for x in input|list %}
+{%- for x in input.replace(' ', '/')|list %}
 {%- set start = "abcdefghijklmnopqrstuvwxyz0123456789".find(x|lower) * 5  %}
 {{- morsealphabets[start:start+5]|trim ~ ' ' if start >= 0 else '/' -}}
 {%- endfor %}
