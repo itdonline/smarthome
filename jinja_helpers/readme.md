@@ -880,3 +880,11 @@ For those ham radio buffs out there, here is a way you can convert english to mo
 {{- morsealphabets[start:start+5]|trim ~ ' ' if start >= 0 else '/' -}}
 {%- endfor %}
 ```
+
+This gives you the following output
+
+```
+.... . .-.. .-.. --- /-- --- .-. ... .
+```
+
+Compare the output with [Morse code translator here](https://morsecode.scphillips.com/translator.html)
