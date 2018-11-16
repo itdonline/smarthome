@@ -866,3 +866,17 @@ The output is something like the folowing, that can used to announce using TTS o
 ```
 Car detected in Backyard
 ```
+
+## 24 English to Morse Code Conversion
+
+For those ham radio buffs out there, here is a way you can convert english to morse code. 
+
+```
+{% set input = "hello morse" %}
+{% set input = input.replace(' ', '/') %}
+{% set morsealphabets = ".-   -... -.-. -..  .    ..-. --.  .... ..   .--- -.-  .-.. --   -.   ---  .--. --.- .-.  ...  -    ..-  ...- .--  -..- -.-- --.. -----.----..---...--....-.....-....--...---..----." %}
+{%- for x in input|list %}
+{%- set start = "abcdefghijklmnopqrstuvwxyz0123456789".find(x|lower) * 5  %}
+{{- morsealphabets[start:start+5]|trim ~ ' ' if start >= 0 else '/' -}}
+{%- endfor %}
+```
