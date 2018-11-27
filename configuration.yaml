@@ -68,7 +68,7 @@ homekit:
 python_script:
 
 map:
-
+websocket_api:
 updater:
 logbook:
 history:

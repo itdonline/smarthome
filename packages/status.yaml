@@ -1,0 +1,20 @@
+homeassistant:
+  
+automation:
+# this automation runs every day at 9:00 AM, 12 PM, 5PM, and at 10:00 PM
+# and sends an email.
+  - alias: Daily Home Status
+    trigger:
+      - platform: time
+        at: '09:00:00'
+      - platform: time
+        at: '12:00:00'
+      - platform: time
+        at: '17:00:00'
+      - platform: time
+        at: '10:00:00'
+    action:
+      - service: notify.notify_smtp
+        data_template:
+          title: 'Home Status {{ now().strftime("%d %h %Y, %I:%M:%S %p") }}'
+          message: !include ../templates/away_status.yaml

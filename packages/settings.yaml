@@ -118,6 +118,7 @@ group:
       - input_boolean.sharp_tv
       - input_boolean.alert_faces_in_cameras
       - input_boolean.alert_objects_in_cameras
+      - input_boolean.tesla_heat_on
 
   Bed & Wakeup Times:
     entities:
