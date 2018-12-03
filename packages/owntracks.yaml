@@ -22,10 +22,7 @@ homeassistant:
     device_tracker.ipad_ipad:
       hidden: true
 
-device_tracker:
-  - platform: owntracks
-    max_gps_accuracy: 200
-    waypoints: True
+owntracks:
 
 group:
   Home & Family:

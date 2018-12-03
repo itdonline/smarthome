@@ -36,7 +36,7 @@ automation:
     hide_entity: true
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.cube_158d0002794cd6
         action_type: flip90
@@ -50,7 +50,7 @@ automation:
     hide_entity: true
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.cube_158d0002794cd6
         action_type: flip180
@@ -68,7 +68,7 @@ automation:
     hide_entity: true
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.cube_158d0002794cd6
         action_type: move
@@ -82,7 +82,7 @@ automation:
     hide_entity: true
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.cube_158d0002794cd6
         action_type: tap_twice
@@ -101,7 +101,7 @@ automation:
     hide_entity: true
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.cube_158d0002794cd6
         action_type: shake_air
@@ -122,7 +122,7 @@ automation:
     hide_entity: true
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.cube_158d00027c0276
         action_type: flip90
@@ -136,7 +136,7 @@ automation:
     hide_entity: true
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.cube_158d00027c0276
         action_type: flip180
@@ -150,7 +150,7 @@ automation:
     hide_entity: true
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.cube_158d00027c0276
         action_type: move
@@ -164,7 +164,7 @@ automation:
     hide_entity: true
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.cube_158d00027c0276
         action_type: shake_air
@@ -185,7 +185,7 @@ automation:
     hide_entity: true
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.cube_158d00027cf60d
         action_type: flip90
@@ -199,7 +199,7 @@ automation:
     hide_entity: true
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.cube_158d00027cf60d
         action_type: shake_air
@@ -220,7 +220,7 @@ automation:
     hide_entity: true
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.cube_158d00027ce15c
         action_type: flip90
@@ -234,7 +234,7 @@ automation:
     hide_entity: true
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.cube_158d00027ce15c
         action_type: shake_air
@@ -257,7 +257,7 @@ automation:
     hide_entity: true
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.cube_158d000276e3e8
         action_type: flip90
@@ -271,7 +271,7 @@ automation:
     hide_entity: true
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.cube_158d000276e3e8
         action_type: shake_air
@@ -292,7 +292,7 @@ automation:
     hide_entity: true
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.cube_158d000278eb6a
         action_type: flip90
@@ -308,7 +308,7 @@ automation:
     hide_entity: true
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.cube_158d000278eb6a
         action_type: flip180
@@ -322,7 +322,7 @@ automation:
     hide_entity: true
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.cube_158d000278eb6a
         action_type: move
@@ -336,7 +336,7 @@ automation:
     hide_entity: true
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.cube_158d000278eb6a
         action_type: tap_twice
@@ -355,7 +355,7 @@ automation:
     hide_entity: true
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.cube_158d000278eb6a
         action_type: shake_air

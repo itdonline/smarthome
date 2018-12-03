@@ -55,7 +55,7 @@ cloud:
 
 discovery:
 homekit:
-  autostart: false
+  autostart: true
   filter:
     include_domains:
       - alarm_control_panel
