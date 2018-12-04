@@ -51,6 +51,7 @@
   {# Calendar notifications #}
   {%- macro calendar_reminder() -%}
     {% set days2NextEvent = 0 %}
+      {% if state_attr('calendar.suresh_kalavala', 'start_time') != None and state_attr('calendar.suresh_kalavala', 'message') != None %}
       {% if now().year == strptime(states.calendar.suresh_kalavala.attributes.start_time, '%Y-%m-%d %H:%M:%S').year %}
         {% set days2NextEvent = strptime(states.calendar.suresh_kalavala.attributes.start_time, '%Y-%m-%d %H:%M:%S').strftime('%j') | int - (now().strftime('%j') | int) %}
       {% else %}
@@ -69,11 +70,13 @@
           in {{ days2NextEvent }} days.
         {% endif %}
       {% endif %}
+    {% endif %}
   {%- endmacro -%}
 
   {# Indian Holidays notifications #}  
   {%- macro IndianHolidays() -%}
     {% set days2NextEvent = 0 %}
+      {% if state_attr('calendar.holidays_in_india', 'start_time') != None and state_attr('calendar.holidays_in_india', 'message') != None %}
       {% if now().year == strptime(states.calendar.holidays_in_india.attributes.start_time, '%Y-%m-%d %H:%M:%S').year %}
         {% set days2NextEvent = strptime(states.calendar.holidays_in_india.attributes.start_time, '%Y-%m-%d %H:%M:%S').strftime('%j') | int - (now().strftime('%j') | int) %}
       {% else %}
@@ -90,11 +93,13 @@
           {{ states.calendar.holidays_in_india.attributes.message | replace(".", "") }}. is in {{ days2NextEvent }} days.
         {%- endif -%}
       {%- endif %}
+    {%- endif %}
   {%- endmacro -%}
 
   {# USA Holidays notifications #}  
   {%- macro USHolidays() -%}
     {% set days2NextEvent = 0 %}
+      {% if state_attr('calendar.holidays_in_united_states', 'start_time') != None and state_attr('calendar.holidays_in_united_states', 'message') != None %}
       {% if now().year == strptime(states.calendar.holidays_in_united_states.attributes.start_time, '%Y-%m-%d %H:%M:%S').year %}
         {% set days2NextEvent = strptime(states.calendar.holidays_in_united_states.attributes.start_time, '%Y-%m-%d %H:%M:%S').strftime('%j') | int - (now().strftime('%j') | int) %}
       {% else %}
@@ -110,6 +115,7 @@
         {%- else -%}
           {{ states.calendar.holidays_in_united_states.attributes.message | replace(".", "")}} is in {{ days2NextEvent }} days.
         {%- endif -%}
+      {%- endif %}
       {%- endif %}
   {%- endmacro -%}
 
