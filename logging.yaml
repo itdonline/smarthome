@@ -12,7 +12,7 @@ logs:
   aiohttp.server: warning
   homeassistant.core: warning
   homeassistant.setup: warning
-  homeassistant.loader: warning # hide custom_component warnings
+  homeassistant.loader: error # hide custom_component warnings
   homeassistant.exceptions: warning
   homeassistant.helpers.script: warning  
   homeassistant.helpers.entity: warning

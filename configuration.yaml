@@ -62,8 +62,6 @@ homekit:
       - light
       - switch
       - input_boolean
-      - binary_sensor
-      - device_tracker
 
 python_script:
 
