@@ -160,6 +160,7 @@ camera:
 image_processing:
   - platform: tensorflow
     scan_interval: 10000
+    confidence: 75
     source:
       - entity_id: camera.frontdoor_camera
       - entity_id: camera.driveway_camera
@@ -171,6 +172,10 @@ image_processing:
       - "/home/homeassistant/.homeassistant/www/downloads/camera/{{- camera_entity.split('.')[1].split('_')[0] -}}/{{ camera_entity.split('.')[1].split('_')[0] }}_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
     model:
       graph: /home/homeassistant/.homeassistant/tensorflow/frozen_inference_graph.pb
+    categories:
+      - person
+      - car
+      - truck
 
 binary_sensor:
 
@@ -216,7 +221,7 @@ automation:
 #
   - alias: Scan Front Door Camera When Motion
     initial_state: true
-    hide_entity: true
+    hide_entity: false
     trigger:
      - platform: state
        entity_id:
@@ -229,6 +234,19 @@ automation:
       - service: image_processing.scan
         data_template:
           entity_id: image_processing.tensorflow_driveway_camera
+      - service: script.voice_notify
+        data_template:
+          message: >-
+            {% set e_id = "image_processing.tensorflow_frontdoor_camera" %}
+            Hello, {% if state_attr(e_id, 'summary') %}
+            {%- for x in states[e_id.split('.')[0]][e_id.split('.')[1]].attributes.summary | list %}
+            {%- if loop.first %} {% elif loop.last %} and {% else %}, {% endif -%} {{x|title}}
+            {%- endfor %}
+            {%- else -%}
+            Motion
+            {%- endif -%}
+            {{- " detected in the front yard."  }}
+          greeting: 'no'
       - condition: template
         value_template: >
           {% if states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == "on" or 
@@ -247,7 +265,7 @@ automation:
 #
   - alias: Scan Driveway Camera When Motion
     initial_state: true
-    hide_entity: true
+    hide_entity: false
     trigger:
      - platform: state
        entity_id:
@@ -260,6 +278,18 @@ automation:
       - service: image_processing.scan
         data_template:
           entity_id: image_processing.tensorflow_frontdoor_camera
+      - service: script.voice_notify
+        data_template:
+          message: >-
+            {% set e_id = "image_processing.tensorflow_driveway_camera" %}
+            Hello, {% if state_attr(e_id, 'summary') %}
+            {%- for x in states[e_id.split('.')[0]][e_id.split('.')[1]].attributes.summary | list %}
+            {%- if loop.first %} {% elif loop.last %} and {% else %}, {% endif -%} {{x|title}}
+            {%- endfor %}
+            {%- else -%}
+            Motion
+            {%- endif -%}
+            {{- " detected in the driveway." }}
       - condition: template
         value_template: >
           {% if states.binary_sensor.single_car_garage_door_tilt_sensor_sensor.state == "on" or 
@@ -278,7 +308,7 @@ automation:
 #
   - alias: Scan Garage Camera When Motion
     initial_state: true
-    hide_entity: true
+    hide_entity: false
     trigger:
      - platform: state
        entity_id:
@@ -302,13 +332,24 @@ automation:
       - service: image_processing.scan
         data_template:
           entity_id: image_processing.tensorflow_frontdoor_camera
-
+      - service: script.voice_notify
+        data_template:
+          message: >-
+            {% set e_id = "image_processing.tensorflow_garage_camera" %}
+            Hello, {% if state_attr(e_id, 'summary') %}
+            {%- for x in states[e_id.split('.')[0]][e_id.split('.')[1]].attributes.summary | list %}
+            {%- if loop.first %} {% elif loop.last %} and {% else %}, {% endif -%} {{x|title}}
+            {%- endfor %}
+            {%- else -%}
+            Motion
+            {%- endif -%}
+            {{- " detected in the garage." }}
 #
 # When motion detected in the backyard, scan both cameras
 #
   - alias: Scan Backyard Camera When Motion
     initial_state: true
-    hide_entity: true
+    hide_entity: false
     trigger:
      - platform: state
        entity_id:
@@ -321,6 +362,18 @@ automation:
       - service: image_processing.scan
         data_template:
           entity_id: image_processing.tensorflow_playarea_camera
+      - service: script.voice_notify
+        data_template:
+          message: >-
+            {% set e_id = "image_processing.tensorflow_backyard_camera" %}
+            Hello, {% if state_attr(e_id, 'summary') %}
+            {%- for x in states[e_id.split('.')[0]][e_id.split('.')[1]].attributes.summary | list %}
+            {%- if loop.first %} {% elif loop.last %} and {% else %}, {% endif -%} {{x|title}}
+            {%- endfor %}
+            {%- else -%}
+            Motion
+            {%- endif -%}
+            {{- " detected in the backyard." }}
 
 # Before you think this code is crazy, here is an explanation.
 #
