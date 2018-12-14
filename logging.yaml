@@ -1,4 +1,4 @@
-default: warning
+default: error
 logs:
   gsp: warning
   root: warning
@@ -10,7 +10,7 @@ logs:
   simplipy.api: warning
   netdisco.ssdp: warning
   aiohttp.server: warning
-  homeassistant.core: warning
+  homeassistant.core: critical
   homeassistant.setup: warning
   homeassistant.loader: error # hide custom_component warnings
   homeassistant.exceptions: warning

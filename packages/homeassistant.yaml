@@ -61,9 +61,6 @@ homeassistant:
     sensor.last_boot:
       friendly_name: Last Boot
 
-    sensor.since_last_boot:
-      friendly_name: Up Since
-     
     sensor.signal_strength:
       icon: mdi:signal
 
@@ -107,7 +104,6 @@ group:
       - sensor.disk_free_
       - sensor.ipv4_address_wlp1s10
       - sensor.last_boot
-      - sensor.since_last_boot
       - sensor.signal_strength
       - sensor.link_quality
       - sensor.current_log_level
@@ -178,7 +174,6 @@ sensor:
       - type: ipv4_address
         arg: wlp1s10
       - type: last_boot
-      - type: since_last_boot
 
   - platform: rest
     resource: https://pypi.python.org/pypi/homeassistant/json

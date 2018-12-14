@@ -91,8 +91,8 @@ mqtt:
   keepalive: 60
   client_id: pi_ha
 
-http:
-  api_password: !secret api_password
+# http:
+#   api_password: !secret api_password
   # trusted_networks:
   #   - 127.0.0.1
   #   - ::1

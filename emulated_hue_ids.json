@@ -494,7 +494,7 @@
     "542": "sensor.dark_sky_daily_high_apparent_temperature",
     "543": "group.internet_speed",
     "544": "sensor.cold_flu",
-    "545": "sensor.since_last_boot",
+    "545": "sensor.last_boot",
     "546": "input_boolean.heavy_wind_alert",
     "547": "media_player.snapcast_group_cca34212ca0a45566c0bd7893b211424",
     "548": "sensor.mallikas_iphone_battery_state",

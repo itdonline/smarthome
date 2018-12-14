@@ -221,6 +221,10 @@ binary_sensor:
             true
           {% endif %}
 
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api_key
+
 sensor:
   - platform: template
     sensors:

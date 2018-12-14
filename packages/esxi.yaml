@@ -46,7 +46,7 @@ sensor:
 
   - platform: template
     sensors:
-      esxi_memory_used:
+      esxi_system_uptime:
        friendly_name: "ESXi System Uptime"
        value_template: >
          {% set time = states.sensor.esxi_system_uptime.state | int %}
@@ -59,6 +59,7 @@ group:
   ESXi Server:
     entities:
       - sensor.esxi_memory_used
+      - sensor.esxi_system_uptime
       - sensor.esxi_number_of_network_interfaces
       - sensor.esxi_server_description
       - sensor.esxi_system_memory_size
