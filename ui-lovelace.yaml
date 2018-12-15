@@ -985,7 +985,6 @@ views:
           - sensor.illumination_158d000272bf48
           - sensor.illumination_158d000272bfd7
           - sensor.illumination_34ce008ad65d
-          - sensor.internet_time
           - sensor.ipad_battery_level
           - sensor.ipad_battery_state
           - sensor.iphone__battery_level

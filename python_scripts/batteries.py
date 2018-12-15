@@ -31,7 +31,6 @@ except Exception as ex:
 """
   - alias: Update ZWave Battery Levels
     initial_state: true
-    hide_entity: true  
     trigger:
       - platform: event
         event_type: state_changed

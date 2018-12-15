@@ -33,7 +33,6 @@ automation:
   # Flip 90: Toggle Family Room Lights
   - alias: Family Room Cube Event flip90
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: xiaomi_aqara.cube_action
@@ -47,7 +46,6 @@ automation:
   # Flip 180: Lights ON Family Room Lights FULL brightness
   - alias: Family Room Cube Event flip180
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: xiaomi_aqara.cube_action
@@ -65,7 +63,6 @@ automation:
   # Move: Toggle Kitchen Light
   - alias: Family Room Cube Event Move
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: xiaomi_aqara.cube_action
@@ -79,7 +76,6 @@ automation:
   # Double Tap:  Turn OFF Downstairs Lights
   - alias: Family Room Cube Event Tap Twice
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: xiaomi_aqara.cube_action
@@ -98,7 +94,6 @@ automation:
   # Shake: Toggle Do Not Disturb Mode
   - alias: Family Room Cube Event Shake
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: xiaomi_aqara.cube_action
@@ -119,7 +114,6 @@ automation:
   # Flip 90: Toggle Front Room Lights
   - alias: Front Room Cube Event flip90
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: xiaomi_aqara.cube_action
@@ -133,7 +127,6 @@ automation:
   # Flip 180: Toggle Office Room Accent Lights
   - alias: Family Room Cube Event flip180
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: xiaomi_aqara.cube_action
@@ -147,7 +140,6 @@ automation:
   # Move: Toggle Office Room Light
   - alias: Family Room Cube Event Move
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: xiaomi_aqara.cube_action
@@ -161,7 +153,6 @@ automation:
   # Shake: Toggle Do Not Disturb Mode
   - alias: Family Room Cube Event Shake
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: xiaomi_aqara.cube_action
@@ -182,7 +173,6 @@ automation:
   # Flip 90: Toggle Srinika's Room Lights
   - alias: Srinika's Room Cube Event flip90
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: xiaomi_aqara.cube_action
@@ -196,7 +186,6 @@ automation:
   # Shake: Toggle Do Not Disturb Mode
   - alias: Srinika's Room Cube Event Shake
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: xiaomi_aqara.cube_action
@@ -217,7 +206,6 @@ automation:
   # Flip 90: Toggle Hasika's Room Lights
   - alias: Hasika's Room Cube Event flip90
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: xiaomi_aqara.cube_action
@@ -231,7 +219,6 @@ automation:
   # Shake: Toggle Do Not Disturb Mode
   - alias: Hasika's Room Cube Event Shake
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: xiaomi_aqara.cube_action
@@ -254,7 +241,6 @@ automation:
   # Flip 90: Toggle Study Room Lights
   - alias: Study Room Cube Event Flip90
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: xiaomi_aqara.cube_action
@@ -268,7 +254,6 @@ automation:
   # Shake: Toggle Do Not Disturb Mode
   - alias: Study Room Cube Event Shake
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: xiaomi_aqara.cube_action
@@ -289,7 +274,6 @@ automation:
   # Flip 90: All Lights OFF (upstairs and downstairs)
   - alias: Master Bedroom Cube Event Flip90
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: xiaomi_aqara.cube_action
@@ -305,7 +289,6 @@ automation:
   # Flip 180: Toggle Lights
   - alias: Master Bedroom Cube Event Flip180
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: xiaomi_aqara.cube_action
@@ -319,7 +302,6 @@ automation:
   # Move: Turn ON Master Bedroom Lights
   - alias: Master Bedroom Cube Event Move
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: xiaomi_aqara.cube_action
@@ -333,7 +315,6 @@ automation:
   # Double Tap:  Turn OFF Downstairs Lights
   - alias: Master Bedroom Cube Event Tap Twice
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: xiaomi_aqara.cube_action
@@ -352,7 +333,6 @@ automation:
   # Shake: Toggle Do Not Disturb Mode
   - alias: Master Bedroom Cube Event Shake
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: xiaomi_aqara.cube_action

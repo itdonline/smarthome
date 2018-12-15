@@ -18,63 +18,6 @@ homeassistant:
       hidden: &hidden
         <<: *customize
         hidden: true
-
-# Front Door Camera
-    binary_sensor.frontdoor_camera_motion:
-      friendly_name: Frontdoor Camera Motion
-      hidden: false
-    binary_sensor.frontdoor_camera_field_detection:
-      friendly_name: Frontdoor Field Detection
-      hidden: false
-    binary_sensor.frontdoor_camera_line_crossing:
-      friendly_name: Frontdoor Line Crossing
-      hidden: false
-    binary_sensor.frontdoor_camera_tamper_detection:
-      friendly_name: Frontdoor Camera Tamper Detection
-      hidden: false
-
-# Driveway Camera
-    binary_sensor.driveway_camera_motion:
-      friendly_name: Driveway Camera Motion
-      hidden: false
-    binary_sensor.driveway_camera_field_detection:
-      friendly_name: Driveway Field Detection
-      hidden: false
-    binary_sensor.driveway_camera_line_crossing:
-      friendly_name: Driveway Line Crossing
-      hidden: false
-    binary_sensor.driveway_camera_tamper_detection:
-      friendly_name: Driveway Camera Tamper Detection
-      hidden: false
-
-# Patio Camera
-    binary_sensor.patio_camera_motion:
-      friendly_name: Patio Camera Motion
-      hidden: false
-    binary_sensor.patio_camera_field_detection:
-      friendly_name: Patio Field Detection
-      hidden: false
-    binary_sensor.patio_camera_line_crossing:
-      friendly_name: Patio Line Crossing
-      hidden: false
-    binary_sensor.patio_camera_tamper_detection:
-      friendly_name: Patio Camera Tamper Detection
-      hidden: false
-
-# Playarea Camera
-    binary_sensor.playarea_camera_motion:
-      friendly_name: Playarea Camera Motion
-      hidden: false
-    binary_sensor.playarea_camera_field_detection:
-      friendly_name: Playarea Field Detection
-      hidden: false
-    binary_sensor.playarea_camera_line_crossing:
-      friendly_name: Playarea Line Crossing
-      hidden: false
-    binary_sensor.playarea_camera_tamper_detection:
-      friendly_name: Playarea Camera Tamper Detection
-      hidden: false
-
 group:
   Frontyard Cameras:
     entities:
@@ -86,35 +29,6 @@ group:
     entities:
       - camera.patio_camera
       - camera.playarea_camera
-
-  Camera Motion:
-    entities:
-      - binary_sensor.frontdoor_camera_motion
-      - binary_sensor.driveway_camera_motion
-      - binary_sensor.patio_camera_motion
-      - binary_sensor.playarea_camera_motion
-      - binary_sensor.garage_motion
-
-  Camera Field Detection:
-    entities:
-      - binary_sensor.frontdoor_camera_field_detection
-      - binary_sensor.driveway_camera_field_detection
-      - binary_sensor.patio_camera_field_detection
-      - binary_sensor.playarea_camera_field_detection
-      
-  Camera Line Crossing:
-    entities:
-      - binary_sensor.frontdoor_camera_line_crossing
-      - binary_sensor.driveway_camera_line_crossing
-      - binary_sensor.patio_camera_line_crossing
-      - binary_sensor.playarea_camera_line_crossing
-
-  Camera Tamper Detection:
-    entities:
-      - binary_sensor.frontdoor_camera_tamper_detection
-      - binary_sensor.driveway_camera_tamper_detection
-      - binary_sensor.patio_camera_tamper_detection
-      - binary_sensor.playarea_camera_tamper_detection
 
 #
 # The camera url format in secrets.yaml would look like this: 
@@ -181,24 +95,28 @@ binary_sensor:
 
   - platform: hikvision
     name: Frontdoor Camera
+    ssl: false
     host: !secret frontdoor_camera_ip
     username: !secret camera_username
     password: !secret camera_password
     
   - platform: hikvision
     name: Driveway Camera
+    ssl: false
     host: !secret driveway_camera_ip
     username: !secret camera_username
     password: !secret camera_password
 
   - platform: hikvision
     name: Patio Camera
+    ssl: false
     host: !secret patio_camera_ip
     username: !secret camera_username
     password: !secret camera_password
 
   - platform: hikvision
     name: Playarea Camera
+    ssl: false
     host: !secret playarea_camera_ip
     username: !secret camera_username
     password: !secret camera_password
@@ -443,7 +361,6 @@ automation:
                                                  
   - alias: Motion Detected at Front Door
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d00024ee084
@@ -514,7 +431,6 @@ automation:
 #                                        |___/                                 
   - alias: Motion Detected at Driveway
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d00024e57fb
@@ -584,7 +500,6 @@ automation:
 #                        |___/                                                 
   - alias: Motion Detected in backyard
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d00024e842c

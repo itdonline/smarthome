@@ -138,14 +138,8 @@ group:
       - sensor.dark_sky_hourly_summary
       - sensor.dark_sky_dew_point
       - sensor.dark_sky_daily_summary
-      - sensor.dark_sky_daily_max_precip_intensity
-      - sensor.dark_sky_daily_low_temperature
-      - sensor.dark_sky_daily_low_apparent_temperature
-      - sensor.dark_sky_daily_high_temperature
-      - sensor.dark_sky_daily_high_apparent_temperature
       - sensor.dark_sky_cloud_coverage
       - sensor.dark_sky_apparent_temperature
-      - sensor.waqi_columbus__fairgrounds_ohio_usa
       - sensor.wind_direction
       - sensor.wind_direction_tts
       - binary_sensor.good_weather_to_fly_drones
@@ -155,7 +149,6 @@ group:
     entities:
       - automation.remind_me_to_enjoy_warm_and_windy_weather
       - automation.alert_super_heavy_winds
-      - automation.rain_snow_wind_alerts      
 
   Doppler Weather:
     entities:
@@ -412,7 +405,6 @@ automation:
 
   - alias: Weather Alert
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: sensor.pws_alerts
@@ -433,7 +425,6 @@ automation:
   # Only want to be notified every 15 minutes or so. Do not want to be bombarded with updates every minute wind speed changes
   - alias: Remind me to enjoy warm and windy weather
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: sensor.dark_sky_wind_speed
@@ -482,7 +473,6 @@ automation:
   # #Turn off those wind speed alert booleans automatically after 15 minutes.
   - alias: Weather Input Boolean Updates
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: state
         entity_id:
@@ -504,7 +494,6 @@ automation:
 
   - alias: Alert Super Heavy Winds
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: sensor.dark_sky_wind_speed
@@ -529,7 +518,6 @@ automation:
 
   - alias: Rain Alerts
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: sensor.dark_sky_precip
@@ -563,7 +551,6 @@ automation:
 
   - alias: Snow And Sleet Alerts
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: sensor.dark_sky_precip

@@ -35,7 +35,6 @@ automation:
 ###############################################################################
   - alias: Alert Life360 Error
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: sensor.life360_sensor

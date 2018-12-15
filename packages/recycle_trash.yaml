@@ -64,9 +64,6 @@ group:
       - sensor.time_utc
       - sensor.date__time
       - sensor.time__date
-      - sensor.internet_time
-      - sensor.rocket_launch_time
-      - sensor.beat
 
 ###############################################################################
 #  UI Elements
@@ -115,7 +112,7 @@ sensor:
       - date_time
       - time_date
       - time_utc
-      - beat
+
   - platform: mqtt
     state_topic: "/home/trashpickupday"
     name: "Trash Pickup Day"
@@ -239,7 +236,6 @@ automation:
 ###############################################################################
   - alias: Trash Pickup Day Changed
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: input_select.trash_pickup_day
@@ -252,7 +248,6 @@ automation:
 
   - alias: Recycle Pickup Day Changed
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: input_select.recycle_pickup_day
@@ -265,7 +260,6 @@ automation:
 
   - alias: Recycle Pickup Week Changed
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: input_select.recycle_pickup_week
@@ -278,7 +272,6 @@ automation:
 
   - alias: Restore Trash Recycle Settings on Startup
     initial_state: true
-    hide_entity: true
     trigger:
       platform: homeassistant
       event: start
@@ -304,7 +297,6 @@ automation:
 ###############################################################################
   - alias: Trash and Recycle Pickup Reminder
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: time
         at: '16:00:00'
@@ -380,7 +372,6 @@ automation:
 
   - alias: Trash and Recycle Bin Left Outside Already
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: ios.notification_action_fired
@@ -395,7 +386,6 @@ automation:
 
   - alias: Remind later
     initial_state: true
-    hide_entity: true
     trigger:
       platform: event
       event_type: ios.notification_action_fired
@@ -410,7 +400,6 @@ automation:
 
   - alias: Reset Trash Reminders
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: time
         at: '09:00:00'

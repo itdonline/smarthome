@@ -24,7 +24,6 @@
 
 #   - alias: Chuck Norris Fact At Startup
 #     initial_state: true
-#     hide_entity: true
 #     trigger:
 #       - platform: homeassistant
 #         event: start

@@ -46,26 +46,14 @@ homeassistant:
     sensor.cpu_speed:
       friendly_name: CPU Speed
 
-    sensor.cpu_used:
-      friendly_name: CPU Used
-
     sensor.disk_free_:
       friendly_name: Disk Free Space
-
-    sensor.ram_free:
-      friendly_name: Available Memory
 
     sensor.ipv4_address_wlp1s10:
       friendly_name: Local IP Address
 
     sensor.last_boot:
       friendly_name: Last Boot
-
-    sensor.signal_strength:
-      icon: mdi:signal
-
-    sensor.link_quality:
-      icon: mdi:link-variant
 
     sensor.ha_installed_version:
       icon: mdi:home-assistant
@@ -99,15 +87,9 @@ homeassistant:
 group:
   System Monitor:
     entities:
-      - sensor.cpu_used
-      - sensor.ram_free
       - sensor.disk_free_
       - sensor.ipv4_address_wlp1s10
       - sensor.last_boot
-      - sensor.signal_strength
-      - sensor.link_quality
-      - sensor.current_log_level
-      - sensor.ram_available
       - sensor.processor_use
       - sensor.memory_free
       - binary_sensor.workday_sensor
@@ -202,7 +184,6 @@ automation:
 
   - alias: Notify Of New External IP
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: sensor.external_ip
@@ -222,7 +203,6 @@ automation:
 
   - alias: Update Available Notification
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: updater.updater
@@ -232,7 +212,6 @@ automation:
 
   - alias: Remind domain renewal
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: numeric_state
         entity_id: sensor.my_domain

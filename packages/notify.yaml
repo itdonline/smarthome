@@ -24,14 +24,6 @@ homeassistant:
       hidden: true
     script.ifttt_leeo_color_change:
       hidden: true
-    script.lifx_breathe:
-      hidden: true
-    script.owntracks_update:
-      hidden: true
-    script.start_colorloop:
-      hidden: true
-    script.stop_colorloop:
-      hidden: true
     script.ifttt_notify:
       hidden: true
     script.notify_me:
@@ -81,12 +73,8 @@ group:
     entities:
       - script.home_status
       - script.ifttt_leeo_color_change
-      - script.lifx_breathe
-      - script.owntracks_update
       - script.restart_hass
       - script.update_hass
-      - script.start_colorloop
-      - script.stop_colorloop      
       - script.ifttt_notify
       - script.notify_me
       - script.voice_notify
@@ -171,9 +159,6 @@ script:
           {% else %}
             true
           {% endif %}
-      # - service: script.voice_greeting
-      #   data_template:
-      #     greeting: '{{ greeting }}'
       - service: media_player.volume_set
         entity_id: media_player.gstreamer
         data_template:
@@ -189,23 +174,6 @@ script:
                 {{ states.input_number.tts_volume_level_evening.state }}
               {% endif %}
             {% endif %}
-      # - service: mqtt.publish
-      #   data_template:
-      #     topic: '/home/tts'
-      #     retain: false
-      #     payload: >-
-      #       {% set msg = "" %}
-      #       {%- macro getEndGreeting() -%}
-      #         {%- if greeting |default('yes', true ) == "yes" -%}
-      #           Thank you!
-      #         {%- endif -%}
-      #       {%- endmacro -%}
-      #       {% set msg = msg + "<speak> " %}
-      #       {% set msg = msg + ". " + message %}
-      #       {% set msg = msg.replace(".", " <break time='0.5s'/> ") %}
-      #       {% set msg = msg + " " + getEndGreeting() %}
-      #       {% set msg = msg + " </speak>" %}
-      #       {{ msg }}
       - service: tts.amazon_polly_say
         data_template:
           entity_id: media_player.gstreamer
@@ -272,9 +240,3 @@ script:
       - service: script.voice_notify
         data_template:
           message: !include ../templates/home_status.yaml
-
-# Amazon Polly trick to pronounce names correctly
-##############################################################################
-# Mallika:  <phoneme alphabet="x-sampa" ph="m@_ollik@_o">mallika</phoneme>   #
-# Hasika:   <phoneme alphabet="x-sampa" ph="hA_osika">haasika</phoneme>      #
-##############################################################################

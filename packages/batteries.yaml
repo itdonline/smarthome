@@ -411,7 +411,6 @@ automation:
 ###############################################################################
   - alias: Notify Low battery
     initial_state: true
-    hide_entity: true    
     trigger:
       platform: numeric_state
       entity_id:
@@ -437,7 +436,6 @@ automation:
 # ###############################################################################
   # - alias: Alert Low Battery Level of Sensors
   #   initial_state: true
-  #   hide_entity: true
   #   trigger:
   #     platform: state
   #     entity_id:
@@ -454,8 +452,7 @@ automation:
   #       - zwave.back_door_sensor
   #       - zwave.basement_door_sensor
   #       - zwave.downstairs_multi_sensor
-  #       - zwave.front_door_sensor
-  #       - zwave.front_room_multi_sensor
+    #       - zwave.front_room_multi_sensor
   #       - zwave.front_room_window_sensor
   #       - zwave.garage_door_sensor
   #       - zwave.guest_bedroom_multi_sensor
@@ -478,7 +475,6 @@ automation:
 
   - alias: Check Wi-Fi Status of iPhones At Home
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: state
         entity_id:

@@ -109,7 +109,6 @@ automation:
 
   - alias: Garage Motion Reset
     initial_state: true
-    hide_entity: true  
     trigger:
       - platform: state
         entity_id: binary_sensor.garage_motion
@@ -131,7 +130,6 @@ automation:
 ###############################################################################
   - alias: Notify Garage Door Status
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: 
@@ -218,7 +216,6 @@ automation:
 ################################################################################
   - alias: Garage Lights On When Door is Opened
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: binary_sensor.garage_door_sensor_sensor
@@ -244,7 +241,6 @@ automation:
 ###############################################################################
   - alias: Notify Entry Door Status
     initial_state: true
-    hide_entity: true    
     trigger:
       platform: state
       entity_id: 
@@ -278,7 +274,6 @@ automation:
 ###############################################################################
   - alias: Basement Accent Lights ON When Basement Door Opened
     initial_state: true
-    hide_entity: true    
     trigger:
       platform: state
       entity_id: binary_sensor.basement_door_sensor_sensor
@@ -289,7 +284,6 @@ automation:
 
   - alias: Basement Accent Lights OFF After 5 minutes
     initial_state: true
-    hide_entity: true    
     trigger:
       platform: state
       entity_id: 

@@ -22,10 +22,6 @@ homeassistant:
       friendly_name: System Temperature
     sensor.kalavalanas_cpu_temperature:
       friendly_name: CPU Temperature
-    sensor.kalavalanas_drive_smart_status:
-      friendly_name: Drive Smart Status
-    sensor.kalavalanas_drive_temp:
-      friendly_name: Drive Temperature
     sensor.nas_memory_usage_above_80:
       friendly_name: Is Memory Above 80 Percent?
       hidden: true
@@ -71,15 +67,11 @@ group:
       - sensor.kalavalanas_network_up_eth0
       - sensor.kalavalanas_network_up_eth1
       - sensor.kalavalanas_volume_used_datavol1
-      - sensor.kalavalanas_drive_smart_status
-      - sensor.kalavalanas_drive_temp
       - sensor.kalavalanas_system_temperature
       - sensor.kalavalanas_cpu_temperature
 
   QNAP Automations:
     entities:
-      - automaton.notify_nas_drive_status_change
-      - automaton.notify_nas_status_change
       - automation.notify_nas_memory_usage
       - automation.notify_nas_disk_usage
       - automation.notify_nas_cpu_usage
@@ -134,7 +126,6 @@ automation:
 
   - alias: Notify NAS Status Change
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: 
@@ -149,7 +140,6 @@ automation:
 
   - alias: Notify NAS Drive Status Change
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: 
@@ -169,7 +159,6 @@ automation:
 
   - alias: Notify NAS CPU Temperature
     initial_state: true
-    hide_entity: true
     trigger:
       platform: numeric_state
       entity_id:  sensor.kalavalanas_cpu_temperature
@@ -182,7 +171,6 @@ automation:
 
   - alias: Notify NAS Disk Usage
     initial_state: true
-    hide_entity: true
     trigger:
       platform: numeric_state
       entity_id:  sensor.kalavalanas_volume_used_datavol1
@@ -194,7 +182,6 @@ automation:
 
   - alias: Notify NAS Memory Usage
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: sensor.nas_memory_usage_above_80
@@ -207,7 +194,6 @@ automation:
 
   - alias: Notify NAS CPU Usage
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id:  sensor.nas_cpu_usage_above_80

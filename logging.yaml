@@ -11,15 +11,16 @@ logs:
   netdisco.ssdp: warning
   aiohttp.server: warning
   homeassistant.core: critical
-  homeassistant.setup: warning
+  homeassistant.setup: error
   homeassistant.loader: error # hide custom_component warnings
   homeassistant.exceptions: warning
   homeassistant.helpers.script: warning  
   homeassistant.helpers.entity: warning
-  homeassistant.components.wemo: warning
+  homeassistant.components.wemo: error
   homeassistant.components.cloud.iot: warning
+  homeassistant.components.hue: error
   homeassistant.components.http: warning
-  homeassistant.components.zwave: warning
+  homeassistant.components.zwave: error
   homeassistant.components.sensor: warning
   homeassistant.components.image_processing: warning
   homeassistant.components.homekit: warning

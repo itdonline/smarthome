@@ -90,7 +90,6 @@ automation:
 ###############################################################################
   - alias: Text Changed Event
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: state
         entity_id: input_text.tts

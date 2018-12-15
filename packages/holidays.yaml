@@ -45,7 +45,6 @@ sensor:
 automation:
 
   - alias: Notify Holiday State Change
-    hide_entity: true
     initial_state: true
     trigger:
       - platform: state
@@ -65,8 +64,7 @@ automation:
           message: 'Today is: {{states.sensor.holiday.state }}'
 
   - alias: Notify Indian Holidays
-    hide_entity: true
-    initial_state: true  
+    initial_state: true
     trigger:
       platform: time
       at: '09:00:00'

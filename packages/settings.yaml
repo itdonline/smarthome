@@ -97,7 +97,6 @@ group:
       - input_boolean.home_assistant_restart
       - input_boolean.home_assistant_update
       - input_boolean.home_assistant_status
-      - input_boolean.notify_motion_pictures
       - input_boolean.notify_camera_motion
       - input_boolean.working_in_garage
       - input_boolean.working_in_office_room
@@ -109,8 +108,6 @@ group:
       - input_boolean.alert_when_someone_leaves_zone
       - input_boolean.alarm_clock
       - input_boolean.notify_security_system_changes
-      - input_boolean.air_condition
-      - input_boolean.heater
       - input_boolean.alert_no_one_home
       - input_boolean.battery_notifications
       - input_number.calendar_remind_before_days
@@ -387,7 +384,6 @@ automation:
 ######################################################
   - alias: Do Not Disturb For 2 hours
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: state
         entity_id: input_boolean.do_not_disturb
@@ -403,7 +399,6 @@ automation:
 ######################################################
   - alias: Do Not Disturb State Change
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: state
         entity_id: input_boolean.do_not_disturb
@@ -416,7 +411,6 @@ automation:
 ######################################################
   - alias: Home Security ON
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: state
         entity_id: input_boolean.home_security
@@ -437,7 +431,6 @@ automation:
 ######################################################
   - alias: Home Status ON
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: state
         entity_id: input_boolean.home_assistant_status
@@ -451,7 +444,6 @@ automation:
 ######################################################
   - alias: Restart Home Assistant
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: state
         entity_id: input_boolean.home_assistant_restart
@@ -463,7 +455,6 @@ automation:
 ######################################################
   - alias: Update Home Assistant
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: state
         entity_id: input_boolean.home_assistant_update
@@ -480,7 +471,6 @@ automation:
 ######################################################
   - alias: Hourly Report During Day Time
     initial_state: true
-    hide_entity: true
     trigger:
       platform: time
       hours: '/01'

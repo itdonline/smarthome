@@ -398,7 +398,6 @@ sensor:
 #
   - alias: Scan People and Objects
     initial_state: true
-    hide_entity: true
     trigger:
      - platform: state
        entity_id:

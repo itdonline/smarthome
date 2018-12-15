@@ -196,7 +196,6 @@ automation:
 # Snapcast Server Management
 ###############################################################################
   - alias: Snapcast Action
-    hide_entity: true
     initial_state: true  
     trigger:
       platform: state
@@ -219,7 +218,6 @@ automation:
 ###############################################################################
   - alias: TV State
     initial_state: true
-    hide_entity: true  
     trigger:
       - platform: state
         entity_id: input_boolean.sharp_tv
@@ -235,7 +233,6 @@ automation:
 ###############################################################################
   - alias: Restore TV State
     initial_state: true
-    hide_entity: true  
     trigger:
       - platform: homeassistant
         event: start
@@ -252,7 +249,6 @@ automation:
 # ####################################################
 #   - alias: Set Media Player Visibility
 #     initial_state: true
-#     hide_entity: true
 #     trigger:
 #       platform: state
 #       entity_id:

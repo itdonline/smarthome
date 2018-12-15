@@ -29,7 +29,6 @@ automation:
 # Start WFH timer if Suresh is HOME during weekdays between 10 AM and 5 PM
 ###############################################################################
   - alias: WFH Timer Start
-    hide_entity: true
     initial_state: true
     trigger:
       - platform: time
@@ -52,8 +51,7 @@ automation:
 # Restart the timer ONLY if the time is betwen office hours (10 AM and 5 PM)
 ###############################################################################
   - alias: Timer Elapsed - Take a walk
-    hide_entity: true
-    initial_state: true  
+    initial_state: true
     trigger:
       - platform: event
         event_type: timer.finished
@@ -79,7 +77,6 @@ automation:
 ###############################################################################
   - alias: Cancel WFH Timer When Suresh Leaves Home
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: zone
         entity_id: device_tracker.suresh_suresh

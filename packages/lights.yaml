@@ -169,19 +169,6 @@ homeassistant:
       friendly_name: TV Switch
       assumed_state: false
 
-    script.start_colorloop:
-      friendly_name: Start Colorloop
-      icon: mdi:palette
-    script.stop_colorloop:
-      friendly_name: Stop Colorloop
-      icon: mdi:palette
-    script.lifx_breathe:
-      friendly_name: Lifx Breath
-      icon: mdi:lightbulb
-    script.owntracks_update:
-      friendly_name: OwnTracks Report Location
-      icon: mdi:map-marker 
-
 group:
   RF Switches:
     entities:
@@ -215,7 +202,6 @@ group:
       - light.hue_color_lamp_1
       - light.hue_color_lamp_2
       - light.hue_color_lamp_3
-      - group.ikea_bulbs
       - switch.garage_lights
       - switch.zwave_smart_switch_switch
       - switch.basement_left_lights
@@ -407,16 +393,6 @@ script:
   #       data:
   #         entity_id: light.dinette
 
-  # lifx_breathe:
-  #   sequence:
-  #     - service: light.lifx_effect_pulse
-  #       data:
-  #         mode: breathe
-  #         entity_id: light.dinette
-  #         color_name: red
-  #         cycles: 3
-  #         power_on: true
-
 ###############################################################################
 #                _                        _   _                 
 #     /\        | |                      | | (_)                
@@ -433,7 +409,6 @@ automation:
 ###############################################################################
   - alias: Animate Master Bedroom Lights
     initial_state: true
-    hide_entity: True
     trigger:
       platform: time
       seconds: '/5'
@@ -457,7 +432,6 @@ automation:
 ###############################################################################
   - alias: Restore Masterbedroom Lights
     initial_state: true
-    hide_entity: True
     trigger:
       platform: state
       entity_id: input_boolean.animate_upstairs_lights
@@ -475,7 +449,6 @@ automation:
 ###############################################################################
   - alias: Animate Familyroom Lights
     initial_state: true
-    hide_entity: true
     trigger:
       platform: time
       seconds: '/5'
@@ -499,7 +472,6 @@ automation:
 ###############################################################################
   - alias: Restore Familyroom Lights
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: input_boolean.animate_downstairs_lights
@@ -517,7 +489,6 @@ automation:
 ###############################################################################
   # - alias: Animate Kitchen Lights ON
   #   initial_state: true
-  #   hide_entity: true
   #   trigger:
   #     - platform: time
   #       seconds: '/3'
@@ -539,7 +510,6 @@ automation:
 ###############################################################################
   # - alias: Animate Kitchen Lights OFF
   #   initial_state: true
-  #   hide_entity: true
   #   trigger:
   #     - platform: state
   #       entity_id: input_boolean.animate_kitchen_lights
@@ -556,7 +526,6 @@ automation:
 ###############################################################################
   - alias: Long Flash All Lights
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: state
         entity_id: input_boolean.long_flash
@@ -575,7 +544,6 @@ automation:
 ###############################################################################
   - alias: Short Flash All Lights
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: state
         entity_id: input_boolean.short_flash

@@ -21,7 +21,6 @@ automation:
 ###############################################################################
   - alias: Working In Garage WatchDog
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: state
         entity_id:
@@ -41,7 +40,6 @@ automation:
 ###############################################################################
   - alias: Single Car garage Door WatchDog
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: state
         entity_id:
@@ -66,7 +64,6 @@ automation:
 ###############################################################################  
   - alias: Two Car garage Door WatchDog
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: state
         entity_id:
@@ -91,7 +88,6 @@ automation:
 ###############################################################################
   - alias: Frontyard Light WatchDog
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: state
         entity_id:
@@ -117,7 +113,6 @@ automation:
 ###############################################################################
   - alias: Backyard Light WatchDog
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: state
         entity_id:
@@ -143,7 +138,6 @@ automation:
 ###############################################################################
   - alias: Guest Bedroom 1 Light WatchDog
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: state
         entity_id:
@@ -161,7 +155,6 @@ automation:
 ###############################################################################
   - alias: Guest Bedroom 2 Light WatchDog
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: state
         entity_id:
@@ -179,7 +172,6 @@ automation:
 ###############################################################################
   - alias: Kids Bedroom Light WatchDog
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: state
         entity_id:

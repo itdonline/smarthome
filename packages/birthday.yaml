@@ -94,7 +94,6 @@ automation:
 ###############################################################################
   - alias: Birthday Countdown 30 Days
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: 
@@ -117,7 +116,6 @@ automation:
 ###############################################################################
   - alias: Today is the Birthday
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: 
@@ -140,7 +138,6 @@ automation:
 ###############################################################################
   - alias: Random Birthday Wishes
     initial_state: true
-    hide_entity: true
     trigger:
       platform: time
       hours: '/1'
@@ -176,7 +173,6 @@ automation:
 
   - alias: Update Birthdays
     initial_state: true
-    hide_entity: true  
     trigger:
       - platform: time
         minutes: '/5'

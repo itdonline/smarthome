@@ -54,7 +54,6 @@ automation:
 ###############################################################################
   - alias: Alert When Someone Enters a Zone
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: zone
         entity_id:
@@ -84,7 +83,6 @@ automation:
 
   - alias: Alert When Someone Leaves a Zone
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: zone
         entity_id:
@@ -119,7 +117,6 @@ automation:
 ###############################################################################
   - alias: Welcome Family
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: state
         entity_id:
@@ -151,7 +148,6 @@ automation:
 ##############################################################################
   - alias: Alert when everyone is AWAY
     initial_state: true
-    hide_entity: true
     trigger:
       platform: time
       minutes: 00
@@ -178,7 +174,6 @@ automation:
 
   - alias: Home Mode Away ON
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: input_boolean.home_mode_away
@@ -191,7 +186,6 @@ automation:
 ###############################################################################
   - alias: Send a message as I get closer to home
     initial_state: true
-    hide_entity: true
     trigger:
       platform: numeric_state
       entity_id: proximity.home

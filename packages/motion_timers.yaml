@@ -54,7 +54,6 @@ automation:
 ###############################################################################
   - alias: Officeroom Motion & Timer
     initial_state: true
-    hide_entity: true  
     trigger:
       - platform: state
         entity_id: binary_sensor.motion_sensor_158d000272bfd7
@@ -72,7 +71,6 @@ automation:
 
   - alias: Officeroom Timer Elapsed
     initial_state: true
-    hide_entity: true  
     trigger:
       - platform: state
         entity_id: timer.timer_officeroom
@@ -89,7 +87,6 @@ automation:
 ###############################################################################
   # - alias: Srinika Bedroom Motion & Timer
   #   initial_state: true
-  #   hide_entity: true  
   #   trigger:
   #     - platform: state
   #       entity_id: binary_sensor.motion_sensor_158d000272bed1
@@ -105,7 +102,6 @@ automation:
 
   # - alias: Srinika Bedroom Timer Elapsed
   #   initial_state: true
-  #   hide_entity: true  
   #   trigger:
   #     - platform: state
   #       entity_id: timer.timer_srinika_bedroom
@@ -120,7 +116,6 @@ automation:
 ###############################################################################
   - alias: Frontroom Motion & Timer
     initial_state: true
-    hide_entity: true  
     trigger:
       - platform: state
         entity_id: binary_sensor.motion_sensor_158d00016db6d2
@@ -139,7 +134,6 @@ automation:
 ###############################################################################
   - alias: Frontroom Timer Elapsed
     initial_state: true
-    hide_entity: true  
     trigger:
       - platform: state
         entity_id: timer.timer_frontroom
@@ -157,7 +151,6 @@ automation:
 ###############################################################################
   - alias: Kitchen Motion & Timer
     initial_state: true
-    hide_entity: true  
     trigger:
       - platform: state
         entity_id: 
@@ -181,7 +174,6 @@ automation:
 ###############################################################################
   - alias: Kitchen Timer Elapsed
     initial_state: true
-    hide_entity: true  
     trigger:
       - platform: event
         event_type: timer.finished
@@ -205,7 +197,6 @@ automation:
 ###############################################################################
   - alias: Family Room Motion & Timer
     initial_state: true
-    hide_entity: true  
     trigger:
       - platform: state
         entity_id: 
@@ -237,7 +228,6 @@ automation:
 ###############################################################################
   - alias: Family Room Timer Elapsed
     initial_state: true
-    hide_entity: true  
     trigger:
       - platform: state
         entity_id: timer.timer_familyroom
@@ -255,7 +245,6 @@ automation:
 ###############################################################################
   - alias: Master Bedroom Motion & Timer
     initial_state: true
-    hide_entity: true  
     trigger:
       - platform: state
         entity_id: binary_sensor.upstairs_multi_sensor_sensor
@@ -284,7 +273,6 @@ automation:
 ###############################################################################
   - alias: Master Bedroom Timer Elapsed
     initial_state: true
-    hide_entity: true  
     trigger:
       - platform: state
         entity_id: timer.timer_masterbedroom
@@ -307,7 +295,6 @@ automation:
 ###############################################################################
   - alias: Garage Motion & Timer
     initial_state: true
-    hide_entity: true  
     trigger:
       - platform: state
         entity_id: binary_sensor.garage_motion
@@ -325,7 +312,6 @@ automation:
 # Start the timer when the lights are ON
 ###############################################################################
   - alias: Garage Timer Start When Garage Lights ON
-    hide_entity: true
     initial_state: true
     trigger:
       - platform: state
@@ -341,7 +327,6 @@ automation:
 ###############################################################################
   - alias: Garage Timer Elapsed
     initial_state: true
-    hide_entity: true  
     trigger:
       - platform: state
         entity_id: timer.timer_garage

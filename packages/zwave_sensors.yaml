@@ -83,9 +83,6 @@ homeassistant:
     binary_sensor.upstairs_multi_sensor_sensor:
       friendly_name: Upstairs Multi Sensor
       <<: *not_exposed
-    binary_sensor.window_sensor_sensor:
-      friendly_name: Window Sensor
-      <<: *not_exposed
 
 # ZWave Sensors
     sensor.aeotec_water_sensor_alarm_level:
@@ -166,9 +163,6 @@ homeassistant:
     sensor.back_door_sensor_alarm_type:
       friendly_name: Back Door Sensor Alarm Type
       <<: *not_exposed
-    sensor.back_door_sensor_battery:
-      friendly_name: Back Door Sensor
-      <<: *not_exposed
     sensor.back_door_sensor_burglar:
       friendly_name: Back Door Sensor Burglar
       <<: *not_exposed
@@ -187,9 +181,6 @@ homeassistant:
     sensor.basement_door_sensor_alarm_type:
       friendly_name: Basement Door Sensor Alarm Type
       <<: *not_exposed
-    sensor.basement_door_sensor_battery:
-      friendly_name: Basement Door Sensor
-      <<: *not_exposed
     sensor.basement_door_sensor_burglar:
       friendly_name: Basement Door Sensor Burglar
       <<: *not_exposed
@@ -204,9 +195,6 @@ homeassistant:
       <<: *not_exposed
     sensor.downstairs_multi_sensor_alarm_type:
       friendly_name: Downstairs Multi Sensor Alarm Type
-      <<: *not_exposed
-    sensor.downstairs_multi_sensor_battery:
-      friendly_name: Downstairs Multi Sensor
       <<: *not_exposed
     sensor.downstairs_multi_sensor_burglar:
       friendly_name: Downstairs Multi Sensor Burglar
@@ -226,35 +214,11 @@ homeassistant:
     sensor.downstairs_multi_sensor_temperature:
       friendly_name: Downstairs Multi Sensor Temperature
       <<: *not_exposed
-    sensor.front_door_sensor_access_control:
-      friendly_name: Front Door Sensor Access Control
-      <<: *not_exposed
-    sensor.front_door_sensor_alarm_level:
-      friendly_name: Front Door Sensor Alarm Level
-      <<: *not_exposed
-    sensor.front_door_sensor_alarm_type:
-      friendly_name: Front Door Sensor Alarm Type
-      <<: *not_exposed
-    sensor.front_door_sensor_battery:
-      friendly_name: Front Door Sensor
-      <<: *not_exposed
-    sensor.front_door_sensor_burglar:
-      friendly_name: Front Door Sensor Burglar
-      <<: *not_exposed
-    sensor.front_door_sensor_power_management:
-      friendly_name: Front Door Sensor Power Management
-      <<: *not_exposed
-    sensor.front_door_sensor_sourcenodeid:
-      friendly_name: Front Door Sensor SourceNodeId
-      <<: *not_exposed
     sensor.front_room_multi_sensor_alarm_level:
       friendly_name: Front Room Multi Sensor Alarm Level
       <<: *not_exposed
     sensor.front_room_multi_sensor_alarm_type:
       friendly_name: Front Room Multi Sensor Alarm Type
-      <<: *not_exposed
-    sensor.front_room_multi_sensor_battery:
-      friendly_name: Front Room Multi Sensor
       <<: *not_exposed
     sensor.front_room_multi_sensor_burglar:
       friendly_name: Front Room Multi Sensor Burglar
@@ -283,9 +247,6 @@ homeassistant:
     sensor.garage_door_sensor_alarm_type:
       friendly_name: Garage Door Sensor Alarm Type
       <<: *not_exposed
-    sensor.garage_door_sensor_battery:
-      friendly_name: Garage Door Sensor
-      <<: *not_exposed
     sensor.garage_door_sensor_burglar:
       friendly_name: Garage Door Sensor Burglar
       <<: *not_exposed
@@ -295,14 +256,8 @@ homeassistant:
     sensor.garage_door_sensor_sourcenodeid:
       friendly_name: Garage Door Sensor SourceNodeId
       <<: *not_exposed
-    sensor.single_car_garage_door_sensor_battery:
-      friendly_name: Single Car Garage Door Sensor Battery
-      <<: *not_exposed
     sensor.single_car_garage_door_sensor_status:
       friendly_name: Single Car Garage Door Sensor Status
-      <<: *not_exposed
-    sensor.two_car_garage_door_sensor_battery:
-      friendly_name: Double Car Garage Door Sensor Battery
       <<: *not_exposed
     sensor.two_car_garage_door_sensor_status:
       friendly_name: Double Car Garage Door Sensor Status
@@ -337,9 +292,6 @@ homeassistant:
     sensor.kitchen_motion_sensor_alarm_type:
       friendly_name: Kitchen Motion Sensor Alarm Type
       <<: *not_exposed
-    sensor.kitchen_motion_sensor_battery:
-      friendly_name: Kitchen Motion Sensor
-      <<: *not_exposed
     sensor.kitchen_motion_sensor_burglar:
       friendly_name: Kitchen Motion Sensor Burglar
       <<: *not_exposed
@@ -372,9 +324,6 @@ homeassistant:
       <<: *not_exposed
     sensor.stairs_motion_sensor_alarm_type:
       friendly_name: Stairs Motion Sensor Alarm Type
-      <<: *not_exposed
-    sensor.stairs_motion_sensor_battery:
-      friendly_name: Stairs Motion Sensor
       <<: *not_exposed
     sensor.stairs_motion_sensor_burglar:
       friendly_name: Stairs Motion Sensor Burglar
@@ -433,9 +382,6 @@ homeassistant:
     sensor.upstairs_multi_sensor_alarm_type:
       <<: *not_exposed
       friendly_name: Upstairs Multi Sensor Alarm Type
-    sensor.upstairs_multi_sensor_battery:
-      <<: *not_exposed
-      friendly_name: Upstairs Multi Sensor
     sensor.upstairs_multi_sensor_burglar:
       <<: *not_exposed
       friendly_name: Upstairs Multi Sensor Burglar
@@ -459,9 +405,6 @@ homeassistant:
       friendly_name: Wallmote Alarm Level
     sensor.wallmote_alarm_type:
       friendly_name: Wallmote Alarm Type
-      <<: *not_exposed
-    sensor.wallmote_battery:
-      friendly_name: Wall Mote
       <<: *not_exposed
     sensor.wallmote_power_management:
       friendly_name: Wallmote Power Management
@@ -521,14 +464,6 @@ zwave:
 #                            |_|         
 ###############################################################################
 group:
-  Energy Meter:
-    entities:
-      - sensor.energy_meter_current
-      - sensor.energy_meter_energy
-      - sensor.energy_meter_power
-      - sensor.energy_meter_previous_reading
-      - sensor.energy_meter_voltage
-      - zwave.energy_meter
 
   Motion Sensors:
     entities:
@@ -545,7 +480,6 @@ group:
       - binary_sensor.audio_detector_sensor
       - binary_sensor.basement_door_sensor_sensor
       - binary_sensor.downstairs_multi_sensor_sensor
-      - binary_sensor.downstairs_occupancy
       - binary_sensor.driveway_camera_field_detection
       - binary_sensor.driveway_camera_line_crossing
       - binary_sensor.driveway_camera_tamper_detection
@@ -556,7 +490,6 @@ group:
       - binary_sensor.frontdoor_camera_tamper_detection
       - binary_sensor.garage_door_sensor_sensor
       - binary_sensor.guest_bedroom_multi_sensor_sensor
-      - binary_sensor.kids_room_occupancy
       - binary_sensor.kitchen_motion_sensor_sensor
       - binary_sensor.back_door_sensor_sensor
       - binary_sensor.patio_camera_field_detection
@@ -570,7 +503,6 @@ group:
       - binary_sensor.single_car_garage_door_tilt_sensor_sensor
       - binary_sensor.two_car_garage_door_tilt_sensor_sensor
       - binary_sensor.upstairs_multi_sensor_sensor
-      - binary_sensor.window_sensor_sensor
       - binary_sensor.front_room_window_sensor_sensor
 
   Light Levels:
@@ -586,7 +518,6 @@ group:
       - sensor.downstairs_multi_sensor_relative_humidity
       - sensor.front_room_multi_sensor_relative_humidity
       - sensor.guest_bedroom_multi_sensor_relative_humidity
-      - sensor.home_humidity
       - sensor.pws_relative_humidity
       - sensor.tv_multi_sensor_relative_humidity
       - sensor.upstairs_multi_sensor_relative_humidity
@@ -595,13 +526,9 @@ group:
     entities:
       - sensor.aeotec_water_sensor_temperature
       - sensor.audio_detector_temperature
-      - sensor.cpu_temperature
       - sensor.downstairs_multi_sensor_temperature
-      - sensor.downstairs_temperature
       - sensor.front_room_multi_sensor_temperature
       - sensor.guest_bedroom_multi_sensor_temperature
-      - sensor.home_temperature
-      - sensor.kids_room_temperature
       - sensor.tv_multi_sensor_temperature
       - sensor.upstairs_multi_sensor_temperature
 
@@ -639,7 +566,6 @@ group:
       - sensor.back_door_sensor_access_control
       - sensor.back_door_sensor_alarm_level
       - sensor.back_door_sensor_alarm_type
-      - sensor.back_door_sensor_battery
       - sensor.back_door_sensor_burglar
       - sensor.back_door_sensor_power_management
       - sensor.back_door_sensor_sourcenodeid
@@ -649,7 +575,6 @@ group:
       - sensor.basement_door_sensor_access_control
       - sensor.basement_door_sensor_alarm_level
       - sensor.basement_door_sensor_alarm_type
-      - sensor.basement_door_sensor_battery
       - sensor.basement_door_sensor_burglar
       - sensor.basement_door_sensor_power_management
       - sensor.basement_door_sensor_sourcenodeid
@@ -658,7 +583,6 @@ group:
     entities:
       - sensor.downstairs_multi_sensor_alarm_level
       - sensor.downstairs_multi_sensor_alarm_type
-      - sensor.downstairs_multi_sensor_battery
       - sensor.downstairs_multi_sensor_burglar
       - sensor.downstairs_multi_sensor_luminance
       - sensor.downstairs_multi_sensor_power
@@ -666,21 +590,10 @@ group:
       - sensor.downstairs_multi_sensor_sourcenodeid
       - sensor.downstairs_multi_sensor_temperature
 
-  Front Door Sensor:
-    entities:
-      - sensor.front_door_sensor_access_control
-      - sensor.front_door_sensor_alarm_level
-      - sensor.front_door_sensor_alarm_type
-      - sensor.front_door_sensor_battery
-      - sensor.front_door_sensor_burglar
-      - sensor.front_door_sensor_power_management
-      - sensor.front_door_sensor_sourcenodeid
-
   Front Room Multi Sensor:
     entities:
       - sensor.front_room_multi_sensor_alarm_level
       - sensor.front_room_multi_sensor_alarm_type
-      - sensor.front_room_multi_sensor_battery
       - sensor.front_room_multi_sensor_burglar
       - sensor.front_room_multi_sensor_luminance
       - sensor.front_room_multi_sensor_relative_humidity
@@ -693,13 +606,10 @@ group:
       - sensor.garage_door_sensor_access_control
       - sensor.garage_door_sensor_alarm_level
       - sensor.garage_door_sensor_alarm_type
-      - sensor.garage_door_sensor_battery
       - sensor.garage_door_sensor_burglar
       - sensor.garage_door_sensor_power_management
       - sensor.garage_door_sensor_sourcenodeid
-      - sensor.single_car_garage_door_sensor_battery
       - sensor.single_car_garage_door_sensor_status
-      - sensor.two_car_garage_door_sensor_battery
       - sensor.two_car_garage_door_sensor_status
 
   Guest Bedroom Multi Sensor:
@@ -717,7 +627,6 @@ group:
     entities:
       - sensor.kitchen_motion_sensor_alarm_level
       - sensor.kitchen_motion_sensor_alarm_type
-      - sensor.kitchen_motion_sensor_battery
       - sensor.kitchen_motion_sensor_burglar
       - sensor.kitchen_motion_sensor_power_management
       - sensor.kitchen_motion_sensor_sourcenodeid
@@ -734,7 +643,6 @@ group:
     entities:
       - sensor.stairs_motion_sensor_alarm_level
       - sensor.stairs_motion_sensor_alarm_type
-      - sensor.stairs_motion_sensor_battery
       - sensor.stairs_motion_sensor_burglar
       - sensor.stairs_motion_sensor_power_management
       - sensor.stairs_motion_sensor_sourcenodeid
@@ -754,7 +662,6 @@ group:
     entities:
       - sensor.upstairs_multi_sensor_alarm_level
       - sensor.upstairs_multi_sensor_alarm_type
-      - sensor.upstairs_multi_sensor_battery
       - sensor.upstairs_multi_sensor_burglar
       - sensor.upstairs_multi_sensor_luminance
       - sensor.upstairs_multi_sensor_relative_humidity
@@ -793,7 +700,6 @@ group:
     entities:
       - sensor.wallmote_alarm_level
       - sensor.wallmote_alarm_type
-      - sensor.wallmote_battery
       - sensor.wallmote_power_management
       - sensor.wallmote_sourcenodeid
 
@@ -804,7 +710,6 @@ group:
       - zwave.back_door_sensor
       - zwave.basement_door_sensor
       - zwave.downstairs_multi_sensor
-      - zwave.front_door_sensor
       - zwave.front_room_multi_sensor
       - zwave.garage_door_sensor
       - zwave.guest_bedroom_multi_sensor
@@ -816,7 +721,6 @@ group:
       - zwave.two_car_garage_door_tilt_sensor
       - zwave.upstairs_multi_sensor
       - zwave.wallmote
-      - zwave.window_sensor
       - zwave.zwave_repeater
       - zwave.zwave_smart_switch
       - zwave.zwave_stick

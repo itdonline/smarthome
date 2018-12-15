@@ -568,7 +568,6 @@ automation:
 # updates once every 30 minutes
 ###############################################################################
   - alias: Query RPi Wifi Data
-    hide_entity: true
     initial_state: true
     trigger:
       - platform: time
@@ -582,7 +581,6 @@ automation:
 # updates once every 30 minutes
 ###############################################################################
   - alias: Query RPi Disk Data
-    hide_entity: true
     initial_state: true
     trigger:
       - platform: time
@@ -595,7 +593,6 @@ automation:
 # Issues commands to Raspberry Pi via MQTT - On Demand
 ###############################################################################
   - alias: Raspberry Pi Command
-    hide_entity: true
     initial_state: true
     trigger:
       - platform: state

@@ -1,14 +1,4 @@
 group:
-  linksys:
-    entities:
-      - sensor.linksys10345_bytes_received
-      - sensor.linksys10345_bytes_sent
-      - sensor.linksys10345_kbytesec_received
-      - sensor.linksys10345_kbytesec_sent
-      - sensor.linksys10345_packets_received
-      - sensor.linksys10345_packets_sent
-      - sensor.linksys10345_packetssec_received
-      - sensor.linksys10345_packetssec_sent
   openuv:
     entities:
       - sensor.current_ozone_level

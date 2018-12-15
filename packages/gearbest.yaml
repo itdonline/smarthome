@@ -19,7 +19,6 @@
 # automation:
 #   - alias: Alert Low Price of Cube
 #     initial_state: true
-#     hide_entity: true  
 #     trigger:
 #       - platform: template
 #         value_template: '{{ states.sensor.xiaomi_cube.state | int < 10 }}'

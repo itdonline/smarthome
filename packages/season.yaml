@@ -43,7 +43,6 @@ automation:
 
   - alias: Season Change Notification
     initial_state: true
-    hide_entity: true
     trigger:
       - platform: state
         entity_id: sensor.season

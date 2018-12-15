@@ -57,7 +57,6 @@ automation:
 ###############################################################################
   - alias: Emergency Mode Disabled
     initial_state: true
-    hide_entity: true  
     trigger:
       platform: state
       entity_id: input_boolean.emergency_mode
@@ -76,7 +75,6 @@ automation:
 ###############################################################################
   - alias: Water Leak Detected
     initial_state: true
-    hide_entity: true  
     trigger:
       - platform: state
         entity_id: sensor.aeotec_water_sensor_flood
@@ -99,7 +97,6 @@ automation:
 # ###############################################################################
 #   - alias: CO Detected
 #     initial_state: true
-#     hide_entity: true  
 #     trigger:
 #       - platform: state
 #         entity_id: sensor.audio_detector_carbon_monoxide
@@ -128,7 +125,6 @@ automation:
 # ###############################################################################
 #   - alias: Smoke Detected
 #     initial_state: true
-#     hide_entity: true  
 #     trigger:
 #       - platform: state
 #         entity_id: sensor.audio_detector_smoke
@@ -157,7 +153,6 @@ automation:
 ###############################################################################
   - alias: Disable Emergency Mode Upon Disabling Home Security
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id: alarm_control_panel.simplisafe
@@ -171,7 +166,6 @@ automation:
 
   - alias: Home Security Away Motion Deteted Inside
     initial_state: true
-    hide_entity: true
     trigger:
       platform: state
       entity_id:
