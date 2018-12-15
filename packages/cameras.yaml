@@ -38,18 +38,34 @@ camera:
   - platform: generic
     name: Frontdoor Camera
     still_image_url: !secret frontdoor_camera_url
+    verify_ssl: false
+    authentication: digest
+    username: !secret camera_username
+    password: !secret camera_password
 
   - platform: generic
     name: Driveway Camera
     still_image_url: !secret driveway_camera_url
+    verify_ssl: false
+    authentication: digest
+    username: !secret camera_username
+    password: !secret camera_password
 
   - platform: generic
     name: Patio Camera
     still_image_url: !secret patio_camera_url
+    verify_ssl: false
+    authentication: digest
+    username: !secret camera_username
+    password: !secret camera_password
 
   - platform: generic
     name: Playarea Camera
     still_image_url: !secret playarea_camera_url
+    verify_ssl: false
+    authentication: digest
+    username: !secret camera_username
+    password: !secret camera_password
 
   - platform: mjpeg
     mjpeg_url: !secret garage_camera_url
