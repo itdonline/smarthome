@@ -7,7 +7,7 @@ homeassistant:
     climate.tesla_model_3_5yj3e1ea8jf010610_hvac_climate_system:
       friendly_name: Tesla Climate
     device_tracker.tesla_model_3_5yj3e1ea8jf010610_location_tracker:
-      friendly_name: Where is Tesla at?
+      friendly_name: Tesla
     lock.tesla_model_3_5yj3e1ea8jf010610_door_lock:
       friendly_name: Tesla Door Lock
     sensor.tesla_model_3_5yj3e1ea8jf010610_battery_sensor:

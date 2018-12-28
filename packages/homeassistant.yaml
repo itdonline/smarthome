@@ -81,6 +81,10 @@ homeassistant:
       friendly_name: Restart Home Assistant
       icon: mdi:home-assistant
 
+    script.stop_hass:
+      friendly_name: Stop Home Assistant
+      icon: mdi:home-assistant
+
     sensor.my_domain:
       hidden: true
 
@@ -105,6 +109,9 @@ group:
       - sensor.external_ip
  
 script:
+  stop_hass:
+    sequence:
+      - service: shell_command.stop_hass
   update_hass:
     sequence:
       - service: shell_command.update_hass
@@ -113,6 +120,9 @@ script:
       - service: shell_command.restart_hass
 
 shell_command:
+  stop_hass: >-
+    hassctl stop
+
   restart_hass: >-
     hassctl restart
 

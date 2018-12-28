@@ -36,6 +36,12 @@
   hidden: true
 'binary_sensor.*_camera_line_crossing':
   hidden: true
+'binary_sensor.*_camera_tamper_detection_*':
+  hidden: true
+'binary_sensor.*_camera_field_detection_*':
+  hidden: true
+'binary_sensor.*_camera_line_crossing_*':
+  hidden: true
 
 # Weather Stuff
 # 'sensor.dark_sky_*':

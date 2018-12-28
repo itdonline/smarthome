@@ -170,12 +170,6 @@ homeassistant:
       assumed_state: false
 
 group:
-  RF Switches:
-    entities:
-      - switch.rf_switch_one
-      - switch.rf_switch_two
-      - switch.rf_switch_three
-
   Upstairs Lights:
     entities:
       - light.master_bedroom
@@ -189,7 +183,7 @@ group:
   Always On:
     entities:
       - light.gateway_light_34ce008ad65d
-      - switch.rf_switch_five
+      - switch.wemoswitch1
 
   Outdoor Lights:
     entities:
@@ -225,18 +219,6 @@ group:
       - input_boolean.animate_upstairs_lights
       - input_boolean.short_flash
       - input_boolean.long_flash
-
-  switches:
-    entities:
-      - switch.garage_lights
-      - switch.guest_bedroom_1
-      - switch.guest_bedroom_2
-      - switch.kids_bedroom
-      - switch.wallmote_switch
-      - switch.wemobackyardlightswitch
-      - switch.frontyard_light
-      - switch.wemoswitch1
-      - switch.zwave_smart_switch_switch
 
 # light:
 #   - platform: lifx
@@ -334,6 +316,7 @@ wemo:
     - !secret wemo_switch_1
     - !secret wemo_switch_2
     - !secret wemo_switch_3
+    - !secret wemo_sharp_tv
 
 input_boolean:
   animate_upstairs_lights:

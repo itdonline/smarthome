@@ -199,8 +199,8 @@ automation:
           {% endif %}
       - condition: template
         value_template: >
-          {% set suresh = states.device_tracker.mallika_mallika.state %}
-          {% set mallika = states.device_tracker.suresh_suresh.state %}
+          {% set suresh = states.device_tracker.suresh_suresh.state %}
+          {% set mallika = states.device_tracker.mallika_mallika.state %}
           {% set srinika = states.device_tracker.srinika_srinika.state %}
           {% set hasika = states.device_tracker.hasika_hasika.state %}
           {% if suresh != "home" and mallika != "home" and srinika != "home" and hasika != "home" %}
@@ -291,12 +291,27 @@ script:
           - switch.basement_left_lights
           - switch.basement_right_lights
           - switch.garage_lights
+          - switch.guest_bedroom_1
           - switch.guest_bedroom_2
+          - switch.kids_bed_accent_light
           - switch.kids_bedroom
           - switch.office_room_lights
+          - switch.smart_outlet_1
+          - switch.kitchen_light
+          - switch.zwave_smart_switch_switch
           - switch.rf_switch_five
           - switch.rf_switch_four
           - switch.rf_switch_one
           - switch.rf_switch_three
           - switch.rf_switch_two
-          - switch.smart_outlet_1
+          - switch.wemobackyardlightswitch
+          - switch.frontyard_light
+          - switch.downstairs_bathroom_fragrance_outlet
+          - switch.downstairs_fragrance_outlet
+          - switch.upstairs_fragrance_outlet
+          - switch.kitchen_siren_switch
+          - switch.kitchen_siren_switch_2
+          - switch.kitchen_siren_switch_3
+          - switch.kitchen_siren_switch_4
+          - switch.kitchen_siren_switch_5
+          - switch.wemoswitch1

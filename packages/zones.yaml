@@ -159,8 +159,8 @@ automation:
         value_template: '{{ states.input_boolean.home_mode_away.state == "off" }}'
       - condition: template
         value_template: >
-          {% set suresh = states.device_tracker.mallika_mallika.state %}
-          {% set mallika = states.device_tracker.suresh_suresh.state %}
+          {% set suresh = states.device_tracker.suresh_suresh.state %}
+          {% set mallika = states.device_tracker.mallika_mallika.state %}
           {% set srinika = states.device_tracker.srinika_srinika.state %}
           {% set hasika = states.device_tracker.hasika_hasika.state %}
           {% if suresh != "home" and mallika != "home" and srinika != "home" and hasika != "home" %}
@@ -200,8 +200,8 @@ automation:
           message: "Suresh is on his way home, he is within the 5 miles range. Should be home soon!"
       - condition: template
         value_template: >
-          {% set suresh = states.device_tracker.mallika_mallika.state %}
-          {% set mallika = states.device_tracker.suresh_suresh.state %}
+          {% set suresh = states.device_tracker.suresh_suresh.state %}
+          {% set mallika = states.device_tracker.mallika_mallika.state %}
           {% set srinika = states.device_tracker.srinika_srinika.state %}
           {% set hasika = states.device_tracker.hasika_hasika.state %}
           {% if suresh != "home" and mallika != "home" and srinika != "home" and hasika != "home" %}

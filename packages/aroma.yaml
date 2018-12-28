@@ -136,7 +136,7 @@ automation:
           entity_id: timer.timer_upstairs_aroma    
     action:
       - service: switch.turn_off
-        entity_id: switch.downstairs_fragrance_outlet
+        entity_id: switch.upstairs_fragrance_outlet
       - service: script.notify_me
         data_template:
           message: "Upstairs Aroma outlet is switched off."
