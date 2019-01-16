@@ -6,21 +6,21 @@
 ###############################################################################
 homeassistant:
   customize:
-    sensor.kalavalanas_cpu_usage:
+    sensor.kalavala_nas_cpu_usage:
       friendly_name: CPU Usage
-    sensor.kalavalanas_memory_usage:
+    sensor.kalavala_nas_memory_usage:
       friendly_name: Memory Usage
-    sensor.kalavalanas_network_up_eth0:
+    sensor.kalavala_nas_network_up_eth0:
       friendly_name: Network Speed
-    sensor.kalavalanas_network_up_eth1:
+    sensor.kalavala_nas_network_up_eth1:
       friendly_name: Network Speed
-    sensor.kalavalanas_status:
+    sensor.kalavala_nas_status:
       friendly_name: NAS Status
-    sensor.kalavalanas_volume_used_datavol1:
+    sensor.kalavala_nas_volume_used_datavol1:
       friendly_name: Percent Disk Used
-    sensor.kalavalanas_system_temperature:
+    sensor.kalavala_nas_system_temperature:
       friendly_name: System Temperature
-    sensor.kalavalanas_cpu_temperature:
+    sensor.kalavala_nas_cpu_temperature:
       friendly_name: CPU Temperature
     sensor.nas_memory_usage_above_80:
       friendly_name: Is Memory Above 80 Percent?
@@ -29,46 +29,46 @@ homeassistant:
       friendly_name: Is CPU Above 80 Percent?
       hidden: true
 
-    sensor.kalavalanas_smart_status_drive_01:
+    sensor.kalavala_nas_smart_status_drive_0_1:
       friendly_name: Drive 1 Status
-    sensor.kalavalanas_smart_status_drive_02:
+    sensor.kalavala_nas_smart_status_drive_0_2:
       friendly_name: Drive 2 Status
-    sensor.kalavalanas_smart_status_drive_03:
+    sensor.kalavala_nas_smart_status_drive_0_3:
       friendly_name: Drive 3 Status
-    sensor.kalavalanas_smart_status_drive_04:
+    sensor.kalavala_nas_smart_status_drive_0_4:
       friendly_name: Drive 4 Status
     
-    sensor.kalavalanas_temperature_drive_01:
+    sensor.kalavala_nas_temperature_drive_0_1:
       friendly_name: Drive 1 Temperature
-    sensor.kalavalanas_temperature_drive_02:
+    sensor.kalavala_nas_temperature_drive_0_2:
       friendly_name: Drive 2 Temperature
-    sensor.kalavalanas_temperature_drive_03:
+    sensor.kalavala_nas_temperature_drive_0_3:
       friendly_name: Drive 3 Temperature
-    sensor.kalavalanas_temperature_drive_04:
+    sensor.kalavala_nas_temperature_drive_0_4:
       friendly_name: Drive 4 Temperature
 
 group:
   QNAP Drives:
     entities:
-      - sensor.kalavalanas_smart_status_drive_01
-      - sensor.kalavalanas_smart_status_drive_02
-      - sensor.kalavalanas_smart_status_drive_03
-      - sensor.kalavalanas_smart_status_drive_04
-      - sensor.kalavalanas_temperature_drive_01
-      - sensor.kalavalanas_temperature_drive_02
-      - sensor.kalavalanas_temperature_drive_03
-      - sensor.kalavalanas_temperature_drive_04
+      - sensor.kalavala_nas_smart_status_drive_0_1
+      - sensor.kalavala_nas_smart_status_drive_0_2
+      - sensor.kalavala_nas_smart_status_drive_0_3
+      - sensor.kalavala_nas_smart_status_drive_0_4
+      - sensor.kalavala_nas_temperature_drive_0_1
+      - sensor.kalavala_nas_temperature_drive_0_2
+      - sensor.kalavala_nas_temperature_drive_0_3
+      - sensor.kalavala_nas_temperature_drive_0_4
 
   QNAP Server:
     entities:
-      - sensor.kalavalanas_status
-      - sensor.kalavalanas_cpu_usage
-      - sensor.kalavalanas_memory_usage
-      - sensor.kalavalanas_network_up_eth0
-      - sensor.kalavalanas_network_up_eth1
-      - sensor.kalavalanas_volume_used_datavol1
-      - sensor.kalavalanas_system_temperature
-      - sensor.kalavalanas_cpu_temperature
+      - sensor.kalavala_nas_status
+      - sensor.kalavala_nas_cpu_usage
+      - sensor.kalavala_nas_memory_usage
+      - sensor.kalavala_nas_network_up_eth0
+      - sensor.kalavala_nas_network_up_eth1
+      - sensor.kalavala_nas_volume_used_datavol1
+      - sensor.kalavala_nas_system_temperature
+      - sensor.kalavala_nas_cpu_temperature
 
   QNAP Automations:
     entities:
@@ -106,12 +106,12 @@ sensor:
   - platform: template
     sensors:
       nas_memory_usage_above_80:
-        value_template: '{{ states.sensor.kalavalanas_memory_usage.state | int > 80 }}'
+        value_template: '{{ states.sensor.kalavala_nas_memory_usage.state | int > 80 }}'
 
   - platform: template
     sensors:
       nas_cpu_usage_above_80:
-        value_template: '{{ states.sensor.kalavalanas_cpu_usage.state | int > 80 }}'
+        value_template: '{{ states.sensor.kalavala_nas_cpu_usage.state | int > 80 }}'
 
 ###############################################################################
 #                _                        _   _                 
@@ -129,7 +129,7 @@ automation:
     trigger:
       platform: state
       entity_id: 
-       - sensor.kalavalanas_status
+       - sensor.kalavala_nas_status
     condition:
       - condition: template
         value_template: "{{ trigger.from_state.state != trigger.to_state.state }}"
@@ -143,10 +143,10 @@ automation:
     trigger:
       platform: state
       entity_id: 
-       - sensor.kalavalanas_smart_status_drive_01
-       - sensor.kalavalanas_smart_status_drive_02
-       - sensor.kalavalanas_smart_status_drive_03
-       - sensor.kalavalanas_smart_status_drive_04
+       - sensor.kalavala_nas_smart_status_drive_01
+       - sensor.kalavala_nas_smart_status_drive_02
+       - sensor.kalavala_nas_smart_status_drive_03
+       - sensor.kalavala_nas_smart_status_drive_04
     condition:
       - condition: template
         value_template: "{{ trigger.from_state.state != trigger.to_state.state }}"       
@@ -161,7 +161,7 @@ automation:
     initial_state: true
     trigger:
       platform: numeric_state
-      entity_id:  sensor.kalavalanas_cpu_temperature
+      entity_id:  sensor.kalavala_nas_cpu_temperature
       above: 125
     action:
       - service: script.notify_me
@@ -173,7 +173,7 @@ automation:
     initial_state: true
     trigger:
       platform: numeric_state
-      entity_id:  sensor.kalavalanas_volume_used_datavol1
+      entity_id:  sensor.kalavala_nas_volume_used_datavol1
       above: 80
     action:
       - service: script.notify_me

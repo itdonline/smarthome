@@ -171,7 +171,7 @@ automation:
 # |_____/|_|  |_|_| |_|_|_|\_\__,_| |___/ |_|  \_\___/ \___/|_| |_| |_|        
 
   # Flip 90: Toggle Srinika's Room Lights
-  - alias: Srinika's Room Cube Event flip90
+  - alias: Srinika Room Cube Event flip90
     initial_state: true
     trigger:
       platform: event
@@ -184,7 +184,7 @@ automation:
         entity_id: switch.guest_bedroom_1
 
   # Shake: Toggle Do Not Disturb Mode
-  - alias: Srinika's Room Cube Event Shake
+  - alias: Srinika Room Cube Event Shake
     initial_state: true
     trigger:
       platform: event
@@ -204,7 +204,7 @@ automation:
 # |_|  |_|\__,_|___/_|_|\_\__,_| |___/ |_|  \_\___/ \___/|_| |_| |_|          
                                                                      
   # Flip 90: Toggle Hasika's Room Lights
-  - alias: Hasika's Room Cube Event flip90
+  - alias: Hasika Room Cube Event flip90
     initial_state: true
     trigger:
       platform: event
@@ -217,7 +217,7 @@ automation:
         entity_id: switch.kids_bedroom
 
   # Shake: Toggle Do Not Disturb Mode
-  - alias: Hasika's Room Cube Event Shake
+  - alias: Hasika Room Cube Event Shake
     initial_state: true
     trigger:
       platform: event

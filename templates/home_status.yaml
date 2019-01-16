@@ -185,6 +185,7 @@
 
   {# a macro to call all macros :)  #}
   {%- macro mother_of_all_macros() -%}
+    It is {{ now().strftime("%I:%M %p") }}.
     {{ USHolidays() }}
     {{ weather_update() }}
     {{ pollen_levels() }}

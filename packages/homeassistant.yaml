@@ -46,7 +46,7 @@ homeassistant:
     sensor.cpu_speed:
       friendly_name: CPU Speed
 
-    sensor.disk_free_:
+    sensor.disk_free:
       friendly_name: Disk Free Space
 
     sensor.ipv4_address_wlp1s10:
@@ -91,7 +91,7 @@ homeassistant:
 group:
   System Monitor:
     entities:
-      - sensor.disk_free_
+      - sensor.disk_free
       - sensor.ipv4_address_wlp1s10
       - sensor.last_boot
       - sensor.processor_use

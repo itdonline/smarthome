@@ -29,18 +29,14 @@
 'calendar.*':
   hidden: true
 
-# Camera Stuff
+# Camera Stuff, hide from UI
 'binary_sensor.*_camera_tamper_detection':
   hidden: true
 'binary_sensor.*_camera_field_detection':
   hidden: true
 'binary_sensor.*_camera_line_crossing':
   hidden: true
-'binary_sensor.*_camera_tamper_detection_*':
-  hidden: true
-'binary_sensor.*_camera_field_detection_*':
-  hidden: true
-'binary_sensor.*_camera_line_crossing_*':
+'binary_sensor.*_camera_face_detection':
   hidden: true
 
 # Weather Stuff

@@ -54,7 +54,6 @@ views:
           - automation.bathroom_aroma_timer_start
           - automation.birthday_countdown_30_days
           - automation.cancel_wfh_timer_when_suresh_leaves_home
-          - automation.check_wifi_status_of_iphones_at_home
           - automation.daily_home_status
           - automation.disable_emergency_mode_upon_disabling_home_security
           - automation.do_not_disturb_for_2_hours
@@ -73,21 +72,21 @@ views:
           - automation.family_room_cube_event_shake
           - automation.family_room_cube_event_shake_2
           - automation.family_room_cube_event_tap_twice
-          - automation.family_room_motion__timer
+          - automation.family_room_motion_timer
           - automation.family_room_timer_elapsed
           - automation.front_room_cube_event_flip90
-          - automation.frontroom_motion__timer
+          - automation.frontroom_motion_timer
           - automation.frontroom_timer_elapsed
           - automation.frontyard_light_watchdog
           - automation.garage_lights_on_when_door_is_opened
-          - automation.garage_motion__timer
+          - automation.garage_motion_timer
           - automation.garage_motion_reset
           - automation.garage_timer_elapsed
           - automation.garage_timer_start_when_garage_lights_on
           - automation.guest_bedroom_1_light_watchdog
           - automation.guest_bedroom_2_light_watchdog
-          - automation.hasikas_room_cube_event_flip90
-          - automation.hasikas_room_cube_event_shake
+          - automation.hasika_room_cube_event_flip90
+          - automation.hasika_room_cube_event_shake
           - automation.home_mode_away_on
           - automation.home_security_away_motion_deteted_inside
           - automation.home_security_on
@@ -97,7 +96,7 @@ views:
           - automation.home_status_on
           - automation.hourly_report_during_day_time
           - automation.kids_bedroom_light_watchdog
-          - automation.kitchen_motion__timer
+          - automation.kitchen_motion_timer
           - automation.kitchen_timer_elapsed
           - automation.long_flash_all_lights
           - automation.master_bedroom_cube_event_flip180
@@ -105,7 +104,7 @@ views:
           - automation.master_bedroom_cube_event_move
           - automation.master_bedroom_cube_event_shake
           - automation.master_bedroom_cube_event_tap_twice
-          - automation.master_bedroom_motion__timer
+          - automation.master_bedroom_motion_timer
           - automation.master_bedroom_timer_elapsed
           - automation.morning_indoor_lights_on
           - automation.morning_kitchen_light_off
@@ -137,7 +136,7 @@ views:
           - automation.notify_of_new_external_ip
           - automation.notify_usps_mail
           - automation.notify_usps_packages
-          - automation.officeroom_motion__timer
+          - automation.officeroom_motion_timer
           - automation.officeroom_timer_elapsed
           - automation.pm_change_off
           - automation.pm_change_on
@@ -172,14 +171,14 @@ views:
           - automation.single_car_garage_door_watchdog
           - automation.snapcast_action
           - automation.snow_and_sleet_alerts
-          - automation.srinikas_room_cube_event_flip90
-          - automation.srinikas_room_cube_event_shake
+          - automation.srinika_room_cube_event_flip90
+          - automation.srinika_room_cube_event_shake
           - automation.study_room_cube_event_flip90
           - automation.study_room_cube_event_shake
           - automation.tesla_climate_off
           - automation.tesla_climate_on
           - automation.text_changed_event
-          - automation.timer_elapsed__take_a_walk
+          - automation.timer_elapsed_take_a_walk
           - automation.today_is_the_birthday
           - automation.trash_and_recycle_bin_left_outside_already
           - automation.trash_and_recycle_pickup_reminder
@@ -234,7 +233,6 @@ views:
           - script.restart_hass
           - script.restart_snapcast_server
           - script.shutdown_all_raspberrypis
-          - script.start_hass
           - script.start_snapcast_server
           - script.stop_hass
           - script.stop_snapcast_server
@@ -326,7 +324,7 @@ views:
           - group.dark_sky
           - group.date_time
           - group.doppler_weather
-          - group.home__family
+          - group.home_family
           - group.humidity_levels
           - group.light_levels
           - group.motion_sensors
@@ -486,7 +484,7 @@ views:
         show_header_toggle: false
         entities:
           - group.garage_doors
-          - group.home__family
+          - group.home_family
       - type: entities
         title: Scripts
         show_header_toggle: false
@@ -542,7 +540,7 @@ views:
         show_header_toggle: false
         entities:
           - binary_sensor.workday_sensor
-          - sensor.disk_free_
+          - sensor.disk_free
           - sensor.ha_current_version
           - sensor.ha_installed_version
           - sensor.home_assistant_up_time
@@ -667,10 +665,10 @@ views:
         title: Wifi
         show_header_toggle: false
         entities:
-          - sensor.hasikas_iphone_wifi_state
-          - sensor.mallikas_iphone_wifi_state
-          - sensor.srinikas_iphone_wifi_state
-          - sensor.sureshs_iphone_wifi_state
+          - sensor.hasika_iphone_wifi_state
+          - sensor.mallika_iphone_wifi_state
+          - sensor.srinika_iphone_wifi_state
+          - sensor.suresh_iphone_wifi_state
       - type: entities
         title: Wifi Link Quality
         show_header_toggle: false
@@ -790,16 +788,6 @@ views:
     title: My Home
     icon: mdi:home
     cards:
-      - type: entities
-        title: Date Time
-        show_header_toggle: false
-        entities:
-          - sensor.date
-          - sensor.date__time
-          - sensor.time
-          - sensor.time__date
-          - sensor.time_utc
-
       - type: entity-filter
         title: Device Trackers
         show_header_toggle: false
@@ -817,6 +805,25 @@ views:
           title: Kalavala Family
 
       - type: entities
+        title: Where Is Everyone
+        show_header_toggle: false
+        entities:
+          - sensor.hasika_location
+          - sensor.mallika_location
+          - sensor.srinika_location
+          - sensor.suresh_location
+    
+      - type: entities
+        title: Date Time
+        show_header_toggle: false
+        entities:
+          - sensor.date
+          - sensor.date_time
+          - sensor.time
+          - sensor.time_date
+          - sensor.time_utc
+
+      - type: entities
         title: Emergency Scripts
         show_header_toggle: false
         entities:
@@ -825,14 +832,6 @@ views:
           - script.emergency_script
           - script.emergency_script_loop
 
-      - type: entities
-        title: Where Is Everyone
-        show_header_toggle: false
-        entities:
-          - sensor.hasika_location
-          - sensor.mallika_location
-          - sensor.srinika_location
-          - sensor.suresh_location
 
       - type: entities
         title: Birthday Countdown
@@ -864,13 +863,26 @@ views:
         title: Batteries
         show_header_toggle: false
         entities:
-          - entity: sensor.hasika_iphone_battery_ot
+          - entity: sensor.hasika_iphone_battery_ot_2
             name: Hasika
-          - entity: sensor.mallika_iphone_battery_ot
+          - entity: sensor.mallika_iphone_battery_ot_2
             name: Mallika
-          - entity: sensor.srinika_iphone_battery_ot
+          - entity: sensor.srinika_iphone_battery_ot_2
             name: Srinika
-          - entity: sensor.suresh_iphone_battery_ot
+          - entity: sensor.suresh_iphone_battery_ot_2
+            name: Suresh
+
+      - type: glance
+        title: Battery State
+        show_header_toggle: false
+        entities:
+          - entity: sensor.hasika_iphone_battery_state
+            name: Hasika
+          - entity: sensor.mallika_iphone_battery_state
+            name: Mallika
+          - entity: sensor.srinika_iphone_battery_state
+            name: Srinika
+          - entity: sensor.suresh_iphone_battery_state
             name: Suresh
 
       - type: entity-filter
@@ -905,15 +917,17 @@ views:
         entity: camera.ohio_doppler_weather
         camera_image: camera.ohio_doppler_weather
         show_info: true
-        tap_action: dialog
-
+        tap_action:
+          action: more-info
+          
       - type: picture-entity
         id: camera_usps_mail_pictures
         title: USPS Mail Pictures
         entity: camera.usps_mail_pictures
         camera_image: camera.usps_mail_pictures
         show_info: true
-        tap_action: dialog
+        tap_action:
+          action: more-info
 
       - type: entities
         title: Bed & Wakeup Times
@@ -1092,15 +1106,15 @@ views:
         title: Ads Blocked
         show_header_toggle: false
         entities:
-          - sensor.pihole_ads_blocked_today
-          - sensor.pihole_ads_percentage_blocked_today
-          - sensor.pihole_dns_queries_cached
-          - sensor.pihole_dns_queries_forwarded
-          - sensor.pihole_dns_queries_today
-          - sensor.pihole_dns_unique_clients
-          - sensor.pihole_dns_unique_domains
-          - sensor.pihole_domains_blocked
-          - sensor.pihole_seen_clients
+          - sensor.pi_hole_ads_blocked_today
+          - sensor.pi_hole_ads_percentage_blocked_today
+          - sensor.pi_hole_dns_queries_cached
+          - sensor.pi_hole_dns_queries_forwarded
+          - sensor.pi_hole_dns_queries_today
+          - sensor.pi_hole_dns_unique_clients
+          - sensor.pi_hole_dns_unique_domains
+          - sensor.pi_hole_domains_blocked
+          - sensor.pi_hole_seen_clients
 
       - type: entities
         title: Basement Ups
@@ -1177,26 +1191,26 @@ views:
         title: Qnap Drives
         show_header_toggle: false
         entities:
-          - sensor.kalavalanas_smart_status_drive_01
-          - sensor.kalavalanas_smart_status_drive_02
-          - sensor.kalavalanas_smart_status_drive_03
-          - sensor.kalavalanas_smart_status_drive_04
-          - sensor.kalavalanas_temperature_drive_01
-          - sensor.kalavalanas_temperature_drive_02
-          - sensor.kalavalanas_temperature_drive_03
-          - sensor.kalavalanas_temperature_drive_04
+          - sensor.kalavala_nas_smart_status_drive_0_1
+          - sensor.kalavala_nas_smart_status_drive_0_2
+          - sensor.kalavala_nas_smart_status_drive_0_3
+          - sensor.kalavala_nas_smart_status_drive_0_4
+          - sensor.kalavala_nas_temperature_drive_0_1
+          - sensor.kalavala_nas_temperature_drive_0_2
+          - sensor.kalavala_nas_temperature_drive_0_3
+          - sensor.kalavala_nas_temperature_drive_0_4
       - type: entities
         title: Qnap Server
         show_header_toggle: false
         entities:
-          - sensor.kalavalanas_cpu_temperature
-          - sensor.kalavalanas_cpu_usage
-          - sensor.kalavalanas_memory_usage
-          - sensor.kalavalanas_network_up_eth0
-          - sensor.kalavalanas_network_up_eth1
-          - sensor.kalavalanas_status
-          - sensor.kalavalanas_system_temperature
-          - sensor.kalavalanas_volume_used_datavol1
+          - sensor.kalavala_nas_status
+          - sensor.kalavala_nas_cpu_usage
+          - sensor.kalavala_nas_memory_usage
+          - sensor.kalavala_nas_network_up_eth0
+          - sensor.kalavala_nas_network_up_eth1
+          - sensor.kalavala_nas_volume_used_datavol1
+          - sensor.kalavala_nas_system_temperature
+          - sensor.kalavala_nas_cpu_temperature
       - type: entities
         title: Raspberry Pis
         show_header_toggle: false
@@ -1287,7 +1301,7 @@ views:
         title: Media Players
         show_header_toggle: false
         entities:
-          - media_player.denon_avrx2400h
+          - media_player.denon_avr_x2400h
           - media_player.gstreamer
           - media_player.mpd
 
@@ -1337,7 +1351,6 @@ views:
           - script.restart_all_snapclients
           - script.restart_hass
           - script.stop_hass
-          - script.start_hass
           - script.restart_snapcast_server
           - script.shutdown_all_raspberrypis
           - script.start_snapcast_server
@@ -1460,7 +1473,6 @@ views:
           - automation.bathroom_aroma_timer_start
           - automation.birthday_countdown_30_days
           - automation.cancel_wfh_timer_when_suresh_leaves_home
-          - automation.check_wifi_status_of_iphones_at_home
           - automation.daily_home_status
           - automation.disable_emergency_mode_upon_disabling_home_security
           - automation.do_not_disturb_for_2_hours
@@ -1479,21 +1491,21 @@ views:
           - automation.family_room_cube_event_shake
           - automation.family_room_cube_event_shake_2
           - automation.family_room_cube_event_tap_twice
-          - automation.family_room_motion__timer
+          - automation.family_room_motion_timer
           - automation.family_room_timer_elapsed
           - automation.front_room_cube_event_flip90
-          - automation.frontroom_motion__timer
+          - automation.frontroom_motion_timer
           - automation.frontroom_timer_elapsed
           - automation.frontyard_light_watchdog
           - automation.garage_lights_on_when_door_is_opened
-          - automation.garage_motion__timer
+          - automation.garage_motion_timer
           - automation.garage_motion_reset
           - automation.garage_timer_elapsed
           - automation.garage_timer_start_when_garage_lights_on
           - automation.guest_bedroom_1_light_watchdog
           - automation.guest_bedroom_2_light_watchdog
-          - automation.hasikas_room_cube_event_flip90
-          - automation.hasikas_room_cube_event_shake
+          - automation.hasika_room_cube_event_flip90
+          - automation.hasika_room_cube_event_shake
           - automation.home_mode_away_on
           - automation.home_security_away_motion_deteted_inside
           - automation.home_security_on
@@ -1503,7 +1515,7 @@ views:
           - automation.home_status_on
           - automation.hourly_report_during_day_time
           - automation.kids_bedroom_light_watchdog
-          - automation.kitchen_motion__timer
+          - automation.kitchen_motion_timer
           - automation.kitchen_timer_elapsed
           - automation.long_flash_all_lights
           - automation.master_bedroom_cube_event_flip180
@@ -1511,7 +1523,7 @@ views:
           - automation.master_bedroom_cube_event_move
           - automation.master_bedroom_cube_event_shake
           - automation.master_bedroom_cube_event_tap_twice
-          - automation.master_bedroom_motion__timer
+          - automation.master_bedroom_motion_timer
           - automation.master_bedroom_timer_elapsed
           - automation.morning_indoor_lights_on
           - automation.morning_kitchen_light_off
@@ -1543,7 +1555,7 @@ views:
           - automation.notify_of_new_external_ip
           - automation.notify_usps_mail
           - automation.notify_usps_packages
-          - automation.officeroom_motion__timer
+          - automation.officeroom_motion_timer
           - automation.officeroom_timer_elapsed
           - automation.pm_change_off
           - automation.pm_change_on
@@ -1578,14 +1590,14 @@ views:
           - automation.single_car_garage_door_watchdog
           - automation.snapcast_action
           - automation.snow_and_sleet_alerts
-          - automation.srinikas_room_cube_event_flip90
-          - automation.srinikas_room_cube_event_shake
+          - automation.srinika_room_cube_event_flip90
+          - automation.srinika_room_cube_event_shake
           - automation.study_room_cube_event_flip90
           - automation.study_room_cube_event_shake
           - automation.tesla_climate_off
           - automation.tesla_climate_on
           - automation.text_changed_event
-          - automation.timer_elapsed__take_a_walk
+          - automation.timer_elapsed_take_a_walk
           - automation.today_is_the_birthday
           - automation.trash_and_recycle_bin_left_outside_already
           - automation.trash_and_recycle_pickup_reminder
@@ -1604,8 +1616,6 @@ views:
           - automation.update_home_assistant
           - automation.update_phone_battery_levels
           - automation.update_zwave_battery_levels
-          - automation.ups_offline
-          - automation.ups_online
           - automation.ups_state_change
           - automation.upstairs_aroma_timer_elapsed
           - automation.upstairs_aroma_timer_finish

@@ -13,7 +13,7 @@ family_view:
   icon: mdi:account-multiple
   entities:
     - group.date_time
-    - group.home__family
+    - group.home_family
     - group.weather
     - group.dark_sky
     - group.doppler_weather
@@ -38,7 +38,7 @@ Rooms:
   name: All Rooms
   icon: mdi:home
   entities:
-    - group.home__family  
+    - group.home_family  
     - group.doors
     - group.garage_doors
     - group.door_sensors
