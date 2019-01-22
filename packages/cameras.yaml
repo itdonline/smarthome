@@ -162,6 +162,13 @@ automation:
          - binary_sensor.motion_sensor_158d00024ee084
        to: 'on'
     action:
+      - service: media_player.turn_on
+        entity_id: media_player.attic_tv
+      - service: media_player.play_media
+        data:
+          entity_id: media_player.attic_tv
+          media_content_id: !secret frontdoor_camera_stream_url
+          media_content_type: video
       - service: image_processing.scan
         data_template:
           entity_id: image_processing.tensorflow_frontdoor_camera
@@ -214,6 +221,13 @@ automation:
          - binary_sensor.motion_sensor_158d00024e57fb
        to: 'on'
     action:
+      - service: media_player.turn_on
+        entity_id: media_player.attic_tv
+      - service: media_player.play_media
+        data:
+          entity_id: media_player.attic_tv
+          media_content_id: !secret driveway_camera_stream_url
+          media_content_type: video    
       - service: image_processing.scan
         data_template:
           entity_id: image_processing.tensorflow_driveway_camera
@@ -316,6 +330,13 @@ automation:
          - binary_sensor.motion_sensor_158d00024e842c
        to: 'on'
     action:
+      - service: media_player.turn_on
+        entity_id: media_player.attic_tv
+      - service: media_player.play_media
+        data:
+          entity_id: media_player.attic_tv
+          media_content_id: !secret playarea_camera_stream_url
+          media_content_type: video
       - service: image_processing.scan
         data_template:
           entity_id: image_processing.tensorflow_patio_camera

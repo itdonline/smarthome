@@ -399,12 +399,12 @@ automation:
         data_template:
           message: >-
             {% set apostrophe = "\'" %}
-            {{ trigger.entity_id.split('.')[1].split('_')[0][:-1] |title ~ apostrophe ~ 's' }} vehicle is in motion.
+            {{ trigger.entity_id.split('.')[1].split('_')[0] |title ~ apostrophe ~ 's' }} vehicle is in motion.
       - service: script.notify_me
         data_template:
           message: >-
             {% set apostrophe = "\'" %}
-            {{ trigger.entity_id.split('.')[1].split('_')[0][:-1] |title ~ apostrophe ~ 's' }} vehicle is going at {{ trigger.to_state.state |round *2 }} mph.
+            {{ trigger.entity_id.split('.')[1].split('_')[0] |title ~ apostrophe ~ 's' }} vehicle is going at {{ trigger.to_state.state |round *2 }} mph.
 
 ###############################################################################
 # Automation: Notify of iPhone Low Battery
