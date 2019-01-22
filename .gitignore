@@ -53,3 +53,4 @@ custom_components/__pycache__/*
 docs/_site
 private/*
 apps/__pycache__/*.pyc
+docker/streamer
