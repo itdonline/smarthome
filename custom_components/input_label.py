@@ -41,6 +41,7 @@ ENTITY_ID_FORMAT = DOMAIN + '.{}'
 
 CONF_INITIAL = 'initial'
 ATTR_VALUE   = "value"
+DEFAULT_ICON = "mdi:label"
 
 SERVICE_SETNAME  = 'set_name'
 SERVICE_SETVALUE = 'set_value'
@@ -48,23 +49,20 @@ SERVICE_SETICON  = 'set_icon'
 
 SERVICE_SCHEMA = vol.Schema({
     vol.Optional(ATTR_ENTITY_ID): cv.entity_ids,
-    vol.Required(ATTR_VALUE): cv.string,
+    vol.Optional(ATTR_VALUE): cv.string,
+    vol.Optional(CONF_NAME): cv.icon,
+    vol.Optional(CONF_ICON): cv.icon,
 })
-
-def _cv_input_label(cfg):
-    """Configure validation helper for input label (voluptuous)."""
-    state = cfg.get(CONF_INITIAL)
-    return cfg
 
 CONFIG_SCHEMA = vol.Schema({
     DOMAIN: vol.Schema({
-        cv.slug: vol.All({
+        cv.slug: vol.Any({
+            vol.Optional(CONF_ICON, default=DEFAULT_ICON): cv.icon,
+            vol.Optional(ATTR_VALUE, ''): cv.string,
             vol.Optional(CONF_NAME): cv.string,
-            vol.Optional(CONF_INITIAL, ''): cv.string,
-            vol.Optional(CONF_ICON): cv.icon,            
-        }, _cv_input_label)
+        }, None)
     })
-}, required=True, extra=vol.ALLOW_EXTRA)
+}, extra=vol.ALLOW_EXTRA)
 
 async def async_setup(hass, config):
     """Set up a input_label."""
@@ -73,8 +71,10 @@ async def async_setup(hass, config):
     entities = []
 
     for object_id, cfg in config[DOMAIN].items():
+        if not cfg:
+            cfg = {}
         name = cfg.get(CONF_NAME)
-        initial = cfg.get(CONF_INITIAL)
+        initial = cfg.get(ATTR_VALUE)
         icon = cfg.get(CONF_ICON)
 
         entities.append(InputLabel(object_id, name, initial, icon))
@@ -148,12 +148,12 @@ class InputLabel(RestoreEntity):
         value = state and state.state
         self._current_value = value
 
-    async def async_set_name(self, name):
-        self._name = name
+    async def async_set_name(self, value):
+        self._name = value
         await self.async_update_ha_state()
 
-    async def async_set_icon(self, icon):
-        self._icon = icon
+    async def async_set_icon(self, value):
+        self._icon = value
         await self.async_update_ha_state()
 
     async def async_set_value(self, value):
