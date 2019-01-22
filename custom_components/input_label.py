@@ -20,7 +20,6 @@ input_label:
     icon: mdi:alphabetical
 
 """
-
 """
 Component to provide input_label.
 
@@ -32,23 +31,16 @@ import voluptuous as vol
 
 import homeassistant.helpers.config_validation as cv
 from homeassistant.const import (ATTR_ENTITY_ID, CONF_ICON, CONF_NAME)
-from homeassistant.core import callback
-from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.entity_component import EntityComponent
-from homeassistant.loader import bind_hass
-from homeassistant.helpers.entity import ToggleEntity
 from homeassistant.helpers.restore_state import RestoreEntity
-
-DOMAIN = 'input_label'
-
-ENTITY_ID_FORMAT = DOMAIN + '.{}'
 
 _LOGGER = logging.getLogger(__name__)
 
-ATTR_VALUE   = "value"
-DEFAULT_VALUE = "not set"
+DOMAIN = 'input_label'
+ENTITY_ID_FORMAT = DOMAIN + '.{}'
 
-DEFAULT_ICON = "mdi:label"
+CONF_INITIAL = 'initial'
+ATTR_VALUE   = "value"
 
 SERVICE_SETNAME  = 'set_name'
 SERVICE_SETVALUE = 'set_value'
@@ -56,20 +48,23 @@ SERVICE_SETICON  = 'set_icon'
 
 SERVICE_SCHEMA = vol.Schema({
     vol.Optional(ATTR_ENTITY_ID): cv.entity_ids,
-    vol.Optional(ATTR_VALUE): cv.string,
-    vol.Optional(CONF_NAME): cv.icon,
-    vol.Optional(CONF_ICON): cv.icon,
+    vol.Required(ATTR_VALUE): cv.string,
 })
+
+def _cv_input_label(cfg):
+    """Configure validation helper for input label (voluptuous)."""
+    state = cfg.get(CONF_INITIAL)
+    return cfg
 
 CONFIG_SCHEMA = vol.Schema({
     DOMAIN: vol.Schema({
-        cv.slug: vol.Any({
-            vol.Optional(CONF_ICON, default=DEFAULT_ICON): cv.icon,
-            vol.Optional(ATTR_VALUE, default=DEFAULT_VALUE): cv.string,
+        cv.slug: vol.All({
             vol.Optional(CONF_NAME): cv.string,
-        }, None)
+            vol.Optional(CONF_INITIAL, ''): cv.string,
+            vol.Optional(CONF_ICON): cv.icon,            
+        }, _cv_input_label)
     })
-}, extra=vol.ALLOW_EXTRA)
+}, required=True, extra=vol.ALLOW_EXTRA)
 
 async def async_setup(hass, config):
     """Set up a input_label."""
@@ -78,14 +73,11 @@ async def async_setup(hass, config):
     entities = []
 
     for object_id, cfg in config[DOMAIN].items():
-        if not cfg:
-            cfg = {}
-
         name = cfg.get(CONF_NAME)
-        value = cfg.get(ATTR_VALUE)
+        initial = cfg.get(CONF_INITIAL)
         icon = cfg.get(CONF_ICON)
 
-        entities.append(LabelData(object_id, name, value, icon))
+        entities.append(InputLabel(object_id, name, initial, icon))
 
     if not entities:
         return False
@@ -108,14 +100,14 @@ async def async_setup(hass, config):
     await component.async_add_entities(entities)
     return True
 
-class LabelData(RestoreEntity):
+class InputLabel(RestoreEntity):
     """Representation of a input_label."""
 
-    def __init__(self, object_id, name, value, icon):
+    def __init__(self, object_id, name, initial, icon):
         """Initialize a input_label."""
         self.entity_id = ENTITY_ID_FORMAT.format(object_id)
         self._name = name
-        self._state = value
+        self._current_value = initial
         self._icon = icon
  
     @property
@@ -136,24 +128,25 @@ class LabelData(RestoreEntity):
     @property
     def state(self):
         """Return the current value of the input_label."""
-        return self._state
+        return self._current_value
 
     @property
     def state_attributes(self):
         """Return the state attributes."""
         return {
-            ATTR_VALUE: self._state,
+            ATTR_VALUE: self._current_value,
         }
 
     async def async_added_to_hass(self):
-        """Call when entity about to be added to Home Assistant."""
-        # If not None, we got an initial value.
+        """Run when entity about to be added to hass."""
+
         await super().async_added_to_hass()
-        if self._state is not None:
+        if self._current_value is not None:
             return
 
         state = await self.async_get_last_state()
-        self._state = state and state.state == state
+        value = state and state.state
+        self._current_value = value
 
     async def async_set_name(self, name):
         self._name = name
@@ -164,5 +157,5 @@ class LabelData(RestoreEntity):
         await self.async_update_ha_state()
 
     async def async_set_value(self, value):
-        self._state = value
+        self._current_value = value
         await self.async_update_ha_state()
