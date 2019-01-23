@@ -570,7 +570,7 @@ automation:
   - alias: Query RPi Wifi Data
     initial_state: true
     trigger:
-      - platform: time
+      - platform: time_pattern
         minutes: '/30'
       - platform: homeassistant
         event: start
@@ -583,7 +583,7 @@ automation:
   - alias: Query RPi Disk Data
     initial_state: true
     trigger:
-      - platform: time
+      - platform: time_pattern
         minutes: '/30'
       - platform: homeassistant
         event: start        

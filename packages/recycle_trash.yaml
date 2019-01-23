@@ -5,41 +5,41 @@
 #   @description    :   Trash & Recycle Pickup Scheduler and Reminder
 ###############################################################################
 homeassistant:
-  customize:
+  # customize:
   
-    group.date_time:
-      order: 9
-    group.trash_schedule:
-      order: 10
-    group.recycle_schedule:
-      order: 11
-    group.trash_and_recycle_automations:
-      order: 12
+  #   group.date_time:
+  #     order: 9
+  #   group.trash_schedule:
+  #     order: 10
+  #   group.recycle_schedule:
+  #     order: 11
+  #   group.trash_and_recycle_automations:
+  #     order: 12
 
-    sensor.trash_day:
-      friendly_name: Is it Trash Day today?
-      icon: mdi:delete-variant
-    sensor.recycle_day:
-      friendly_name: Is it Recycle Day today?
-      icon: mdi:recycle
-    sensor.trash_pickup_day:
-      friendly_name: Trash Pickup Day
-      icon: mdi:calendar-today
-      hidden: true
-    sensor.recycle_pickup_day:
-      friendly_name: Recycle Pickup Day
-      icon: mdi:calendar-today
-      hidden: true
-    sensor.recycle_pickup_week:
-      friendly_name: Recycle Pickup Week
-      icon: mdi:calendar-today
-      hidden: true
-    sensor.current_week:
-      friendly_name: Current Week is
-      icon: mdi:calendar-question
-    group.trash__recycle:
-      friendly_name: Trash & Recycle
-      icon: mdi:recycle
+  #   sensor.trash_day:
+  #     friendly_name: Is it Trash Day today?
+  #     icon: mdi:delete-variant
+  #   sensor.recycle_day:
+  #     friendly_name: Is it Recycle Day today?
+  #     icon: mdi:recycle
+  #   sensor.trash_pickup_day:
+  #     friendly_name: Trash Pickup Day
+  #     icon: mdi:calendar-today
+  #     hidden: true
+  #   sensor.recycle_pickup_day:
+  #     friendly_name: Recycle Pickup Day
+  #     icon: mdi:calendar-today
+  #     hidden: true
+  #   sensor.recycle_pickup_week:
+  #     friendly_name: Recycle Pickup Week
+  #     icon: mdi:calendar-today
+  #     hidden: true
+  #   sensor.current_week:
+  #     friendly_name: Current Week is
+  #     icon: mdi:calendar-question
+  #   group.trash__recycle:
+  #     friendly_name: Trash & Recycle
+  #     icon: mdi:recycle
 
 group:
   Trash Schedule:

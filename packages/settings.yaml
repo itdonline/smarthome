@@ -472,7 +472,7 @@ automation:
   - alias: Hourly Report During Day Time
     initial_state: true
     trigger:
-      platform: time
+      platform: time_pattern
       hours: '/01'
       minutes: 05
       seconds: 00

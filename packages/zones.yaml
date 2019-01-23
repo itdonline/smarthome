@@ -149,7 +149,7 @@ automation:
   - alias: Alert when everyone is AWAY
     initial_state: true
     trigger:
-      platform: time
+      platform: time_pattern
       minutes: 00
       seconds: '/30'
     condition:

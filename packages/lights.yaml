@@ -393,7 +393,7 @@ automation:
   - alias: Animate Master Bedroom Lights
     initial_state: true
     trigger:
-      platform: time
+      platform: time_pattern
       seconds: '/5'
     condition:
       - condition: state
@@ -433,7 +433,7 @@ automation:
   - alias: Animate Familyroom Lights
     initial_state: true
     trigger:
-      platform: time
+      platform: time_pattern
       seconds: '/5'
     condition:
       - condition: state
@@ -473,7 +473,7 @@ automation:
   # - alias: Animate Kitchen Lights ON
   #   initial_state: true
   #   trigger:
-  #     - platform: time
+  #     - platform: time_pattern
   #       seconds: '/3'
   #   condition:
   #     - condition: state

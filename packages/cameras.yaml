@@ -226,7 +226,7 @@ automation:
       - service: media_player.play_media
         data:
           entity_id: media_player.attic_tv
-          media_content_id: !secret driveway_camera_stream_url
+          media_content_id: !secret frontdoor_camera_stream_url
           media_content_type: video    
       - service: image_processing.scan
         data_template:
@@ -589,3 +589,19 @@ automation:
             attachment:
               url: "{{ states.camera.patio_camera.attributes.entity_picture }}"
               content-type: jpg
+
+# Automation that keeps track of Chromecast
+# when chromecase goes into screen saver mode, it turns On again
+  - alias: Keep Chromecast On
+    trigger:
+      - platform: state
+        entity_id: media_player.attic_tv
+        to: 'off'
+    action:
+      - service: media_player.turn_on
+        entity_id: media_player.attic_tv
+      - service: media_player.play_media
+        data:
+          entity_id: media_player.attic_tv
+          media_content_id: !secret frontdoor_camera_stream_url
+          media_content_type: video

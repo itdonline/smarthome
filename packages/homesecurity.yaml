@@ -169,7 +169,7 @@ automation:
   # - alias: Home Security System And Garage Door Check
   #   initial_state: true
   #   trigger:
-  #     - platform: time
+  #     - platform: time_pattern
   #       minutes: '/15'
   #       seconds: 00
   #   condition:

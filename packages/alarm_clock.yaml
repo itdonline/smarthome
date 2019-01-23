@@ -156,7 +156,7 @@ automation:
   - alias: Alarm Clock
     initial_state: true
     trigger:
-      platform: time
+      platform: time_pattern
       minutes: '/1'
       seconds: 00
     condition:

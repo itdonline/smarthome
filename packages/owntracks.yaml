@@ -1,26 +1,26 @@
 homeassistant:
-  customize:
+  # customize:
 
-    group.home__family:
-      order: 1
+  #   group.home__family:
+  #     order: 1
 
-    device_tracker.suresh_suresh:
-      friendly_name: Suresh
-      entity_picture: /local/suresh.jpg
-    device_tracker.mallika_mallika:
-      friendly_name: Mallika
-      entity_picture: /local/mallika.jpg
-    device_tracker.srinika_srinika:
-      friendly_name: Srinika
-      entity_picture: /local/srinika.jpg
-    device_tracker.hasika_hasika:
-      friendly_name: Hasika
-      entity_picture: /local/hasika.jpg
-    device_tracker.tesla_model_3_5yj3e1ea8jf010610_location_tracker:
-      friendly_name: Tesla
-      entity_picture: /local/tesla.jpg
-    device_tracker.ipad_ipad:
-      hidden: true
+  #   device_tracker.suresh_suresh:
+  #     friendly_name: Suresh
+  #     entity_picture: /local/suresh.jpg
+  #   device_tracker.mallika_mallika:
+  #     friendly_name: Mallika
+  #     entity_picture: /local/mallika.jpg
+  #   device_tracker.srinika_srinika:
+  #     friendly_name: Srinika
+  #     entity_picture: /local/srinika.jpg
+  #   device_tracker.hasika_hasika:
+  #     friendly_name: Hasika
+  #     entity_picture: /local/hasika.jpg
+  #   device_tracker.tesla_model_3_5yj3e1ea8jf010610_location_tracker:
+  #     friendly_name: Tesla
+  #     entity_picture: /local/tesla.jpg
+  #   device_tracker.ipad_ipad:
+  #     hidden: true
 
 owntracks:
 

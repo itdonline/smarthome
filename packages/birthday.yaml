@@ -139,7 +139,7 @@ automation:
   - alias: Random Birthday Wishes
     initial_state: true
     trigger:
-      platform: time
+      platform: time_pattern
       hours: '/1'
       minutes: 3
       seconds: 00
@@ -174,7 +174,7 @@ automation:
   - alias: Update Birthdays
     initial_state: true
     trigger:
-      - platform: time
+      - platform: time_pattern
         minutes: '/5'
         seconds: 00
       - platform: homeassistant
