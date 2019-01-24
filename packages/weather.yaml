@@ -5,97 +5,87 @@
 #   @description    :   Nothing But The Weather Stuff!
 ###############################################################################
 homeassistant:
-  # customize:
+  customize:
   
-  #   sun.sun:
-  #     friendly_name: Sun 
-  #   sensor.pws_relative_humidity:
-  #     friendly_name: Humidity
-  #     homebridge_hidden: true
-  #   sensor.pws_temp_f:
-  #     friendly_name: Temperature
-  #     homebridge_hidden: true
-  #   sensor.pws_feelslike_f:
-  #     friendly_name: Feels Like
-  #     homebridge_hidden: true
-  #   sensor.pws_wind_mph:
-  #     friendly_name: Wind Speed
-  #     icon: mdi:weather-windy
-  #   sensor.pws_heat_index_f:
-  #     friendly_name: Heat Index
-  #     homebridge_hidden: true
-  #   sensor.pws_visibility_mi:
-  #     friendly_name: Visibility
-  #   sensor.pws_weather:
-  #     friendly_name: Weather
-  #     homebridge_hidden: true
-  #   sensor.pws_uv:
-  #     friendly_name: 'UV Index'
-  #     icon: mdi:white-balance-sunny
-  #     homebridge_hidden: true
+    sun.sun:
+      friendly_name: Sun 
+    sensor.pws_relative_humidity:
+      friendly_name: Humidity
+      homebridge_hidden: true
+    sensor.pws_temp_f:
+      friendly_name: Temperature
+      homebridge_hidden: true
+    sensor.pws_feelslike_f:
+      friendly_name: Feels Like
+      homebridge_hidden: true
+    sensor.pws_wind_mph:
+      friendly_name: Wind Speed
+      icon: mdi:weather-windy
+    sensor.pws_heat_index_f:
+      friendly_name: Heat Index
+      homebridge_hidden: true
+    sensor.pws_visibility_mi:
+      friendly_name: Visibility
+    sensor.pws_weather:
+      friendly_name: Weather
+      homebridge_hidden: true
+    sensor.pws_uv:
+      friendly_name: UV Index
+      icon: mdi:white-balance-sunny
+      homebridge_hidden: true
       
-  #   sensor.cold_flu:
-  #     friendly_name: Cold & Flu
-  #     hidden: true
-  #     homebridge_hidden: true
-  #   sensor.cold_flu_risk:
-  #     friendly_name: Cold & Flu Risk
-  #     homebridge_hidden: true
-  #   sensor.pollen:
-  #     friendly_name: Pollen
-  #     hidden: true
-  #     homebridge_hidden: true
-  #   sensor.pollen_level:
-  #     friendly_name: Pollen Level
-  #     homebridge_hidden: true
-  #   sensor.waqi_columbus__fairgrounds_ohio:
-  #     hidden: true
-  #     homebridge_hidden: true
-  #   sensor.air_quality:
-  #     friendly_name: Air Quality    
-  #     homebridge_hidden: true
+    sensor.cold_flu:
+      friendly_name: Cold and Flu
+      hidden: true
+      homebridge_hidden: true
+    sensor.cold_flu_risk:
+      friendly_name: Cold and Flu Risk
+      homebridge_hidden: true
+    sensor.pollen:
+      friendly_name: Pollen
+      hidden: true
+      homebridge_hidden: true
+    sensor.pollen_level:
+      friendly_name: Pollen Level
+      homebridge_hidden: true
+    sensor.air_quality:
+      friendly_name: Air Quality    
+      homebridge_hidden: true
 
-  #   input_boolean.rain_alert:
-  #     hidden: true
-  #     homebridge_hidden: true
-  #   input_boolean.snow_alert:
-  #     hidden: true
-  #     homebridge_hidden: true
-  #   input_boolean.sleet_alert:
-  #     hidden: true
-  #     homebridge_hidden: true
-  #   input_boolean.nice_breeze_alert:
-  #     hidden: true
-  #     homebridge_hidden: true
-  #   input_boolean.moderate_wind_alert:
-  #     hidden: true
-  #     homebridge_hidden: true
-  #   input_boolean.heavy_wind_alert:
-  #     hidden: true
-  #     homebridge_hidden: true
-  #   input_boolean.super_heavy_wind_alert:
-  #     hidden: true
-  #     homebridge_hidden: true
-  #   input_boolean.hurricane_wind_alert:
-  #     hidden: true
-  #     homebridge_hidden: true
-  #   sensor.uv_burn_time:
-  #     friendly_name: 'Burn Time'
-  #     icon: mdi:fire      
-  #     homebridge_hidden: true
-  #   sensor.wind_direction:
-  #     icon: mdi:weather-windy-variant
-  #     homebridge_hidden: true
-  #   sensor.wind_direction_tts:
-  #     icon: mdi:weather-windy-variant
-  #     homebridge_hidden: true
-     
-  #   group.weather:
-  #     order: 14
-  #   group.dark_sky:
-  #     order: 15
-  #   group.weather_automations:
-  #     order: 16
+    input_boolean.rain_alert:
+      hidden: true
+      homebridge_hidden: true
+    input_boolean.snow_alert:
+      hidden: true
+      homebridge_hidden: true
+    input_boolean.sleet_alert:
+      hidden: true
+      homebridge_hidden: true
+    input_boolean.nice_breeze_alert:
+      hidden: true
+      homebridge_hidden: true
+    input_boolean.moderate_wind_alert:
+      hidden: true
+      homebridge_hidden: true
+    input_boolean.heavy_wind_alert:
+      hidden: true
+      homebridge_hidden: true
+    input_boolean.super_heavy_wind_alert:
+      hidden: true
+      homebridge_hidden: true
+    input_boolean.hurricane_wind_alert:
+      hidden: true
+      homebridge_hidden: true
+    sensor.uv_burn_time:
+      friendly_name: Burn Time
+      icon: mdi:fire      
+      homebridge_hidden: true
+    sensor.wind_direction:
+      icon: mdi:weather-windy-variant
+      homebridge_hidden: true
+    sensor.wind_direction_tts:
+      icon: mdi:weather-windy-variant
+      homebridge_hidden: true
 
 group:
 
@@ -291,106 +281,6 @@ sensor:
     headers:
       Referer: "https://www.pollen.com"      
 
-  - platform: template
-    sensors:
-      air_quality:
-        friendly_name: 'Air Quality'
-        value_template: >
-          {% if states('sensor.waqi_columbus__fairgrounds_ohio') != 'unknown' %}
-            {% set aq = states.sensor.waqi_columbus__fairgrounds_ohio.state | default | int('1') %}
-            {% if aq == "1" %}
-              Good
-            {% elif (aq > 0) and (aq <= 50) %}
-              Good
-            {% elif (aq > 50) and (aq <= 100) %}
-              Moderate
-            {% elif (aq > 100) and (aq <= 150) %}
-              Unhealthy for sensitive Groups
-            {% elif (aq > 150) (aq <= 200) %}
-              Unhealthy
-            {% elif (aq > 200) and (aq <= 300) %}
-              Very Unhealthy
-            {% elif (aq > 300) %}
-              Hazardous! Do not go out!
-            {% endif %}
-          {% else %}
-            Good
-          {% endif %}
-      pollen_level:
-        friendly_name: 'Pollen Level'
-        value_template: >-
-          {%- if states.sensor.pollen.state|float <= 2.4 %}
-              Low
-          {%- elif states.sensor.pollen.state|float <= 4.8 %}
-              Medium-Low
-          {%- elif states.sensor.pollen.state|float <= 7.2 %}
-              Medium
-          {%- elif states.sensor.pollen.state|float <= 9.6 %}
-              Medium-High
-          {%- elif states.sensor.pollen.state|float <= 12.0 %}
-              High
-          {% else %}
-              Unknown
-          {%- endif %}
-      wind_direction:
-        friendly_name: 'Wind Direction'
-        value_template: >-
-          {% set value = states.sensor.dark_sky_wind_bearing.state | default(0) | float %}
-          {% if value >11  and value <=34 %}NNE
-          {% elif value >34  and value <=56 %}NE
-          {% elif value >56  and value <=79 %}ENE
-          {% elif value >79  and value <=101%}E
-          {% elif value >101 and value <=124 %}ESE
-          {% elif value >124 and value <=146 %}SE
-          {% elif value >146 and value <=169 %}SSE
-          {% elif value >169 and value <=191 %}S
-          {% elif value >191 and value <=214 %}SSW
-          {% elif value >214 and value <=236 %}SW
-          {% elif value >236 and value <=259 %}WSW
-          {% elif value >259 and value <=281 %}W
-          {% elif value >281 and value <=304 %}WNW
-          {% elif value >304 and value <=326 %}NW
-          {% elif value >326 and value <=348 %}NNW
-          {% else %}N
-          {% endif %}
-      wind_direction_tts:
-        friendly_name: 'Wind Direction For TTS'
-        value_template: >-
-          {% set value = states.sensor.dark_sky_wind_bearing.state | default(0) | float %}
-          {% if value >11  and value <=34 %}North and North West
-          {% elif value >34  and value <=56 %}North East
-          {% elif value >56  and value <=79 %}East and North East
-          {% elif value >79  and value <=101%}East
-          {% elif value >101 and value <=124 %}East and South East
-          {% elif value >124 and value <=146 %}South East
-          {% elif value >146 and value <=169 %}South and South East
-          {% elif value >169 and value <=191 %}South
-          {% elif value >191 and value <=214 %}South and South West
-          {% elif value >214 and value <=236 %}South West
-          {% elif value >236 and value <=259 %}West and South West
-          {% elif value >259 and value <=281 %}West
-          {% elif value >281 and value <=304 %}West and North West
-          {% elif value >304 and value <=326 %}North West
-          {% elif value >326 and value <=348 %}North and North West
-          {% else %}N
-          {% endif %}
-      cold_flu_risk:
-        friendly_name: 'Cold & Flu Risk'
-        value_template: >-
-          {%- if states.sensor.cold_flu.state|float <= 2.4 %}
-              Low
-          {%- elif states.sensor.cold_flu.state|float <= 4.8 %}
-              Medium-Low
-          {%- elif states.sensor.cold_flu.state|float <= 7.2 %}
-              Medium
-          {%- elif states.sensor.cold_flu.state|float <= 9.6 %}
-              Medium-High
-          {%- elif states.sensor.cold_flu.state|float <= 12.0 %}
-              High
-          {% else %}
-              Unknown
-          {%- endif %}
-
 ###############################################################################
 #                _                        _   _                 
 #     /\        | |                      | | (_)                
@@ -583,6 +473,21 @@ automation:
             {%- elif curState == "sleet" %}
                input_boolean.sleet_alert
             {%- endif %}
+
+  - alias: Update OpenUV every 30 minutes during the daytime
+    trigger:
+      platform: time_pattern
+      minutes: "/30"
+      seconds: 00
+    condition:
+      condition: and
+      conditions:
+        - condition: sun
+          after: sunrise
+        - condition: sun
+          before: sunset
+    action:
+      service: openuv.update_data
 
 # Weather sensors - TBD, too lazy to create them
 #

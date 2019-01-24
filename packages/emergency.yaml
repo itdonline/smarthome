@@ -20,11 +20,15 @@
 homeassistant:
   customize:
       script.emergency_script:
+        friendly_name: Emergency Script
         hidden: true
       script.emergency_script_loop:
+        friendly_name: Emergency Script Loop
         hidden: true
       script.emergency_all_lights_switches_on:
         friendly_name: All Lights & Switches ON
+      script.all_indoor_lights_off:
+        friendly_name: All Indoor Lights OFF
 
 input_boolean:
   emergency_mode:
