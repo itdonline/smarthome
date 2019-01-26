@@ -180,26 +180,26 @@ script:
         data_template:
           message: "{{text}}"
 
-  activate_chromecast:
-    sequence:
-      - condition: template
-        value_template: "{{ states('input_boolean.movie_time') == 'off' }}"
-      - service: media_player.turn_off
-        entity_id: media_player.attic_tv
-      - delay: "00:00:01"
-      - service_template: > 
-          {% if states('media_player.attic_tv') == 'off' %}
-            media_player.turn_on
-          {% else %}
-            input_boolean.toggle
-          {% endif %}
-        data_template:
-          entity_id: >
-            {% if states('media_player.attic_tv') == 'off' %}
-              media_player.attic_tv
-            {% else %}
-              input_boolean.dummy
-            {% endif %}
+  # activate_chromecast:
+  #   sequence:
+  #     - condition: template
+  #       value_template: "{{ states('input_boolean.movie_time') == 'off' }}"
+  #     - service: media_player.turn_off
+  #       entity_id: media_player.attic_tv
+  #     - delay: "00:00:05"
+  #     - service_template: > 
+  #         {% if states('media_player.attic_tv') == 'off' %}
+  #           media_player.turn_on
+  #         {% else %}
+  #           input_boolean.toggle
+  #         {% endif %}
+  #       data_template:
+  #         entity_id: >
+  #           {% if states('media_player.attic_tv') == 'off' %}
+  #             media_player.attic_tv
+  #           {% else %}
+  #             input_boolean.dummy
+  #           {% endif %}
 
 ###############################################################################
 # Stream2Chromecast script streams a given URL to Chromecast
@@ -209,7 +209,6 @@ script:
 # on TV as soon as it turns ON TV
   stream2chromecast:
     sequence:
-      - service: script.activate_chromecast
       - condition: template
         value_template: "{{ states('input_label.current_stream') != name  }}"
       - service: media_player.play_media
@@ -740,7 +739,6 @@ automation:
 # Automation to keep Chromecast ON always
 # When chromecase goes into screen saver mode, the status becomes OFF
 # This automation will turn it back on if it is OFF for more than 30 seconds
-# It will also prevent the media player from going into "idle" state
   - alias: Keep Chromecast On
     trigger:
       - platform: state
@@ -752,7 +750,7 @@ automation:
         entity_id: media_player.attic_tv
         to: 'idle'
         for:
-          seconds: 5
+          seconds: 30
     action:
       - service: media_player.turn_on
         entity_id: media_player.attic_tv
