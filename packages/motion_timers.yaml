@@ -182,7 +182,7 @@ automation:
     condition:
       - condition: state
         entity_id: sun.sun
-        state: 'below_horizon'        
+        state: 'below_horizon'
     action:
       - service_template: >
           {% if now().hour|int >= states.sensor.bedtime_hour.state|int and now().minute|int >= states.sensor.bedtime_minute.state|int %}
@@ -208,6 +208,8 @@ automation:
       - condition: state
         entity_id: sun.sun
         state: 'below_horizon'
+      - condition: template
+        value_template: "{{ states('input_boolean.movie_time') != 'on' }}"
     action:
       - service: light.turn_on
         entity_id: light.family_room

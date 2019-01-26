@@ -86,6 +86,8 @@ homeassistant:
       <<: *hidden
     sensor.bedtime_minute:
       <<: *hidden
+    input_boolean.dummy:
+      <<: *hidden
 
 group:
   Control Panel:
@@ -93,6 +95,7 @@ group:
     entities:
       - input_boolean.voice_notifications
       - input_boolean.do_not_disturb
+      - input_boolean.movie_time
       - input_boolean.home_security
       - input_boolean.home_assistant_restart
       - input_boolean.home_assistant_update
@@ -260,6 +263,11 @@ input_boolean:
     initial: off
     icon: mdi:do-not-disturb
 
+  movie_time:
+    name: 'Movie Time'
+    initial: false
+    icon: mdi:movie-roll
+
   home_security:
     name: Home Security System
     initial: off
@@ -364,6 +372,10 @@ input_boolean:
     name: TV
     initial: on
     icon: mdi:television-classic
+
+  dummy:
+    name: "Dummy Input Boolean!"
+    icon: mdi:sticker-emoji    
 
 ###############################################################################
 #                _                        _   _                 
