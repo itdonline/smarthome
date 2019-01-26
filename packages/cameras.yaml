@@ -480,24 +480,24 @@ automation:
 
 # Before you think this code is crazy, here is an explanation.
 #
-# I have a xiaomi  aqara  PIR  motion  sensor  near  the  front  door, and 
-# when it triggers, I capture photo# from  the  camera,  save  it  locally
-# using  last_triggered  date  and  time  as  filename... then  send  that 
+# I have a xiaomi  aqara  PIR   motion  sensor  near  the  front  door, and 
+# when it triggers, I capture  photo  from  the  camera,  save  it  locally
+# using  last_triggered  date  and   time  as  filename... then  send  that 
 # image to my email as an attacment.
 #
-# In the  action, I have  multiple  services I am calling,  and one service
-# creates  file,  and  I  needed  that  file  name  in  the  second service. 
-# Since passing variables/info  between  the  services  within  an  action,
-# is not  possible,  I generate  the file  name based  on  the automation's 
-# last_triggered  date. Since that info is same  across  all  the  services
-# within the automation, I now can access/use the same file name everywhere!
+# In the  action, I have  multiple   services I am calling,  and one service
+# creates  file,  and  I  needed  that   file  name  in  the  second service. 
+# Since passing variables/info  between   the  services  within  an  action,
+# is not  possible,  I generate  the file  name  based  on  the automation's 
+# last_triggered  date. Since that info is same   across  all  the  services
+# within the automation, I now can access/use the  same file name everywhere!
 #
-# I only send iOS notifications when I am home, as my HA is not exposed to 
-# Internet, & I can't see my camera unless I login to my vpn on my device. 
-# That's why you see the condition right above iOS  notification  service.
+# I only  send  iOS notifications when I am home, as my HA is not exposed to 
+# Internet, &  I  can't see my camera  unless I login to my vpn on my device. 
+# That's why you  see  the condition  right above iOS  notification  service.
 #
-# Make sure you add the path to white_list in the configuration.yaml file.
-# If front door is open, wait for a couple of seconds, before taking pic!
+# Make  sure  you add  the path to white_list  in the configuration.yaml file.
+# If front  door is  open, wait  for a  couple  of seconds, before taking pic!
 #
 
 # I could have combined all the 3 automations into one, but if all the motion
@@ -740,7 +740,7 @@ automation:
 # Automation to keep Chromecast ON always
 # When chromecase goes into screen saver mode, the status becomes OFF
 # This automation will turn it back on if it is OFF for more than 30 seconds
-#
+# It will also prevent the media player from going into "idle" state
   - alias: Keep Chromecast On
     trigger:
       - platform: state
@@ -748,6 +748,11 @@ automation:
         to: 'off'
         for:
           seconds: 30
+      - platform: state
+        entity_id: media_player.attic_tv
+        to: 'idle'
+        for:
+          seconds: 5
     action:
       - service: media_player.turn_on
         entity_id: media_player.attic_tv
