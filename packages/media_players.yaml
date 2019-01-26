@@ -62,6 +62,9 @@ homeassistant:
     media_player.gstreamer:
       friendly_name: Gstreamer Media Player
       hidden: false
+    media_player.attic_tv:
+      friendly_name: Chromecast Media Player
+      hidden: false
 
     binary_sensor.sharp_tv:
       <<: *not_exposed

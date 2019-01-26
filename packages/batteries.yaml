@@ -28,15 +28,6 @@ homeassistant:
     sensor.hasika_iphone_battery_ot:
       hidden: true
 
-    # sensor.suresh_iphone_battery_ot:
-    #   friendly_name: Suresh iPhone Battery
-    # sensor.mallika_iphone_battery_ot:
-    #   friendly_name: Mallika iPhone Battery
-    # sensor.srinika_iphone_battery_ot:
-    #   friendly_name: Srinika iPhone Battery
-    # sensor.hasika_iphone_battery_ot:
-    #   friendly_name: Hasika iPhone Battery
-
     sensor.hasika_iphone_wifi_state:
       friendly_name: Hasika Phone Wi-Fi Status
     sensor.mallika_iphone_wifi_state:

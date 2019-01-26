@@ -74,3 +74,20 @@ automation:
         data_template:
           message: "Air Condition has been ON for 3 hours. 
                     Turning it Off to save power."
+
+###############################################################################
+# Nest Thermostat automatically changes based on activity at home.
+# This automation is to keep an eye on what's going on with Nest
+###############################################################################
+  - alias: Notify Thermostat State Change
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: sensor.dining_room_thermostat_operation_mode
+    action:
+      - service: script.notify_me
+        data_template:
+          message: "Nest Thermostat changed from '{{ trigger.from_state.state }}' to '{{ trigger.to_state.state }}'."
+      - service: script.voice_notify
+        data_template:
+          message: "Your home's thermostat is now changed to '{{ trigger.to_state.state }}' mode."

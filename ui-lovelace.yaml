@@ -26,6 +26,28 @@ views:
           type: glance
           title: Kalavala Family
 
+      - type: entity-filter
+        title: For Your Information
+        show_header_toggle: false
+        entities:
+          - entity: sensor.hasika_battery_state
+            name: Hasika
+          - entity: sensor.mallika_battery_state
+            name: Mallika
+          - entity: sensor.srinika_battery_state
+            name: Srinika
+          - entity: sensor.suresh_battery_state
+            name: Suresh
+          - sensor.recycle_day
+          - sensor.trash_day
+        state_filter:
+          - 'Unplugged'
+          - 'Not Connected'
+          - 'yes'
+        card:
+          type: glance
+          title: FYI
+
       - type: entities
         title: Where Is Everyone
         show_header_toggle: false
@@ -36,16 +58,6 @@ views:
           - sensor.suresh_location
     
       - type: entities
-        title: Date Time
-        show_header_toggle: false
-        entities:
-          - sensor.date
-          - sensor.date_time
-          - sensor.time
-          - sensor.time_date
-          - sensor.time_utc
-
-      - type: entities
         title: Emergency Scripts
         show_header_toggle: false
         entities:
@@ -54,17 +66,16 @@ views:
           - script.emergency_script
           - script.emergency_script_loop
 
-      - type: entities
+      - type: glance
         title: Birthday Countdown
-        show_header_toggle: false
         entities:
           - input_label.hasika_birthday_days2go
           - input_label.mallika_birthday_days2go
           - input_label.srinika_birthday_days2go
 
-      - type: entities
-        title: Security System & Doors
-        show_header_toggle: false
+      - type: entity-filter
+        title: Doors
+        show_empty: false
         entities:
           - alarm_control_panel.simplisafe
           - entity: binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor
@@ -79,43 +90,52 @@ views:
             name: Single Car Garage Door
           - entity: sensor.two_car_garage_door_sensor_status
             name: Double Car Garage Door
-
-      - type: glance
-        title: Batteries
-        show_header_toggle: false
-        entities:
-          - entity: sensor.hasika_iphone_battery_ot_2
-            name: Hasika
-          - entity: sensor.mallika_iphone_battery_ot_2
-            name: Mallika
-          - entity: sensor.srinika_iphone_battery_ot_2
-            name: Srinika
-          - entity: sensor.suresh_iphone_battery_ot_2
-            name: Suresh
-
-      - type: glance
-        title: Battery State
-        show_header_toggle: false
-        entities:
-          - entity: sensor.hasika_iphone_battery_state
-            name: Hasika
-          - entity: sensor.mallika_iphone_battery_state
-            name: Mallika
-          - entity: sensor.srinika_iphone_battery_state
-            name: Srinika
-          - entity: sensor.suresh_iphone_battery_state
-            name: Suresh
-
-      - type: entity-filter
-        entities:
-          - sensor.recycle_day
-          - sensor.trash_day
-        show_empty: false
         state_filter:
-          - "yes"
-        card: 
+          - 'on'
+          - 'opened'
+          - 'Open'
+        card:
           type: glance
-          title: Trash & Recycle
+          title: Doors
+
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                name: Suresh Phone
+                unit: '%'
+                entity: sensor.suresh_iphone_battery_ot_2
+                severity:
+                  green: 75
+                  yellow: 50
+                  red: 30
+              - type: gauge
+                name: Mallika Phone
+                unit: '%'
+                entity: sensor.mallika_iphone_battery_ot_2
+                severity:
+                  green: 75
+                  yellow: 50
+                  red: 30
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                name: Srinika Phone
+                unit: '%'
+                entity: sensor.srinika_iphone_battery_ot_2
+                severity:
+                  green: 75
+                  yellow: 50
+                  red: 30
+              - type: gauge
+                name: Hasika Phone
+                unit: '%'
+                entity: sensor.hasika_iphone_battery_ot_2
+                severity:
+                  green: 75
+                  yellow: 50
+                  red: 30
 
       - type: entities
         title: Alarm Clock
@@ -149,19 +169,6 @@ views:
         show_info: true
         tap_action:
           action: more-info
-
-      - type: entities
-        title: Bed & Wakeup Times
-        show_header_toggle: false
-        entities:
-          - input_datetime.autumn_bed_time
-          - input_datetime.autumn_wakeup_time
-          - input_datetime.spring_bed_time
-          - input_datetime.spring_wakeup_time
-          - input_datetime.summer_bed_time
-          - input_datetime.summer_wakeup_time
-          - input_datetime.winter_bed_time
-          - input_datetime.winter_wakeup_time
 
   - id: Tensorflow
     title: Tensorflow
@@ -323,6 +330,16 @@ views:
     title: System
     icon: mdi:linux
     cards:
+      - type: entities
+        title: Date Time
+        show_header_toggle: false
+        entities:
+          - sensor.date
+          - sensor.date_time
+          - sensor.time
+          - sensor.time_date
+          - sensor.time_utc
+
       - type: entities
         title: Ads Blocked
         show_header_toggle: false
@@ -525,6 +542,7 @@ views:
           - media_player.denon_avr_x2400h
           - media_player.gstreamer
           - media_player.mpd
+          - media_player.attic_tv
 
       - type: entities
         title: Snapcast Clients
@@ -547,6 +565,91 @@ views:
           - media_player.snapcast_group_601c73870a93e628a9afb6c31fd59921
           - media_player.snapcast_group_81a1c2dfa612e1718fe4084b641344fd
           - media_player.snapcast_group_bde597975a001d05519d2ae52103dba1
+
+  - id: Settings
+    title: Settings
+    icon: mdi:settings
+    cards:
+      - type: entities
+        title: Control Panel
+        show_header_toggle: false
+        entities:
+          - input_boolean.voice_notifications
+          - input_boolean.do_not_disturb
+          - input_boolean.movie_time
+          - input_boolean.home_security
+          - input_boolean.home_assistant_restart
+          - input_boolean.home_assistant_update
+          - input_boolean.home_assistant_status
+          - input_boolean.notify_camera_motion
+          - input_boolean.working_in_garage
+          - input_boolean.working_in_office_room
+          - input_boolean.hourly_reports
+          - input_boolean.welcome_family_announcement
+          - input_boolean.trash_reminders
+          - input_boolean.enjoyable_weather_reminders
+          - input_boolean.alert_when_someone_enters_zone
+          - input_boolean.alert_when_someone_leaves_zone
+          - input_boolean.alarm_clock
+          - input_boolean.notify_security_system_changes
+          - input_boolean.alert_no_one_home
+          - input_boolean.battery_notifications
+          - input_number.calendar_remind_before_days
+          - input_boolean.wfh_notifications
+          - input_boolean.sharp_tv
+          - input_boolean.alert_faces_in_cameras
+          - input_boolean.alert_objects_in_cameras
+          - input_boolean.tesla_heat_on
+
+      - type: entities
+        title: Pi-Hole
+        show_header_toggle: false
+        entities:
+          - sensor.pi_hole_ads_blocked_today
+          - sensor.pi_hole_ads_percentage_blocked_today
+          - sensor.pi_hole_dns_queries_cached
+          - sensor.pi_hole_dns_queries_forwarded
+          - sensor.pi_hole_dns_queries_today
+          - sensor.pi_hole_dns_unique_clients
+          - sensor.pi_hole_dns_unique_domains
+          - sensor.pi_hole_domains_blocked
+          - sensor.pi_hole_seen_clients
+
+      - type: entities
+        title: System Monitor
+        show_header_toggle: false
+        entities:
+          - sensor.disk_free
+          - sensor.ipv4_address_wlp1s10
+          - sensor.last_boot
+          - sensor.processor_use
+          - sensor.memory_free
+          - binary_sensor.workday_sensor
+          - sensor.ha_installed_version
+          - sensor.ha_current_version
+          - sensor.home_assistant_up_time
+
+      - type: entities
+        title: Internet Speed
+        show_header_toggle: false
+        entities:
+          - sensor.speedtest_ping
+          - sensor.speedtest_upload
+          - sensor.speedtest_download
+          - sensor.external_ip
+
+      - type: entities
+        title: Bed & Wakeup Times
+        show_header_toggle: false
+        entities:
+          - input_datetime.autumn_bed_time
+          - input_datetime.autumn_wakeup_time
+          - input_datetime.spring_bed_time
+          - input_datetime.spring_wakeup_time
+          - input_datetime.summer_bed_time
+          - input_datetime.summer_wakeup_time
+          - input_datetime.winter_bed_time
+          - input_datetime.winter_wakeup_time
 
   - id: Scripts
     title: Scripts
@@ -852,6 +955,45 @@ views:
           - automation.welcome_family
           - automation.wfh_timer_start
           - automation.working_in_garage_watchdog
+
+  - id: QNAP
+    title: QNAP NAS
+    icon: mdi:harddisk
+    cards:
+      - type: entities
+        title: QNAP Server
+        show_header_toggle: false
+        entities:
+          - sensor.kalavala_nas_status
+          - sensor.kalavala_nas_cpu_usage
+          - sensor.kalavala_nas_memory_usage
+          - sensor.kalavala_nas_network_up_eth0
+          - sensor.kalavala_nas_network_up_eth1
+          - sensor.kalavala_nas_volume_used_datavol1
+          - sensor.kalavala_nas_system_temperature
+          - sensor.kalavala_nas_cpu_temperature
+
+      - type: entities
+        title: QNAP Drives
+        show_header_toggle: false
+        entities:
+          - sensor.kalavala_nas_smart_status_drive_0_1
+          - sensor.kalavala_nas_smart_status_drive_0_2
+          - sensor.kalavala_nas_smart_status_drive_0_3
+          - sensor.kalavala_nas_smart_status_drive_0_4
+          - sensor.kalavala_nas_temperature_drive_0_1
+          - sensor.kalavala_nas_temperature_drive_0_2
+          - sensor.kalavala_nas_temperature_drive_0_3
+          - sensor.kalavala_nas_temperature_drive_0_4
+
+      - type: entities
+        title: QNAP Automations
+        show_header_toggle: true
+        entities:
+          - automation.notify_nas_memory_usage
+          - automation.notify_nas_disk_usage
+          - automation.notify_nas_cpu_usage
+          - automation.notify_nas_cpu_temperature
 
   - id: DELETE_LATER
     title: My Groups
