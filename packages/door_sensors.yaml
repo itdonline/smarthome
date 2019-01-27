@@ -20,14 +20,14 @@ homeassistant:
       friendly_name: 1-Car Garage Door Sensor
       <<: *hidden
 
-    binary_sensor.single_car_garage_door_tilt_sensor_sensor:
-      <<: *hidden
-      device_class: opening
-      friendly_name: Single Car Garage Door
-    binary_sensor.two_car_garage_door_tilt_sensor_sensor:
-      <<: *hidden
-      device_class: opening
-      friendly_name: Double Car Garage Door
+    # binary_sensor.single_car_garage_door_tilt_sensor_sensor:
+    #   <<: *hidden
+    #   device_class: opening
+    #   friendly_name: Single Car Garage Door
+    # binary_sensor.two_car_garage_door_tilt_sensor_sensor:
+    #   <<: *hidden
+    #   device_class: opening
+    #   friendly_name: Double Car Garage Door
 
 group:
   Garage Doors:

@@ -3,7 +3,7 @@ homeassistant:
 automation:
 # this automation runs every day at 9:00 AM, 12 PM, 5PM, and at 10:00 PM
 # and sends an email - only when we are away from the house.
-  - alias: Daily Home Status
+  - alias: Notify Home Status When Away
     trigger:
       - platform: time
         at: '09:00:00'

@@ -6,7 +6,7 @@
 title: Kalavala's Home Automation
 views:
 
-  - id: kalavala_home
+  - id: Home
     title: My Home
     icon: mdi:home
     cards:
@@ -88,7 +88,7 @@ views:
             name: Garage Door
           - entity: sensor.single_car_garage_door_sensor_status
             name: Single Car Garage Door
-          - entity: sensor.two_car_garage_door_sensor_status
+          - entity: binary_sensor.two_car_garage_door_tilt_sensor_sensor
             name: Double Car Garage Door
         state_filter:
           - 'on'
@@ -170,6 +170,101 @@ views:
         tap_action:
           action: more-info
 
+      - type: entities
+        title: Temperature Levels
+        show_header_toggle: false
+        entities:
+          - entity: sensor.aeotec_water_sensor_temperature
+            name: Basement Temperature in HVAC Room
+          - entity: sensor.audio_detector_temperature
+            name: Hallway Temperature
+          - sensor.downstairs_multi_sensor_temperature
+          - sensor.front_room_multi_sensor_temperature
+          - sensor.guest_bedroom_multi_sensor_temperature
+          - sensor.tv_multi_sensor_temperature
+          - sensor.upstairs_multi_sensor_temperature
+
+      - type: entities
+        title: Humidity Levels
+        show_header_toggle: false
+        entities:
+          - sensor.downstairs_multi_sensor_relative_humidity
+          - sensor.front_room_multi_sensor_relative_humidity
+          - sensor.guest_bedroom_multi_sensor_relative_humidity
+          - sensor.pws_relative_humidity
+          - sensor.tv_multi_sensor_relative_humidity
+          - sensor.upstairs_multi_sensor_relative_humidity
+
+      - type: entities
+        title: Light Levels
+        show_header_toggle: false
+        entities:
+          - sensor.downstairs_multi_sensor_luminance
+          - sensor.front_room_multi_sensor_luminance
+          - sensor.guest_bedroom_multi_sensor_luminance
+          - sensor.tv_multi_sensor_luminance
+          - sensor.upstairs_multi_sensor_luminance
+
+      - type: entity-filter
+        title: Motion Sensors
+        show_empty: false
+        entities:
+          - binary_sensor.motion_sensor_158d0001a662fe
+          - binary_sensor.motion_sensor_158d0001a25041
+          - binary_sensor.motion_sensor_158d00016db6d2
+          - binary_sensor.motion_sensor_158d00016c2d0e
+          - binary_sensor.garage_motion
+          - binary_sensor.patio_camera_motion
+          - binary_sensor.playarea_camera_motion
+          - binary_sensor.frontdoor_camera_motion
+          - binary_sensor.driveway_camera_motion
+          - binary_sensor.aeotec_water_sensor_sensor
+          - binary_sensor.audio_detector_sensor
+          - binary_sensor.basement_door_sensor_sensor
+          - binary_sensor.downstairs_multi_sensor_sensor
+          - binary_sensor.front_room_multi_sensor_sensor
+          - binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor
+          - binary_sensor.garage_door_sensor_sensor
+          - binary_sensor.guest_bedroom_multi_sensor_sensor
+          - binary_sensor.kitchen_motion_sensor_sensor
+          - binary_sensor.back_door_sensor_sensor
+          - binary_sensor.stairs_motion_sensor_sensor
+          - binary_sensor.tv_multi_sensor_sensor
+          - binary_sensor.single_car_garage_door_tilt_sensor_sensor
+          - binary_sensor.two_car_garage_door_tilt_sensor_sensor
+          - binary_sensor.upstairs_multi_sensor_sensor
+          - binary_sensor.front_room_window_sensor_sensor
+        state_filter:
+          - 'on'
+          - 'detected'
+          - 'opened'
+          - 'Open'
+        card:
+          type: entities
+          title: Motion Sensors
+          show_header_toggle: false
+
+      - type: entities
+        title: Z-Wave Batteries
+        show_header_toggle: false
+        entities:
+          - input_label.aeotec_water_sensor
+          - input_label.audio_detector
+          - input_label.back_door_sensor
+          - input_label.basement_door_sensor
+          - input_label.downstairs_multi_sensor
+          - input_label.front_room_multi_sensor
+          - input_label.front_room_window_sensor
+          - input_label.garage_door_sensor
+          - input_label.guest_bedroom_multi_sensor
+          - input_label.kitchen_motion_sensor
+          - input_label.single_car_garage_door_tilt_sensor
+          - input_label.stairs_motion_sensor
+          - input_label.tv_multi_sensor
+          - input_label.two_car_garage_door_tilt_sensor
+          - input_label.upstairs_multi_sensor
+          - input_label.wallmote
+
   - id: Tensorflow
     title: Tensorflow
     icon: mdi:camera
@@ -238,24 +333,57 @@ views:
     title: Tesla
     icon: mdi:car
     cards:
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                name: Tesla Battery
+                unit: '%'
+                entity: sensor.tesla_model_3_5yj3e1ea8jf010610_battery_sensor
+                severity:
+                  green: 75
+                  yellow: 40
+                  red: 25
+              - type: gauge
+                name: Battery Range
+                unit: 'miles'
+                entity: sensor.tesla_model_3_5yj3e1ea8jf010610_range_sensor
+                max: 320
+                min: 0
+                severity:
+                  green: 200
+                  yellow: 100
+                  red: 75
+          - type: thermostat
+            entity: climate.tesla_model_3_5yj3e1ea8jf010610_hvac_climate_system
+          - type: horizontal-stack
+            cards:
+              - type: sensor
+                entity: sensor.tesla_model_3_5yj3e1ea8jf010610_temperature_sensor_inside
+                name: Temperature Inside
+                graph: line
+              - type: sensor
+                entity: sensor.tesla_model_3_5yj3e1ea8jf010610_temperature_sensor_outside
+                name: Temperature outside
+                graph: line
+
       - type: entities
-        title: Lock
-        show_header_toggle: true
+        title: Tesla Car
+        show_header_toggle: false
+        entities:
+          - device_tracker.tesla_model_3_5yj3e1ea8jf010610_location_tracker
+          - binary_sensor.tesla_model_3_5yj3e1ea8jf010610_parking_brake_sensor
+          - lock.tesla_model_3_5yj3e1ea8jf010610_door_lock
+          - sensor.tesla_model_3_5yj3e1ea8jf010610_mileage_sensor
+
+      - type: entities
+        title: Charging
+        show_header_toggle: false
         entities:
           - binary_sensor.tesla_model_3_5yj3e1ea8jf010610_charger_sensor
-          - binary_sensor.tesla_model_3_5yj3e1ea8jf010610_parking_brake_sensor
-          - climate.tesla_model_3_5yj3e1ea8jf010610_hvac_climate_system
-          - device_tracker.tesla_model_3_5yj3e1ea8jf010610_location_tracker
-          - lock.tesla_model_3_5yj3e1ea8jf010610_door_lock
-          - sensor.tesla_model_3_5yj3e1ea8jf010610_battery_sensor
-          - sensor.tesla_model_3_5yj3e1ea8jf010610_mileage_sensor
-          - sensor.tesla_model_3_5yj3e1ea8jf010610_range_sensor
-          - sensor.tesla_model_3_5yj3e1ea8jf010610_temperature_sensor_inside
-          - sensor.tesla_model_3_5yj3e1ea8jf010610_temperature_sensor_outside
           - switch.tesla_model_3_5yj3e1ea8jf010610_charger_switch
           - switch.tesla_model_3_5yj3e1ea8jf010610_maxrange_switch
-      - type: thermostat
-        entity: climate.tesla_model_3_5yj3e1ea8jf010610_hvac_climate_system
 
   - id: Camera
     title: Camera Live
@@ -466,17 +594,6 @@ views:
     title: Trash & Recycle
     icon: mdi:recycle
     cards:
-      - type: entity-filter
-        entities:
-          - sensor.recycle_day
-          - sensor.trash_day
-        show_empty: false
-        state_filter:
-          - "yes"
-        card: 
-          type: glance
-          title: Trash & Recycle
-
       - type: entities
         title: Recycle Schedule
         show_header_toggle: false
@@ -488,13 +605,23 @@ views:
           - sensor.recycle_pickup_day
           - sensor.recycle_pickup_week
 
-      - type: entities
-        title: Trash Schedule
-        show_header_toggle: false
-        entities:
-          - input_select.trash_pickup_day
-          - sensor.trash_day
-          - sensor.trash_pickup_day
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Trash Schedule
+            show_header_toggle: false
+            entities:
+              - input_select.trash_pickup_day
+              - sensor.trash_day
+              - sensor.trash_pickup_day
+          - type: horizontal-stack
+            cards:
+              - type: glance
+                entities:
+                  - sensor.recycle_day
+              - type: glance
+                entities:
+                  - sensor.trash_day
 
   - id: MultiMedia
     title: Multi Room Audio & TTS
@@ -679,85 +806,188 @@ views:
           - script.emergency_all_lights_switches_on
           - script.emergency_script
           - script.emergency_script_loop
-          - script.good_night_tts
           - script.home_mode_away
-          - script.home_status
           - script.ifttt_leeo_color_change
+          - script.toggle_do_not_disturb
+          - script.xiaomi_blue
+          - script.xiaomi_green
+          - script.xiaomi_red
+
+      - type: entities
+        title: Notify
+        show_header_toggle: true
+        entities:
           - script.ifttt_notify
           - script.notify_me
-          - script.query_disk_info
-          - script.query_wifi_info
+          - script.voice_greeting
+          - script.voice_notify
+          - script.good_night_tts
+          - script.home_status
+
+      - type: entities
+        title: Home Assistant
+        show_header_toggle: true
+        entities:
+          - script.stop_hass
+          - script.restart_hass
+          - script.update_hass
+
+      - type: entities
+        title: RPi/Snapcast Scripts
+        show_header_toggle: true
+        entities:
           - script.restart_all_raspberrypis
           - script.restart_all_snapclients
-          - script.restart_hass
-          - script.stop_hass
           - script.restart_snapcast_server
           - script.shutdown_all_raspberrypis
           - script.start_snapcast_server
           - script.stop_snapcast_server
-          - script.toggle_do_not_disturb
-          - script.update_hass
-          - script.voice_greeting
-          - script.voice_notify
-          - script.xiaomi_blue
-          - script.xiaomi_green
-          - script.xiaomi_red
+          - script.query_disk_info
+          - script.query_wifi_info
+
+      # - type: entities
+      #   title: Scripts
+      #   show_header_toggle: true
+      #   entities:
+
+  - id: Raspberry Pi
+    title: Raspberry PI
+    icon: mdi:pig
+    cards:
+      - type: entities
+        title: Raspberry Pi Commands
+        show_header_toggle: false
+        entities:
+          - input_select.raspberry_pis
+          - input_select.rpi_commands
+
+      - type: entities
+        title: WiFi Signal Strength
+        show_header_toggle: false
+        entities:
+          - sensor.basement_pi_signal_level
+          - sensor.theater_pi_signal_level
+          - sensor.kitchen_pi_signal_level
+          - sensor.family_room_pi_signal_level
+          - sensor.front_room_pi_signal_level
+          - sensor.garage_pi_signal_level
+          - sensor.guest_1_pi_signal_level
+          - sensor.guest_2_pi_signal_level
+          - sensor.master_bedroom_pi_signal_level
+
+      - type: entities
+        title: WiFi Link Quality
+        show_header_toggle: false
+        entities:
+          - sensor.basement_pi_link_quality
+          - sensor.theater_pi_link_quality
+          - sensor.kitchen_pi_link_quality
+          - sensor.family_room_pi_link_quality
+          - sensor.front_room_pi_link_quality
+          - sensor.garage_pi_link_quality
+          - sensor.guest_1_pi_link_quality
+          - sensor.guest_2_pi_link_quality
+          - sensor.master_bedroom_pi_link_quality
+
+      - type: entities
+        title: RPi Disk Available
+        show_header_toggle: false
+        entities:
+          - sensor.basement_pi_available_disk
+          - sensor.theater_pi_available_disk
+          - sensor.kitchen_pi_available_disk
+          - sensor.family_room_pi_available_disk
+          - sensor.front_room_pi_available_disk
+          - sensor.garage_pi_available_disk
+          - sensor.guest_1_pi_available_disk
+          - sensor.guest_2_pi_available_disk
+          - sensor.master_bedroom_pi_available_disk
+
+      - type: entities
+        title: RPi Disk Used
+        show_header_toggle: false
+        entities:
+          - sensor.basement_pi_disk_used
+          - sensor.theater_pi_disk_used
+          - sensor.kitchen_pi_disk_used
+          - sensor.family_room_pi_disk_used
+          - sensor.front_room_pi_disk_used
+          - sensor.garage_pi_disk_used
+          - sensor.guest_1_pi_disk_used
+          - sensor.guest_2_pi_disk_used
+          - sensor.master_bedroom_pi_disk_used
+
+      - type: entities
+        title: RPi Scripts
+        show_header_toggle: false
+        entities:
+          - script.restart_all_raspberrypis
+          - script.restart_all_snapclients
+          - script.query_wifi_info
+          - script.query_disk_info
+          - script.shutdown_all_raspberrypis
 
   - id: Lights
     title: Lights
     icon: mdi:lightbulb-on
     cards:
-      - type: light
-        entity: light.family_room
-      - type: light
-        entity: light.gateway_light_34ce008ad65d
-      - type: light
-        entity: light.hue_color_lamp_1
-      - type: light
-        entity: light.hue_color_lamp_2
-      - type: light
-        entity: light.hue_color_lamp_3
-      - type: light
-        entity: light.master_bedroom
-      - type: light
-        entity: light.master_bedroom_1
-      - type: light
-        entity: light.master_bedroom_2
+      - type: entities
+        title: Upstairs
+        show_header_toggle: true
+        entities:
+          - light.master_bedroom 
+          - entity: light.master_bedroom_1
+            name: Suresh's Bedside Light
+          - entity: light.master_bedroom_2
+            name: Mallika's Bedside Light
+          - entity: switch.kids_bedroom
+            name: Hasika's Bedroom
+          - entity: switch.kids_bed_accent_light
+            name: Hasika's Bed Accent Lights
+          - entity: switch.guest_bedroom_1
+            name: Srinika's Bedroom
+          - switch.guest_bedroom_2
 
       - type: entities
-        title: Switches
+        title: Downstairs
         show_header_toggle: true
         entities:
           - switch.basement_left_lights
           - switch.basement_right_lights
+          - switch.frontyard_light
+          - switch.wemobackyardlightswitch
+          - switch.kitchen_light
+          - switch.office_room_lights
+          - switch.zwave_smart_switch_switch
+          - light.family_room
+          - light.hue_color_lamp_1
+          - light.hue_color_lamp_2
+          - light.hue_color_lamp_3
+
+      - type: entities
+        title: Fragrnace Outlets
+        show_header_toggle: true
+        entities:
           - switch.downstairs_bathroom_fragrance_outlet
           - switch.downstairs_fragrance_outlet
-          - switch.frontyard_light
-          - switch.garage_lights
-          - switch.guest_bedroom_1
-          - switch.guest_bedroom_2
-          - switch.kids_bed_accent_light
-          - switch.kids_bedroom
-          - switch.kitchen_light
-          - switch.kitchen_siren_switch
-          - switch.kitchen_siren_switch_2
-          - switch.kitchen_siren_switch_3
-          - switch.kitchen_siren_switch_4
-          - switch.kitchen_siren_switch_5
-          - switch.office_room_lights
-          - switch.tesla_model_3_5yj3e1ea8jf010610_charger_switch
-          - switch.tesla_model_3_5yj3e1ea8jf010610_maxrange_switch
           - switch.upstairs_fragrance_outlet
-          - switch.wallmote_switch
-          - switch.wemobackyardlightswitch
-          - switch.wemoswitch1
-          - switch.zwave_smart_switch_switch
+
+      - type: entities
+        title: Garage
+        show_header_toggle: true
+        entities:
+          - switch.garage_lights
+          - entity: switch.tesla_model_3_5yj3e1ea8jf010610_charger_switch
+            name: Tesla Charger Switch
+          - entity: switch.tesla_model_3_5yj3e1ea8jf010610_maxrange_switch
+            name: Tesla Max Range Switch
 
       - type: entities
         title: Always On
         show_header_toggle: false
         entities:
           - light.gateway_light_34ce008ad65d
+          - switch.wemoswitch1
 
   - id: Climate
     title: Climate
@@ -765,8 +995,23 @@ views:
     cards:
       - type: thermostat
         entity: climate.dining_room
-      - type: thermostat
-        entity: climate.tesla_model_3_5yj3e1ea8jf010610_hvac_climate_system
+      - type: horizontal-stack
+        cards:
+          - type: sensor
+            entity: sensor.dining_room_thermostat_temperature
+            name: Home Temperature
+            graph: line
+            detail: 1
+            hours_to_show: 12
+          - type: gauge
+            entity: sensor.dining_room_thermostat_humidity
+            unit: '%'
+            name: Home Humidity
+            severity:
+              green: 40
+              yellow: 30
+              red: 25
+
       - type: entities
         title: Climate
         show_header_toggle: true
@@ -783,52 +1028,15 @@ views:
           - sensor.dining_room_thermostat_operation_mode
           - sensor.dining_room_thermostat_target
           - sensor.dining_room_thermostat_temperature
-      - type: sensor
-        entity: sensor.dining_room_thermostat_temperature
-        name: Home Temperature
-        graph: line
-        detail: 1
-        hours_to_show: 12
 
   - id: Automations
     title: Automations
     icon: mdi:arrow-decision-auto
     cards:
       - type: entities
-        title: Automations
-        show_header_toggle: true
+        title: Magic Cube Automations
+        show_header_toggle: false
         entities:
-          - automation.alarm_clock
-          - automation.alert_life360_error
-          - automation.alert_private_zone_enter
-          - automation.alert_private_zone_leaves
-          - automation.alert_super_heavy_winds
-          - automation.alert_when_everyone_is_away
-          - automation.alert_when_moving
-          - automation.alert_when_someone_enters_a_zone
-          - automation.alert_when_someone_leaves_a_zone
-          - automation.am_change_off
-          - automation.am_change_on
-          - automation.animate_familyroom_lights
-          - automation.animate_master_bedroom_lights
-          - automation.backyard_light_watchdog
-          - automation.basement_accent_lights_off_after_5_minutes
-          - automation.basement_accent_lights_on_when_basement_door_opened
-          - automation.bathroom_aroma_timer_elapsed
-          - automation.bathroom_aroma_timer_finish
-          - automation.bathroom_aroma_timer_start
-          - automation.birthday_countdown_30_days
-          - automation.cancel_wfh_timer_when_suresh_leaves_home
-          - automation.daily_home_status
-          - automation.disable_emergency_mode_upon_disabling_home_security
-          - automation.do_not_disturb_for_2_hours
-          - automation.do_not_disturb_state_change
-          - automation.downstairs_aroma_timer_elapsed
-          - automation.downstairs_aroma_timer_finish
-          - automation.downstairs_aroma_timer_start
-          - automation.emergency_mode_disabled
-          - automation.evening_indoor_lights_on_before_sunset
-          - automation.evening_outdoor_lights_on_at_sunset
           - automation.family_room_cube_event_flip180
           - automation.family_room_cube_event_flip180_2
           - automation.family_room_cube_event_flip90
@@ -837,57 +1045,56 @@ views:
           - automation.family_room_cube_event_shake
           - automation.family_room_cube_event_shake_2
           - automation.family_room_cube_event_tap_twice
-          - automation.family_room_motion_timer
-          - automation.family_room_timer_elapsed
           - automation.front_room_cube_event_flip90
-          - automation.frontroom_motion_timer
-          - automation.frontroom_timer_elapsed
-          - automation.frontyard_light_watchdog
-          - automation.garage_lights_on_when_door_is_opened
-          - automation.garage_motion_timer
-          - automation.garage_motion_reset
-          - automation.garage_timer_elapsed
-          - automation.garage_timer_start_when_garage_lights_on
-          - automation.guest_bedroom_1_light_watchdog
-          - automation.guest_bedroom_2_light_watchdog
           - automation.hasika_room_cube_event_flip90
           - automation.hasika_room_cube_event_shake
-          - automation.home_mode_away_on
-          - automation.home_security_away_motion_deteted_inside
-          - automation.home_security_on
-          - automation.home_security_status_leeo_color
-          - automation.home_security_system_watchdog_10_minutes
-          - automation.home_security_system_watchdog_30_minutes
-          - automation.home_status_on
-          - automation.hourly_report_during_day_time
-          - automation.keep_chromecast_on
-          - automation.kids_bedroom_light_watchdog
-          - automation.kitchen_motion_timer
-          - automation.kitchen_timer_elapsed
-          - automation.long_flash_all_lights
           - automation.master_bedroom_cube_event_flip180
           - automation.master_bedroom_cube_event_flip90
           - automation.master_bedroom_cube_event_move
           - automation.master_bedroom_cube_event_shake
           - automation.master_bedroom_cube_event_tap_twice
-          - automation.master_bedroom_motion_timer
-          - automation.master_bedroom_timer_elapsed
-          - automation.morning_indoor_lights_on
-          - automation.morning_kitchen_light_off
-          - automation.morning_master_bedroom_lights_off_mallika
-          - automation.morning_master_bedroom_lights_on_mallika
-          - automation.morning_outdoor_lights_off
-          - automation.motion_detected_at_driveway
-          - automation.motion_detected_at_front_door
-          - automation.motion_detected_in_backyard
-          - automation.night_bedtime_report
-          - automation.night_dim_tv_lights
-          - automation.night_homesecurity_on
-          - automation.night_turn_lights_off
+          - automation.srinika_room_cube_event_flip90
+          - automation.srinika_room_cube_event_shake
+          - automation.study_room_cube_event_flip90
+          - automation.study_room_cube_event_shake
+
+      - type: entities
+        title: Alarm Clock
+        show_header_toggle: false
+        entities:
+          - automation.alarm_clock
+          - automation.am_change_off
+          - automation.am_change_on
+          - automation.pm_change_off
+          - automation.pm_change_on
+          - automation.update_current_alarm_time
+
+      - type: entities
+        title: Zone Based Alerts
+        show_header_toggle: false
+        entities:
+          - automation.alert_life360_error
+          - automation.alert_private_zone_enter
+          - automation.alert_private_zone_leaves
+          - automation.alert_when_everyone_is_away
+          - automation.alert_when_moving
+          - automation.alert_when_someone_enters_a_zone
+          - automation.alert_when_someone_leaves_a_zone
+          - automation.send_a_message_as_i_get_closer_to_home
+          - automation.update_phone_battery_levels
+          - automation.welcome_family
+
+      - type: entities
+        title: Notifications
+        show_header_toggle: false
+        entities:
+          - automation.notify_backyard_camera_snapshots
           - automation.notify_charger_switch_state
           - automation.notify_charging_status
           - automation.notify_door_status
+          - automation.notify_driveway_camera_snapshots
           - automation.notify_entry_door_status
+          - automation.notify_frontdoor_camera_snapshots
           - automation.notify_garage_door_status
           - automation.notify_holiday_state_change
           - automation.notify_home_security_status_change
@@ -900,83 +1107,225 @@ views:
           - automation.notify_nas_memory_usage
           - automation.notify_nas_status_change
           - automation.notify_of_new_external_ip
+          - automation.notify_thermostat_state_change
           - automation.notify_usps_mail
           - automation.notify_usps_packages
+
+      - type: entities
+        title: Watch Dog Automations
+        show_header_toggle: false
+        entities:
+          - automation.backyard_light_watchdog
+          - automation.frontyard_light_watchdog
+          - automation.guest_bedroom_1_light_watchdog
+          - automation.guest_bedroom_2_light_watchdog
+          - automation.home_security_system_watchdog_10_minutes
+          - automation.home_security_system_watchdog_30_minutes
+          - automation.kids_bedroom_light_watchdog
+          - automation.single_car_garage_door_watchdog
+          - automation.two_car_garage_door_watchdog
+          - automation.working_in_garage_watchdog
+
+      - type: entities
+        title: Timer Automations
+        show_header_toggle: false
+        entities:
+          - automation.bathroom_aroma_timer_elapsed
+          - automation.bathroom_aroma_timer_finish
+          - automation.bathroom_aroma_timer_start
+          - automation.cancel_wfh_timer_when_suresh_leaves_home
+          - automation.downstairs_aroma_timer_elapsed
+          - automation.downstairs_aroma_timer_finish
+          - automation.downstairs_aroma_timer_start
+          - automation.family_room_motion_timer
+          - automation.family_room_timer_elapsed
+          - automation.frontroom_motion_timer
+          - automation.frontroom_timer_elapsed
+          - automation.garage_motion_timer
+          - automation.garage_timer_elapsed
+          - automation.garage_timer_start_when_garage_lights_on
+          - automation.kitchen_motion_timer
+          - automation.kitchen_timer_elapsed
+          - automation.master_bedroom_motion_timer
+          - automation.master_bedroom_timer_elapsed
           - automation.officeroom_motion_timer
           - automation.officeroom_timer_elapsed
-          - automation.pm_change_off
-          - automation.pm_change_on
-          - automation.power_failure
-          - automation.power_restored
-          - automation.query_rpi_disk_data
-          - automation.query_rpi_wifi_data
-          - automation.rain_alerts
+          - automation.timer_elapsed_take_a_walk
+          - automation.upstairs_aroma_timer_elapsed
+          - automation.upstairs_aroma_timer_finish
+          - automation.upstairs_aroma_timer_start
+          - automation.wfh_timer_start
+
+      - type: entities
+        title: Garage Automations
+        show_header_toggle: false
+        entities:
+          - automation.garage_lights_on_when_door_is_opened
+          - automation.garage_motion_reset
+          - automation.garage_motion_timer
+          - automation.garage_timer_elapsed
+          - automation.garage_timer_start_when_garage_lights_on
+          - automation.notify_garage_door_status
+          - automation.scan_garage_camera_when_motion
+          - automation.single_car_garage_door_watchdog
+          - automation.two_car_garage_door_watchdog
+          - automation.working_in_garage_watchdog
+
+      - type: entities
+        title: Birthday Automations
+        show_header_toggle: false
+        entities:
+          - automation.birthday_countdown_30_days
           - automation.random_birthday_wishes
-          - automation.random_darker_theme_at_sunset
-          - automation.random_lighter_theme_at_sunrise
-          - automation.random_theme_at_startup
-          - automation.raspberry_pi_command
-          - automation.recycle_pickup_day_changed
-          - automation.recycle_pickup_week_changed
-          - automation.remind_domain_renewal
-          - automation.remind_later
-          - automation.remind_me_to_enjoy_warm_and_windy_weather
-          - automation.reset_trash_reminders
-          - automation.restart_home_assistant
+          - automation.today_is_the_birthday
+          - automation.update_birthdays
+
+      - type: entities
+        title: Home Security Automations
+        show_header_toggle: false
+        entities:
+          - automation.disable_emergency_mode_upon_disabling_home_security
+          - automation.home_security_away_motion_deteted_inside
+          - automation.home_security_on
+          - automation.home_security_status_leeo_color
+          - automation.home_security_system_watchdog_10_minutes
+          - automation.home_security_system_watchdog_30_minutes
+          - automation.notify_home_security_status_change
+          - automation.night_homesecurity_on
+
+      - type: entities
+        title: Light Automations
+        show_header_toggle: false
+        entities:
+          - automation.animate_familyroom_lights
+          - automation.animate_master_bedroom_lights
+          - automation.basement_accent_lights_off_after_5_minutes
+          - automation.basement_accent_lights_on_when_basement_door_opened
+          - automation.evening_indoor_lights_on_before_sunset
+          - automation.evening_outdoor_lights_on_at_sunset
+          - automation.garage_lights_on_when_door_is_opened
+          - automation.garage_timer_start_when_garage_lights_on
+          - automation.long_flash_all_lights
+          - automation.morning_indoor_lights_on
+          - automation.morning_master_bedroom_lights_off_mallika
+          - automation.morning_master_bedroom_lights_on_mallika
+          - automation.morning_outdoor_lights_off
+          - automation.night_dim_tv_lights
+          - automation.night_turn_lights_off
           - automation.restore_familyroom_lights
           - automation.restore_masterbedroom_lights
-          - automation.restore_trash_recycle_settings_on_startup
-          - automation.restore_tv_state
-          - automation.scan_backyard_camera_when_motion
-          - automation.scan_driveway_camera_when_motion
-          - automation.scan_front_door_camera_when_motion
-          - automation.scan_garage_camera_when_motion
-          - automation.season_change_notification
-          - automation.send_a_message_as_i_get_closer_to_home
           - automation.short_flash_all_lights
-          - automation.single_car_garage_door_watchdog
-          - automation.snapcast_action
-          - automation.snow_and_sleet_alerts
-          - automation.srinika_room_cube_event_flip90
-          - automation.srinika_room_cube_event_shake
-          - automation.study_room_cube_event_flip90
-          - automation.study_room_cube_event_shake
-          - automation.tesla_climate_off
-          - automation.tesla_climate_on
-          - automation.text_changed_event
-          - automation.timer_elapsed_take_a_walk
-          - automation.today_is_the_birthday
+          - automation.tv_dim_indoor_lights_when_tv_is_on
+          - automation.tv_restore_family_room_lights_to_tv_mode
+          - automation.tv_turn_lights_on_when_tv_is_turned_off
+
+      - type: entities
+        title: Wallmote Automations
+        show_header_toggle: false
+        entities:
+          - automation.wallmote_button_1_pressed
+          - automation.wallmote_button_2_pressed
+          - automation.wallmote_button_3_pressed
+          - automation.wallmote_button_4_pressed
+
+      - type: entities
+        title: Trash & Recycle Automations
+        show_header_toggle: false
+        entities:
+          - automation.reset_trash_reminders
+          - automation.restore_trash_recycle_settings_on_startup
           - automation.trash_and_recycle_bin_left_outside_already
           - automation.trash_and_recycle_pickup_reminder
           - automation.trash_pickup_day_changed
-          - automation.turn_off_ac_after_3_hours_of_cooling
+          - automation.recycle_pickup_day_changed
+          - automation.recycle_pickup_week_changed
+          - automation.remind_later
+
+      - type: entities
+        title: Camera Automations
+        show_header_toggle: false
+        entities:
+          - automation.notify_backyard_camera_snapshots
+          - automation.notify_driveway_camera_snapshots
+          - automation.notify_frontdoor_camera_snapshots
+          - automation.scan_backyard_camera_when_motion
+          - automation.scan_driveway_camera_when_motion
+          - automation.scan_frontdoor_camera_on_motion
+          - automation.scan_garage_camera_when_motion
+          - automation.show_outdoor_temperature_on_camera
+          - automation.restore_frontyard_stream
+
+      - type: entities
+        title: TV Automations
+        show_header_toggle: false
+        entities:
+          - automation.night_dim_tv_lights
+          - automation.restore_tv_state
           - automation.tv_backlight_is_on_when_tv_is_on
           - automation.tv_backlight_off_when_tv_is_off
           - automation.tv_dim_indoor_lights_when_tv_is_on
           - automation.tv_restore_family_room_lights_to_tv_mode
           - automation.tv_state
           - automation.tv_turn_lights_on_when_tv_is_turned_off
-          - automation.two_car_garage_door_watchdog
-          - automation.update_available_notification
-          - automation.update_birthdays
-          - automation.update_current_alarm_time
-          - automation.update_home_assistant
-          - automation.update_phone_battery_levels
-          - automation.update_zwave_battery_levels
-          - automation.ups_state_change
-          - automation.upstairs_aroma_timer_elapsed
-          - automation.upstairs_aroma_timer_finish
-          - automation.upstairs_aroma_timer_start
-          - automation.wallmote_button_1_pressed
-          - automation.wallmote_button_2_pressed
-          - automation.wallmote_button_3_pressed
-          - automation.wallmote_button_4_pressed
-          - automation.water_leak_detected
+
+      - type: entities
+        title: Weather Automations
+        show_header_toggle: false
+        entities:
+          - automation.remind_me_to_enjoy_warm_and_windy_weather
           - automation.weather_alert
           - automation.weather_input_boolean_updates
-          - automation.welcome_family
-          - automation.wfh_timer_start
-          - automation.working_in_garage_watchdog
+          - automation.rain_alerts
+          - automation.snow_and_sleet_alerts
+          - automation.update_openuv_every_30_minutes_during_the_daytime
+          - automation.alert_super_heavy_winds
+
+      - type: entities
+        title: Alerts
+        show_header_toggle: false
+        entities:
+          - automation.notify_home_status_when_away
+          - automation.emergency_mode_disabled
+          - automation.home_mode_away_on
+          - automation.home_status_on
+          - automation.hourly_report_during_day_time
+          - automation.check_wi_fi_status_of_iphones_at_home
+          - automation.night_bedtime_report
+
+      - type: entities
+        title: Raspberry Pi Automations
+        show_header_toggle: false
+        entities:
+          - automation.query_rpi_disk_data
+          - automation.query_rpi_wifi_data
+          - automation.raspberry_pi_command
+
+      - type: entities
+        title: Media Player Automations
+        show_header_toggle: false
+        entities:
+          - automation.keep_chromecast_on
+          - automation.snapcast_action
+
+      - type: entities
+        title: Home Assistant Automations
+        show_header_toggle: false
+        entities:
+          - automation.restart_home_assistant          
+          - automation.power_failure
+          - automation.power_restored
+          - automation.random_darker_theme_at_sunset
+          - automation.random_lighter_theme_at_sunrise
+          - automation.random_theme_at_startup
+          - automation.remind_domain_renewal
+          - automation.season_change_notification
+          
+          - automation.turn_off_ac_after_3_hours_of_cooling
+          - automation.update_available_notification
+          - automation.update_home_assistant
+          - automation.update_zwave_battery_levels
+          - automation.ups_state_change
+          - automation.water_leak_detected
 
   - id: QNAP
     title: QNAP NAS
@@ -1016,782 +1365,3 @@ views:
           - automation.notify_nas_disk_usage
           - automation.notify_nas_cpu_usage
           - automation.notify_nas_cpu_temperature
-
-  - id: DELETE_LATER
-    title: My Groups
-    icon: mdi:delete-circle
-    cards:
-
-      - type: entities
-        title: Aeotec Water Sensor
-        show_header_toggle: false
-        entities:
-          - sensor.aeotec_water_sensor_alarm_level
-          - sensor.aeotec_water_sensor_alarm_level_2
-          - sensor.aeotec_water_sensor_alarm_level_3
-          - sensor.aeotec_water_sensor_alarm_type
-          - sensor.aeotec_water_sensor_alarm_type_2
-          - sensor.aeotec_water_sensor_alarm_type_3
-          - sensor.aeotec_water_sensor_burglar
-          - sensor.aeotec_water_sensor_flood
-          - sensor.aeotec_water_sensor_flood_2
-          - sensor.aeotec_water_sensor_flood_3
-          - sensor.aeotec_water_sensor_heat
-          - sensor.aeotec_water_sensor_sourcenodeid
-          - sensor.aeotec_water_sensor_sourcenodeid_2
-          - sensor.aeotec_water_sensor_sourcenodeid_3
-          - sensor.aeotec_water_sensor_temperature
-      - type: entities
-        title: All Automations
-        show_header_toggle: false
-        entities:
-          - automation.alarm_clock
-          - automation.alert_life360_error
-          - automation.alert_private_zone_enter
-          - automation.alert_private_zone_leaves
-          - automation.alert_super_heavy_winds
-          - automation.alert_when_everyone_is_away
-          - automation.alert_when_moving
-          - automation.alert_when_someone_enters_a_zone
-          - automation.alert_when_someone_leaves_a_zone
-          - automation.am_change_off
-          - automation.am_change_on
-          - automation.animate_familyroom_lights
-          - automation.animate_master_bedroom_lights
-          - automation.backyard_light_watchdog
-          - automation.basement_accent_lights_off_after_5_minutes
-          - automation.basement_accent_lights_on_when_basement_door_opened
-          - automation.bathroom_aroma_timer_elapsed
-          - automation.bathroom_aroma_timer_finish
-          - automation.bathroom_aroma_timer_start
-          - automation.birthday_countdown_30_days
-          - automation.cancel_wfh_timer_when_suresh_leaves_home
-          - automation.daily_home_status
-          - automation.disable_emergency_mode_upon_disabling_home_security
-          - automation.do_not_disturb_for_2_hours
-          - automation.do_not_disturb_state_change
-          - automation.downstairs_aroma_timer_elapsed
-          - automation.downstairs_aroma_timer_finish
-          - automation.downstairs_aroma_timer_start
-          - automation.emergency_mode_disabled
-          - automation.evening_indoor_lights_on_before_sunset
-          - automation.evening_outdoor_lights_on_at_sunset
-          - automation.family_room_cube_event_flip180
-          - automation.family_room_cube_event_flip180_2
-          - automation.family_room_cube_event_flip90
-          - automation.family_room_cube_event_move
-          - automation.family_room_cube_event_move_2
-          - automation.family_room_cube_event_shake
-          - automation.family_room_cube_event_shake_2
-          - automation.family_room_cube_event_tap_twice
-          - automation.family_room_motion_timer
-          - automation.family_room_timer_elapsed
-          - automation.front_room_cube_event_flip90
-          - automation.frontroom_motion_timer
-          - automation.frontroom_timer_elapsed
-          - automation.frontyard_light_watchdog
-          - automation.garage_lights_on_when_door_is_opened
-          - automation.garage_motion_timer
-          - automation.garage_motion_reset
-          - automation.garage_timer_elapsed
-          - automation.garage_timer_start_when_garage_lights_on
-          - automation.guest_bedroom_1_light_watchdog
-          - automation.guest_bedroom_2_light_watchdog
-          - automation.hasika_room_cube_event_flip90
-          - automation.hasika_room_cube_event_shake
-          - automation.home_mode_away_on
-          - automation.home_security_away_motion_deteted_inside
-          - automation.home_security_on
-          - automation.home_security_status_leeo_color
-          - automation.home_security_system_watchdog_10_minutes
-          - automation.home_security_system_watchdog_30_minutes
-          - automation.home_status_on
-          - automation.hourly_report_during_day_time
-          - automation.kids_bedroom_light_watchdog
-          - automation.kitchen_motion_timer
-          - automation.kitchen_timer_elapsed
-          - automation.long_flash_all_lights
-          - automation.master_bedroom_cube_event_flip180
-          - automation.master_bedroom_cube_event_flip90
-          - automation.master_bedroom_cube_event_move
-          - automation.master_bedroom_cube_event_shake
-          - automation.master_bedroom_cube_event_tap_twice
-          - automation.master_bedroom_motion_timer
-          - automation.master_bedroom_timer_elapsed
-          - automation.morning_indoor_lights_on
-          - automation.morning_kitchen_light_off
-          - automation.morning_master_bedroom_lights_off_mallika
-          - automation.morning_master_bedroom_lights_on_mallika
-          - automation.morning_outdoor_lights_off
-          - automation.motion_detected_at_driveway
-          - automation.motion_detected_at_front_door
-          - automation.motion_detected_in_backyard
-          - automation.night_bedtime_report
-          - automation.night_dim_tv_lights
-          - automation.night_homesecurity_on
-          - automation.night_turn_lights_off
-          - automation.notify_charger_switch_state
-          - automation.notify_charging_status
-          - automation.notify_door_status
-          - automation.notify_entry_door_status
-          - automation.notify_garage_door_status
-          - automation.notify_holiday_state_change
-          - automation.notify_home_security_status_change
-          - automation.notify_indian_holidays
-          - automation.notify_low_battery
-          - automation.notify_nas_cpu_temperature
-          - automation.notify_nas_cpu_usage
-          - automation.notify_nas_disk_usage
-          - automation.notify_nas_drive_status_change
-          - automation.notify_nas_memory_usage
-          - automation.notify_nas_status_change
-          - automation.notify_of_new_external_ip
-          - automation.notify_usps_mail
-          - automation.notify_usps_packages
-          - automation.officeroom_motion_timer
-          - automation.officeroom_timer_elapsed
-          - automation.pm_change_off
-          - automation.pm_change_on
-          - automation.power_failure
-          - automation.power_restored
-          - automation.query_rpi_disk_data
-          - automation.query_rpi_wifi_data
-          - automation.rain_alerts
-          - automation.random_birthday_wishes
-          - automation.random_darker_theme_at_sunset
-          - automation.random_lighter_theme_at_sunrise
-          - automation.random_theme_at_startup
-          - automation.raspberry_pi_command
-          - automation.recycle_pickup_day_changed
-          - automation.recycle_pickup_week_changed
-          - automation.remind_domain_renewal
-          - automation.remind_later
-          - automation.remind_me_to_enjoy_warm_and_windy_weather
-          - automation.reset_trash_reminders
-          - automation.restart_home_assistant
-          - automation.restore_familyroom_lights
-          - automation.restore_masterbedroom_lights
-          - automation.restore_trash_recycle_settings_on_startup
-          - automation.restore_tv_state
-          - automation.scan_backyard_camera_when_motion
-          - automation.scan_driveway_camera_when_motion
-          - automation.scan_front_door_camera_when_motion
-          - automation.scan_garage_camera_when_motion
-          - automation.season_change_notification
-          - automation.send_a_message_as_i_get_closer_to_home
-          - automation.short_flash_all_lights
-          - automation.single_car_garage_door_watchdog
-          - automation.snapcast_action
-          - automation.snow_and_sleet_alerts
-          - automation.srinika_room_cube_event_flip90
-          - automation.srinika_room_cube_event_shake
-          - automation.study_room_cube_event_flip90
-          - automation.study_room_cube_event_shake
-          - automation.tesla_climate_off
-          - automation.tesla_climate_on
-          - automation.text_changed_event
-          - automation.timer_elapsed_take_a_walk
-          - automation.today_is_the_birthday
-          - automation.trash_and_recycle_bin_left_outside_already
-          - automation.trash_and_recycle_pickup_reminder
-          - automation.trash_pickup_day_changed
-          - automation.turn_off_ac_after_3_hours_of_cooling
-          - automation.tv_backlight_is_on_when_tv_is_on
-          - automation.tv_backlight_off_when_tv_is_off
-          - automation.tv_dim_indoor_lights_when_tv_is_on
-          - automation.tv_restore_family_room_lights_to_tv_mode
-          - automation.tv_state
-          - automation.tv_turn_lights_on_when_tv_is_turned_off
-          - automation.two_car_garage_door_watchdog
-          - automation.update_available_notification
-          - automation.update_birthdays
-          - automation.update_current_alarm_time
-          - automation.update_home_assistant
-          - automation.update_phone_battery_levels
-          - automation.update_zwave_battery_levels
-          - automation.ups_state_change
-          - automation.upstairs_aroma_timer_elapsed
-          - automation.upstairs_aroma_timer_finish
-          - automation.upstairs_aroma_timer_start
-          - automation.wallmote_button_1_pressed
-          - automation.wallmote_button_2_pressed
-          - automation.wallmote_button_3_pressed
-          - automation.wallmote_button_4_pressed
-          - automation.water_leak_detected
-          - automation.weather_alert
-          - automation.weather_input_boolean_updates
-          - automation.welcome_family
-          - automation.wfh_timer_start
-          - automation.working_in_garage_watchdog
-
-      - type: entities
-        title: All Scripts
-        show_header_toggle: false
-        entities:
-          - script.all_indoor_lights_off
-          - script.emergency_all_lights_switches_on
-          - script.emergency_script
-          - script.emergency_script_loop
-          - script.good_night_tts
-          - script.home_mode_away
-          - script.home_status
-          - script.ifttt_leeo_color_change
-          - script.ifttt_notify
-          - script.notify_me
-          - script.query_disk_info
-          - script.query_wifi_info
-          - script.restart_all_raspberrypis
-          - script.restart_all_snapclients
-          - script.restart_hass
-          - script.restart_snapcast_server
-          - script.shutdown_all_raspberrypis
-          - script.start_snapcast_server
-          - script.stop_hass
-          - script.stop_snapcast_server
-          - script.toggle_do_not_disturb
-          - script.update_hass
-          - script.voice_greeting
-          - script.voice_notify
-          - script.xiaomi_blue
-          - script.xiaomi_green
-          - script.xiaomi_red
-
-      - type: entities
-        title: Audio Detector
-        show_header_toggle: false
-        entities:
-          - sensor.audio_detector_alarm_level
-          - sensor.audio_detector_alarm_type
-          - sensor.audio_detector_burglar
-          - sensor.audio_detector_carbon_monoxide
-          - sensor.audio_detector_power_management
-          - sensor.audio_detector_smoke
-          - sensor.audio_detector_sourcenodeid
-          - sensor.audio_detector_temperature
-
-      - type: entities
-        title: Control Panel
-        show_header_toggle: false
-        entities:
-          - input_boolean.alarm_clock
-          - input_boolean.alert_faces_in_cameras
-          - input_boolean.alert_no_one_home
-          - input_boolean.alert_objects_in_cameras
-          - input_boolean.alert_when_someone_enters_zone
-          - input_boolean.alert_when_someone_leaves_zone
-          - input_boolean.battery_notifications
-          - input_boolean.do_not_disturb
-          - input_boolean.enjoyable_weather_reminders
-          - input_boolean.home_assistant_restart
-          - input_boolean.home_assistant_status
-          - input_boolean.home_assistant_update
-          - input_boolean.home_security
-          - input_boolean.hourly_reports
-          - input_boolean.notify_camera_motion
-          - input_boolean.notify_security_system_changes
-          - input_boolean.sharp_tv
-          - input_boolean.tesla_heat_on
-          - input_boolean.trash_reminders
-          - input_boolean.voice_notifications
-          - input_boolean.welcome_family_announcement
-          - input_boolean.wfh_notifications
-          - input_boolean.working_in_garage
-          - input_boolean.working_in_office_room
-          - input_number.calendar_remind_before_days
-
-      - type: entities
-        title: Dark Sky
-        show_header_toggle: false
-        entities:
-          - binary_sensor.good_weather_to_fly_drones
-          - sensor.dark_sky_apparent_temperature
-          - sensor.dark_sky_cloud_coverage
-          - sensor.dark_sky_daily_summary
-          - sensor.dark_sky_dew_point
-          - sensor.dark_sky_hourly_summary
-          - sensor.dark_sky_humidity
-          - sensor.dark_sky_icon
-          - sensor.dark_sky_minutely_summary
-          - sensor.dark_sky_nearest_storm_bearing
-          - sensor.dark_sky_nearest_storm_distance
-          - sensor.dark_sky_ozone
-          - sensor.dark_sky_precip
-          - sensor.dark_sky_precip_intensity
-          - sensor.dark_sky_precip_probability
-          - sensor.dark_sky_pressure
-          - sensor.dark_sky_summary
-          - sensor.dark_sky_temperature
-          - sensor.dark_sky_visibility
-          - sensor.dark_sky_wind_bearing
-          - sensor.dark_sky_wind_speed
-          - sensor.wind_direction
-          - sensor.wind_direction_tts
-
-      - type: entities
-        title: Family View
-        show_header_toggle: false
-        entities:
-          - group.batteries
-          - group.calendar
-          - group.dark_sky
-          - group.date_time
-          - group.doppler_weather
-          - group.home_family
-          - group.humidity_levels
-          - group.light_levels
-          - group.motion_sensors
-          - group.temperature_levels
-          - group.weather
-          - group.where_is_everyone
-          - group.wifi
-
-      - type: entities
-        title: Humidity Levels
-        show_header_toggle: false
-        entities:
-          - sensor.downstairs_multi_sensor_relative_humidity
-          - sensor.front_room_multi_sensor_relative_humidity
-          - sensor.guest_bedroom_multi_sensor_relative_humidity
-          - sensor.pws_relative_humidity
-          - sensor.tv_multi_sensor_relative_humidity
-          - sensor.upstairs_multi_sensor_relative_humidity
-
-      - type: entities
-        title: Kitchen Siren
-        show_header_toggle: false
-        entities:
-          - switch.kitchen_siren_switch
-          - switch.kitchen_siren_switch_2
-          - switch.kitchen_siren_switch_3
-          - switch.kitchen_siren_switch_4
-          - switch.kitchen_siren_switch_5
-
-      - type: entities
-        title: Light Levels
-        show_header_toggle: false
-        entities:
-          - sensor.downstairs_multi_sensor_luminance
-          - sensor.front_room_multi_sensor_luminance
-          - sensor.guest_bedroom_multi_sensor_luminance
-          - sensor.tv_multi_sensor_luminance
-          - sensor.upstairs_multi_sensor_luminance
-
-      - type: entities
-        title: Motion Sensors
-        show_header_toggle: false
-        entities:
-          - binary_sensor.aeotec_water_sensor_sensor
-          - binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor
-          - binary_sensor.audio_detector_sensor
-          - binary_sensor.back_door_sensor_sensor
-          - binary_sensor.basement_door_sensor_sensor
-          - binary_sensor.downstairs_multi_sensor_sensor
-          - binary_sensor.front_room_multi_sensor_sensor
-          - binary_sensor.front_room_window_sensor_sensor
-          - binary_sensor.garage_door_sensor_sensor
-          - binary_sensor.garage_motion
-          - binary_sensor.guest_bedroom_multi_sensor_sensor
-          - binary_sensor.kitchen_motion_sensor_sensor
-          - binary_sensor.motion_sensor_158d00016c2d0e
-          - binary_sensor.motion_sensor_158d00016db6d2
-          - binary_sensor.motion_sensor_158d0001a25041
-          - binary_sensor.motion_sensor_158d0001a662fe
-          - binary_sensor.single_car_garage_door_tilt_sensor_sensor
-          - binary_sensor.stairs_motion_sensor_sensor
-          - binary_sensor.tv_multi_sensor_sensor
-          - binary_sensor.two_car_garage_door_tilt_sensor_sensor
-          - binary_sensor.upstairs_multi_sensor_sensor
-      - type: entities
-        title: Nas
-        show_header_toggle: false
-        entities:
-          - group.qnap_automations
-          - group.qnap_drives
-          - group.qnap_server
-      - type: entities
-        title: Nest Thermostat
-        show_header_toggle: false
-        entities:
-          - binary_sensor.dining_room_thermostat_fan
-          - binary_sensor.dining_room_thermostat_has_leaf
-          - binary_sensor.dining_room_thermostat_is_locked
-          - binary_sensor.dining_room_thermostat_is_using_emergency_heat
-          - binary_sensor.dining_room_thermostat_online
-          - binary_sensor.home_away
-          - climate.dining_room
-          - sensor.dining_room_thermostat_humidity
-          - sensor.dining_room_thermostat_hvac_state
-          - sensor.dining_room_thermostat_operation_mode
-          - sensor.dining_room_thermostat_target
-          - sensor.dining_room_thermostat_temperature
-          - sensor.home_eta
-      - type: entities
-        title: Nest Thermostat View
-        show_header_toggle: false
-        entities:
-          - group.nest_thermostat
-      - type: entities
-        title: Openuv
-        show_header_toggle: false
-        entities:
-          - binary_sensor.protection_window
-          - sensor.current_ozone_level
-          - sensor.current_uv_index
-          - sensor.current_uv_level
-          - sensor.max_uv_index
-          - sensor.skin_type_1_safe_exposure_time
-          - sensor.skin_type_2_safe_exposure_time
-          - sensor.skin_type_3_safe_exposure_time
-          - sensor.skin_type_4_safe_exposure_time
-          - sensor.skin_type_5_safe_exposure_time
-          - sensor.skin_type_6_safe_exposure_time
-      - type: entities
-        title: Outdoor Lights
-        show_header_toggle: false
-        entities:
-          - switch.frontyard_light
-          - switch.wemobackyardlightswitch
-      - type: entities
-        title: Phone Batteries
-        show_header_toggle: false
-        entities:
-          - input_label.hasika_battery
-          - input_label.mallika_battery
-          - input_label.srinika_battery
-          - input_label.suresh_battery
-      - type: entities
-        title: Phone Wifi
-        show_header_toggle: false
-        entities:
-          - input_label.hasika_wifi
-          - input_label.mallika_wifi
-          - input_label.srinika_wifi
-          - input_label.suresh_wifi
-      - type: entities
-        title: Recycle Schedule
-        show_header_toggle: false
-        entities:
-          - input_select.recycle_pickup_day
-          - input_select.recycle_pickup_week
-          - sensor.current_week
-          - sensor.recycle_day
-          - sensor.recycle_pickup_day
-          - sensor.recycle_pickup_week
-      - type: entities
-        title: Rf Switches
-        show_header_toggle: false
-        entities:
-          - switch.rf_switch_one
-          - switch.rf_switch_three
-          - switch.rf_switch_two
-      - type: entities
-        title: Room Fragrance
-        show_header_toggle: false
-        entities:
-          - switch.downstairs_bathroom_fragrance_outlet
-          - switch.downstairs_fragrance_outlet
-          - switch.upstairs_fragrance_outlet
-      - type: entities
-        title: Rooms
-        show_header_toggle: false
-        entities:
-          - group.garage_doors
-          - group.home_family
-      - type: entities
-        title: Scripts
-        show_header_toggle: false
-        entities:
-          - script.good_night_tts
-          - script.home_mode_away
-          - script.home_status
-          - script.ifttt_leeo_color_change
-          - script.ifttt_notify
-          - script.notify_me
-          - script.restart_hass
-          - script.stop_hass
-          - script.update_hass
-          - script.voice_greeting
-          - script.voice_notify
-      - type: entities
-        title: Scripts View
-        show_header_toggle: false
-        entities:
-          - group.emergency_scripts
-          - group.scripts
-      - type: entities
-        title: Snapcast Server Commands
-        show_header_toggle: false
-        entities:
-          - script.restart_snapcast_server
-          - script.start_snapcast_server
-          - script.stop_snapcast_server
-      - type: entities
-        title: Stairs Motion Sensor
-        show_header_toggle: false
-        entities:
-          - sensor.stairs_motion_sensor_alarm_level
-          - sensor.stairs_motion_sensor_alarm_type
-          - sensor.stairs_motion_sensor_burglar
-          - sensor.stairs_motion_sensor_power_management
-          - sensor.stairs_motion_sensor_sourcenodeid
-      - type: entities
-        title: Switches
-        show_header_toggle: false
-        entities:
-          - switch.frontyard_light
-          - switch.garage_lights
-          - switch.guest_bedroom_1
-          - switch.guest_bedroom_2
-          - switch.kids_bedroom
-          - switch.wallmote_switch
-          - switch.wemobackyardlightswitch
-          - switch.wemoswitch1
-          - switch.zwave_smart_switch_switch
-      - type: entities
-        title: System Monitor
-        show_header_toggle: false
-        entities:
-          - binary_sensor.workday_sensor
-          - sensor.disk_free
-          - sensor.ha_current_version
-          - sensor.ha_installed_version
-          - sensor.home_assistant_up_time
-          - sensor.ipv4_address_wlp1s10
-          - sensor.last_boot
-          - sensor.memory_free
-          - sensor.processor_use
-      - type: entities
-        title: System View
-        show_header_toggle: false
-        entities:
-          - group.ads_blocked
-          - group.control_panel
-          - group.internet_speed
-          - group.system_monitor
-      - type: entities
-        title: Temperature Levels
-        show_header_toggle: false
-        entities:
-          - sensor.aeotec_water_sensor_temperature
-          - sensor.audio_detector_temperature
-          - sensor.downstairs_multi_sensor_temperature
-          - sensor.front_room_multi_sensor_temperature
-          - sensor.guest_bedroom_multi_sensor_temperature
-          - sensor.tv_multi_sensor_temperature
-          - sensor.upstairs_multi_sensor_temperature
-      - type: entities
-        title: Tesla
-        show_header_toggle: false
-        entities:
-          - binary_sensor.tesla_model_3_5yj3e1ea8jf010610_charger_sensor
-          - binary_sensor.tesla_model_3_5yj3e1ea8jf010610_parking_brake_sensor
-          - climate.tesla_model_3_5yj3e1ea8jf010610_hvac_climate_system
-          - device_tracker.tesla_model_3_5yj3e1ea8jf010610_location_tracker
-          - input_boolean.tesla_heat_on
-          - lock.tesla_model_3_5yj3e1ea8jf010610_door_lock
-          - sensor.tesla_model_3_5yj3e1ea8jf010610_battery_sensor
-          - sensor.tesla_model_3_5yj3e1ea8jf010610_mileage_sensor
-          - sensor.tesla_model_3_5yj3e1ea8jf010610_range_sensor
-          - sensor.tesla_model_3_5yj3e1ea8jf010610_temperature_sensor_inside
-          - sensor.tesla_model_3_5yj3e1ea8jf010610_temperature_sensor_outside
-          - switch.tesla_model_3_5yj3e1ea8jf010610_charger_switch
-          - switch.tesla_model_3_5yj3e1ea8jf010610_maxrange_switch
-
-      - type: entities
-        title: Tv Multi Sensor
-        show_header_toggle: false
-        entities:
-          - sensor.tv_multi_sensor_alarm_level
-          - sensor.tv_multi_sensor_alarm_type
-          - sensor.tv_multi_sensor_burglar
-          - sensor.tv_multi_sensor_luminance
-          - sensor.tv_multi_sensor_relative_humidity
-          - sensor.tv_multi_sensor_sourcenodeid
-          - sensor.tv_multi_sensor_temperature
-          - sensor.tv_multi_sensor_ultraviolet
-      - type: entities
-        title: Upstairs Lights
-        show_header_toggle: false
-        entities:
-          - light.master_bedroom
-          - light.master_bedroom_1
-          - light.master_bedroom_2
-          - switch.guest_bedroom_1
-          - switch.guest_bedroom_2
-          - switch.kids_bed_accent_light
-          - switch.kids_bedroom
-      - type: entities
-        title: Upstairs Multi Sensor
-        show_header_toggle: false
-        entities:
-          - sensor.upstairs_multi_sensor_alarm_level
-          - sensor.upstairs_multi_sensor_alarm_type
-          - sensor.upstairs_multi_sensor_burglar
-          - sensor.upstairs_multi_sensor_luminance
-          - sensor.upstairs_multi_sensor_relative_humidity
-          - sensor.upstairs_multi_sensor_sourcenodeid
-          - sensor.upstairs_multi_sensor_temperature
-          - sensor.upstairs_multi_sensor_ultraviolet
-      - type: entities
-        title: Usps
-        show_header_toggle: false
-        entities:
-          - camera.usps_mail_pictures
-          - sensor.usps_mail
-          - sensor.usps_packages
-      - type: entities
-        title: Wallmote
-        show_header_toggle: false
-        entities:
-          - sensor.wallmote_alarm_level
-          - sensor.wallmote_alarm_type
-          - sensor.wallmote_power_management
-          - sensor.wallmote_sourcenodeid
-      - type: entities
-        title: Weather
-        show_header_toggle: false
-        entities:
-          - sensor.air_quality
-          - sensor.cold_flu
-          - sensor.cold_flu_risk
-          - sensor.pollen
-          - sensor.pollen_level
-          - sensor.pws_alerts
-          - sensor.pws_feelslike_f
-          - sensor.pws_heat_index_f
-          - sensor.pws_relative_humidity
-          - sensor.pws_temp_f
-          - sensor.pws_uv
-          - sensor.pws_visibility_mi
-          - sensor.pws_weather
-          - sensor.pws_wind_mph
-          - sensor.uv_burn_time
-          - sun.sun
-      - type: entities
-        title: Weather Automations
-        show_header_toggle: false
-        entities:
-          - automation.alert_super_heavy_winds
-          - automation.remind_me_to_enjoy_warm_and_windy_weather
-      - type: entities
-        title: Wifi
-        show_header_toggle: false
-        entities:
-          - sensor.hasika_iphone_wifi_state
-          - sensor.mallika_iphone_wifi_state
-          - sensor.srinika_iphone_wifi_state
-          - sensor.suresh_iphone_wifi_state
-      - type: entities
-        title: Wifi Link Quality
-        show_header_toggle: false
-        entities:
-          - sensor.basement_pi_link_quality
-          - sensor.family_room_pi_link_quality
-          - sensor.front_room_pi_link_quality
-          - sensor.garage_pi_link_quality
-          - sensor.guest_1_pi_link_quality
-          - sensor.guest_2_pi_link_quality
-          - sensor.kitchen_pi_link_quality
-          - sensor.master_bedroom_pi_link_quality
-          - sensor.theater_pi_link_quality
-      - type: entities
-        title: Wifi Signal Strength
-        show_header_toggle: false
-        entities:
-          - sensor.basement_pi_signal_level
-          - sensor.family_room_pi_signal_level
-          - sensor.front_room_pi_signal_level
-          - sensor.garage_pi_signal_level
-          - sensor.guest_1_pi_signal_level
-          - sensor.guest_2_pi_signal_level
-          - sensor.kitchen_pi_signal_level
-          - sensor.master_bedroom_pi_signal_level
-          - sensor.theater_pi_signal_level
-      - type: entities
-        title: Xiaomi Aqara
-        show_header_toggle: false
-        entities:
-          - binary_sensor.cube_158d000276e3e8
-          - binary_sensor.cube_158d000278eb6a
-          - binary_sensor.cube_158d0002794cd6
-          - binary_sensor.cube_158d00027c0276
-          - binary_sensor.cube_158d00027ce15c
-          - binary_sensor.cube_158d00027cf60d
-          - binary_sensor.motion_sensor_158d00016c2d0e
-          - binary_sensor.motion_sensor_158d00016db6d2
-          - binary_sensor.motion_sensor_158d0001a25041
-          - binary_sensor.motion_sensor_158d0001a662fe
-          - binary_sensor.motion_sensor_158d00024e57d3
-          - binary_sensor.motion_sensor_158d00024e57fb
-          - binary_sensor.motion_sensor_158d00024e842c
-          - binary_sensor.motion_sensor_158d00024ee084
-          - binary_sensor.motion_sensor_158d000272bed1
-          - binary_sensor.motion_sensor_158d000272bf48
-          - binary_sensor.motion_sensor_158d000272bfd7
-          - sensor.illumination_158d00016c2d0e
-          - sensor.illumination_158d00016db6d2
-          - sensor.illumination_158d0001a25041
-          - sensor.illumination_158d0001a662fe
-          - sensor.illumination_158d00024e57d3
-          - sensor.illumination_158d00024e57fb
-          - sensor.illumination_158d00024e842c
-          - sensor.illumination_158d00024ee084
-          - sensor.illumination_158d000272bed1
-          - sensor.illumination_158d000272bf48
-          - sensor.illumination_158d000272bfd7
-          - sensor.illumination_34ce008ad65d
-      - type: entities
-        title: Zwave Batteries
-        show_header_toggle: false
-        entities:
-          - input_label.aeotec_water_sensor
-          - input_label.audio_detector
-          - input_label.back_door_sensor
-          - input_label.basement_door_sensor
-          - input_label.downstairs_multi_sensor
-          - input_label.front_door_sensor
-          - input_label.front_room_multi_sensor
-          - input_label.front_room_window_sensor
-          - input_label.garage_door_sensor
-          - input_label.guest_bedroom_multi_sensor
-          - input_label.kitchen_motion_sensor
-          - input_label.single_car_garage_door_tilt_sensor
-          - input_label.stairs_motion_sensor
-          - input_label.tv_multi_sensor
-          - input_label.two_car_garage_door_tilt_sensor
-          - input_label.upstairs_multi_sensor
-          - input_label.wallmote
-      - type: entities
-        title: Zwave Devices
-        show_header_toggle: false
-        entities:
-          - zwave.aeotec_water_sensor
-          - zwave.audio_detector
-          - zwave.back_door_sensor
-          - zwave.basement_door_sensor
-          - zwave.downstairs_multi_sensor
-          - zwave.front_room_multi_sensor
-          - zwave.front_room_window_sensor
-          - zwave.garage_door_sensor
-          - zwave.guest_bedroom_multi_sensor
-          - zwave.kitchen_motion_sensor
-          - zwave.kitchen_siren
-          - zwave.single_car_garage_door_tilt_sensor
-          - zwave.stairs_motion_sensor
-          - zwave.tv_multi_sensor
-          - zwave.two_car_garage_door_tilt_sensor
-          - zwave.upstairs_multi_sensor
-          - zwave.wallmote
-          - zwave.zwave_repeater
-          - zwave.zwave_smart_switch
-          - zwave.zwave_stick
-      - type: entities
-        title: Zwave Smart Switch
-        show_header_toggle: false
-        entities:
-          - sensor.zwave_smart_switch_current
-          - sensor.zwave_smart_switch_energy
-          - sensor.zwave_smart_switch_power
-          - sensor.zwave_smart_switch_previous_reading
-          - sensor.zwave_smart_switch_voltage
-          - switch.zwave_smart_switch_switch
