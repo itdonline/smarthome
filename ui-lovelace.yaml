@@ -254,6 +254,8 @@ views:
           - sensor.tesla_model_3_5yj3e1ea8jf010610_temperature_sensor_outside
           - switch.tesla_model_3_5yj3e1ea8jf010610_charger_switch
           - switch.tesla_model_3_5yj3e1ea8jf010610_maxrange_switch
+      - type: thermostat
+        entity: climate.tesla_model_3_5yj3e1ea8jf010610_hvac_climate_system
 
   - id: Camera
     title: Camera Live
@@ -544,6 +546,20 @@ views:
           - media_player.mpd
           - media_player.attic_tv
 
+      - type: vertical-stack
+        cards:
+          - type: media-control
+            entity: media_player.mpd
+    
+          - type: media-control
+            entity: media_player.denon_avr_x2400h
+    
+          - type: media-control
+            entity: media_player.gstreamer
+    
+          - type: media-control
+            entity: media_player.attic_tv
+
       - type: entities
         title: Snapcast Clients
         show_header_toggle: false
@@ -767,6 +783,12 @@ views:
           - sensor.dining_room_thermostat_operation_mode
           - sensor.dining_room_thermostat_target
           - sensor.dining_room_thermostat_temperature
+      - type: sensor
+        entity: sensor.dining_room_thermostat_temperature
+        name: Home Temperature
+        graph: line
+        detail: 1
+        hours_to_show: 12
 
   - id: Automations
     title: Automations
