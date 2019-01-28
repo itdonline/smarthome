@@ -181,4 +181,4 @@ automation:
       - service: script.voice_notify
         data_template:
           message: >
-            "Hello, Mr. Kalavala! This is an alarm clock reminder! Have a great day!"
+            "Hello! This is an alarm clock reminder! Have a great day!"

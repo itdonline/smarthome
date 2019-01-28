@@ -191,9 +191,10 @@ views:
           - sensor.downstairs_multi_sensor_relative_humidity
           - sensor.front_room_multi_sensor_relative_humidity
           - sensor.guest_bedroom_multi_sensor_relative_humidity
-          - sensor.pws_relative_humidity
           - sensor.tv_multi_sensor_relative_humidity
           - sensor.upstairs_multi_sensor_relative_humidity
+          - entity: sensor.pws_relative_humidity
+            name: Outdoor Humidity
 
       - type: entities
         title: Light Levels
@@ -954,8 +955,6 @@ views:
         entities:
           - switch.basement_left_lights
           - switch.basement_right_lights
-          - switch.frontyard_light
-          - switch.wemobackyardlightswitch
           - switch.kitchen_light
           - switch.office_room_lights
           - switch.zwave_smart_switch_switch
@@ -988,6 +987,13 @@ views:
         entities:
           - light.gateway_light_34ce008ad65d
           - switch.wemoswitch1
+
+      - type: entities
+        title: Outdoor Lights
+        show_header_toggle: true
+        entities:
+          - switch.frontyard_light
+          - switch.wemobackyardlightswitch
 
   - id: Climate
     title: Climate
@@ -1192,6 +1198,7 @@ views:
           - automation.home_security_system_watchdog_30_minutes
           - automation.notify_home_security_status_change
           - automation.night_homesecurity_on
+          - automation.turn_on_thermostat_upon_reaching_home
 
       - type: entities
         title: Light Automations
