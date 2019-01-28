@@ -160,15 +160,20 @@ views:
         show_info: true
         tap_action:
           action: more-info
-          
-      - type: picture-entity
-        id: camera_usps_mail_pictures
-        title: USPS Mail Pictures
-        entity: camera.usps_mail_pictures
-        camera_image: camera.usps_mail_pictures
-        show_info: true
-        tap_action:
-          action: more-info
+      
+      - type: conditional
+        conditions:
+          - entity: sensor.usps_mail
+            state_not: "0"
+        card:
+          type: picture-entity
+          id: camera_usps_mail_pictures
+          title: USPS Mail Pictures
+          entity: camera.usps_mail_pictures
+          camera_image: camera.usps_mail_pictures
+          show_info: true
+          tap_action:
+            action: more-info
 
       - type: entities
         title: Temperature Levels
@@ -265,6 +270,217 @@ views:
           - input_label.two_car_garage_door_tilt_sensor
           - input_label.upstairs_multi_sensor
           - input_label.wallmote
+
+  - id: Lights
+    title: Lights
+    icon: mdi:lightbulb-on
+    cards:
+      - type: entities
+        title: Upstairs
+        show_header_toggle: true
+        entities:
+          - light.master_bedroom 
+          - entity: light.master_bedroom_1
+            name: Suresh's Bedside Light
+          - entity: light.master_bedroom_2
+            name: Mallika's Bedside Light
+          - entity: switch.kids_bedroom
+            name: Hasika's Bedroom
+          - entity: switch.kids_bed_accent_light
+            name: Hasika's Bed Accent Lights
+          - entity: switch.guest_bedroom_1
+            name: Srinika's Bedroom
+          - switch.guest_bedroom_2
+
+      - type: entities
+        title: Downstairs
+        show_header_toggle: true
+        entities:
+          - switch.basement_left_lights
+          - switch.basement_right_lights
+          - switch.kitchen_light
+          - switch.office_room_lights
+          - switch.zwave_smart_switch_switch
+          - light.family_room
+          - light.hue_color_lamp_1
+          - light.hue_color_lamp_2
+          - light.hue_color_lamp_3
+
+      - type: entities
+        title: Fragrnace Outlets
+        show_header_toggle: true
+        entities:
+          - switch.downstairs_bathroom_fragrance_outlet
+          - switch.downstairs_fragrance_outlet
+          - switch.upstairs_fragrance_outlet
+
+      - type: entities
+        title: Garage
+        show_header_toggle: true
+        entities:
+          - switch.garage_lights
+          - entity: switch.tesla_model_3_5yj3e1ea8jf010610_charger_switch
+            name: Tesla Charger Switch
+          - entity: switch.tesla_model_3_5yj3e1ea8jf010610_maxrange_switch
+            name: Tesla Max Range Switch
+
+      - type: entities
+        title: Always On
+        show_header_toggle: false
+        entities:
+          - light.gateway_light_34ce008ad65d
+          - switch.wemoswitch1
+
+      - type: entities
+        title: Outdoor Lights
+        show_header_toggle: true
+        entities:
+          - switch.frontyard_light
+          - switch.wemobackyardlightswitch
+
+  - id: Climate
+    title: Climate
+    icon: mdi:oil-temperature
+    cards:
+      - type: thermostat
+        entity: climate.dining_room
+      - type: horizontal-stack
+        cards:
+          - type: sensor
+            entity: sensor.dining_room_thermostat_temperature
+            name: Home Temperature
+            graph: line
+            detail: 1
+            hours_to_show: 12
+          - type: gauge
+            entity: sensor.dining_room_thermostat_humidity
+            unit: '%'
+            name: Home Humidity
+            severity:
+              green: 40
+              yellow: 30
+              red: 25
+
+      - type: entities
+        title: Climate
+        show_header_toggle: true
+        entities:
+          - climate.dining_room
+          - climate.tesla_model_3_5yj3e1ea8jf010610_hvac_climate_system
+          - binary_sensor.dining_room_thermostat_fan
+          - binary_sensor.dining_room_thermostat_has_leaf
+          - binary_sensor.dining_room_thermostat_is_locked
+          - binary_sensor.dining_room_thermostat_is_using_emergency_heat
+          - binary_sensor.dining_room_thermostat_online
+          - sensor.dining_room_thermostat_humidity
+          - sensor.dining_room_thermostat_hvac_state
+          - sensor.dining_room_thermostat_operation_mode
+          - sensor.dining_room_thermostat_target
+          - sensor.dining_room_thermostat_temperature
+
+  - id: Camera
+    title: Camera Live
+    icon: mdi:cctv
+    cards:
+
+      - type: picture-glance
+        id: camera_frontdoor_camera
+        title: Frontdoor Camera
+        entity: camera.frontdoor_camera
+        camera_image: camera.frontdoor_camera
+        show_info: true
+        tap_action: 
+          action: more-info
+        entities:
+          - switch.frontyard_light
+          - binary_sensor.frontdoor_camera_motion
+          - binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor
+
+      - type: picture-glance
+        id: camera_patio_camera
+        title: Patio Camera
+        entity: camera.patio_camera
+        camera_image: camera.patio_camera
+        show_info: true
+        tap_action: 
+          action: more-info
+        entities:
+          - switch.wemobackyardlightswitch
+          - binary_sensor.patio_camera_motion
+          - binary_sensor.back_door_sensor_sensor
+
+      - type: picture-glance
+        id: camera_driveway_camera
+        title: Driveway Camera
+        entity: camera.driveway_camera
+        camera_image: camera.driveway_camera
+        show_info: true
+        tap_action: 
+          action: more-info
+        entities:
+          - switch.frontyard_light
+          - binary_sensor.driveway_camera_motion
+          - binary_sensor.single_car_garage_door_tilt_sensor_sensor
+          - binary_sensor.two_car_garage_door_tilt_sensor_sensor
+
+      - type: picture-glance
+        id: camera_playarea_camera
+        title: Playarea Camera
+        entity: camera.playarea_camera
+        camera_image: camera.playarea_camera
+        show_info: true
+        tap_action: 
+          action: more-info
+        entities:
+          - switch.wemobackyardlightswitch
+          - binary_sensor.playarea_camera_motion
+          - binary_sensor.back_door_sensor_sensor
+
+      - type: picture-glance
+        id: camera_garage_camera
+        title: Garage Camera
+        entity: camera.garage_camera
+        camera_image: camera.garage_camera
+        show_info: true
+        tap_action: 
+          action: more-info
+        entities:
+          - switch.garage_lights
+          - binary_sensor.single_car_garage_door_tilt_sensor_sensor
+          - binary_sensor.two_car_garage_door_tilt_sensor_sensor
+
+  - id: Trash
+    title: Trash & Recycle
+    icon: mdi:recycle
+    cards:
+      - type: entities
+        title: Recycle Schedule
+        show_header_toggle: false
+        entities:
+          - input_select.recycle_pickup_day
+          - input_select.recycle_pickup_week
+          - sensor.current_week
+          - sensor.recycle_day
+          - sensor.recycle_pickup_day
+          - sensor.recycle_pickup_week
+
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Trash Schedule
+            show_header_toggle: false
+            entities:
+              - input_select.trash_pickup_day
+              - sensor.trash_day
+              - sensor.trash_pickup_day
+          - type: horizontal-stack
+            cards:
+              - type: glance
+                entities:
+                  - sensor.recycle_day
+              - type: glance
+                entities:
+                  - sensor.trash_day
 
   - id: Tensorflow
     title: Tensorflow
@@ -385,77 +601,6 @@ views:
           - binary_sensor.tesla_model_3_5yj3e1ea8jf010610_charger_sensor
           - switch.tesla_model_3_5yj3e1ea8jf010610_charger_switch
           - switch.tesla_model_3_5yj3e1ea8jf010610_maxrange_switch
-
-  - id: Camera
-    title: Camera Live
-    icon: mdi:cctv
-    cards:
-
-      - type: picture-glance
-        id: camera_frontdoor_camera
-        title: Frontdoor Camera
-        entity: camera.frontdoor_camera
-        camera_image: camera.frontdoor_camera
-        show_info: true
-        tap_action: 
-          action: more-info
-        entities:
-          - switch.frontyard_light
-          - binary_sensor.frontdoor_camera_motion
-          - binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor
-
-      - type: picture-glance
-        id: camera_patio_camera
-        title: Patio Camera
-        entity: camera.patio_camera
-        camera_image: camera.patio_camera
-        show_info: true
-        tap_action: 
-          action: more-info
-        entities:
-          - switch.wemobackyardlightswitch
-          - binary_sensor.patio_camera_motion
-          - binary_sensor.back_door_sensor_sensor
-
-      - type: picture-glance
-        id: camera_driveway_camera
-        title: Driveway Camera
-        entity: camera.driveway_camera
-        camera_image: camera.driveway_camera
-        show_info: true
-        tap_action: 
-          action: more-info
-        entities:
-          - switch.frontyard_light
-          - binary_sensor.driveway_camera_motion
-          - binary_sensor.single_car_garage_door_tilt_sensor_sensor
-          - binary_sensor.two_car_garage_door_tilt_sensor_sensor
-
-      - type: picture-glance
-        id: camera_playarea_camera
-        title: Playarea Camera
-        entity: camera.playarea_camera
-        camera_image: camera.playarea_camera
-        show_info: true
-        tap_action: 
-          action: more-info
-        entities:
-          - switch.wemobackyardlightswitch
-          - binary_sensor.playarea_camera_motion
-          - binary_sensor.back_door_sensor_sensor
-
-      - type: picture-glance
-        id: camera_garage_camera
-        title: Garage Camera
-        entity: camera.garage_camera
-        camera_image: camera.garage_camera
-        show_info: true
-        tap_action: 
-          action: more-info
-        entities:
-          - switch.garage_lights
-          - binary_sensor.single_car_garage_door_tilt_sensor_sensor
-          - binary_sensor.two_car_garage_door_tilt_sensor_sensor
 
   - id: System
     title: System
@@ -590,39 +735,6 @@ views:
           - group.raspberry_pi_scripts
           - group.wifi_link_quality
           - group.wifi_signal_strength
-
-  - id: Trash
-    title: Trash & Recycle
-    icon: mdi:recycle
-    cards:
-      - type: entities
-        title: Recycle Schedule
-        show_header_toggle: false
-        entities:
-          - input_select.recycle_pickup_day
-          - input_select.recycle_pickup_week
-          - sensor.current_week
-          - sensor.recycle_day
-          - sensor.recycle_pickup_day
-          - sensor.recycle_pickup_week
-
-      - type: vertical-stack
-        cards:
-          - type: entities
-            title: Trash Schedule
-            show_header_toggle: false
-            entities:
-              - input_select.trash_pickup_day
-              - sensor.trash_day
-              - sensor.trash_pickup_day
-          - type: horizontal-stack
-            cards:
-              - type: glance
-                entities:
-                  - sensor.recycle_day
-              - type: glance
-                entities:
-                  - sensor.trash_day
 
   - id: MultiMedia
     title: Multi Room Audio & TTS
@@ -927,113 +1039,6 @@ views:
           - script.query_wifi_info
           - script.query_disk_info
           - script.shutdown_all_raspberrypis
-
-  - id: Lights
-    title: Lights
-    icon: mdi:lightbulb-on
-    cards:
-      - type: entities
-        title: Upstairs
-        show_header_toggle: true
-        entities:
-          - light.master_bedroom 
-          - entity: light.master_bedroom_1
-            name: Suresh's Bedside Light
-          - entity: light.master_bedroom_2
-            name: Mallika's Bedside Light
-          - entity: switch.kids_bedroom
-            name: Hasika's Bedroom
-          - entity: switch.kids_bed_accent_light
-            name: Hasika's Bed Accent Lights
-          - entity: switch.guest_bedroom_1
-            name: Srinika's Bedroom
-          - switch.guest_bedroom_2
-
-      - type: entities
-        title: Downstairs
-        show_header_toggle: true
-        entities:
-          - switch.basement_left_lights
-          - switch.basement_right_lights
-          - switch.kitchen_light
-          - switch.office_room_lights
-          - switch.zwave_smart_switch_switch
-          - light.family_room
-          - light.hue_color_lamp_1
-          - light.hue_color_lamp_2
-          - light.hue_color_lamp_3
-
-      - type: entities
-        title: Fragrnace Outlets
-        show_header_toggle: true
-        entities:
-          - switch.downstairs_bathroom_fragrance_outlet
-          - switch.downstairs_fragrance_outlet
-          - switch.upstairs_fragrance_outlet
-
-      - type: entities
-        title: Garage
-        show_header_toggle: true
-        entities:
-          - switch.garage_lights
-          - entity: switch.tesla_model_3_5yj3e1ea8jf010610_charger_switch
-            name: Tesla Charger Switch
-          - entity: switch.tesla_model_3_5yj3e1ea8jf010610_maxrange_switch
-            name: Tesla Max Range Switch
-
-      - type: entities
-        title: Always On
-        show_header_toggle: false
-        entities:
-          - light.gateway_light_34ce008ad65d
-          - switch.wemoswitch1
-
-      - type: entities
-        title: Outdoor Lights
-        show_header_toggle: true
-        entities:
-          - switch.frontyard_light
-          - switch.wemobackyardlightswitch
-
-  - id: Climate
-    title: Climate
-    icon: mdi:oil-temperature
-    cards:
-      - type: thermostat
-        entity: climate.dining_room
-      - type: horizontal-stack
-        cards:
-          - type: sensor
-            entity: sensor.dining_room_thermostat_temperature
-            name: Home Temperature
-            graph: line
-            detail: 1
-            hours_to_show: 12
-          - type: gauge
-            entity: sensor.dining_room_thermostat_humidity
-            unit: '%'
-            name: Home Humidity
-            severity:
-              green: 40
-              yellow: 30
-              red: 25
-
-      - type: entities
-        title: Climate
-        show_header_toggle: true
-        entities:
-          - climate.dining_room
-          - climate.tesla_model_3_5yj3e1ea8jf010610_hvac_climate_system
-          - binary_sensor.dining_room_thermostat_fan
-          - binary_sensor.dining_room_thermostat_has_leaf
-          - binary_sensor.dining_room_thermostat_is_locked
-          - binary_sensor.dining_room_thermostat_is_using_emergency_heat
-          - binary_sensor.dining_room_thermostat_online
-          - sensor.dining_room_thermostat_humidity
-          - sensor.dining_room_thermostat_hvac_state
-          - sensor.dining_room_thermostat_operation_mode
-          - sensor.dining_room_thermostat_target
-          - sensor.dining_room_thermostat_temperature
 
   - id: Automations
     title: Automations
