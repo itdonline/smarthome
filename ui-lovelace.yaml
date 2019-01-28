@@ -300,7 +300,7 @@ views:
           - light.hue_color_lamp_3
 
       - type: entities
-        title: Fragrnace Outlets
+        title: Fragrance Outlets
         show_header_toggle: true
         entities:
           - switch.downstairs_bathroom_fragrance_outlet
@@ -309,7 +309,7 @@ views:
 
       - type: entities
         title: Garage
-        show_header_toggle: true
+        show_header_toggle: false
         entities:
           - switch.garage_lights
           - entity: switch.tesla_model_3_5yj3e1ea8jf010610_charger_switch
@@ -356,7 +356,7 @@ views:
 
       - type: entities
         title: Climate
-        show_header_toggle: true
+        show_header_toggle: false
         entities:
           - climate.dining_room
           - climate.tesla_model_3_5yj3e1ea8jf010610_hvac_climate_system
@@ -652,7 +652,6 @@ views:
         title: RPi Disk Available
         show_header_toggle: false
         entities:
-          - sensor.basement_pi_available_disk
           - sensor.family_room_pi_available_disk
           - sensor.front_room_pi_available_disk
           - sensor.garage_pi_available_disk
@@ -660,13 +659,11 @@ views:
           - sensor.guest_2_pi_available_disk
           - sensor.kitchen_pi_available_disk
           - sensor.master_bedroom_pi_available_disk
-          - sensor.theater_pi_available_disk
 
       - type: entities
         title: RPi Disk Percent Used
         show_header_toggle: false
         entities:
-          - sensor.basement_pi_disk_used
           - sensor.family_room_pi_disk_used
           - sensor.front_room_pi_disk_used
           - sensor.garage_pi_disk_used
@@ -674,7 +671,6 @@ views:
           - sensor.guest_2_pi_disk_used
           - sensor.kitchen_pi_disk_used
           - sensor.master_bedroom_pi_disk_used
-          - sensor.theater_pi_disk_used
 
       - type: entities
         title: ESXi Vmware Server
@@ -697,17 +693,6 @@ views:
           - sensor.speedtest_download
           - sensor.speedtest_ping
           - sensor.speedtest_upload
-
-      - type: entities
-        title: Raspberry Pis
-        show_header_toggle: false
-        entities:
-          - group.disk_available
-          - group.disk_percent_used
-          - group.raspberry_pi_commands
-          - group.raspberry_pi_scripts
-          - group.wifi_link_quality
-          - group.wifi_signal_strength
 
   - id: MultiMedia
     title: Multi Room Audio & TTS
@@ -886,33 +871,42 @@ views:
     cards:
       - type: entities
         title: Scripts
-        show_header_toggle: true
+        show_header_toggle: false
         entities:
           - script.all_indoor_lights_off
           - script.emergency_all_lights_switches_on
           - script.emergency_script
           - script.emergency_script_loop
           - script.home_mode_away
-          - script.ifttt_leeo_color_change
-          - script.toggle_do_not_disturb
-          - script.xiaomi_blue
-          - script.xiaomi_green
-          - script.xiaomi_red
+          - entity: script.ifttt_leeo_color_change
+            name: Leeo Color Using IFTTT Webhook
+          - entity: script.toggle_do_not_disturb
+            name: Toggle Do Not Disturb
+          - entity: script.xiaomi_blue
+            name: Xiaomi Gateway Blue Light
+          - entity: script.xiaomi_green
+            name: Xiaomi Gateway Green Light
+          - entity: script.xiaomi_red
+            name: Xiaomi Gateway Red Light
 
       - type: entities
         title: Notify
-        show_header_toggle: true
+        show_header_toggle: false
         entities:
-          - script.ifttt_notify
-          - script.notify_me
-          - script.voice_greeting
-          - script.voice_notify
+          - entity: script.ifttt_notify
+            name: IFTTT Notify
+          - entity: script.notify_me
+            name: Notify Me
+          - entity: script.voice_greeting
+            name: Voice Greeting
+          - entity: script.voice_notify
+            name: Voice Notify
           - script.good_night_tts
           - script.home_status
 
       - type: entities
         title: Home Assistant
-        show_header_toggle: true
+        show_header_toggle: false
         entities:
           - script.stop_hass
           - script.restart_hass
@@ -920,7 +914,7 @@ views:
 
       - type: entities
         title: RPi/Snapcast Scripts
-        show_header_toggle: true
+        show_header_toggle: false
         entities:
           - script.restart_all_raspberrypis
           - script.restart_all_snapclients
@@ -930,11 +924,6 @@ views:
           - script.stop_snapcast_server
           - script.query_disk_info
           - script.query_wifi_info
-
-      # - type: entities
-      #   title: Scripts
-      #   show_header_toggle: true
-      #   entities:
 
   - id: Raspberry Pi
     title: Raspberry PI
@@ -951,8 +940,6 @@ views:
         title: WiFi Signal Strength
         show_header_toggle: false
         entities:
-          - sensor.basement_pi_signal_level
-          - sensor.theater_pi_signal_level
           - sensor.kitchen_pi_signal_level
           - sensor.family_room_pi_signal_level
           - sensor.front_room_pi_signal_level
@@ -965,8 +952,6 @@ views:
         title: WiFi Link Quality
         show_header_toggle: false
         entities:
-          - sensor.basement_pi_link_quality
-          - sensor.theater_pi_link_quality
           - sensor.kitchen_pi_link_quality
           - sensor.family_room_pi_link_quality
           - sensor.front_room_pi_link_quality
@@ -979,8 +964,6 @@ views:
         title: RPi Disk Available
         show_header_toggle: false
         entities:
-          - sensor.basement_pi_available_disk
-          - sensor.theater_pi_available_disk
           - sensor.kitchen_pi_available_disk
           - sensor.family_room_pi_available_disk
           - sensor.front_room_pi_available_disk
@@ -993,8 +976,6 @@ views:
         title: RPi Disk Used
         show_header_toggle: false
         entities:
-          - sensor.basement_pi_disk_used
-          - sensor.theater_pi_disk_used
           - sensor.kitchen_pi_disk_used
           - sensor.family_room_pi_disk_used
           - sensor.front_room_pi_disk_used
