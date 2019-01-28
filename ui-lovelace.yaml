@@ -57,14 +57,19 @@ views:
           - sensor.srinika_location
           - sensor.suresh_location
     
-      - type: entities
-        title: Emergency Scripts
-        show_header_toggle: false
-        entities:
-          - script.all_indoor_lights_off
-          - script.emergency_all_lights_switches_on
-          - script.emergency_script
-          - script.emergency_script_loop
+      - type: conditional
+        conditions:
+          - entity: input_boolean.emergency_mode
+            state: 'on'
+        card:
+          type: entities
+          title: Emergency Scripts
+          show_header_toggle: false
+          entities:
+            - script.all_indoor_lights_off
+            - script.emergency_all_lights_switches_on
+            - script.emergency_script
+            - script.emergency_script_loop
 
       - type: glance
         title: Birthday Countdown
@@ -105,7 +110,7 @@ views:
               - type: gauge
                 name: Suresh Phone
                 unit: '%'
-                entity: sensor.suresh_iphone_battery_ot_2
+                entity: input_label.suresh_battery
                 severity:
                   green: 75
                   yellow: 50
@@ -113,7 +118,7 @@ views:
               - type: gauge
                 name: Mallika Phone
                 unit: '%'
-                entity: sensor.mallika_iphone_battery_ot_2
+                entity: input_label.mallika_battery
                 severity:
                   green: 75
                   yellow: 50
@@ -123,7 +128,7 @@ views:
               - type: gauge
                 name: Srinika Phone
                 unit: '%'
-                entity: sensor.srinika_iphone_battery_ot_2
+                entity: input_label.srinika_battery
                 severity:
                   green: 75
                   yellow: 50
@@ -131,23 +136,11 @@ views:
               - type: gauge
                 name: Hasika Phone
                 unit: '%'
-                entity: sensor.hasika_iphone_battery_ot_2
+                entity: input_label.hasika_battery
                 severity:
                   green: 75
                   yellow: 50
                   red: 30
-
-      - type: entities
-        title: Alarm Clock
-        show_header_toggle: false
-        entities:
-          - automation.alarm_clock
-          - input_boolean.am
-          - input_boolean.pm
-          - input_boolean.week_day_only
-          - input_label.alarm_current_time
-          - input_number.slider_hours
-          - input_number.slider_minutes
 
       - type: weather-forecast
         entity: weather.dark_sky
@@ -603,7 +596,7 @@ views:
           - switch.tesla_model_3_5yj3e1ea8jf010610_maxrange_switch
 
   - id: System
-    title: System
+    title: Server Date & Time
     icon: mdi:linux
     cards:
       - type: entities
@@ -615,6 +608,18 @@ views:
           - sensor.time
           - sensor.time_date
           - sensor.time_utc
+
+      - type: entities
+        title: Alarm Clock
+        show_header_toggle: false
+        entities:
+          - automation.alarm_clock
+          - input_boolean.am
+          - input_boolean.pm
+          - input_boolean.week_day_only
+          - input_label.alarm_current_time
+          - input_number.slider_hours
+          - input_number.slider_minutes
 
       - type: entities
         title: Ads Blocked
@@ -631,7 +636,7 @@ views:
           - sensor.pi_hole_seen_clients
 
       - type: entities
-        title: Basement Ups
+        title: Battery/UPS
         show_header_toggle: false
         entities:
           - sensor.ups_battery
@@ -644,7 +649,7 @@ views:
           - sensor.ups_transfer_count
 
       - type: entities
-        title: Disk Available
+        title: RPi Disk Available
         show_header_toggle: false
         entities:
           - sensor.basement_pi_available_disk
@@ -658,7 +663,7 @@ views:
           - sensor.theater_pi_available_disk
 
       - type: entities
-        title: Disk Percent Used
+        title: RPi Disk Percent Used
         show_header_toggle: false
         entities:
           - sensor.basement_pi_disk_used
@@ -672,7 +677,7 @@ views:
           - sensor.theater_pi_disk_used
 
       - type: entities
-        title: Esxi Server
+        title: ESXi Vmware Server
         show_header_toggle: false
         entities:
           - sensor.esxi_memory_used
@@ -693,38 +698,6 @@ views:
           - sensor.speedtest_ping
           - sensor.speedtest_upload
 
-      - type: entities
-        title: Qnap Automations
-        show_header_toggle: false
-        entities:
-          - automation.notify_nas_cpu_temperature
-          - automation.notify_nas_cpu_usage
-          - automation.notify_nas_disk_usage
-          - automation.notify_nas_memory_usage
-      - type: entities
-        title: Qnap Drives
-        show_header_toggle: false
-        entities:
-          - sensor.kalavala_nas_smart_status_drive_0_1
-          - sensor.kalavala_nas_smart_status_drive_0_2
-          - sensor.kalavala_nas_smart_status_drive_0_3
-          - sensor.kalavala_nas_smart_status_drive_0_4
-          - sensor.kalavala_nas_temperature_drive_0_1
-          - sensor.kalavala_nas_temperature_drive_0_2
-          - sensor.kalavala_nas_temperature_drive_0_3
-          - sensor.kalavala_nas_temperature_drive_0_4
-      - type: entities
-        title: Qnap Server
-        show_header_toggle: false
-        entities:
-          - sensor.kalavala_nas_status
-          - sensor.kalavala_nas_cpu_usage
-          - sensor.kalavala_nas_memory_usage
-          - sensor.kalavala_nas_network_up_eth0
-          - sensor.kalavala_nas_network_up_eth1
-          - sensor.kalavala_nas_volume_used_datavol1
-          - sensor.kalavala_nas_system_temperature
-          - sensor.kalavala_nas_cpu_temperature
       - type: entities
         title: Raspberry Pis
         show_header_toggle: false
@@ -1096,27 +1069,16 @@ views:
           - automation.welcome_family
 
       - type: entities
-        title: Notifications
+        title: Misc. Notifications
         show_header_toggle: false
         entities:
-          - automation.notify_backyard_camera_snapshots
           - automation.notify_charger_switch_state
           - automation.notify_charging_status
           - automation.notify_door_status
-          - automation.notify_driveway_camera_snapshots
           - automation.notify_entry_door_status
-          - automation.notify_frontdoor_camera_snapshots
-          - automation.notify_garage_door_status
           - automation.notify_holiday_state_change
-          - automation.notify_home_security_status_change
           - automation.notify_indian_holidays
           - automation.notify_low_battery
-          - automation.notify_nas_cpu_temperature
-          - automation.notify_nas_cpu_usage
-          - automation.notify_nas_disk_usage
-          - automation.notify_nas_drive_status_change
-          - automation.notify_nas_memory_usage
-          - automation.notify_nas_status_change
           - automation.notify_of_new_external_ip
           - automation.notify_thermostat_state_change
           - automation.notify_usps_mail
@@ -1130,12 +1092,7 @@ views:
           - automation.frontyard_light_watchdog
           - automation.guest_bedroom_1_light_watchdog
           - automation.guest_bedroom_2_light_watchdog
-          - automation.home_security_system_watchdog_10_minutes
-          - automation.home_security_system_watchdog_30_minutes
           - automation.kids_bedroom_light_watchdog
-          - automation.single_car_garage_door_watchdog
-          - automation.two_car_garage_door_watchdog
-          - automation.working_in_garage_watchdog
 
       - type: entities
         title: Timer Automations
@@ -1152,9 +1109,6 @@ views:
           - automation.family_room_timer_elapsed
           - automation.frontroom_motion_timer
           - automation.frontroom_timer_elapsed
-          - automation.garage_motion_timer
-          - automation.garage_timer_elapsed
-          - automation.garage_timer_start_when_garage_lights_on
           - automation.kitchen_motion_timer
           - automation.kitchen_timer_elapsed
           - automation.master_bedroom_motion_timer
@@ -1293,6 +1247,17 @@ views:
           - automation.alert_super_heavy_winds
 
       - type: entities
+        title: Qnap Automations
+        show_header_toggle: false
+        entities:
+          - automation.notify_nas_cpu_temperature
+          - automation.notify_nas_cpu_usage
+          - automation.notify_nas_disk_usage
+          - automation.notify_nas_drive_status_change
+          - automation.notify_nas_memory_usage
+          - automation.notify_nas_status_change
+
+      - type: entities
         title: Alerts
         show_header_toggle: false
         entities:
@@ -1331,7 +1296,6 @@ views:
           - automation.random_theme_at_startup
           - automation.remind_domain_renewal
           - automation.season_change_notification
-          
           - automation.turn_off_ac_after_3_hours_of_cooling
           - automation.update_available_notification
           - automation.update_home_assistant
@@ -1368,12 +1332,3 @@ views:
           - sensor.kalavala_nas_temperature_drive_0_2
           - sensor.kalavala_nas_temperature_drive_0_3
           - sensor.kalavala_nas_temperature_drive_0_4
-
-      - type: entities
-        title: QNAP Automations
-        show_header_toggle: true
-        entities:
-          - automation.notify_nas_memory_usage
-          - automation.notify_nas_disk_usage
-          - automation.notify_nas_cpu_usage
-          - automation.notify_nas_cpu_temperature
