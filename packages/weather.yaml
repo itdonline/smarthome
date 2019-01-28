@@ -299,13 +299,17 @@ automation:
       platform: state
       entity_id: sensor.pws_alerts
     condition:
-      condition: template
-      value_template: '{{ states.sensor.pws_alerts.state | int > 0}}'
+      - condition: template
+        value_template: "{{ states('sensor.pws_alerts') | int > 0 }}"
+      - condition: template
+        value_template: "{{ state_attr('sensor.pws_alerts', 'Description') != None }}"
+      - condition: template
+        value_template: "{{ state_attr('sensor.pws_alerts', 'Expires') != None }}"
     action:
       - service: script.notify_me
         data_template:
           message: >
-            {{ states.sensor.pws_alerts.attributes.Description | upper }} for your area, expiring at {{ states.sensor.pws_alerts.attributes.Expires }}.
+            {{ states.sensor.pws_alerts.attributes.Description }} for your area, expiring at {{ states.sensor.pws_alerts.attributes.Expires }}.
 
   # Script to alert when enjoyable weather is outside
   # For me, enjoyable is: 
