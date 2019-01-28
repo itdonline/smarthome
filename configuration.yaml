@@ -63,25 +63,15 @@ homekit:
       - switch
       - input_boolean
 
-python_script:
-
 map:
-websocket_api:
 updater:
 logbook:
 history:
+websocket_api:
+python_script:
 recorder:
  db_url: !secret my_sql_url
-
-# influxdb:
-#  host: 192.168.1.125
-#  include:
-#    entities:
-#      - sensor.dining_room_thermostat_temperature
-#      - sensor.downstairs_multi_sensor_temperature
-#      - sensor.front_room_multi_sensor_temperature
-#      - sensor.guest_bedroom_multi_sensor_temperature
-#      - sensor.tv_multi_sensor_temperature
+logger: !include logging.yaml
 
 mqtt:
   broker: !secret mqtt_server
@@ -106,9 +96,6 @@ emulated_hue:
     - light
     - switch
     - input_boolean
-
-logger: !include logging.yaml
-#group: !include_dir_merge_named groups
 
 panel_iframe:
   front_room_ha:
@@ -175,3 +162,13 @@ telegram_bot:
     api_key: !secret telegram_apikey
     allowed_chat_ids:
       - !secret telegram_chatid
+
+# influxdb:
+#  host: 192.168.1.125
+#  include:
+#    entities:
+#      - sensor.dining_room_thermostat_temperature
+#      - sensor.downstairs_multi_sensor_temperature
+#      - sensor.front_room_multi_sensor_temperature
+#      - sensor.guest_bedroom_multi_sensor_temperature
+#      - sensor.tv_multi_sensor_temperature
