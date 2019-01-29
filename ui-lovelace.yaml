@@ -434,6 +434,76 @@ views:
     icon: mdi:cctv
     cards:
 
+      - type: horizontal-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                name: Front Door
+                entity: input_label.current_stream
+                icon: mdi:cctv
+                color_type: card
+                style:
+                  - font-weight: bold
+                  - color: rgb(0, 0, 5)
+                state:
+                  - value: 'frontyard'
+                    color: rgb(189, 255, 5)
+                action: service
+                service:
+                  domain: script
+                  action: stream_frontdoor_camera_to_chromecast
+    
+              - type: "custom:button-card"
+                name: Driveway
+                entity: input_label.current_stream
+                icon: mdi:cctv
+                color_type: card
+                style:
+                  - font-weight: bold
+                  - color: rgb(0, 0, 5)
+                state:
+                  - value: 'driveway'
+                    color: rgb(189, 255, 5)
+                action: service
+                service:
+                  domain: script
+                  action: stream_driveway_camera_to_chromecast
+
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                name: Patio
+                entity: input_label.current_stream
+                icon: mdi:cctv
+                color_type: card
+                style:
+                  - font-weight: bold
+                  - color: rgb(0, 0, 5)
+                state:
+                  - value: 'patio'
+                    color: rgb(189, 255, 5)
+                action: service
+                service:
+                  domain: script
+                  action: stream_patio_camera_to_chromecast
+    
+              - type: "custom:button-card"
+                name: Playarea
+                entity: input_label.current_stream
+                icon: mdi:cctv
+                color_type: card
+                style:
+                  - font-weight: bold
+                  - color: rgb(0, 0, 5)
+                state:
+                  - value: 'playarea'
+                    color: rgb(189, 255, 5)
+                action: service
+                service:
+                  domain: script
+                  action: stream_playarea_camera_to_chromecast
+
       - type: picture-glance
         id: camera_frontdoor_camera
         title: Frontdoor Camera

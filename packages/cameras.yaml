@@ -180,6 +180,37 @@ script:
         data_template:
           message: "{{text}}"
 
+###############################################################################
+# On-Demand camera stream to chromecast scripts
+#
+  stream_frontdoor_camera_to_chromecast:
+    sequence:
+      - service: script.stream2chromecast
+        data_template:
+          url: !secret frontdoor_camera_stream_url
+          name: 'frontyard'    
+
+  stream_driveway_camera_to_chromecast:
+    sequence:
+      - service: script.stream2chromecast
+        data_template:
+          url: !secret driveway_camera_stream_url
+          name: 'driveway'
+
+  stream_patio_camera_to_chromecast:
+    sequence:
+      - service: script.stream2chromecast
+        data_template:
+          url: !secret patio_camera_stream_url
+          name: 'patio'
+
+  stream_playarea_camera_to_chromecast:
+    sequence:
+      - service: script.stream2chromecast
+        data_template:
+          url: !secret playarea_camera_stream_url
+          name: 'playarea'
+
   # activate_chromecast:
   #   sequence:
   #     - condition: template
