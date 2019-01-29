@@ -95,6 +95,7 @@ sensor:
       {% else %}
         Not Charging
       {% endif %}
+    icon: "mdi:battery-charging"
 
   - platform: mqtt
     state_topic: "owntracks/suresh/suresh"
@@ -105,6 +106,7 @@ sensor:
       {% else %}
         Not Charging
       {% endif %}
+    icon: "mdi:battery-charging"
   
   - platform: mqtt
     state_topic: "owntracks/srinika/srinika"
@@ -115,6 +117,7 @@ sensor:
       {% else %}
         Not Charging
       {% endif %}
+    icon: "mdi:battery-charging"
 
   - platform: mqtt
     state_topic: "owntracks/hasika/hasika"
@@ -125,6 +128,7 @@ sensor:
       {% else %}
         Not Charging
       {% endif %}
+    icon: "mdi:battery-charging"
 
   - platform: mqtt
     state_topic: "owntracks/mallika/mallika"
@@ -135,6 +139,7 @@ sensor:
       {% else %}
         Not Connected
       {% endif %}
+    icon: "mdi:wifi"
 
   - platform: mqtt
     state_topic: "owntracks/suresh/suresh"
@@ -145,6 +150,7 @@ sensor:
       {% else %}
         Not Connected
       {% endif %}
+    icon: "mdi:wifi"
 
   - platform: mqtt
     state_topic: "owntracks/srinika/srinika"
@@ -155,6 +161,7 @@ sensor:
       {% else %}
         Not Connected
       {% endif %}
+    icon: "mdi:wifi"
 
   - platform: mqtt
     state_topic: "owntracks/hasika/hasika"
@@ -165,6 +172,7 @@ sensor:
       {% else %}
         Not Connected
       {% endif %}
+    icon: "mdi:wifi"
 
   - platform: mqtt
     state_topic: "owntracks/mallika/mallika"

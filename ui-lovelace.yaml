@@ -3,13 +3,57 @@
 # visit: https://github.com/skalavala/smarthome/blob/master/jinja_helpers/jinja_lovelace.md
 # Or visit https://sharethelove.io/tools/jinja-magic-scripts
 #
+# I use custom:button card, for two button, credits to https://github.com/kuuji/button-card
+#
 title: Kalavala's Home Automation
-views:
+resources:
+  - url: /local/button-card.js
+    type: module
 
+views:
   - id: Home
     title: My Home
     icon: mdi:home
     cards:
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            entity: alarm_control_panel.simplisafe
+            icon: mdi:security
+            color_type: card
+            show_state: true
+            style:
+              - font-weight: bold
+              - color: rgb(255, 255, 255)
+            state:
+              - value: 'disarmed'
+                color: rgb(255,0,0)
+              - value: 'armed_home'
+                color: rgb(0, 128, 0)
+              - value: 'armed_away'
+                color: rgb(0, 0, 255)
+            action: more_info
+
+          - type: "custom:button-card"
+            entity: climate.dining_room
+            icon: mdi:thermometer-lines
+            color_type: card
+            show_state: true
+            style:
+              - font-weight: bold
+              - color: rgb(255, 255, 255)
+            state:
+              - value: 'heat'
+                color: rgb(255,0,0)
+              - value: 'eco'
+                color: rgb(0, 128, 0)
+              - value: 'cool'
+                color: rgb(0, 0, 255)
+            action: service
+            service:
+              domain: script
+              action: toggle_climate
+
       - type: entity-filter
         title: Device Trackers
         show_header_toggle: false
@@ -28,22 +72,31 @@ views:
 
       - type: entity-filter
         title: For Your Information
+        show_empty: false
         show_header_toggle: false
         entities:
-          - entity: sensor.hasika_battery_state
+          - entity: sensor.hasika_iphone_battery_state
             name: Hasika
-          - entity: sensor.mallika_battery_state
+          - entity: sensor.mallika_iphone_battery_state
             name: Mallika
-          - entity: sensor.srinika_battery_state
+          - entity: sensor.srinika_iphone_battery_state
             name: Srinika
-          - entity: sensor.suresh_battery_state
+          - entity: sensor.srinika_iphone_battery_state
             name: Suresh
+          - entity: sensor.hasika_iphone_wifi_state
+            name: Hasika
+          - entity: sensor.mallika_iphone_wifi_state
+            name: Mallika
+          - entity: sensor.srinika_iphone_wifi_state
+            name: Srinika
+          - entity: sensor.srinika_iphone_wifi_state
+            name: Suresh            
           - sensor.recycle_day
           - sensor.trash_day
         state_filter:
-          - 'Unplugged'
-          - 'Not Connected'
+          - 'Charging'
           - 'yes'
+          - 'Not Connected'
         card:
           type: glance
           title: FYI
@@ -71,12 +124,17 @@ views:
             - script.emergency_script
             - script.emergency_script_loop
 
-      - type: glance
-        title: Birthday Countdown
-        entities:
-          - input_label.hasika_birthday_days2go
-          - input_label.mallika_birthday_days2go
-          - input_label.srinika_birthday_days2go
+      - type: horizontal-stack
+        cards:
+          - type: glance
+            entities:
+              - input_label.mallika_birthday_days2go
+          - type: glance
+            entities:
+              - input_label.srinika_birthday_days2go
+          - type: glance
+            entities:
+              - input_label.hasika_birthday_days2go
 
       - type: entity-filter
         title: Doors

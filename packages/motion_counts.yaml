@@ -1,0 +1,23 @@
+input_label:
+  front_door:
+  back_door:
+  basement_door:
+  garage_door:
+  single_car_garage_door:
+  double_car_garage_door:
+  dining_room_motion:
+  study_room_motion:
+  family_room_motion:
+  kitchen_motion:
+  master_bedroom_motion:
+  driveway_motion:
+  backyard_motion:
+  front_door_motion:
+  srinika_bedroom_motion:
+  hasika_bedroom_motion:
+  garage_motion:
+  office_room_motion:
+  stairs_motion:
+  upstairs_motion:
+
+

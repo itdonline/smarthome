@@ -91,3 +91,14 @@ automation:
       - service: script.voice_notify
         data_template:
           message: "Your home's thermostat is now changed to '{{ trigger.to_state.state }}' mode."
+
+###############################################################################
+# A script that toggles Nest Thermostat between eco/away & non-eco/away modes
+###############################################################################
+script:
+  toggle_climate:
+    sequence:
+      - service: climate.set_away_mode
+        data_template:
+          entity_id: climate.dining_room
+          away_mode: "{{ false if state_attr('climate.dining_room', 'away_mode') == 'on' else true }}"
