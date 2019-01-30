@@ -161,19 +161,19 @@ automation:
       seconds: 00
     condition:
       - condition: template
-        value_template: '{{ states.binary_sensor.workday_sensor.state == "on" }}'
+        value_template: "{{ states('binary_sensor.workday_sensor') == 'on' }}"
       - condition: template
-        value_template: '{{ states.input_boolean.alarm_clock.state == "on" }}'
+        value_template: "{{ states('input_boolean.alarm_clock') == 'on' }}"
       - condition: template
         value_template: >
-          {% if states.input_boolean.am.state == "on" %}
-            {% set hour = (states.input_number.slider_hours.state | int) %}
+          {% if states('input_boolean.am') == 'on' %}
+            {% set hour = (states('input_number.slider_hours') | int) %}
           {% else %}
-            {% set hour = (states.input_number.slider_hours.state | int) + 12 %}
+            {% set hour = (states('input_number.slider_hours') | int) + 12 %}
           {% endif %}
-          {{ 'true' if states.sensor.time.state.split(':')[0] |int == hour else 'false' }}
+          {{ 'true' if states('sensor.time').split(':')[0] |int == hour else 'false' }}
       - condition: template
-        value_template: "{{ 'true' if (states.sensor.time.state.split(':')[1]  |int == states.input_number.slider_minutes.state |int) else 'false' }}"
+        value_template: "{{ 'true' if (states('sensor.time').split(':')[1]  |int == states('input_number.slider_minutes') |int) else 'false' }}"
     action:
       - service: script.notify_me
         data_template:

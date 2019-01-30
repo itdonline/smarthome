@@ -29,7 +29,7 @@ automation:
 # Start WFH timer if Suresh is HOME during weekdays between 10 AM and 5 PM
 ###############################################################################
   - alias: WFH Timer Start
-    initial_state: true
+    initial_state: false
     trigger:
       - platform: time_pattern
         minutes: '/5'
@@ -51,7 +51,7 @@ automation:
 # Restart the timer ONLY if the time is betwen office hours (10 AM and 5 PM)
 ###############################################################################
   - alias: Timer Elapsed - Take a walk
-    initial_state: true
+    initial_state: false
     trigger:
       - platform: event
         event_type: timer.finished
@@ -66,8 +66,6 @@ automation:
           {% endif %}
         entity_id: timer.wfh_timer
       - condition: template
-        value_template: '{{ states.input_boolean.wfh_notifications.state == "on" }}'        
-      - condition: template
         value_template: '{{ now().hour|int >= 10 and now().hour|int < 17 }}'
       - service: script.voice_notify
         data_template:
@@ -76,7 +74,7 @@ automation:
 # Cancel timer (if active) When Suresh left home
 ###############################################################################
   - alias: Cancel WFH Timer When Suresh Leaves Home
-    initial_state: true
+    initial_state: false
     trigger:
       - platform: zone
         entity_id: device_tracker.suresh_suresh

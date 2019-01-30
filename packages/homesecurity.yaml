@@ -83,7 +83,7 @@ automation:
       entity_id: alarm_control_panel.simplisafe
     condition:
       - condition: template
-        value_template: '{{ states.input_boolean.notify_security_system_changes.state == "on" }}'
+        value_template: "{{ states('input_boolean.security_system_alerts') == 'on' }}"
       - condition: template
         value_template: >
           {%- if states.automation.notify_home_security_status_change.attributes.last_triggered -%}
@@ -158,6 +158,8 @@ automation:
       - condition: state
         entity_id: group.all_devices
         state: 'home'
+      - condition: template
+        value_template: "{{ states('input_boolean.security_system_alerts') == 'on' }}"
     action:
       - service: script.notify_me
         data: 
@@ -187,6 +189,37 @@ automation:
           entity_id: climate.dining_room
           away_mode: 'false'
 
+###############################################################################
+# TURN HOME SECURITY SYSTEM ON AT BED TIME
+###############################################################################
+  - alias: Night HomeSecurity On
+    initial_state: true
+    trigger:
+      platform: time_pattern
+      minutes: '/5'
+      seconds: 00
+    condition:
+      - condition: template
+        value_template: '{{ states.sensor.bedtime_hour.state|int == now().hour|int }}'
+      - condition: template
+        value_template: '{{ states.sensor.bedtime_minute.state|int == now().minute|int }}'
+      - condition: template
+        value_template: "{{ states('alarm_control_panel.simplisafe') != 'away' }}"
+      - condition: state
+        entity_id: group.all_devices
+        state: 'home'
+      - condition: template
+        value_template: "{{ states('alarm_control_panel.simplisafe') == 'disarmed' }}"
+      - condition: template
+        value_template: "{{ states('input_boolean.security_system_alerts') == 'on' }}"
+    action:
+      - service: alarm_control_panel.alarm_arm_home
+        data:
+          entity_id: alarm_control_panel.simplisafe
+      - service: script.notify_me
+        data: 
+          message: "It's bedtime, you forgot to turn ON Home Security System. Turned it ON for you."
+          
 ###############################################################################
 # Check for Garage Door Status when Home Security System State changes
 ###############################################################################

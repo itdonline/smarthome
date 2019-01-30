@@ -399,6 +399,9 @@ automation:
       - condition: state
         entity_id: input_boolean.animate_upstairs_lights
         state: 'on'
+      - condition: state
+        entity_id: input_boolean.light_automations
+        state: 'on'
     action:
       - service: light.turn_on
         data:
@@ -419,6 +422,10 @@ automation:
       platform: state
       entity_id: input_boolean.animate_upstairs_lights
       to: 'off'
+    condition:
+      - condition: state
+        entity_id: input_boolean.light_automations
+        state: 'on'
     action:
       - service: light.turn_on
         data:
@@ -438,6 +445,9 @@ automation:
     condition:
       - condition: state
         entity_id: input_boolean.animate_downstairs_lights
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.light_automations
         state: 'on'
     action:
       - service: light.turn_on
@@ -459,6 +469,10 @@ automation:
       platform: state
       entity_id: input_boolean.animate_downstairs_lights
       to: 'off'
+    condition:
+      - condition: state
+        entity_id: input_boolean.light_automations
+        state: 'on'
     action:
       - service: light.turn_on
         data:
@@ -514,6 +528,10 @@ automation:
         entity_id: input_boolean.long_flash
         to: 'on'
         from: 'off'
+    condition:
+      - condition: state
+        entity_id: input_boolean.light_automations
+        state: 'on'
     action:
       - service: light.turn_on
         entity_id:
@@ -532,6 +550,10 @@ automation:
         entity_id: input_boolean.short_flash
         to: 'on'
         from: 'off'
+    condition:
+      - condition: state
+        entity_id: input_boolean.light_automations
+        state: 'on'
     action:
       - service: light.turn_on
         entity_id:

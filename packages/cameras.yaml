@@ -211,27 +211,6 @@ script:
           url: !secret playarea_camera_stream_url
           name: 'playarea'
 
-  # activate_chromecast:
-  #   sequence:
-  #     - condition: template
-  #       value_template: "{{ states('input_boolean.movie_time') == 'off' }}"
-  #     - service: media_player.turn_off
-  #       entity_id: media_player.attic_tv
-  #     - delay: "00:00:05"
-  #     - service_template: > 
-  #         {% if states('media_player.attic_tv') == 'off' %}
-  #           media_player.turn_on
-  #         {% else %}
-  #           input_boolean.toggle
-  #         {% endif %}
-  #       data_template:
-  #         entity_id: >
-  #           {% if states('media_player.attic_tv') == 'off' %}
-  #             media_player.attic_tv
-  #           {% else %}
-  #             input_boolean.dummy
-  #           {% endif %}
-
 ###############################################################################
 # Stream2Chromecast script streams a given URL to Chromecast
 # But before it streams, it turns ON the media player if it is OFF, and after
@@ -281,6 +260,8 @@ automation:
         data_template:
           url: !secret frontdoor_camera_stream_url
           name: 'frontyard'
+      - condition: template
+        value_template: "{{ states('input_boolean.notify_camera_alerts') == 'on' }}"
       - service: image_processing.scan
         data_template:
           entity_id: image_processing.tensorflow_frontdoor_camera
@@ -346,6 +327,8 @@ automation:
         data_template:
           url: !secret driveway_camera_stream_url
           name: 'driveway'
+      - condition: template
+        value_template: "{{ states('input_boolean.notify_camera_alerts') == 'on' }}"
       - service: image_processing.scan
         data_template:
           entity_id: image_processing.tensorflow_driveway_camera
@@ -406,6 +389,9 @@ automation:
        entity_id:
          - binary_sensor.motion_sensor_158d000272bf48
        to: 'on'
+    condition:
+      - condition: template
+        value_template: "{{ states('input_boolean.notify_camera_alerts') == 'on' }}"
     action:
       - service: image_processing.scan
         data_template:
@@ -465,6 +451,9 @@ automation:
        entity_id:
          - binary_sensor.motion_sensor_158d00024e842c
        to: 'on'
+    condition:
+      - condition: template
+        value_template: "{{ states('input_boolean.notify_camera_alerts') == 'on' }}"
     action:
       - service: script.stream2chromecast
         data_template:
@@ -550,7 +539,7 @@ automation:
       to: 'on'
     condition:
       - condition: template
-        value_template: "{{ states.input_boolean.notify_camera_motion.state == 'on' }}"
+        value_template: "{{ states('input_boolean.notify_camera_alerts') == 'on' }}"
     action:
       - delay: "{{ '00:00:08' if states.binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor.state == 'on' else '0:0:0' }}"
       - service: camera.snapshot
@@ -616,7 +605,7 @@ automation:
       to: 'on'
     condition:
       - condition: template
-        value_template: "{{ states.input_boolean.notify_camera_motion.state == 'on' }}"
+        value_template: "{{ states('input_boolean.notify_camera_alerts') == 'on' }}"
     action:
       - service: camera.snapshot
         data_template:
@@ -681,7 +670,7 @@ automation:
       to: 'on'
     condition:
       - condition: template
-        value_template: "{{ states.input_boolean.notify_camera_motion.state == 'on' }}"
+        value_template: "{{ states('input_boolean.notify_camera_alerts') == 'on' }}"
     action:
       - service: camera.snapshot
         data_template:

@@ -362,7 +362,7 @@ automation:
           - sensor.garage_camera_people
     condition:
       - condition: template
-        value_template: '{{ states.input_boolean.alert_faces_in_cameras.state == "on" }}'
+        value_template: "{{ states('input_boolean.notify_camera_alerts') == 'on' }}"
       - condition: template
         value_template: '{{ trigger.to_state.state | trim != "" and 
                             trigger.to_state.state | lower | trim != "unknown" and 
@@ -385,7 +385,7 @@ automation:
   #         - sensor.garage_camera_objects
   #   condition:
   #     - condition: template
-  #       value_template: '{{ states.input_boolean.alert_objects_in_cameras.state == "on" }}'
+  #       value_template: "{{ states('input_boolean.notify_camera_alerts') == 'on' }}"
   #     - condition: template
   #       value_template: '{{ trigger.to_state.state | trim != "" and 
   #                           trigger.to_state.state | lower | trim != "unknown" and 
@@ -422,7 +422,7 @@ automation:
        to: 'on'
     condition:
       - condition: template
-        value_template: '{{ states.input_boolean.alert_faces_in_cameras.state == "on" }}'
+        value_template: "{{ states('input_boolean.notify_camera_alerts') == 'on' }}"
       - condition: template
         value_template: >
           {% macro last_triggered(entity) %}

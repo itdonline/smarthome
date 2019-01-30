@@ -278,6 +278,10 @@ automation:
       platform: state
       entity_id: binary_sensor.basement_door_sensor_sensor
       to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.light_automations
+        state: 'on'
     action:
       - service: homeassistant.turn_on
         entity_id: switch.rf_switch_one
@@ -291,6 +295,10 @@ automation:
       to: 'on'
       for:
         minutes: 5
+    condition:
+      - condition: state
+        entity_id: input_boolean.light_automations
+        state: 'on'
     action:
       - service: homeassistant.turn_off
         entity_id: switch.rf_switch_one

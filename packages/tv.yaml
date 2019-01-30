@@ -29,6 +29,9 @@ automation:
       - condition: state
         entity_id: sun.sun
         state: 'below_horizon'
+      - condition: state
+        entity_id: input_boolean.light_automations
+        state: 'on'
     action:
       - service: light.turn_on
         data:
@@ -63,6 +66,9 @@ automation:
     condition:
       - condition: state
         entity_id: binary_sensor.sharp_tv
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.light_automations
         state: 'on'
     action:
       - service: light.turn_on
@@ -126,6 +132,9 @@ automation:
       - condition: state
         entity_id: sun.sun
         state: 'below_horizon'
+      - condition: state
+        entity_id: input_boolean.light_automations
+        state: 'on'
     action:
       - service: light.turn_on
         data:

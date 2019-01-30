@@ -42,21 +42,9 @@ homeassistant:
     input_boolean.do_not_disturb:
       <<: *exposed
       homebridge_name: Do Not Disturb
-    input_boolean.home_security:
-      <<: *exposed
-      homebridge_name: Turn ON Home Security
-    input_boolean.home_assistant_restart:
-      <<: *exposed
-      homebridge_name: Restart Home Assistant
-    input_boolean.home_assistant_status:
-      <<: *exposed
-      homebridge_name: Home Status
     input_boolean.alarm_clock:
       <<: *exposed
       homebridge_name: Alarm Clock
-    input_boolean.sharp_tv:
-      <<: *exposed
-      homebridge_name: TV
 
     input_datetime.summer_bed_time:
       icon: mdi:beach
@@ -88,48 +76,6 @@ homeassistant:
       <<: *hidden
     input_boolean.dummy:
       <<: *hidden
-
-group:
-  Control Panel:
-    control: hidden
-    entities:
-      - input_boolean.voice_notifications
-      - input_boolean.do_not_disturb
-      - input_boolean.movie_time
-      - input_boolean.home_security
-      - input_boolean.home_assistant_restart
-      - input_boolean.home_assistant_update
-      - input_boolean.home_assistant_status
-      - input_boolean.notify_camera_motion
-      - input_boolean.working_in_garage
-      - input_boolean.working_in_office_room
-      - input_boolean.hourly_reports
-      - input_boolean.welcome_family_announcement
-      - input_boolean.trash_reminders
-      - input_boolean.enjoyable_weather_reminders
-      - input_boolean.alert_when_someone_enters_zone
-      - input_boolean.alert_when_someone_leaves_zone
-      - input_boolean.alarm_clock
-      - input_boolean.notify_security_system_changes
-      - input_boolean.alert_no_one_home
-      - input_boolean.battery_notifications
-      - input_number.calendar_remind_before_days
-      - input_boolean.wfh_notifications
-      - input_boolean.sharp_tv
-      - input_boolean.alert_faces_in_cameras
-      - input_boolean.alert_objects_in_cameras
-      - input_boolean.tesla_heat_on
-
-  Bed & Wakeup Times:
-    entities:
-      - input_datetime.summer_bed_time
-      - input_datetime.summer_wakeup_time
-      - input_datetime.autumn_bed_time
-      - input_datetime.autumn_wakeup_time
-      - input_datetime.winter_bed_time
-      - input_datetime.winter_wakeup_time
-      - input_datetime.spring_bed_time
-      - input_datetime.spring_wakeup_time
 
 # Input DateTime Options:
 # I set the minutes to something that is divisible by 5, so that the automations
@@ -265,23 +211,13 @@ input_boolean:
 
   movie_time:
     name: 'Movie Time'
-    initial: false
+    initial: off
     icon: mdi:movie-roll
 
   home_security:
     name: Home Security System
     initial: off
     icon: mdi:verified
-
-  home_assistant_restart:
-    name: Home Assistant
-    initial: off
-    icon: mdi:home-assistant
-
-  home_assistant_update:
-    name: Latest Version Of Home Assistant
-    initial: off
-    icon: mdi:home-assistant
 
   home_assistant_status:
     name: Home Status
@@ -298,20 +234,20 @@ input_boolean:
     initial: off
     icon: mdi:worker
 
-  hourly_reports:
+  hourly_report:
     name: Hourly Report
     initial: on
     icon: mdi:file-chart
 
-  notify_camera_motion:
-    name: Notify Camera Motion
-    initial: off
-    icon: mdi:camera
-
-  welcome_family_announcement:
-    name: Welcome Family Member Announcements
+  nightly_report:
+    name: Nightly Report
     initial: on
-    icon: mdi:home
+    icon: mdi:file-chart
+
+  notify_camera_alerts:
+    name: Notify Camera Alerts
+    initial: on
+    icon: mdi:camera
 
   trash_reminders:
     name: Remind Trash Notifications
@@ -323,33 +259,13 @@ input_boolean:
     initial: on
     icon: mdi:weather-sunny
 
-  notify_security_system_changes:
+  security_system_alerts:
     name: Notify Security System Status Change
     initial: on
     icon: mdi:verified
 
-  alert_no_one_home:
-    name: Alert When No One Home
-    initial: on
-    icon: mdi:alert
-
-  alert_objects_in_cameras:
-    name: Alert When Camera Identifies Something
-    initial: off
-    icon: mdi:alert
-
-  alert_faces_in_cameras:
-    name: Alert When Camera Identifies Someone
-    initial: on
-    icon: mdi:alert
-
-  alert_when_someone_enters_zone:
-    name: Alert When Someone Enters A Zone
-    initial: on
-    icon: mdi:map-marker
-
-  alert_when_someone_leaves_zone:
-    name: Alert When Someone Leaves A Zone
+  zone_alerts:
+    name: Zone Alerts
     initial: on
     icon: mdi:map-marker
 
@@ -363,11 +279,6 @@ input_boolean:
     initial: on
     icon: mdi:battery
 
-  wfh_notifications:
-    name: Work From Home
-    initial: off
-    icon: mdi:work
-
   sharp_tv:
     name: TV
     initial: on
@@ -375,7 +286,18 @@ input_boolean:
 
   dummy:
     name: "Dummy Input Boolean!"
-    icon: mdi:sticker-emoji    
+    icon: mdi:sticker-emoji
+    initial: on
+
+  light_automations:
+    name: Light Automations
+    icon: mdi:lightbulb-on
+    initial: on
+
+  text_alerts:
+    name: Text Alerts
+    initial: on
+    icon: mdi:map-marker
 
 ###############################################################################
 #                _                        _   _                 
@@ -407,6 +329,20 @@ automation:
       - service: input_boolean.turn_off
         entity_id: input_boolean.do_not_disturb
 
+######################################################
+# Reset Movie time after 3 hours
+  - alias: Reset Movie Time After 3 Hours
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_boolean.movie_time
+        to: 'on'
+        for:
+          hours: 3
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.movie_time
+
 # Notify me when DO NOT DISTURB mode is changed
 ######################################################
   - alias: Do Not Disturb State Change
@@ -419,66 +355,6 @@ automation:
         data_template:
           message: "The Do Not Disturb Mode is {{ trigger.to_state.state |upper }}."
 
-# Turn ON Home Security System - only if it is not ON
-######################################################
-  - alias: Home Security ON
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_boolean.home_security
-        to: 'on'
-    condition:
-      - condition: template
-        value_template: '{{ states.alarm_control_panel.simplisafe.state == "disarmed" }}'
-    action:
-      - service: alarm_control_panel.alarm_arm_home
-        entity_id: alarm_control_panel.simplisafe
-      - delay:
-          minutes: 0
-          seconds: 10
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.home_security
-
-# Announces "Status" in the house
-######################################################
-  - alias: Home Status ON
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_boolean.home_assistant_status
-        to: 'on'
-    action:
-      - service: script.home_status
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.home_assistant_status
-
-# Restarts Home Assistant at Alexa's Command
-######################################################
-  - alias: Restart Home Assistant
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_boolean.home_assistant_restart
-        to: 'on'
-    action:
-      - service: script.restart_hass
-        
-# Updates Home Assistant at Alexa's Command
-######################################################
-  - alias: Update Home Assistant
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_boolean.home_assistant_update
-        to: 'on'
-    action:
-      - service: script.update_hass
-      - delay:
-          minutes: 0
-          seconds: 10
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.home_assistant_update
-
 # Hourly Reports
 ######################################################
   - alias: Hourly Report During Day Time
@@ -490,7 +366,7 @@ automation:
       seconds: 00
     condition:
       - condition: template
-        value_template: '{{ states.input_boolean.hourly_reports.state == "on" }}'
+        value_template: '{{ states.input_boolean.hourly_report.state == "on" }}'
       - condition: state
         entity_id: group.all_devices
         state: 'home'

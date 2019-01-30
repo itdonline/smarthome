@@ -113,6 +113,9 @@ script:
 
   notify_me:
     sequence:
+      - condition: state
+        entity_id: input_boolean.text_alerts
+        state: 'on'
       - condition: template
         value_template: '{{ message | trim != "" }}'
       - service: script.ifttt_notify

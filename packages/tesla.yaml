@@ -41,7 +41,6 @@ group:
       - sensor.tesla_model_3_5yj3e1ea8jf010610_temperature_sensor_outside
       - switch.tesla_model_3_5yj3e1ea8jf010610_charger_switch
       - switch.tesla_model_3_5yj3e1ea8jf010610_maxrange_switch
-      - input_boolean.tesla_heat_on
 
 # The scan_interval is now set to 6 hours
 # Leaving it to the default (which is 5 minutes, or 300 seconds) will drain battery at a rate of 
@@ -51,12 +50,6 @@ tesla:
   username: !secret tesla_username
   password: !secret tesla_password
   scan_interval: 21600
-
-input_boolean:
-  tesla_heat_on:
-    name: Tesla Heater ON
-    initial: off
-    icon: mdi:temperature
 
 ###############################################################################
 #                _                        _   _                 
@@ -104,51 +97,3 @@ automation:
       - service: script.notify_me
         data_template:
           message: "Tesla Door is now: {{ trigger.to_state.state| upper }}"
-
-#
-# Automatically warm up Tesla during weekdays at 7:00 AM in the morning if the outdoor temperature is less than 40
-#
-  - alias: Tesla Climate On
-    initial_state: true
-    trigger:
-      platform: time
-      at: '07:00:00'
-    condition:
-      - condition: state
-        entity_id: 'binary_sensor.workday_sensor'
-        state: 'on'
-      - condition: template
-        value_template: "{{ states.sensor.dark_sky_apparent_temperature.state | round(0) < 40 }}"
-      - condition: template
-        value_template: "{{ states.device_tracker.tesla_model_3_5yj3e1ea8jf010610_location_tracker.state == 'home' }}"
-    action:
-      - service: climate.set_operation_mode
-        data:
-          entity_id: climate.tesla_model_3_5yj3e1ea8jf010610_hvac_climate_system
-          operation_mode: 'on'
-      - service: input_boolean.turn_on
-        entity_id: input_boolean.tesla_heat_on
-
-#
-# It doesn't take more than 30 minutes to bring the indoor temperature to normal level
-#
-  - alias: Tesla Climate Off
-    initial_state: true
-    trigger:
-      platform: time
-      at: '07:30:00'
-    condition:
-      - condition: state
-        entity_id: 'binary_sensor.workday_sensor'
-        state: 'on'
-      - condition: template
-        value_template: "{{ states.input_boolean.tesla_heat_on.state == 'on' }}"
-    action:
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.tesla_heat_on
-      - condition: template
-        value_template: "{{ states.device_tracker.tesla_model_3_5yj3e1ea8jf010610_location_tracker.state == 'home' }}"
-      - service: climate.set_operation_mode
-        data:
-          entity_id: climate.tesla_model_3_5yj3e1ea8jf010610_hvac_climate_system
-          operation_mode: 'off'

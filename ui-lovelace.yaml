@@ -5,7 +5,7 @@
 #
 # I use custom:button card, for two button, credits to https://github.com/kuuji/button-card
 #
-title: Kalavala's Home Automation
+title: Kalavala's Home
 resources:
   - url: /local/button-card.js
     type: module
@@ -436,73 +436,69 @@ views:
 
       - type: horizontal-stack
         cards:
-          - type: horizontal-stack
-            cards:
-              - type: "custom:button-card"
-                name: Front Door
-                entity: input_label.current_stream
-                icon: mdi:cctv
-                color_type: card
-                style:
-                  - font-weight: bold
-                  - color: rgb(0, 0, 5)
-                state:
-                  - value: 'frontyard'
-                    color: rgb(189, 255, 5)
-                action: service
-                service:
-                  domain: script
-                  action: stream_frontdoor_camera_to_chromecast
-    
-              - type: "custom:button-card"
-                name: Driveway
-                entity: input_label.current_stream
-                icon: mdi:cctv
-                color_type: card
-                style:
-                  - font-weight: bold
-                  - color: rgb(0, 0, 5)
-                state:
-                  - value: 'driveway'
-                    color: rgb(189, 255, 5)
-                action: service
-                service:
-                  domain: script
-                  action: stream_driveway_camera_to_chromecast
+          - type: "custom:button-card"
+            name: Porch
+            entity: input_label.current_stream
+            icon: mdi:cctv
+            color_type: card
+            style:
+              - font-weight: bold
+              - color: rgb(0, 0, 5)
+            state:
+              - value: 'frontyard'
+                color: var(--primary-color)
+            action: service
+            service:
+              domain: script
+              action: stream_frontdoor_camera_to_chromecast
 
-          - type: horizontal-stack
-            cards:
-              - type: "custom:button-card"
-                name: Patio
-                entity: input_label.current_stream
-                icon: mdi:cctv
-                color_type: card
-                style:
-                  - font-weight: bold
-                  - color: rgb(0, 0, 5)
-                state:
-                  - value: 'patio'
-                    color: rgb(189, 255, 5)
-                action: service
-                service:
-                  domain: script
-                  action: stream_patio_camera_to_chromecast
-    
-              - type: "custom:button-card"
-                name: Playarea
-                entity: input_label.current_stream
-                icon: mdi:cctv
-                color_type: card
-                style:
-                  - font-weight: bold
-                  - color: rgb(0, 0, 5)
-                state:
-                  - value: 'playarea'
-                    color: rgb(189, 255, 5)
-                action: service
-                service:
-                  domain: script
-                  action: stream_playarea_camera_to_chromecast
+          - type: "custom:button-card"
+            name: Driveway
+            entity: input_label.current_stream
+            icon: mdi:cctv
+            color_type: card
+            style:
+              - font-weight: bold
+              - color: rgb(0, 0, 5)
+            state:
+              - value: 'driveway'
+                color: var(--primary-color)
+            action: service
+            service:
+              domain: script
+              action: stream_driveway_camera_to_chromecast
+
+          - type: "custom:button-card"
+            name: Patio
+            entity: input_label.current_stream
+            icon: mdi:cctv
+            color_type: card
+            style:
+              - font-weight: bold
+              - color: rgb(0, 0, 5)
+            state:
+              - value: 'patio'
+                color: var(--primary-color)
+            action: service
+            service:
+              domain: script
+              action: stream_patio_camera_to_chromecast
+
+          - type: "custom:button-card"
+            name: Playarea
+            entity: input_label.current_stream
+            icon: mdi:cctv
+            color_type: card
+            style:
+              - font-weight: bold
+              - color: rgb(0, 0, 5)
+            state:
+              - value: 'playarea'
+                color: var(--primary-color)
+            action: service
+            service:
+              domain: script
+              action: stream_playarea_camera_to_chromecast
 
       - type: picture-glance
         id: camera_frontdoor_camera
@@ -764,6 +760,43 @@ views:
           - sensor.pi_hole_seen_clients
 
       - type: entities
+        title: Pi-Hole
+        show_header_toggle: false
+        entities:
+          - sensor.pi_hole_ads_blocked_today
+          - sensor.pi_hole_ads_percentage_blocked_today
+          - sensor.pi_hole_dns_queries_cached
+          - sensor.pi_hole_dns_queries_forwarded
+          - sensor.pi_hole_dns_queries_today
+          - sensor.pi_hole_dns_unique_clients
+          - sensor.pi_hole_dns_unique_domains
+          - sensor.pi_hole_domains_blocked
+          - sensor.pi_hole_seen_clients
+
+      - type: entities
+        title: System Monitor
+        show_header_toggle: false
+        entities:
+          - sensor.disk_free
+          - sensor.ipv4_address_wlp1s10
+          - sensor.last_boot
+          - sensor.processor_use
+          - sensor.memory_free
+          - binary_sensor.workday_sensor
+          - sensor.ha_installed_version
+          - sensor.ha_current_version
+          - sensor.home_assistant_up_time
+
+      - type: entities
+        title: Internet Speed
+        show_header_toggle: false
+        entities:
+          - sensor.speedtest_ping
+          - sensor.speedtest_upload
+          - sensor.speedtest_download
+          - sensor.external_ip
+
+      - type: entities
         title: Battery/UPS
         show_header_toggle: false
         entities:
@@ -912,73 +945,278 @@ views:
     title: Settings
     icon: mdi:settings
     cards:
+
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                name: Home Alarm Clock
+                entity: input_boolean.alarm_clock
+                icon: mdi:alarm
+                color_type: card
+                style:
+                  - font-weight: bold
+                  - color: rgb(0, 0, 5)
+                state:
+                  - value: 'on'
+                    color: var(--primary-color)
+                action: toggle
+                toggle:
+                  domain: input_boolean
+                  action: alarm_clock
+    
+              - type: "custom:button-card"
+                name: Light Automations
+                entity: input_boolean.light_automations
+                icon: mdi:lightbulb-on
+                color_type: card
+                style:
+                  - font-weight: bold
+                  - color: rgb(0, 0, 5)
+                state:
+                  - value: 'on'
+                    color: var(--primary-color)
+                action: toggle
+                toggle:
+                  domain: input_boolean
+                  action: light_automations
+    
+              - type: "custom:button-card"
+                name: Do Not Disturb
+                entity: input_boolean.do_not_disturb
+                icon: mdi:do-not-disturb
+                color_type: card
+                style:
+                  - font-weight: bold
+                  - color: rgb(0, 0, 5)
+                state:
+                  - value: 'on'
+                    color: var(--primary-color)
+                action: toggle
+                toggle:
+                  domain: input_boolean
+                  action: do_not_disturb
+    
+              - type: "custom:button-card"
+                name: Home TTS/Sounds
+                entity: input_boolean.voice_notifications
+                icon: mdi:volume-high
+                color_type: card
+                style:
+                  - font-weight: bold
+                  - color: rgb(0, 0, 5)
+                state:
+                  - value: 'on'
+                    color: var(--primary-color)
+                action: toggle
+                toggle:
+                  domain: input_boolean
+                  action: voice_notifications
+
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                name: Trash Notifications
+                entity: input_boolean.trash_reminders
+                icon: mdi:recycle
+                color_type: card
+                style:
+                  - font-weight: bold
+                  - color: rgb(0, 0, 5)
+                state:
+                  - value: 'on'
+                    color: var(--primary-color)
+                action: toggle
+                toggle:
+                  domain: input_boolean
+                  action: trash_reminders
+    
+              - type: "custom:button-card"
+                name: Camera Alerts
+                entity: input_boolean.notify_camera_alerts
+                icon: mdi:cctv
+                color_type: card
+                style:
+                  - font-weight: bold
+                  - color: rgb(0, 0, 5)
+                state:
+                  - value: 'on'
+                    color: var(--primary-color)
+                action: toggle
+                toggle:
+                  domain: input_boolean
+                  action: notify_camera_alerts
+    
+              - type: "custom:button-card"
+                name: Location Alerts
+                entity: input_boolean.zone_alerts
+                icon: mdi:map-marker
+                color_type: card
+                style:
+                  - font-weight: bold
+                  - color: rgb(0, 0, 5)
+                state:
+                  - value: 'on'
+                    color: var(--primary-color)
+                action: toggle
+                toggle:
+                  domain: input_boolean
+                  action: zone_alerts
+    
+              - type: "custom:button-card"
+                name: Movie Time Popcorn
+                entity: input_boolean.movie_time
+                icon: mdi:filmstrip
+                color_type: card
+                style:
+                  - font-weight: bold
+                  - color: rgb(0, 0, 5)
+                state:
+                  - value: 'on'
+                    color: var(--primary-color)
+                action: toggle
+                toggle:
+                  domain: input_boolean
+                  action: movie_time
+
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                name: Security System
+                entity: input_boolean.security_system_alerts
+                icon: mdi:shield-outline
+                color_type: card
+                style:
+                  - font-weight: bold
+                  - color: rgb(0, 0, 5)
+                state:
+                  - value: 'on'
+                    color: var(--primary-color)
+                action: toggle
+                toggle:
+                  domain: input_boolean
+                  action: security_system_alerts
+    
+              - type: "custom:button-card"
+                name: Hourly Report
+                entity: input_boolean.hourly_report
+                icon: mdi:timer-sand
+                color_type: card
+                style:
+                  - font-weight: bold
+                  - color: rgb(0, 0, 5)
+                state:
+                  - value: 'on'
+                    color: var(--primary-color)
+                action: toggle
+                toggle:
+                  domain: input_boolean
+                  action: hourly_report
+    
+              - type: "custom:button-card"
+                name: Nightly Report
+                entity: input_boolean.nightly_report
+                icon: mdi:weather-night
+                color_type: card
+                style:
+                  - font-weight: bold
+                  - color: rgb(0, 0, 5)
+                state:
+                  - value: 'on'
+                    color: var(--primary-color)
+                action: toggle
+                toggle:
+                  domain: input_boolean
+                  action: nightly_report
+    
+              - type: "custom:button-card"
+                name: Working in Garage
+                entity: input_boolean.working_in_garage
+                icon: mdi:garage-alert
+                color_type: card
+                style:
+                  - font-weight: bold
+                  - color: rgb(0, 0, 5)
+                state:
+                  - value: 'on'
+                    color: var(--primary-color)
+                action: toggle
+                toggle:
+                  domain: input_boolean
+                  action: working_in_garage
+
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                name: Working in Office
+                entity: input_boolean.working_in_office_room
+                icon: mdi:office-building
+                color_type: card
+                style:
+                  - font-weight: bold
+                  - color: rgb(0, 0, 5)
+                state:
+                  - value: 'on'
+                    color: var(--primary-color)
+                action: toggle
+                toggle:
+                  domain: input_boolean
+                  action: working_in_office_room
+    
+              - type: "custom:button-card"
+                name: Battery Notifications
+                entity: input_boolean.battery_notifications
+                icon: mdi:battery-charging-wireless-60
+                color_type: card
+                style:
+                  - font-weight: bold
+                  - color: rgb(0, 0, 5)
+                state:
+                  - value: 'on'
+                    color: var(--primary-color)
+                action: toggle
+                toggle:
+                  domain: input_boolean
+                  action: battery_notifications
+    
+              - type: "custom:button-card"
+                name: Good Weather
+                entity: input_boolean.enjoyable_weather_reminders
+                icon: mdi:weather-windy-variant
+                color_type: card
+                style:
+                  - font-weight: bold
+                  - color: rgb(0, 0, 5)
+                state:
+                  - value: 'on'
+                    color: var(--primary-color)
+                action: toggle
+                toggle:
+                  domain: input_boolean
+                  action: enjoyable_weather_reminders
+    
+              - type: "custom:button-card"
+                name: Text/IFTTT Alerts
+                entity: input_boolean.text_alerts
+                icon: mdi:message-text
+                color_type: card
+                style:
+                  - font-weight: bold
+                  - color: rgb(0, 0, 5)
+                state:
+                  - value: 'on'
+                    color: var(--primary-color)
+                action: toggle
+                toggle:
+                  domain: input_boolean
+                  action: text_alerts
+
       - type: entities
         title: Control Panel
         show_header_toggle: false
         entities:
-          - input_boolean.voice_notifications
-          - input_boolean.do_not_disturb
-          - input_boolean.movie_time
-          - input_boolean.home_security
-          - input_boolean.home_assistant_restart
-          - input_boolean.home_assistant_update
-          - input_boolean.home_assistant_status
-          - input_boolean.notify_camera_motion
-          - input_boolean.working_in_garage
-          - input_boolean.working_in_office_room
-          - input_boolean.hourly_reports
-          - input_boolean.welcome_family_announcement
-          - input_boolean.trash_reminders
-          - input_boolean.enjoyable_weather_reminders
-          - input_boolean.alert_when_someone_enters_zone
-          - input_boolean.alert_when_someone_leaves_zone
-          - input_boolean.alarm_clock
-          - input_boolean.notify_security_system_changes
-          - input_boolean.alert_no_one_home
-          - input_boolean.battery_notifications
           - input_number.calendar_remind_before_days
-          - input_boolean.wfh_notifications
-          - input_boolean.sharp_tv
-          - input_boolean.alert_faces_in_cameras
-          - input_boolean.alert_objects_in_cameras
-          - input_boolean.tesla_heat_on
-
-      - type: entities
-        title: Pi-Hole
-        show_header_toggle: false
-        entities:
-          - sensor.pi_hole_ads_blocked_today
-          - sensor.pi_hole_ads_percentage_blocked_today
-          - sensor.pi_hole_dns_queries_cached
-          - sensor.pi_hole_dns_queries_forwarded
-          - sensor.pi_hole_dns_queries_today
-          - sensor.pi_hole_dns_unique_clients
-          - sensor.pi_hole_dns_unique_domains
-          - sensor.pi_hole_domains_blocked
-          - sensor.pi_hole_seen_clients
-
-      - type: entities
-        title: System Monitor
-        show_header_toggle: false
-        entities:
-          - sensor.disk_free
-          - sensor.ipv4_address_wlp1s10
-          - sensor.last_boot
-          - sensor.processor_use
-          - sensor.memory_free
-          - binary_sensor.workday_sensor
-          - sensor.ha_installed_version
-          - sensor.ha_current_version
-          - sensor.home_assistant_up_time
-
-      - type: entities
-        title: Internet Speed
-        show_header_toggle: false
-        entities:
-          - sensor.speedtest_ping
-          - sensor.speedtest_upload
-          - sensor.speedtest_download
-          - sensor.external_ip
 
       - type: entities
         title: Bed & Wakeup Times
@@ -997,19 +1235,40 @@ views:
     title: Scripts
     icon: mdi:script
     cards:
+
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            name: Update HASS
+            entity: inout_boolean.dummy
+            icon: mdi:home-assistant
+            color_type: card
+            style:
+              - font-weight: bold
+              - color: rgb(4,138,194)
+            action: service
+            service:
+              domain: script
+              action: update_hass
+
+          - type: "custom:button-card"
+            name: Restart HASS
+            entity: inout_boolean.dummy
+            icon: mdi:home-assistant
+            color_type: card
+            style:
+              - font-weight: bold
+              - color: rgb(4,138,194)
+            action: service
+            service:
+              domain: script
+              action: restart_hass
+    
       - type: entities
         title: Scripts
         show_header_toggle: false
         entities:
-          - script.all_indoor_lights_off
-          - script.emergency_all_lights_switches_on
-          - script.emergency_script
-          - script.emergency_script_loop
           - script.home_mode_away
-          - entity: script.ifttt_leeo_color_change
-            name: Leeo Color Using IFTTT Webhook
-          - entity: script.toggle_do_not_disturb
-            name: Toggle Do Not Disturb
           - entity: script.xiaomi_blue
             name: Xiaomi Gateway Blue Light
           - entity: script.xiaomi_green
@@ -1018,45 +1277,45 @@ views:
             name: Xiaomi Gateway Red Light
 
       - type: entities
-        title: Notify
+        title: Home Status/Report
         show_header_toggle: false
         entities:
-          - entity: script.ifttt_notify
-            name: IFTTT Notify
-          - entity: script.notify_me
-            name: Notify Me
-          - entity: script.voice_greeting
-            name: Voice Greeting
-          - entity: script.voice_notify
-            name: Voice Notify
-          - script.good_night_tts
-          - script.home_status
-
-      - type: entities
-        title: Home Assistant
-        show_header_toggle: false
-        entities:
-          - script.stop_hass
-          - script.restart_hass
-          - script.update_hass
-
-      - type: entities
-        title: RPi/Snapcast Scripts
-        show_header_toggle: false
-        entities:
-          - script.restart_all_raspberrypis
-          - script.restart_all_snapclients
-          - script.restart_snapcast_server
-          - script.shutdown_all_raspberrypis
-          - script.start_snapcast_server
-          - script.stop_snapcast_server
-          - script.query_disk_info
-          - script.query_wifi_info
+          - entity: script.good_night_tts
+            name: Bedtime Report
+          - entity: script.home_status
+            name: Hourly Report
 
   - id: Raspberry Pi
     title: Raspberry PI
     icon: mdi:pig
     cards:
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            name: Query Wifi
+            entity: inout_boolean.dummy
+            icon: mdi:wifi
+            color_type: card
+            style:
+              - font-weight: bold
+              - color: rgb(197,29,74)
+            action: service
+            service:
+              domain: script
+              action: query_wifi_info
+          - type: "custom:button-card"
+            name: Query Disk
+            entity: inout_boolean.dummy
+            icon: mdi:harddisk
+            color_type: card
+            style:
+              - font-weight: bold
+              - color: rgb(197,29,74)
+            action: service
+            service:
+              domain: script
+              action: query_disk_info
+
       - type: entities
         title: Raspberry Pi Commands
         show_header_toggle: false
@@ -1118,9 +1377,10 @@ views:
         entities:
           - script.restart_all_raspberrypis
           - script.restart_all_snapclients
-          - script.query_wifi_info
-          - script.query_disk_info
           - script.shutdown_all_raspberrypis
+          - script.restart_snapcast_server
+          - script.start_snapcast_server
+          - script.stop_snapcast_server
 
   - id: Automations
     title: Automations
@@ -1151,16 +1411,21 @@ views:
           - automation.study_room_cube_event_flip90
           - automation.study_room_cube_event_shake
 
-      - type: entities
-        title: Alarm Clock
-        show_header_toggle: false
-        entities:
-          - automation.alarm_clock
-          - automation.am_change_off
-          - automation.am_change_on
-          - automation.pm_change_off
-          - automation.pm_change_on
-          - automation.update_current_alarm_time
+      - type: conditional
+        conditions:
+          - entity: input_boolean.alarm_clock
+            state: 'on'
+        card:
+          type: entities
+          title: Alarm Clock
+          show_header_toggle: false
+          entities:
+            - automation.alarm_clock
+            - automation.am_change_off
+            - automation.am_change_on
+            - automation.pm_change_off
+            - automation.pm_change_on
+            - automation.update_current_alarm_time
 
       - type: entities
         title: Zone Based Alerts
@@ -1260,7 +1525,6 @@ views:
         entities:
           - automation.disable_emergency_mode_upon_disabling_home_security
           - automation.home_security_away_motion_deteted_inside
-          - automation.home_security_on
           - automation.home_security_status_leeo_color
           - automation.home_security_system_watchdog_10_minutes
           - automation.home_security_system_watchdog_30_minutes
@@ -1268,31 +1532,35 @@ views:
           - automation.night_homesecurity_on
           - automation.turn_on_thermostat_upon_reaching_home
 
-      - type: entities
-        title: Light Automations
-        show_header_toggle: false
-        entities:
-          - automation.animate_familyroom_lights
-          - automation.animate_master_bedroom_lights
-          - automation.basement_accent_lights_off_after_5_minutes
-          - automation.basement_accent_lights_on_when_basement_door_opened
-          - automation.evening_indoor_lights_on_before_sunset
-          - automation.evening_outdoor_lights_on_at_sunset
-          - automation.garage_lights_on_when_door_is_opened
-          - automation.garage_timer_start_when_garage_lights_on
-          - automation.long_flash_all_lights
-          - automation.morning_indoor_lights_on
-          - automation.morning_master_bedroom_lights_off_mallika
-          - automation.morning_master_bedroom_lights_on_mallika
-          - automation.morning_outdoor_lights_off
-          - automation.night_dim_tv_lights
-          - automation.night_turn_lights_off
-          - automation.restore_familyroom_lights
-          - automation.restore_masterbedroom_lights
-          - automation.short_flash_all_lights
-          - automation.tv_dim_indoor_lights_when_tv_is_on
-          - automation.tv_restore_family_room_lights_to_tv_mode
-          - automation.tv_turn_lights_on_when_tv_is_turned_off
+      - type: conditional
+        conditions:
+          - entity: input_boolean.light_automations
+            state: 'on'
+        card:
+          type: entities
+          title: Light Automations
+          show_header_toggle: false
+          entities:
+            - automation.animate_familyroom_lights
+            - automation.restore_familyroom_lights
+            - automation.animate_master_bedroom_lights
+            - automation.restore_masterbedroom_lights
+            - automation.basement_accent_lights_off_after_5_minutes
+            - automation.basement_accent_lights_on_when_basement_door_opened
+            - automation.evening_indoor_lights_on_before_sunset
+            - automation.evening_outdoor_lights_on_at_sunset
+            - automation.garage_lights_on_when_door_is_opened
+            - automation.long_flash_all_lights
+            - automation.morning_indoor_lights_on
+            - automation.morning_master_bedroom_lights_off_mallika
+            - automation.morning_master_bedroom_lights_on_mallika
+            - automation.morning_outdoor_lights_off
+            - automation.night_dim_tv_lights
+            - automation.night_turn_lights_off
+            - automation.short_flash_all_lights
+            - automation.tv_dim_indoor_lights_when_tv_is_on
+            - automation.tv_restore_family_room_lights_to_tv_mode
+            - automation.tv_turn_lights_on_when_tv_is_turned_off
 
       - type: entities
         title: Wallmote Automations
@@ -1335,13 +1603,12 @@ views:
         show_header_toggle: false
         entities:
           - automation.night_dim_tv_lights
-          - automation.restore_tv_state
           - automation.tv_backlight_is_on_when_tv_is_on
           - automation.tv_backlight_off_when_tv_is_off
           - automation.tv_dim_indoor_lights_when_tv_is_on
           - automation.tv_restore_family_room_lights_to_tv_mode
-          - automation.tv_state
           - automation.tv_turn_lights_on_when_tv_is_turned_off
+          - automation.reset_movie_time_after_3_hours
 
       - type: entities
         title: Weather Automations
@@ -1373,7 +1640,6 @@ views:
           - automation.notify_home_status_when_away
           - automation.emergency_mode_disabled
           - automation.home_mode_away_on
-          - automation.home_status_on
           - automation.hourly_report_during_day_time
           - automation.check_wi_fi_status_of_iphones_at_home
           - automation.night_bedtime_report
@@ -1397,7 +1663,6 @@ views:
         title: Home Assistant Automations
         show_header_toggle: false
         entities:
-          - automation.restart_home_assistant          
           - automation.power_failure
           - automation.power_restored
           - automation.random_darker_theme_at_sunset
@@ -1407,7 +1672,6 @@ views:
           - automation.season_change_notification
           - automation.turn_off_ac_after_3_hours_of_cooling
           - automation.update_available_notification
-          - automation.update_home_assistant
           - automation.update_zwave_battery_levels
           - automation.ups_state_change
           - automation.water_leak_detected
@@ -1421,23 +1685,105 @@ views:
         show_header_toggle: false
         entities:
           - sensor.kalavala_nas_status
-          - sensor.kalavala_nas_cpu_usage
-          - sensor.kalavala_nas_memory_usage
           - sensor.kalavala_nas_network_up_eth0
           - sensor.kalavala_nas_network_up_eth1
-          - sensor.kalavala_nas_volume_used_datavol1
           - sensor.kalavala_nas_system_temperature
           - sensor.kalavala_nas_cpu_temperature
 
-      - type: entities
-        title: QNAP Drives
-        show_header_toggle: false
-        entities:
-          - sensor.kalavala_nas_smart_status_drive_0_1
-          - sensor.kalavala_nas_smart_status_drive_0_2
-          - sensor.kalavala_nas_smart_status_drive_0_3
-          - sensor.kalavala_nas_smart_status_drive_0_4
-          - sensor.kalavala_nas_temperature_drive_0_1
-          - sensor.kalavala_nas_temperature_drive_0_2
-          - sensor.kalavala_nas_temperature_drive_0_3
-          - sensor.kalavala_nas_temperature_drive_0_4
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                entity: sensor.kalavala_nas_smart_status_drive_0_1
+                name: Drive 1
+                color_type: card
+                show_state: true
+                icon: mdi:harddisk
+                style:
+                  - font-weight: bold
+                state:
+                  - value: 'OK'
+                    color: rgb(0, 128, 0)
+                  - value: 'FAIL'
+                    color: rgb(255, 0, 0)
+                action: more_info
+              - type: "custom:button-card"
+                entity: sensor.kalavala_nas_smart_status_drive_0_2
+                name: Drive 2
+                color_type: card
+                show_state: true
+                icon: mdi:harddisk
+                style:
+                  - font-weight: bold
+                state:
+                  - value: 'OK'
+                    color: rgb(0, 128, 0)
+                  - value: 'FAIL'
+                    color: rgb(255, 0, 0)
+                action: more_info
+              - type: "custom:button-card"
+                entity: sensor.kalavala_nas_smart_status_drive_0_3
+                name: Drive 3
+                color_type: card
+                show_state: true
+                icon: mdi:harddisk
+                style:
+                  - font-weight: bold
+                state:
+                  - value: 'OK'
+                    color: rgb(0, 128, 0)
+                  - value: 'FAIL'
+                    color: rgb(255, 0, 0)
+                action: more_info
+              - type: "custom:button-card"
+                entity: sensor.kalavala_nas_smart_status_drive_0_4
+                name: Drive 4
+                color_type: card
+                show_state: true
+                icon: mdi:harddisk
+                style:
+                  - font-weight: bold
+                state:
+                  - value: 'OK'
+                    color: rgb(0, 128, 0)
+                  - value: 'FAIL'
+                    color: rgb(255, 0, 0)
+                action: more_info
+
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.kalavala_nas_cpu_usage
+                unit: "%"
+                name: CPU
+                severity:
+                  green: 0
+                  yellow: 50
+                  red: 75
+              - type: gauge
+                entity: sensor.kalavala_nas_memory_usage
+                unit: "%"
+                name: Memory
+                severity:
+                  green: 0
+                  yellow: 50
+                  red: 75
+              - type: gauge
+                entity: sensor.kalavala_nas_volume_used_datavol1
+                unit: "%"
+                name: Disk Used
+                severity:
+                  green: 0
+                  yellow: 50
+                  red: 75
+          - type: entities
+            title: QNAP Drives
+            show_header_toggle: false
+            entities:
+              - sensor.kalavala_nas_temperature_drive_0_1
+              - sensor.kalavala_nas_temperature_drive_0_2
+              - sensor.kalavala_nas_temperature_drive_0_3
+              - sensor.kalavala_nas_temperature_drive_0_4

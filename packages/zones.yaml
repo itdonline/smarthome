@@ -69,7 +69,7 @@ automation:
         event: enter
     condition:
       - condition: template
-        value_template: '{{ states.input_boolean.alert_when_someone_enters_zone.state == "on" }}'                
+        value_template: "{{ states('input_boolean.zone_alerts') == 'on' }}"
     action:
       - service: script.notify_me
         data_template:
@@ -98,7 +98,7 @@ automation:
         event: leave
     condition:
       - condition: template
-        value_template: '{{ states.input_boolean.alert_when_someone_leaves_zone.state == "on" }}'        
+        value_template: "{{ states('input_boolean.zone_alerts') == 'on' }}"
     action:
       - service: script.notify_me
         data_template:
@@ -128,8 +128,9 @@ automation:
         to: 'home'
         for: '00:02:00'
     condition:
-      - condition: template
-        value_template: '{{ states.input_boolean.welcome_family_announcement.state == "on" }}'
+      - condition: state
+        entity_id: input_boolean.zone_alerts
+        state: 'on'
     action:
       - service: script.notify_me
         data_template:
@@ -153,8 +154,6 @@ automation:
       minutes: 00
       seconds: '/30'
     condition:
-      - condition: template
-        value_template: '{{ states.input_boolean.alert_no_one_home.state == "on" }}'
       - condition: template
         value_template: '{{ states.input_boolean.home_mode_away.state == "off" }}'
       - condition: template
