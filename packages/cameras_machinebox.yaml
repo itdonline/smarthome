@@ -46,36 +46,6 @@ homeassistant:
     sensor.garage_camera_people:
       friendly_name: Garage Patio
 
-group:
-  People That Cameras See:
-    entities:
-      - image_processing.facebox_frontdoor_camera
-      - image_processing.facebox_driveway_camera
-      - image_processing.facebox_patio_camera
-      - image_processing.facebox_playarea_camera
-      - image_processing.facebox_garage_camera
-
-  # Tags That Cameras See:
-  #   entities:
-  #     - image_processing.tagbox_frontdoor_camera
-  #     - image_processing.tagbox_driveway_camera
-  #     - image_processing.tagbox_playarea_camera
-  #     - image_processing.tagbox_patio_camera
-  #     - image_processing.tagbox_garage_camera
-
-  Camera Activity:
-    entities:
-      # - sensor.frontdoor_camera_objects
-      # - sensor.driveway_camera_objects
-      # - sensor.playarea_camera_objects
-      # - sensor.patio_camera_objects
-      # - sensor.garage_camera_objects
-      - sensor.frontdoor_camera_people
-      - sensor.driveway_camera_people
-      - sensor.playarea_camera_people
-      - sensor.patio_camera_people
-      - sensor.garage_camera_people
-
 image_processing:
   - platform: facebox
     ip_address: !secret ha_ip_address

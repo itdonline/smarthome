@@ -70,13 +70,6 @@ input_label:
     icon: mdi:cake-variant
     name: Mallika's Birthday
 
-group:
-  Birthday Countdown:
-    entities:
-      - input_label.srinika_birthday_days2go
-      - input_label.hasika_birthday_days2go
-      - input_label.mallika_birthday_days2go
-
 ###############################################################################
 #                _                        _   _                 
 #     /\        | |                      | | (_)                

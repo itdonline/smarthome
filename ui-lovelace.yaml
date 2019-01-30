@@ -90,7 +90,7 @@ views:
           - entity: sensor.srinika_iphone_wifi_state
             name: Srinika
           - entity: sensor.srinika_iphone_wifi_state
-            name: Suresh            
+            name: Suresh
           - sensor.recycle_day
           - sensor.trash_day
         state_filter:
@@ -720,11 +720,12 @@ views:
           - switch.tesla_model_3_5yj3e1ea8jf010610_maxrange_switch
 
   - id: System
-    title: Server Date & Time
-    icon: mdi:linux
+    title: Date & Time
+    icon: mdi:desktop-tower
     cards:
+
       - type: entities
-        title: Date Time
+        title: Date & Time
         show_header_toggle: false
         entities:
           - sensor.date
@@ -732,6 +733,20 @@ views:
           - sensor.time
           - sensor.time_date
           - sensor.time_utc
+
+      - type: entities
+        title: System Monitor
+        show_header_toggle: false
+        entities:
+          - sensor.disk_free
+          - sensor.ipv4_address_ens160
+          - sensor.last_boot
+          - sensor.processor_use
+          - sensor.memory_free
+          - binary_sensor.workday_sensor
+          - sensor.ha_installed_version
+          - sensor.ha_current_version
+          - sensor.home_assistant_up_time
 
       - type: entities
         title: Alarm Clock
@@ -744,20 +759,6 @@ views:
           - input_label.alarm_current_time
           - input_number.slider_hours
           - input_number.slider_minutes
-
-      - type: entities
-        title: Ads Blocked
-        show_header_toggle: false
-        entities:
-          - sensor.pi_hole_ads_blocked_today
-          - sensor.pi_hole_ads_percentage_blocked_today
-          - sensor.pi_hole_dns_queries_cached
-          - sensor.pi_hole_dns_queries_forwarded
-          - sensor.pi_hole_dns_queries_today
-          - sensor.pi_hole_dns_unique_clients
-          - sensor.pi_hole_dns_unique_domains
-          - sensor.pi_hole_domains_blocked
-          - sensor.pi_hole_seen_clients
 
       - type: entities
         title: Pi-Hole
@@ -774,27 +775,13 @@ views:
           - sensor.pi_hole_seen_clients
 
       - type: entities
-        title: System Monitor
-        show_header_toggle: false
-        entities:
-          - sensor.disk_free
-          - sensor.ipv4_address_wlp1s10
-          - sensor.last_boot
-          - sensor.processor_use
-          - sensor.memory_free
-          - binary_sensor.workday_sensor
-          - sensor.ha_installed_version
-          - sensor.ha_current_version
-          - sensor.home_assistant_up_time
-
-      - type: entities
         title: Internet Speed
         show_header_toggle: false
         entities:
+          - sensor.external_ip
           - sensor.speedtest_ping
           - sensor.speedtest_upload
           - sensor.speedtest_download
-          - sensor.external_ip
 
       - type: entities
         title: Battery/UPS
@@ -810,30 +797,6 @@ views:
           - sensor.ups_transfer_count
 
       - type: entities
-        title: RPi Disk Available
-        show_header_toggle: false
-        entities:
-          - sensor.family_room_pi_available_disk
-          - sensor.front_room_pi_available_disk
-          - sensor.garage_pi_available_disk
-          - sensor.guest_1_pi_available_disk
-          - sensor.guest_2_pi_available_disk
-          - sensor.kitchen_pi_available_disk
-          - sensor.master_bedroom_pi_available_disk
-
-      - type: entities
-        title: RPi Disk Percent Used
-        show_header_toggle: false
-        entities:
-          - sensor.family_room_pi_disk_used
-          - sensor.front_room_pi_disk_used
-          - sensor.garage_pi_disk_used
-          - sensor.guest_1_pi_disk_used
-          - sensor.guest_2_pi_disk_used
-          - sensor.kitchen_pi_disk_used
-          - sensor.master_bedroom_pi_disk_used
-
-      - type: entities
         title: ESXi Vmware Server
         show_header_toggle: false
         entities:
@@ -842,18 +805,8 @@ views:
           - sensor.esxi_server_description
           - sensor.esxi_system_memory_size
           - sensor.esxi_system_uptime
-          - sensor.esxi_system_uptime_epoch
           - sensor.esxi_total_ram
           - sensor.esxi_used_ram
-
-      - type: entities
-        title: Internet Speed
-        show_header_toggle: false
-        entities:
-          - sensor.external_ip
-          - sensor.speedtest_download
-          - sensor.speedtest_ping
-          - sensor.speedtest_upload
 
   - id: MultiMedia
     title: Multi Room Audio & TTS

@@ -73,30 +73,6 @@ homeassistant:
       <<: *not_exposed
       hidden: true
 
-group:
-  group_denon_avrx2400h:
-    entities:
-      - media_player.denon_avrx2400h
-
-  group_gstreamer:
-    entities:
-      - media_player.gstreamer
-
-  group_mpd:
-    entities:
-      - media_player.mpd
-
-  Media Players:
-    entities:
-      - input_select.snapcast_server
-
-  Snapcast Server Commands:
-    control: hidden
-    entities:
-      - script.stop_snapcast_server
-      - script.start_snapcast_server
-      - script.restart_snapcast_server
-
 media_player:
   - platform: snapcast
     host: !secret snapcast_server_ip

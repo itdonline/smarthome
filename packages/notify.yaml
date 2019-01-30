@@ -71,22 +71,6 @@ tts:
     text_type: ssml
     voice: Joanna
 
-group:
-  Scripts:
-    control: hidden
-    entities:
-      - script.home_status
-      - script.ifttt_leeo_color_change
-      - script.restart_hass
-      - script.update_hass
-      - script.stop_hass
-      - script.ifttt_notify
-      - script.notify_me
-      - script.voice_notify
-      - script.voice_greeting
-      - script.home_mode_away
-      - script.good_night_tts
-
 script:
 
 ###############################################################################

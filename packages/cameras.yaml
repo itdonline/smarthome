@@ -20,17 +20,6 @@ homeassistant:
       hidden: &hidden
         <<: *customize
         hidden: true
-group:
-  Frontyard Cameras:
-    entities:
-      - camera.frontdoor_camera
-      - camera.driveway_camera
-      - camera.garage_camera
-
-  Backyard Cameras:
-    entities:
-      - camera.patio_camera
-      - camera.playarea_camera
 
 #
 # The camera url format in secrets.yaml would look like this: 

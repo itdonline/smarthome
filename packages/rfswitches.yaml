@@ -35,16 +35,6 @@
 #     sensor.rf_switch_five:
 #       hidden: true
 
-# group:
-#   Etekcity RF Switches:
-#     control: hidden
-#     entities:
-#       - switch.switch_one
-#       - switch.switch_two
-#       - switch.switch_three
-#       - switch.switch_four
-#       - switch.switch_five
-
 # ###############################################################################
 # #  RF Switches
 # ###############################################################################

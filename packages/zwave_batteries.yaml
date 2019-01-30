@@ -34,51 +34,6 @@ input_label:
   hasika_wifi:
 
 ###############################################################################
-#   _____                                
-#  / ____|                               
-# | |  __  _ __  ___   _   _  _ __   ___ 
-# | | |_ || '__|/ _ \ | | | || '_ \ / __|
-# | |__| || |  | (_) || |_| || |_) |\__ \
-#  \_____||_|   \___/  \__,_|| .__/ |___/
-#                            | |         
-#                            |_|         
-###############################################################################
-group:
-  ZWave Batteries:
-    entities:
-      - input_label.aeotec_water_sensor
-      - input_label.audio_detector
-      - input_label.back_door_sensor
-      - input_label.basement_door_sensor
-      - input_label.downstairs_multi_sensor
-      - input_label.front_door_sensor
-      - input_label.front_room_multi_sensor
-      - input_label.front_room_window_sensor
-      - input_label.garage_door_sensor
-      - input_label.guest_bedroom_multi_sensor
-      - input_label.kitchen_motion_sensor
-      - input_label.single_car_garage_door_tilt_sensor
-      - input_label.stairs_motion_sensor
-      - input_label.tv_multi_sensor
-      - input_label.two_car_garage_door_tilt_sensor
-      - input_label.upstairs_multi_sensor
-      - input_label.wallmote
-      
-  Phone Batteries:
-    entities:
-      - input_label.suresh_battery
-      - input_label.mallika_battery
-      - input_label.srinika_battery
-      - input_label.hasika_battery
-
-  Phone WiFi:
-    entities:
-      - input_label.suresh_wifi
-      - input_label.mallika_wifi
-      - input_label.srinika_wifi
-      - input_label.hasika_wifi
-
-###############################################################################
 #                _                        _   _                 
 #     /\        | |                      | | (_)                
 #    /  \  _   _| |_ ___  _ __ ___   __ _| |_ _  ___  _ __  ___ 

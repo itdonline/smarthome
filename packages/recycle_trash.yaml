@@ -35,30 +35,6 @@ homeassistant:
       friendly_name: Trash Schedule
       icon: mdi:recycle
 
-group:
-  Trash Schedule:
-    entities:
-      - sensor.trash_day
-      - sensor.trash_pickup_day
-      - input_select.trash_pickup_day
-
-  Recycle Schedule:
-    entities:
-      - sensor.recycle_day    
-      - sensor.recycle_pickup_day
-      - sensor.recycle_pickup_week
-      - input_select.recycle_pickup_day
-      - sensor.current_week
-      - input_select.recycle_pickup_week
-
-  Date Time:
-    entities:
-      - sensor.time
-      - sensor.date
-      - sensor.time_utc
-      - sensor.date_time
-      - sensor.time_date
-
 ###############################################################################
 #  UI Elements
 ###############################################################################

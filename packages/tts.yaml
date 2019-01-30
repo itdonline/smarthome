@@ -37,16 +37,6 @@ homeassistant:
       name: TTS
       <<: *not_hidden
 
-group:
-  Text To Speech:
-    entities:
-      - input_text.tts
-      - input_boolean.greeting
-      - input_number.tts_volume_level_morning
-      - input_number.tts_volume_level_afternoon
-      - input_number.tts_volume_level_evening
-      - input_number.tts_volume_level_alert
-
 input_text:
   tts:
     name: Text To Speech

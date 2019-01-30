@@ -73,6 +73,8 @@ recorder:
  db_url: !secret my_sql_url
 logger: !include logging.yaml
 
+owntracks:
+
 mqtt:
   broker: !secret mqtt_server
   port: !secret mqtt_port

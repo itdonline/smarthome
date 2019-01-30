@@ -35,15 +35,6 @@ input_boolean:
     name: Emergency Mode
     initial: 'off'
 
-group:
-  Emergency Scripts:
-    control: hidden
-    entities:
-      - script.emergency_script
-      - script.emergency_script_loop
-      - script.emergency_all_lights_switches_on
-      - script.all_indoor_lights_off
-
 ###############################################################################
 #                _                        _   _                 
 #     /\        | |                      | | (_)                

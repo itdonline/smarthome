@@ -37,29 +37,6 @@ homeassistant:
     sensor.suresh_iphone_wifi_state:
       friendly_name: Suresh Phone Wi-Fi Status
 
-group:
-  Batteries:
-    control: hidden
-    entities:
-      - sensor.suresh_iphone_battery_ot_2
-      - sensor.mallika_iphone_battery_ot_2
-      - sensor.srinika_iphone_battery_ot_2
-      - sensor.hasika_iphone_battery_ot_2
-
-  WiFi:
-    entities:
-      - sensor.hasika_iphone_wifi_state
-      - sensor.mallika_iphone_wifi_state
-      - sensor.srinika_iphone_wifi_state
-      - sensor.suresh_iphone_wifi_state
-
-  Driving Speed:
-    entities:
-      - sensor.suresh_driving_speed
-      - sensor.mallika_driving_speed
-      - sensor.srinika_driving_speed
-      - sensor.hasika_driving_speed
-
 sensor:
 
   - platform: mqtt

@@ -26,22 +26,6 @@ homeassistant:
     switch.tesla_model_3_5yj3e1ea8jf010610_maxrange_switch:
       friendly_name: Max Range Switch
 
-group:
-  Tesla:
-    entities:
-      - binary_sensor.tesla_model_3_5yj3e1ea8jf010610_charger_sensor
-      - binary_sensor.tesla_model_3_5yj3e1ea8jf010610_parking_brake_sensor
-      - climate.tesla_model_3_5yj3e1ea8jf010610_hvac_climate_system
-      - device_tracker.tesla_model_3_5yj3e1ea8jf010610_location_tracker
-      - lock.tesla_model_3_5yj3e1ea8jf010610_door_lock
-      - sensor.tesla_model_3_5yj3e1ea8jf010610_battery_sensor
-      - sensor.tesla_model_3_5yj3e1ea8jf010610_mileage_sensor
-      - sensor.tesla_model_3_5yj3e1ea8jf010610_range_sensor
-      - sensor.tesla_model_3_5yj3e1ea8jf010610_temperature_sensor_inside
-      - sensor.tesla_model_3_5yj3e1ea8jf010610_temperature_sensor_outside
-      - switch.tesla_model_3_5yj3e1ea8jf010610_charger_switch
-      - switch.tesla_model_3_5yj3e1ea8jf010610_maxrange_switch
-
 # The scan_interval is now set to 6 hours
 # Leaving it to the default (which is 5 minutes, or 300 seconds) will drain battery at a rate of 
 # 10 miles per day (or 3% battery use) on an average. Use this setting carefully!

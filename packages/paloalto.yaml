@@ -74,38 +74,6 @@
 #       - loggedin_user_count
 #       - loggedin_users
 
-# group:
-#   PaloAlto Device:
-#     entities:
-#       - sensor.paloalto_core_temperature
-#       - sensor.paloalto_global_protect_user_count
-#       - sensor.paloalto_global_protect_users
-#       - sensor.paloalto_global_protect_version
-#       - sensor.paloalto_host_name
-#       - sensor.paloalto_logdb_version
-#       - sensor.paloalto_loggedin_user_count
-#       - sensor.paloalto_loggedin_users
-#       - sensor.paloalto_operation_mode
-#       - sensor.paloalto_serial_number
-#       - sensor.paloalto_software_version
-#       - sensor.paloalto_system_temperature
-#       - sensor.paloalto_up_time
-  
-#   PaloAlto Log Management:
-#     control: hidden
-#     entities:
-#       - script.paloalto_clear_traffic_logs
-#       - script.paloalto_clear_threat_logs
-#       - script.paloalto_clear_alarm_logs
-#       - script.paloalto_clear_authentication_logs
-#       - script.paloalto_clear_config_logs
-#       - script.paloalto_clear_system_logs
-
-#   PaloAlto Administration:
-#     control: hidden
-#     entities:
-#       - script.paloalto_shutdown
-#       - script.paloalto_restart
 
 # #
 # # All the URLs below use the following format

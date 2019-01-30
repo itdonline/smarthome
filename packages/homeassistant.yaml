@@ -49,7 +49,7 @@ homeassistant:
     sensor.disk_free:
       friendly_name: Disk Free Space
 
-    sensor.ipv4_address_wlp1s10:
+    sensor.ipv4_address_ens160:
       friendly_name: Local IP Address
 
     sensor.last_boot:
@@ -88,26 +88,6 @@ homeassistant:
     sensor.my_domain:
       hidden: true
 
-group:
-  System Monitor:
-    entities:
-      - sensor.disk_free
-      - sensor.ipv4_address_wlp1s10
-      - sensor.last_boot
-      - sensor.processor_use
-      - sensor.memory_free
-      - binary_sensor.workday_sensor
-      - sensor.ha_installed_version
-      - sensor.ha_current_version
-      - sensor.home_assistant_up_time
-
-  Internet Speed:
-    entities:
-      - sensor.speedtest_ping 
-      - sensor.speedtest_upload
-      - sensor.speedtest_download
-      - sensor.external_ip
- 
 script:
   stop_hass:
     sequence:
@@ -164,7 +144,7 @@ sensor:
       - type: memory_free
       - type: processor_use
       - type: ipv4_address
-        arg: wlp1s10
+        arg: ens160
       - type: last_boot
 
   - platform: rest
@@ -176,6 +156,21 @@ sensor:
     name: HA Installed Version
     command: /srv/homeassistant/bin/hass --version
     scan_interval: 86400
+
+  - platform: pi_hole
+    host: !secret pi_hole_ip
+    ssl: false
+    verify_ssl: false
+    monitored_conditions:
+      - ads_blocked_today
+      - ads_percentage_today
+      - dns_queries_today
+      - domains_being_blocked
+      - queries_cached
+      - queries_forwarded
+      - unique_clients
+      - unique_domains
+      - clients_ever_seen
 
 ###############################################################################
 #                _                        _   _                 

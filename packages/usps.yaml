@@ -12,13 +12,6 @@ homeassistant:
       friendly_name: USPS Packages
       icon: mdi:package-variant
 
-group:
-  USPS:
-    entities:
-      - sensor.usps_mail
-      - sensor.usps_packages
-      - camera.usps_mail_pictures
-
 sensor:
   - platform: mqtt
     name: 'USPS Mail'

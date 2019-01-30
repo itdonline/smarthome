@@ -15,14 +15,6 @@ homeassistant:
       friendly_name: Hasika
       icon: mdi:map-marker
 
-group:
-  Where is everyone:
-    entities:
-      - sensor.suresh_location
-      - sensor.mallika_location
-      - sensor.srinika_location
-      - sensor.hasika_location
-
 # Google Calendar
 google:
   client_id: !secret google_client_id

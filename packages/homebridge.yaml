@@ -28,10 +28,6 @@ homeassistant:
       homebridge_hidden: true
       emulated_hue_hidden: true
 
-    group:
-      homebridge_hidden: true
-      emulated_hue_hidden: true
-
     input_boolean:
       homebridge_hidden: true
       emulated_hue_hidden: true

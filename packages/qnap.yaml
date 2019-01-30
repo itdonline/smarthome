@@ -47,36 +47,6 @@ homeassistant:
     sensor.kalavala_nas_temperature_drive_0_4:
       friendly_name: Drive 4 Temperature
 
-group:
-  QNAP Drives:
-    entities:
-      - sensor.kalavala_nas_smart_status_drive_0_1
-      - sensor.kalavala_nas_smart_status_drive_0_2
-      - sensor.kalavala_nas_smart_status_drive_0_3
-      - sensor.kalavala_nas_smart_status_drive_0_4
-      - sensor.kalavala_nas_temperature_drive_0_1
-      - sensor.kalavala_nas_temperature_drive_0_2
-      - sensor.kalavala_nas_temperature_drive_0_3
-      - sensor.kalavala_nas_temperature_drive_0_4
-
-  QNAP Server:
-    entities:
-      - sensor.kalavala_nas_status
-      - sensor.kalavala_nas_cpu_usage
-      - sensor.kalavala_nas_memory_usage
-      - sensor.kalavala_nas_network_up_eth0
-      - sensor.kalavala_nas_network_up_eth1
-      - sensor.kalavala_nas_volume_used_datavol1
-      - sensor.kalavala_nas_system_temperature
-      - sensor.kalavala_nas_cpu_temperature
-
-  QNAP Automations:
-    entities:
-      - automation.notify_nas_memory_usage
-      - automation.notify_nas_disk_usage
-      - automation.notify_nas_cpu_usage
-      - automation.notify_nas_cpu_temperature
-
 sensor:
   - platform: qnap
     host: !secret qnap_hostname
