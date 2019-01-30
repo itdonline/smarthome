@@ -88,7 +88,7 @@
 
   {%- macro charging_status() -%}
     {%- for item in states if "iphone_battery_state" in item.entity_id and item.state != "Charging" %}
-      {%- if loop.first %}{% elif loop.last %} and {% else %}, {% endif -%}{{- item.name.split('\'')[0] -}}
+      {%- if loop.first %}{% elif loop.last %} and {% else %}, {% endif -%}{{- item.name.split(' ')[0] -}}
     {%- endfor -%}
   {%- endmacro -%}
 
