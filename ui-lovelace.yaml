@@ -227,32 +227,6 @@ views:
             action: more-info
 
       - type: entities
-        title: Temperature Levels
-        show_header_toggle: false
-        entities:
-          - entity: sensor.aeotec_water_sensor_temperature
-            name: Basement Temperature in HVAC Room
-          - entity: sensor.audio_detector_temperature
-            name: Hallway Temperature
-          - sensor.downstairs_multi_sensor_temperature
-          - sensor.front_room_multi_sensor_temperature
-          - sensor.guest_bedroom_multi_sensor_temperature
-          - sensor.tv_multi_sensor_temperature
-          - sensor.upstairs_multi_sensor_temperature
-
-      - type: entities
-        title: Humidity Levels
-        show_header_toggle: false
-        entities:
-          - sensor.downstairs_multi_sensor_relative_humidity
-          - sensor.front_room_multi_sensor_relative_humidity
-          - sensor.guest_bedroom_multi_sensor_relative_humidity
-          - sensor.tv_multi_sensor_relative_humidity
-          - sensor.upstairs_multi_sensor_relative_humidity
-          - entity: sensor.pws_relative_humidity
-            name: Outdoor Humidity
-
-      - type: entities
         title: Light Levels
         show_header_toggle: false
         entities:
@@ -321,6 +295,36 @@ views:
           - input_label.two_car_garage_door_tilt_sensor
           - input_label.upstairs_multi_sensor
           - input_label.wallmote
+
+      - type: entities
+        title: Motion Counters
+        show_header_toggle: false
+        entities:
+          - input_label.aeotec_zw120_door_window_sensor_gen5_sensor
+          - input_label.back_door_sensor_sensor
+          - input_label.basement_door_sensor_sensor
+          - input_label.garage_door_sensor_sensor
+          - input_label.single_car_garage_door_tilt_sensor_sensor
+          - input_label.two_car_garage_door_tilt_sensor_sensor
+          - input_label.downstairs_multi_sensor_sensor
+          - input_label.front_room_multi_sensor_sensor
+          - input_label.front_room_window_sensor_sensor
+          - input_label.guest_bedroom_multi_sensor_sensor
+          - input_label.kitchen_motion_sensor_sensor
+          - input_label.motion_sensor_158d00016c2d0e
+          - input_label.motion_sensor_158d00016db6d2
+          - input_label.motion_sensor_158d0001a25041
+          - input_label.motion_sensor_158d0001a662fe
+          - input_label.motion_sensor_158d00024e57d3
+          - input_label.motion_sensor_158d00024e57fb
+          - input_label.motion_sensor_158d00024e842c
+          - input_label.motion_sensor_158d00024ee084
+          - input_label.motion_sensor_158d000272bed1
+          - input_label.motion_sensor_158d000272bf48
+          - input_label.motion_sensor_158d000272bfd7
+          - input_label.garage_motion
+          - input_label.stairs_motion_sensor_sensor
+          - input_label.upstairs_multi_sensor_sensor
 
   - id: Lights
     title: Lights
@@ -428,6 +432,32 @@ views:
           - sensor.dining_room_thermostat_operation_mode
           - sensor.dining_room_thermostat_target
           - sensor.dining_room_thermostat_temperature
+
+      - type: entities
+        title: Temperature Levels
+        show_header_toggle: false
+        entities:
+          - entity: sensor.aeotec_water_sensor_temperature
+            name: Basement Temperature in HVAC Room
+          - entity: sensor.audio_detector_temperature
+            name: Hallway Temperature
+          - sensor.downstairs_multi_sensor_temperature
+          - sensor.front_room_multi_sensor_temperature
+          - sensor.guest_bedroom_multi_sensor_temperature
+          - sensor.tv_multi_sensor_temperature
+          - sensor.upstairs_multi_sensor_temperature
+
+      - type: entities
+        title: Humidity Levels
+        show_header_toggle: false
+        entities:
+          - sensor.downstairs_multi_sensor_relative_humidity
+          - sensor.front_room_multi_sensor_relative_humidity
+          - sensor.guest_bedroom_multi_sensor_relative_humidity
+          - sensor.tv_multi_sensor_relative_humidity
+          - sensor.upstairs_multi_sensor_relative_humidity
+          - entity: sensor.pws_relative_humidity
+            name: Outdoor Humidity
 
   - id: Camera
     title: Camera Live

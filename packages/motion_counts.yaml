@@ -1,23 +1,155 @@
 input_label:
-  front_door:
-  back_door:
-  basement_door:
-  garage_door:
-  single_car_garage_door:
-  double_car_garage_door:
-  dining_room_motion:
-  study_room_motion:
-  family_room_motion:
-  kitchen_motion:
-  master_bedroom_motion:
-  driveway_motion:
-  backyard_motion:
-  front_door_motion:
-  srinika_bedroom_motion:
-  hasika_bedroom_motion:
+  aeotec_zw120_door_window_sensor_gen5_sensor:
+    name: Front Door
+    value: 0
+    icon: mdi:motion-sensor
+  back_door_sensor_sensor:
+    name: Back Door
+    value: 0
+    icon: mdi:motion-sensor
+  basement_door_sensor_sensor:
+    name: Basement Door
+    value: 0
+    icon: mdi:motion-sensor
+  garage_door_sensor_sensor:
+    name: Garage Door
+    value: 0
+    icon: mdi:motion-sensor
+
+  downstairs_multi_sensor_sensor:
+    name: TV Room Multi Sensor
+    value: 0
+    icon: mdi:motion-sensor
+  front_room_multi_sensor_sensor:
+    name: Front Room Multi Sensor
+    value: 0
+    icon: mdi:motion-sensor
+  front_room_window_sensor_sensor:
+    name: Front Room Sensor
+    value: 0
+    icon: mdi:motion-sensor
   garage_motion:
-  office_room_motion:
-  stairs_motion:
-  upstairs_motion:
+    name: Garage Motion
+    value: 0
+    icon: mdi:motion-sensor
+  guest_bedroom_multi_sensor_sensor:
+    name: Guest Bedroom Motion
+    value: 0
+    icon: mdi:motion-sensor
+  kitchen_motion_sensor_sensor:
+    name: Kitchen Motion
+    value: 0
+    icon: mdi:motion-sensor
+  motion_sensor_158d00016c2d0e:
+    name: Dining Room Motion (X)
+    value: 0
+    icon: mdi:motion-sensor
+  motion_sensor_158d00016db6d2:
+    name: Study Room Motion (X)
+    value: 0
+    icon: mdi:motion-sensor
+  motion_sensor_158d0001a25041:
+    name: Family Room (X)
+    value: 0
+    icon: mdi:motion-sensor
+  motion_sensor_158d0001a662fe:
+    name: Kitchen (X)
+    value: 0
+    icon: mdi:motion-sensor
+  motion_sensor_158d00024e57d3:
+    name: Master Bedroom (X)
+    value: 0
+    icon: mdi:motion-sensor
+  motion_sensor_158d00024e57fb:
+    name: Driveway Motion (X)
+    value: 0
+    icon: mdi:motion-sensor
+  motion_sensor_158d00024e842c:
+    name: Backyard Motion (X)
+    value: 0
+    icon: mdi:motion-sensor
+  motion_sensor_158d00024ee084:
+    name: Front Door Motion (X)
+    value: 0
+    icon: mdi:motion-sensor
+  motion_sensor_158d000272bed1:
+    name: Srinika Bedroom (X)
+    value: 0
+    icon: mdi:motion-sensor
+  motion_sensor_158d000272bf48:
+    name: Garage Motion (X)
+    value: 0
+    icon: mdi:motion-sensor
+  motion_sensor_158d000272bfd7:
+    name: Office Room Motion (X)
+    value: 0
+    icon: mdi:motion-sensor
 
+  single_car_garage_door_tilt_sensor_sensor:
+    name: Single Car Garage Door
+    value: 0
+    icon: mdi:motion-sensor
+  two_car_garage_door_tilt_sensor_sensor:
+    name: Double Car Garage Door
+    value: 0
+    icon: mdi:motion-sensor
+  stairs_motion_sensor_sensor:
+    name: Stairs Motion
+    value: 0
+    icon: mdi:motion-sensor
+  upstairs_multi_sensor_sensor:
+    name: Upstairs Motion Sensor
+    value: 0
+    icon: mdi:motion-sensor
 
+automation:
+  - alias: Count Motions
+    trigger:
+      - platform: state
+        to: 'on'
+        entity_id:
+          - binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor
+          - binary_sensor.back_door_sensor_sensor
+          - binary_sensor.basement_door_sensor_sensor
+          - binary_sensor.downstairs_multi_sensor_sensor
+          - binary_sensor.front_room_multi_sensor_sensor
+          - binary_sensor.front_room_window_sensor_sensor
+          - binary_sensor.garage_door_sensor_sensor
+          - binary_sensor.garage_motion
+          - binary_sensor.guest_bedroom_multi_sensor_sensor
+          - binary_sensor.kitchen_motion_sensor_sensor
+          - binary_sensor.motion_sensor_158d00016c2d0e
+          - binary_sensor.motion_sensor_158d00016db6d2
+          - binary_sensor.motion_sensor_158d0001a25041
+          - binary_sensor.motion_sensor_158d0001a662fe
+          - binary_sensor.motion_sensor_158d00024e57d3
+          - binary_sensor.motion_sensor_158d00024e57fb
+          - binary_sensor.motion_sensor_158d00024e842c
+          - binary_sensor.motion_sensor_158d00024ee084
+          - binary_sensor.motion_sensor_158d000272bed1
+          - binary_sensor.motion_sensor_158d000272bf48
+          - binary_sensor.motion_sensor_158d000272bfd7
+          - binary_sensor.single_car_garage_door_tilt_sensor_sensor
+          - binary_sensor.stairs_motion_sensor_sensor
+          - binary_sensor.two_car_garage_door_tilt_sensor_sensor
+          - binary_sensor.upstairs_multi_sensor_sensor
+    action:
+      - service: input_label.set_value
+        data_template:
+          entity_id: "input_label.{{ trigger.entity_id.split('.')[1] }}"
+          value: >
+            {% set cur_value = states("input_label." ~ trigger.entity_id.split('.')[1] ) | int %}
+            {{ cur_value + 1 }}
+
+# {% for x in states.binary_sensor if   'camera' not in x.entity_id and 
+#                                       'cube' not in x.entity_id and 
+#                                       'tesla' not in x.entity_id and 
+#                                       'drone' not in x.entity_id and 
+#                                       'audio' not in x.entity_id and 
+#                                       'protection' not in x.entity_id and 
+#                                       'tv' not in x.entity_id and 
+#                                       'workday' not in x.entity_id and 
+#                                       'home_away' not in x.entity_id and 
+#                                       'dining_room' not in x.entity_id %}
+# {{ x.entity_id }}
+# {%- endfor %}
