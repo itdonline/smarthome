@@ -1,106 +1,81 @@
 input_label:
   aeotec_zw120_door_window_sensor_gen5_sensor:
     name: Front Door
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   back_door_sensor_sensor:
     name: Back Door
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   basement_door_sensor_sensor:
     name: Basement Door
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   garage_door_sensor_sensor:
     name: Garage Door
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
 
   downstairs_multi_sensor_sensor:
     name: TV Room Multi Sensor
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   front_room_multi_sensor_sensor:
     name: Front Room Multi Sensor
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   front_room_window_sensor_sensor:
     name: Front Room Sensor
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   garage_motion:
     name: Garage Motion
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   guest_bedroom_multi_sensor_sensor:
     name: Guest Bedroom Motion
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   kitchen_motion_sensor_sensor:
     name: Kitchen Motion
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   motion_sensor_158d00016c2d0e:
     name: Dining Room Motion (X)
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   motion_sensor_158d00016db6d2:
     name: Study Room Motion (X)
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   motion_sensor_158d0001a25041:
     name: Family Room (X)
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   motion_sensor_158d0001a662fe:
     name: Kitchen (X)
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   motion_sensor_158d00024e57d3:
     name: Master Bedroom (X)
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   motion_sensor_158d00024e57fb:
     name: Driveway Motion (X)
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   motion_sensor_158d00024e842c:
     name: Backyard Motion (X)
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   motion_sensor_158d00024ee084:
     name: Front Door Motion (X)
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   motion_sensor_158d000272bed1:
     name: Srinika Bedroom (X)
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   motion_sensor_158d000272bf48:
     name: Garage Motion (X)
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   motion_sensor_158d000272bfd7:
     name: Office Room Motion (X)
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
 
   single_car_garage_door_tilt_sensor_sensor:
     name: Single Car Garage Door
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   two_car_garage_door_tilt_sensor_sensor:
     name: Double Car Garage Door
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   stairs_motion_sensor_sensor:
     name: Stairs Motion
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
   upstairs_multi_sensor_sensor:
     name: Upstairs Motion Sensor
-    value: 0
-    icon: mdi:motion-sensor
+    icon: mdi:run-fast
 
 automation:
   - alias: Count Motions
