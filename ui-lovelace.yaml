@@ -433,6 +433,14 @@ views:
           - sensor.dining_room_thermostat_target
           - sensor.dining_room_thermostat_temperature
 
+      - type: history-graph
+        title: 'Temperature'
+        entities:
+          - entity: sensor.dark_sky_apparent_temperature
+            name: Outside
+          - entity: sensor.dining_room_thermostat_temperature
+            name: Inside
+
       - type: entities
         title: Temperature Levels
         show_header_toggle: false
@@ -1658,6 +1666,13 @@ views:
           - automation.update_zwave_battery_levels
           - automation.ups_state_change
           - automation.water_leak_detected
+
+      - type: entities
+        title: Misc Automations
+        show_header_toggle: false
+        entities:
+          - automation.count_motions
+          - automation.reset_motion_counters_at_midnight
 
   - id: QNAP
     title: QNAP NAS
