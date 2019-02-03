@@ -910,6 +910,9 @@ views:
           - type: media-control
             entity: media_player.attic_tv
 
+          - type: media-control
+            entity: media_player.chrome_2
+
       - type: entities
         title: Snapcast Clients
         show_header_toggle: false
