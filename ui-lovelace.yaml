@@ -232,7 +232,6 @@ views:
         entities:
           - sensor.downstairs_multi_sensor_luminance
           - sensor.front_room_multi_sensor_luminance
-          - sensor.guest_bedroom_multi_sensor_luminance
           - sensor.tv_multi_sensor_luminance
           - sensor.upstairs_multi_sensor_luminance
 
@@ -256,7 +255,6 @@ views:
           - binary_sensor.front_room_multi_sensor_sensor
           - binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor
           - binary_sensor.garage_door_sensor_sensor
-          - binary_sensor.guest_bedroom_multi_sensor_sensor
           - binary_sensor.kitchen_motion_sensor_sensor
           - binary_sensor.back_door_sensor_sensor
           - binary_sensor.stairs_motion_sensor_sensor
@@ -264,7 +262,6 @@ views:
           - binary_sensor.single_car_garage_door_tilt_sensor_sensor
           - binary_sensor.two_car_garage_door_tilt_sensor_sensor
           - binary_sensor.upstairs_multi_sensor_sensor
-          - binary_sensor.front_room_window_sensor_sensor
         state_filter:
           - 'on'
           - 'detected'
@@ -285,9 +282,7 @@ views:
           - input_label.basement_door_sensor
           - input_label.downstairs_multi_sensor
           - input_label.front_room_multi_sensor
-          - input_label.front_room_window_sensor
           - input_label.garage_door_sensor
-          - input_label.guest_bedroom_multi_sensor
           - input_label.kitchen_motion_sensor
           - input_label.single_car_garage_door_tilt_sensor
           - input_label.stairs_motion_sensor
@@ -309,7 +304,6 @@ views:
           - input_label.downstairs_multi_sensor_sensor
           - input_label.front_room_multi_sensor_sensor
           - input_label.front_room_window_sensor_sensor
-          - input_label.guest_bedroom_multi_sensor_sensor
           - input_label.kitchen_motion_sensor_sensor
           - input_label.motion_sensor_158d00016c2d0e
           - input_label.motion_sensor_158d00016db6d2
@@ -451,7 +445,6 @@ views:
             name: Hallway Temperature
           - sensor.downstairs_multi_sensor_temperature
           - sensor.front_room_multi_sensor_temperature
-          - sensor.guest_bedroom_multi_sensor_temperature
           - sensor.tv_multi_sensor_temperature
           - sensor.upstairs_multi_sensor_temperature
 
@@ -461,7 +454,6 @@ views:
         entities:
           - sensor.downstairs_multi_sensor_relative_humidity
           - sensor.front_room_multi_sensor_relative_humidity
-          - sensor.guest_bedroom_multi_sensor_relative_humidity
           - sensor.tv_multi_sensor_relative_humidity
           - sensor.upstairs_multi_sensor_relative_humidity
           - entity: sensor.pws_relative_humidity
@@ -910,9 +902,6 @@ views:
           - type: media-control
             entity: media_player.attic_tv
 
-          - type: media-control
-            entity: media_player.chrome_2
-
       - type: entities
         title: Snapcast Clients
         show_header_toggle: false
@@ -1239,7 +1228,7 @@ views:
             color_type: card
             style:
               - font-weight: bold
-              - color: rgb(4,138,194)
+              - color: var(--primary-color)
             action: service
             service:
               domain: script
@@ -1252,7 +1241,7 @@ views:
             color_type: card
             style:
               - font-weight: bold
-              - color: rgb(4,138,194)
+              - color: var(--primary-color)
             action: service
             service:
               domain: script
@@ -1292,7 +1281,7 @@ views:
             color_type: card
             style:
               - font-weight: bold
-              - color: rgb(197,29,74)
+              - color: var(--primary-color)
             action: service
             service:
               domain: script
@@ -1304,7 +1293,7 @@ views:
             color_type: card
             style:
               - font-weight: bold
-              - color: rgb(197,29,74)
+              - color: var(--primary-color)
             action: service
             service:
               domain: script

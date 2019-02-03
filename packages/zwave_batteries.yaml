@@ -13,7 +13,6 @@ input_label:
   downstairs_multi_sensor:
   front_door_sensor:
   front_room_multi_sensor:
-  front_room_window_sensor:
   garage_door_sensor:
   guest_bedroom_multi_sensor:
   kitchen_motion_sensor:
