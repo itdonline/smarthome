@@ -221,7 +221,6 @@ switch:
     command_topic: '/home/rfswitches/switch_one'
     payload_on: "on"
     payload_off: "off"
-    assumed_state: false
     retain: true
 
   - platform: mqtt
@@ -229,7 +228,6 @@ switch:
     command_topic: '/home/rfswitches/switch_two'
     payload_on: "on"
     payload_off: "off"
-    assumed_state: false
     retain: true
 
   - platform: mqtt
@@ -237,7 +235,6 @@ switch:
     command_topic: '/home/rfswitches/switch_three'
     payload_on: "on"
     payload_off: "off"
-    assumed_state: false
     retain: true
 
   - platform: mqtt
@@ -245,7 +242,6 @@ switch:
     command_topic: '/home/rfswitches/switch_four'
     payload_on: "on"
     payload_off: "off"
-    assumed_state: false
     retain: true
 
   - platform: mqtt
@@ -253,7 +249,6 @@ switch:
     command_topic: '/home/rfswitches/switch_five'
     payload_on: "on"
     payload_off: "off"
-    assumed_state: false
     retain: true
 
 wemo:

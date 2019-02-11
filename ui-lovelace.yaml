@@ -70,6 +70,12 @@ views:
           type: glance
           title: Kalavala Family
 
+      - type: entities
+        title: Master Bedroom Occupancy Value
+        show_header_toggle: false
+        entities:
+          - sensor.master_bed_sensor
+
       - type: entity-filter
         title: For Your Information
         show_empty: false

@@ -74,6 +74,7 @@ recorder:
 logger: !include logging.yaml
 
 owntracks:
+system_health:
 
 mqtt:
   broker: !secret mqtt_server
