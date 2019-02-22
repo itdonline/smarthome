@@ -80,14 +80,22 @@ media_player:
     name: mpd
     host: !secret mopidy_server_ip
     port: !secret mopidy_server_port
+
   - platform: denon
     host: !secret denon_avr_ip_address
     name: DENON
+
+
+  - platform: denonavr
+    host: !secret denon_avr_ip_address
+    name: MY DENON RECEIVER
+    show_all_sources: true
+    timeout: 5
+
   - platform: plex
     entity_namespace: 'plex'
     include_non_clients: true
     scan_interval: 5
-    show_all_controls: false
     use_episode_art: true
     remove_unavailable_clients: true
     client_remove_interval: 600

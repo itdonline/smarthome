@@ -123,10 +123,10 @@ image_processing:
       - "/home/homeassistant/.homeassistant/www/downloads/camera/{{- camera_entity.split('.')[1].split('_')[0] -}}/{{ camera_entity.split('.')[1].split('_')[0] }}_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
     model:
       graph: /home/homeassistant/.homeassistant/tensorflow/frozen_inference_graph.pb
-    categories:
-      - person
-      - car
-      - truck
+    # categories:
+    #   - person
+    #   - car
+    #   - truck
 
 input_label:
   current_stream:

@@ -88,6 +88,34 @@ binary_sensor:
   - platform: workday
     country: US
 
+person:
+  - name: Suresh
+    id: suresh
+    device_trackers:
+      - device_tracker.suresh
+      - device_tracker.suresh_suresh
+      - device_tracker.tesla_model_3_5yj3e1ea8jf010610_location_tracker
+
+  - name: Mallika
+    id: mallika
+    device_trackers:
+      - device_tracker.mallika
+      - device_tracker.mallika_mallika
+
+  - name: Srinika
+    id: srinika
+    device_trackers:
+      - device_tracker.srinika
+      - device_tracker.srinika_srinika
+
+  - name: Hasika
+    id: hasika
+    device_trackers:
+      - device_tracker.hasika
+      - device_tracker.hasika_hasika
+
+default_config:
+
 lovelace:
   mode: yaml
 

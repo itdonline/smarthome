@@ -32,16 +32,6 @@ homeassistant:
     sensor.external_ip:
       friendly_name: External IP Address
 
-# Speed Test Sensor
-    sensor.speedtest_ping:
-      friendly_name: Ping Speed
-
-    sensor.speedtest_upload:
-      friendly_name: Upload Speed
-
-    sensor.speedtest_download:
-      friendly_name: Download Speed
-
 # System Info Sensor
     sensor.cpu_speed:
       friendly_name: CPU Speed
@@ -109,6 +99,14 @@ shell_command:
   update_hass: >-
     hassctl update-hass && hassctl config && hassctl restart
 
+speedtestdotnet:
+  scan_interval:
+    hours: 1
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
 sensor:
 
   - platform: uptime
@@ -125,18 +123,6 @@ sensor:
     value_template: '{{ value }}'
     scan_interval: 86400
 
-  - platform: speedtest
-    minute: 30
-    hour:
-      - 0
-      - 6
-      - 12
-      - 18
-    monitored_conditions:
-      - ping
-      - download
-      - upload
-  
   - platform: systemmonitor
     resources:
       - type: disk_free

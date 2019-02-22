@@ -776,6 +776,7 @@ views:
         entities:
           - sensor.disk_free
           - sensor.ipv4_address_ens160
+          - sensor.external_ip
           - sensor.last_boot
           - sensor.processor_use
           - sensor.memory_free
@@ -810,14 +811,32 @@ views:
           - sensor.pi_hole_domains_blocked
           - sensor.pi_hole_seen_clients
 
-      - type: entities
-        title: Internet Speed
-        show_header_toggle: false
-        entities:
-          - sensor.external_ip
-          - sensor.speedtest_ping
-          - sensor.speedtest_upload
-          - sensor.speedtest_download
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            entity: sensor.speedtest_ping
+            name: Ping Speed
+            unit: ms
+            severity:
+              green: 0
+              yellow: 45
+              red: 85
+          - type: gauge
+            entity: sensor.speedtest_upload
+            name: Upload Speed
+            unit: Mbit/s
+            severity:
+              green: 10
+              yellow: 7
+              red: 5
+          - type: gauge
+            entity: sensor.speedtest_download
+            name: Download Speed
+            unit: Mbit/s
+            severity:
+              green: 70
+              yellow: 50
+              red: 35
 
       - type: entities
         title: Battery/UPS
@@ -893,6 +912,7 @@ views:
           - media_player.gstreamer
           - media_player.mpd
           - media_player.attic_tv
+          - media_player.my_denon_receiver
 
       - type: vertical-stack
         cards:
@@ -907,6 +927,9 @@ views:
     
           - type: media-control
             entity: media_player.attic_tv
+
+          - type: media-control
+            entity: media_player.my_denon_receiver
 
       - type: entities
         title: Snapcast Clients

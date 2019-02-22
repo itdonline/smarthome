@@ -209,3 +209,48 @@
 #             {%- if loop.first %}{% elif loop.last %}, {% else %}, {% endif -%}
 #             {{ e }}
 #             {%- endfor %}
+
+
+
+# https://raw.githubusercontent.com/awesome-automations/home/master/apcups.html
+
+# sensor:
+#   - platform: rest
+#     resource: https://raw.githubusercontent.com/awesome-automations/home/master/apcups.html
+#     name: BATTERY_MODEL
+#     scan_interval: 60
+#     value_template: >
+#       {%- macro GetValue(str) -%}
+#       {%- if str in value -%}
+#         {%- set index = value.split(str)[0]|length -%}
+#         {{ value[index+str|length:value|length].split('\n')[0] }}
+#       {%- endif -%}
+#       {%- endmacro %}
+#       {{ GetValue('MODEL    : ') }}
+
+
+
+# input_boolean:
+#   color_loop:
+#     initial: off
+
+# automation:
+#   - alias: Colorloop Automation
+#     trigger:
+#       - platform: state
+#         entity_id: input_boolean.color_loop
+#     action:
+#       - service_template: script.color_loop_ "{{- trigger.to_state.state -}}"
+
+# script:
+#   color_loop_on:
+#     sequence:
+#       - service: light.turn_on
+#         data:
+#           entity_id: light.xxx
+#           effect: colorloop
+
+#   color_loop_off:
+#     sequence:
+#       - service: light.turn_off
+#         entity_id: light.xxx

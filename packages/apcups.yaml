@@ -10,7 +10,7 @@
 
  sensor:
    - platform: apcupsd
-     name: Network Backup UPS
+    #  name: Network Backup UPS
      resources:
        - bcharge
        - linev

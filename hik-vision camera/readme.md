@@ -26,6 +26,7 @@
 <img src="https://raw.githubusercontent.com/skalavala/smarthome/master/hik-vision%20camera/images/screenshot_024.jpg"></img></br>
 <img src="https://raw.githubusercontent.com/skalavala/smarthome/master/hik-vision%20camera/images/screenshot_025.jpg"></img></br>
 <img src="https://raw.githubusercontent.com/skalavala/smarthome/master/hik-vision%20camera/images/screenshot_026.jpg"></img></br>
+<img src="https://raw.githubusercontent.com/skalavala/smarthome/master/hik-vision%20camera/images/screenshot_026a.jpg"></img></br>
 <img src="https://raw.githubusercontent.com/skalavala/smarthome/master/hik-vision%20camera/images/screenshot_027.jpg"></img></br>
 <img src="https://raw.githubusercontent.com/skalavala/smarthome/master/hik-vision%20camera/images/screenshot_028.jpg"></img></br>
 <img src="https://raw.githubusercontent.com/skalavala/smarthome/master/hik-vision%20camera/images/screenshot_029.jpg"></img></br>
