@@ -133,3 +133,16 @@ cards:
       - switch.garage_lights
       - binary_sensor.single_car_garage_door_tilt_sensor_sensor
       - binary_sensor.two_car_garage_door_tilt_sensor_sensor
+
+  - type: picture-glance
+    id: camera_kitchen_camera
+    title: Kitchen Camera
+    entity: camera.kitchen_camera
+    camera_image: camera.kitchen_camera
+    show_info: true
+    tap_action: 
+      action: more-info
+    entities:
+      - switch.kitchen_light
+      - binary_sensor.kitchen_camera_motion
+      - binary_sensor.back_door_sensor_sensor

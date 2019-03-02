@@ -1,11 +1,6 @@
-# homeassistant:
-
-#- platform: verizonwireless
-#  username: !secret vzw_username
-#  password: !secret vzw_password
-#  secret: !secret vzw_secret
-
-
+#########################################################################################################
+# Wrote this code for @norien, where he wanted to set specific color to all the bulbs based on holiday 
+#########################################################################################################
 # homeassistant:
 #   customize:
 
@@ -88,6 +83,9 @@
 #       - delay: '00:00:01'
 #       - service: script.set_random_color_2_all_bulbs
 
+#########################################################################################################
+# Wrote this for @chags, to show how to raise and handle custom events with dynamic data using templates
+#########################################################################################################
 # automation:
 #   - alias: Fire Event
 #     trigger:
@@ -107,6 +105,11 @@
 #         data_template:
 #           message: "Test Event Captured with data foo: {{ trigger.event.data.foo }}"
 
+#########################################################################################################
+# Wrote this code for @roystervi, where it turns on a group of media players/speakers based on where
+# the motion is detected, and when there is no motion, it turns off the speakers
+#########################################################################################################
+
 # automation:
 #   - alias: Speakers On During Presence
 #     trigger:
@@ -121,6 +124,10 @@
 #       - service_template: 'switch.turn_{{ trigger.to_state.state }}'
 #         data_template:
 #             entity_id: '{{ trigger.entity_id.replace("binary_sensor", "group") }}'
+
+#########################################################################################################
+# Wrote this code for someone, to help set scenes based on sun elevation and time combination
+#########################################################################################################
 
 #- id: Sunset_if_home
 # automation:
@@ -144,6 +151,9 @@
 #               scene.dimmad_vit
 #             {% endif %}
 
+#########################################################################################################
+# Wrote this code for someone, to show servcie_template example
+#########################################################################################################
 
 # automation:
 #   - alias: Run every 15 seconds
@@ -160,6 +170,11 @@
 #           switch.turn_on
 #           {% endif %}
 #         entity_id: switch.kitchen_light
+
+
+#########################################################################################################
+# Wrote this code for someone, where they wanted to drop a message to MQTT with topic name based on sensor 
+#########################################################################################################
 
 # automation:
 #   - alias: ResetMotionSensors
@@ -187,6 +202,11 @@
 #             {% set mapping = '{ "hallway": "985335", "livingroom": "854267", "kitchen": "699555" }' %}
 #             {{ 'Hassio/433/Honeywell/Honeywell_Door/Window_Sensor/' ~ mapping[trigger.entity_id.split('.')[1].split('_')[0] ~ ''] }}
 
+
+#########################################################################################################
+# Wrote code for @chags - to pass a list of variables from an automation to a script
+#########################################################################################################
+
 # automation:
 #   - alias: 'Pass list to script'
 #     trigger:
@@ -210,7 +230,9 @@
 #             {{ e }}
 #             {%- endfor %}
 
-
+#########################################################################################################
+# Wrote code for @IxsharpxI#4883 - he wanted to call REST api and extract various values for APCUPS! 
+#########################################################################################################
 
 # https://raw.githubusercontent.com/awesome-automations/home/master/apcups.html
 
@@ -229,6 +251,9 @@
 #       {{ GetValue('MODEL    : ') }}
 
 
+#########################################################################################################
+# Wrote this code for someone, where they wanted to have an input_boolean that controls effects
+#########################################################################################################
 
 # input_boolean:
 #   color_loop:
@@ -254,3 +279,53 @@
 #     sequence:
 #       - service: light.turn_off
 #         entity_id: light.xxx
+
+#########################################################################################################
+# @xxKira wanted to call a service in a loop by passing an alphabet each time from a string, 
+# so that the service inserts that alphabet using remote on TV
+#########################################################################################################
+
+# homeassistant:
+
+# input_number:
+#   text_index:
+#     name: "Text Index"
+#     initial: 0
+#     min: 0
+#     max: 255
+
+# script:
+#   input_text:
+#     alias: Text to Enter on Remote
+#     sequence:
+#       - service_template: script.text_loop
+#         data_template:
+#           text: "Netflix"
+
+#   text_loop:
+#     alias: Loops Text
+#     sequence:
+#       - condition: template
+#         value_template: "{{ 'true' if (states.input_number.text_index.state |int < text|length | int) else 'false' }}"
+#       - service_template: script.key_input
+#         data_template:
+#           command: >-
+#             {%- set index = states.input_number.text_index.state | int -%}
+#             {{ text[index:index+1] }}
+#           text: "{{ text }}"
+
+#   key_input:
+#     alias: Send Key Input
+#     sequence:
+#       - service: media_player.firetv_adb_shell
+#         data_template:
+#           entity_id: media_player.televisione_camera
+#           cmd: "input keyevent {{ command | upper }}"
+#       - delay: '00:00:01'
+#       - service: input_number.set_value
+#         data_template:
+#           entity_id: input_number.text_index
+#           value: "{{ (states.input_number.text_index.state | int + 1) }}"
+#       - service: script.text_loop
+#         data_template:
+#           text: "{{ text }}"

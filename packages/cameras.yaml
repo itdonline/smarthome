@@ -62,6 +62,10 @@ camera:
     mjpeg_url: !secret garage_camera_url
     name: Garage Camera
 
+  - platform: mjpeg
+    mjpeg_url: !secret kitchen_camera_url
+    name: Kitchen Camera
+
   - platform: local_file
     name: Frontdoor Latest Scan
     file_path: "/home/homeassistant/.homeassistant/www/downloads/camera/frontdoor/frontdoor_latest.jpg"

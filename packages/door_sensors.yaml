@@ -78,6 +78,14 @@ binary_sensor:
     payload_off: 'off'
     value_template: "{{ value }}"
 
+  - platform: mqtt
+    state_topic: "/kitchen/motion"
+    name: "Kitchen Camera Motion"
+    device_class: motion
+    payload_on: 'on'
+    payload_off: 'off'
+    value_template: "{{ value }}"
+
 ###############################################################################
 #                _                        _   _                 
 #     /\        | |                      | | (_)                
@@ -102,6 +110,21 @@ automation:
       - service: mqtt.publish
         data:
           topic: "/garage/motion"
+          payload: 'off'
+          retain: false
+
+  - alias: Kitchen Camera Motion Reset
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.kitchen_camera_motion
+        to: 'on'
+        from: 'off'
+    action:
+      - delay: '00:00:30'
+      - service: mqtt.publish
+        data:
+          topic: "/kitchen/motion"
           payload: 'off'
           retain: false
 
