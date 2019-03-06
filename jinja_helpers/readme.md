@@ -28,16 +28,16 @@ $ python3
 ## Basics of Jinja
 
 ### Basic String Manipulation
-`{{ "hello this is a test" | upper }}` returns `HELLO THIS IS A TEST`
-`{{ "HELLO THIS IS A TEST" | lower }}` returns `hello this is a test`
-`{{ "hello this is a test" | capitalize }}` returns `Hello this is a test`
-`{{ "hello this is a test" | title }}`  returns `Hello This Is A Test`
-`{{ "Hello & World" | safe }}` returns `Hello & World`
-`{{ "Hello & World" | escape }}` returns `Hello &amp; World`
-`{{ "Hello & World" | length }}`  returns `13`
-`{{ "Hello & World" | count }}`  returns `13`
-`{{ " Hello & World " | trim}}` returns `Hello & World` by removing spaces before and after
-`{{ ["a", "b", "c", "d", "e"] | random }}` returns a random element from the array
+<p>`{{ "hello this is a test" | upper }}` returns `HELLO THIS IS A TEST`</p>
+<p>`{{ "HELLO THIS IS A TEST" | lower }}` returns `hello this is a test`</p>
+<p>`{{ "hello this is a test" | capitalize }}` returns `Hello this is a test`</p>
+<p>`{{ "hello this is a test" | title }}`  returns `Hello This Is A Test`</p>
+<p>`{{ "Hello & World" | safe }}` returns `Hello & World`</p>
+<p>`{{ "Hello & World" | escape }}` returns `Hello &amp; World`</p>
+<p>`{{ "Hello & World" | length }}`  returns `13`</p>
+<p>`{{ "Hello & World" | count }}`  returns `13`</p>
+<p>`{{ " Hello & World " | trim}}` returns `Hello & World` by removing spaces before and after</p>
+<p>`{{ ["a", "b", "c", "d", "e"] | random }}` returns a random element from the array</p>
 
 ## Setting Variables
 
@@ -79,7 +79,7 @@ loop.length - loop length
 ```
 ### Maintaining state in a loop
 
-The loops in Jinja are different from other programming languages, where you can't maintain state. For ex: you can define a variable, and if you try to increment, decrement or change the value in a loop, and after the loop, you will notice the value hasn't changed. Reason being, there is something called `scoping` in Jinja. You can read more about scoping on Jinja's official documentation, and if you are looking for a quick way to do this, you need to use `namespace`. With the namespace, you can create a scope and update the varible from within the loops.  Here is how you define a namespace with a variable in it, called `lowBattery` and you can set the default value by assining directly as follows.
+<p>The loops in Jinja are different from other programming languages, where you can't maintain state. For ex: you can define a variable, and if you try to increment, decrement or change the value in a loop, and after the loop, you will notice the value hasn't changed. Reason being, there is something called `scoping` in Jinja. You can read more about scoping on Jinja's official documentation, and if you are looking for a quick way to do this, you need to use `namespace`. With the namespace, you can create a scope and update the variable from within the loops.  Here is how you define a namespace with a variable in it, called `numberFiveFound` and you can set the default value by assigning directly as follows.</p>
 
 ```
 {% set ns = namespace(numberFiveFound=false) %}
