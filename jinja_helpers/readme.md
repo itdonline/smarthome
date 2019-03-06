@@ -28,17 +28,16 @@ $ python3
 ## Basics of Jinja
 
 ### Basic String Manipulation
-{{ "hello this is a test" | upper }} returns `HELLO THIS IS A TEST`
-
-{{ "HELLO THIS IS A TEST" | lower }} returns `hello this is a test`
-{{ "hello this is a test" | capitalize }} returns `Hello this is a test`
-{{ "hello this is a test" | title }}  returns `Hello This Is A Test`
-{{ "Hello & World" | safe }} returns `Hello & World`
-{{ "Hello & World" | escape }} returns `Hello &amp; World`
-{{ "Hello & World" | length }}  returns `13`
-{{ "Hello & World" | count }}  returns `13`
-{{ " Hello & World " | trim}} returns `Hello & World` by removing spaces before and after
-{{ ["a", "b", "c", "d", "e"] | random }} returns a random element from the array
+`{{ "hello this is a test" | upper }}` returns `HELLO THIS IS A TEST`
+`{{ "HELLO THIS IS A TEST" | lower }}` returns `hello this is a test`
+`{{ "hello this is a test" | capitalize }}` returns `Hello this is a test`
+`{{ "hello this is a test" | title }}`  returns `Hello This Is A Test`
+`{{ "Hello & World" | safe }}` returns `Hello & World`
+`{{ "Hello & World" | escape }}` returns `Hello &amp; World`
+`{{ "Hello & World" | length }}`  returns `13`
+`{{ "Hello & World" | count }}`  returns `13`
+`{{ " Hello & World " | trim}}` returns `Hello & World` by removing spaces before and after
+`{{ ["a", "b", "c", "d", "e"] | random }}` returns a random element from the array
 
 ## Setting Variables
 
@@ -50,11 +49,12 @@ To have a varibale with a name `val` and with value `hello`, use the following:
 ### Loops and Loop Indexes
 
 Iterate/Loop thru an array in reverse order
+```
 {% set values = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"] %}
 {% for item in values %}
 {{ values[loop.revindex] }}
 {%- endfor %}
-
+```
 prints the following:
 ```
 k
