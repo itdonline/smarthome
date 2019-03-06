@@ -28,16 +28,25 @@ $ python3
 ## Basics of Jinja
 
 ### Basic String Manipulation
-<p>`{{ "hello this is a test" | upper }}` returns `HELLO THIS IS A TEST`</p>
-<p>`{{ "HELLO THIS IS A TEST" | lower }}` returns `hello this is a test`</p>
-<p>`{{ "hello this is a test" | capitalize }}` returns `Hello this is a test`</p>
-<p>`{{ "hello this is a test" | title }}`  returns `Hello This Is A Test`</p>
-<p>`{{ "Hello & World" | safe }}` returns `Hello & World`</p>
-<p>`{{ "Hello & World" | escape }}` returns `Hello &amp; World`</p>
-<p>`{{ "Hello & World" | length }}`  returns `13`</p>
-<p>`{{ "Hello & World" | count }}`  returns `13`</p>
-<p>`{{ " Hello & World " | trim}}` returns `Hello & World` by removing spaces before and after</p>
-<p>`{{ ["a", "b", "c", "d", "e"] | random }}` returns a random element from the array</p>
+`{{ "hello this is a test" | upper }}` returns `HELLO THIS IS A TEST`
+
+`{{ "HELLO THIS IS A TEST" | lower }}` returns `hello this is a test`
+
+`{{ "hello this is a test" | capitalize }}` returns `Hello this is a test`
+
+`{{ "hello this is a test" | title }}`  returns `Hello This Is A Test`
+
+`{{ "Hello & World" | safe }}` returns `Hello & World`
+
+`{{ "Hello & World" | escape }}` returns `Hello &amp; World`
+
+`{{ "Hello & World" | length }}`  returns `13`
+
+`{{ "Hello & World" | count }}`  returns `13`
+
+`{{ " Hello & World " | trim}}` returns `Hello & World` by removing spaces before and after
+
+`{{ ["a", "b", "c", "d", "e"] | random }}` returns a random element from the array
 
 ## Setting Variables
 
