@@ -17,7 +17,97 @@ $ python3
 >>> s = "{% for element in elements %}{{loop.index}} {% endfor %}"
 >>> Template(s).render(elements=["a", "b", "c", "d"])
 1 2 3 4
+>>>
+>>> Template("{{ var }}").render(var=25)
+'25'
+>>>
+>>> Template("{{ var }}").render(var="hello world!")
+'hello world!'
+>>>
 ```
+## Basics of Jinja
+
+### Basic String Manipulation
+{{ "hello this is a test" | upper }} returns `HELLO THIS IS A TEST`
+
+{{ "HELLO THIS IS A TEST" | lower }} returns `hello this is a test`
+{{ "hello this is a test" | capitalize }} returns `Hello this is a test`
+{{ "hello this is a test" | title }}  returns `Hello This Is A Test`
+{{ "Hello & World" | safe }} returns `Hello & World`
+{{ "Hello & World" | escape }} returns `Hello &amp; World`
+{{ "Hello & World" | length }}  returns `13`
+{{ "Hello & World" | count }}  returns `13`
+{{ " Hello & World " | trim}} returns `Hello & World` by removing spaces before and after
+{{ ["a", "b", "c", "d", "e"] | random }} returns a random element from the array
+
+## Setting Variables
+
+To have a varibale with a name `val` and with value `hello`, use the following:
+```
+{% set val = "hello" %}
+```
+
+### Loops and Loop Indexes
+
+Iterate/Loop thru an array in reverse order
+{% set values = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"] %}
+{% for item in values %}
+{{ values[loop.revindex] }}
+{%- endfor %}
+
+prints the following:
+```
+k
+j
+i
+h
+g
+f
+e
+d
+c
+b
+```
+Other noteworthy loop properties you may want to know:
+```
+loop.index0 - zero based index of elements in a loop
+loop.revindex - reverse indexing of loop with index starting at one
+loop.revindex0 - reverse indenxing of loop with index starting at zero 
+loop.first - to check if the current index in the loop is the first one
+loop.last - to check if the current index in the loop is the last item
+loop.length - loop length
+```
+### Maintaining state in a loop
+
+The loops in Jinja are different from other programming languages, where you can't maintain state. For ex: you can define a variable, and if you try to increment, decrement or change the value in a loop, and after the loop, you will notice the value hasn't changed. Reason being, there is something called `scoping` in Jinja. You can read more about scoping on Jinja's official documentation, and if you are looking for a quick way to do this, you need to use `namespace`. With the namespace, you can create a scope and update the varible from within the loops.  Here is how you define a namespace with a variable in it, called `lowBattery` and you can set the default value by assining directly as follows.
+
+```
+{% set ns = namespace(numberFiveFound=false) %}
+```
+You can then easily change the value from a loop and still able to access the updated value as follows:
+
+```
+{% set ns = namespace(numberFiveFound=false) %}
+{% set numbers  = [1, 2, 3, 4, 5, 6, 7 ] %}
+{% for number in numbers if number == 5 %}
+  {% set ns.numberFiveFound = true %}
+{% endfor %}
+{{ ns.numberFiveFound }}
+```
+
+The above script loops through a bunch of numbers, and if it finds the number "5", it will set the value to true. The value can then be accessed even after the loop, and it prints the value of `True`.
+
+If you do not use namespace and try to do the same thing using simple variables, it will not work - due to scoping issue. **The following code WILL NOT WORK :)**
+
+```
+{% set numberFiveFound = false %}
+{% set numbers  = [1, 2, 3, 4, 5, 6, 7 ] %}
+{% for number in numbers if number == 5 %}
+  {% set numberFiveFound = true %}
+{% endfor %}
+{{ numberFiveFound }}
+```
+It will return `False` even though the number "5" exists in the loop.
 
 ## 1. To see which entities are exposed to your alexa platform, run the following script
 
